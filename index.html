@@ -24,6 +24,7 @@
             --gradient-2: linear-gradient(135deg, #00e5ff, #00ff88);
             --shadow-card: 0 8px 32px rgba(0,0,0,0.6);
             --transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --radius: 24px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -292,7 +293,7 @@
             50% { transform: translateY(-14px); }
         }
         .profile-pic:hover {
-            box-shadow: 0 0 80px var(--glow-strong), 0 0 160px rgba(0,229,255,0.12);
+            box-shadow: 0 0 80px var(--glow), 0 0 160px rgba(0,229,255,0.12);
             transform: translateY(-16px) scale(1.03);
         }
 
@@ -387,7 +388,7 @@
         .info-chip:nth-child(4) { animation-delay: 0.6s; }
         .info-chip:hover {
             border-color: var(--primary);
-            background: var(--card-bg-hover);
+            background: var(--card-bg);
             box-shadow: 0 0 25px rgba(0,229,255,0.12);
             transform: translateY(-4px);
         }
@@ -420,7 +421,7 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 3px;
-            background: var(--gradient-3);
+            background: var(--gradient-2);
             transform: scaleX(0);
             transition: transform 0.6s ease;
             transform-origin: left;
@@ -429,7 +430,7 @@
         .section-card:hover::before { transform: scaleX(1); }
         .section-card:hover {
             border-color: rgba(0,229,255,0.35);
-            background: var(--card-bg-hover);
+            background: #0f0f18;
             box-shadow: var(--shadow-card), 0 0 50px rgba(0,229,255,0.05);
             transform: translateY(-6px);
         }
@@ -677,12 +678,6 @@
             color: #fff;
             box-shadow: 0 10px 35px rgba(255,255,255,0.15);
         }
-        .social-btn.linkedin:hover {
-            border-color: #0077b5;
-            background: rgba(0,119,181,0.1);
-            color: #0077b5;
-            box-shadow: 0 10px 35px rgba(0,119,181,0.25);
-        }
 
         /* Footer */
         .footer {
@@ -853,9 +848,7 @@
         <div class="section-card">
             <div class="card-icon"><i class="fas fa-cogs"></i></div>
             <h3 class="card-title" data-ar="المهارات" data-en="Skills">Skills</h3>
-            <div class="skills-container" id="skillsContainer">
-                <!-- Filled by JS -->
-            </div>
+            <div class="skills-container" id="skillsContainer"></div>
         </div>
 
         <!-- Objective -->
@@ -879,9 +872,6 @@
                 <a href="https://github.com/Abdo1818" target="_blank" rel="noopener" class="social-btn github">
                     <i class="fab fa-github"></i> Abdo1818
                 </a>
-                <a href="https://www.linkedin.com/in/bo-da" target="_blank" rel="noopener" class="social-btn linkedin">
-                    <i class="fab fa-linkedin-in"></i> BO DA
-                </a>
             </div>
         </div>
     </div>
@@ -898,9 +888,7 @@
     <script>
         // ==================== ANTI-THEFT PROTECTION ====================
         (function() {
-            // Disable right-click
             document.addEventListener('contextmenu', e => e.preventDefault());
-            // Disable keyboard shortcuts
             document.addEventListener('keydown', e => {
                 const blocked = ['F12', 'PrintScreen'];
                 const ctrlBlocked = ['u', 'U', 's', 'S', 'p', 'P', 'c', 'C', 'x', 'X', 'v', 'V', 'a', 'A'];
@@ -911,13 +899,10 @@
                     return false;
                 }
             });
-            // Disable drag
             document.addEventListener('dragstart', e => e.preventDefault());
             document.addEventListener('drop', e => e.preventDefault());
-            // Clear console
             console.clear();
             console.log = console.warn = console.error = console.info = console.debug = function() {};
-            // Detect DevTools
             const threshold = 160;
             setInterval(() => {
                 if (window.outerWidth - window.innerWidth > threshold ||
@@ -981,13 +966,11 @@
             const btnEn = document.getElementById('btnEn');
             const btnAr = document.getElementById('btnAr');
 
-            // Add transition
             main.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
             main.style.opacity = '0';
             main.style.transform = 'translateY(-12px)';
 
             setTimeout(() => {
-                // Update direction
                 if (lang === 'ar') {
                     html.lang = 'ar';
                     html.dir = 'rtl';
@@ -1004,7 +987,6 @@
                     document.title = 'BODA | Abdelrahman Mamdouh - CV';
                 }
 
-                // Update all data elements
                 document.querySelectorAll('[data-ar][data-en]').forEach(el => {
                     const val = el.getAttribute(`data-${lang}`);
                     if (val !== null) {
@@ -1013,15 +995,12 @@
                             el.innerHTML = '';
                             if (dot) el.appendChild(dot.cloneNode(true));
                             el.appendChild(document.createTextNode(' ' + val));
-                        } else if (el.closest('.footer')) {
-                            // Handled separately
-                        } else {
+                        } else if (!el.closest('.footer')) {
                             el.textContent = val;
                         }
                     }
                 });
 
-                // Handle title badge specifically
                 const badge = document.querySelector('.title-badge');
                 if (badge) {
                     const dot = badge.querySelector('.dot');
@@ -1036,7 +1015,6 @@
                     }
                 }
 
-                // Footer
                 const footerP = document.querySelector('.footer p');
                 if (footerP) {
                     const name = lang === 'ar' ? 'عبد الرحمن ممدوح (BODA)' : 'Abdelrahman Mamdouh (BODA)';
@@ -1045,25 +1023,18 @@
                     footerP.innerHTML = '© 2025 ' + name + made + '<span class="heart">❤️</span>' + passion;
                 }
 
-                // Update skills
                 renderSkills(lang);
 
-                // Restore visibility
                 main.style.opacity = '1';
                 main.style.transform = 'translateY(0)';
-                setTimeout(() => {
-                    main.style.transition = '';
-                }, 400);
+                setTimeout(() => { main.style.transition = ''; }, 400);
 
-                // Save preference
                 localStorage.setItem('boda_cv_lang', lang);
             }, 350);
         }
 
-        // Load saved language (default English)
         const savedLang = localStorage.getItem('boda_cv_lang') || 'en';
         if (savedLang === 'ar') {
-            // Set initial state for Arabic without animation
             document.documentElement.lang = 'ar';
             document.documentElement.dir = 'rtl';
             document.body.classList.add('rtl');
@@ -1073,14 +1044,7 @@
             document.querySelectorAll('[data-ar][data-en]').forEach(el => {
                 const val = el.getAttribute('data-ar');
                 if (val !== null && !el.classList.contains('title-badge') && !el.closest('.footer')) {
-                    if (el.querySelector('i') && el.closest('.info-chip')) {
-                        const icon = el.querySelector('i').cloneNode(true);
-                        el.textContent = '';
-                        el.appendChild(icon);
-                        el.appendChild(document.createTextNode(' ' + val));
-                    } else {
-                        el.textContent = val;
-                    }
+                    el.textContent = val;
                 }
             });
             const badge = document.querySelector('.title-badge');
@@ -1097,10 +1061,8 @@
             renderSkills('ar');
         }
 
-        console.log('%c🛡️ BODA CV - Protected & Secured %c| %cArabic/English Ready',
-            'color:#00e5ff;font-size:1.2rem;',
-            '',
-            'color:#00ff88;');
+        console.log('%c🛡️ BODA CV - Protected %c| %cArabic/English Ready',
+            'color:#00e5ff;font-size:1.2rem;', '', 'color:#00ff88;');
     </script>
 </body>
 </html>
