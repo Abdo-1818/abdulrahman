@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>BODA | Abdelrahman Mamdouh - CV</title>
     <meta name="description" content="BODA - Abdelrahman Mamdouh | Computer Science Student | Information Systems">
-    <meta name="theme-color" content="#040406">
+    <meta name="theme-color" content="#020205">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -14,17 +14,26 @@
             --primary: #00e5ff;
             --primary-dark: #00b8d4;
             --accent: #00ff88;
-            --bg: #040406;
-            --card-bg: #0a0a0f;
-            --text: #e0e0e0;
-            --text-light: #888;
-            --border: #1a1a2e;
-            --glow: rgba(0, 229, 255, 0.12);
+            --accent2: #ff6b6b;
+            --accent3: #ffd93d;
+            --bg: #020205;
+            --card-bg: #080810;
+            --card-bg-hover: #0c0c1a;
+            --text: #e8e8e8;
+            --text-light: #909090;
+            --border: #1a1a30;
+            --border-hover: rgba(0,229,255,0.4);
+            --glow: rgba(0,229,255,0.1);
+            --glow-strong: rgba(0,229,255,0.2);
             --gradient-1: linear-gradient(135deg, #00e5ff, #0072ff);
             --gradient-2: linear-gradient(135deg, #00e5ff, #00ff88);
-            --shadow-card: 0 8px 32px rgba(0,0,0,0.6);
-            --transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            --radius: 24px;
+            --gradient-3: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            --gradient-4: linear-gradient(135deg, #0072ff, #a855f7);
+            --shadow-card: 0 8px 40px rgba(0,0,0,0.7);
+            --shadow-glow: 0 0 80px rgba(0,229,255,0.08);
+            --radius: 28px;
+            --radius-sm: 16px;
+            --transition: 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -42,264 +51,275 @@
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             transition: all var(--transition);
+            cursor: default;
         }
-
         body.rtl {
             font-family: 'Cairo', 'Inter', sans-serif;
             direction: rtl;
         }
 
-        /* Copy Protection Overlay */
-        .copy-protection {
+        /* === COPY PROTECTION === */
+        .copy-shield {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            inset: 0;
             pointer-events: none;
-            z-index: 9998;
-            background: repeating-linear-gradient(45deg, rgba(0,0,0,0.015) 0px, rgba(0,0,0,0.015) 2px, transparent 2px, transparent 8px);
+            z-index: 9999;
+            background: repeating-linear-gradient(45deg, rgba(255,255,255,0.004) 0px, rgba(255,255,255,0.004) 1px, transparent 1px, transparent 6px);
         }
         .watermark {
             position: fixed;
             top: 50%; left: 50%;
-            transform: translate(-50%, -50%) rotate(-30deg);
-            font-size: 12rem;
+            transform: translate(-50%, -50%) rotate(-25deg);
+            font-size: 14rem;
             font-weight: 900;
-            color: rgba(255,255,255,0.008);
+            color: rgba(255,255,255,0.006);
             pointer-events: none;
-            z-index: 9997;
+            z-index: 9998;
             white-space: nowrap;
-            letter-spacing: 2rem;
+            letter-spacing: 3rem;
+            font-family: 'Inter', sans-serif;
         }
 
-        /* Animated Grid Background */
+        /* === BACKGROUND LAYERS === */
         .bg-grid {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none; z-index: 0;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
             background-image:
-                linear-gradient(rgba(0,229,255,0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,229,255,0.025) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridMove 25s linear infinite;
+                linear-gradient(rgba(0,229,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,229,255,0.02) 1px, transparent 1px);
+            background-size: 45px 45px;
+            animation: gridDrift 30s linear infinite;
         }
-        @keyframes gridMove {
-            0% { transform: translate(0,0); }
-            100% { transform: translate(50px,50px); }
+        @keyframes gridDrift {
+            0% { transform: translate(0,0) rotate(0deg); }
+            100% { transform: translate(45px,45px) rotate(1deg); }
         }
 
-        /* Floating Orbs */
-        .orbs-container {
+        .orbs-layer {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none; z-index: 0;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
         }
         .orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
+            filter: blur(100px);
             animation: orbFloat linear infinite;
-            opacity: 0.06;
+            opacity: 0.05;
         }
-        .orb:nth-child(1) {
-            width: 400px; height: 400px;
-            background: #00e5ff;
-            top: -10%; left: -5%;
-            animation-duration: 20s;
-            animation-delay: 0s;
-        }
-        .orb:nth-child(2) {
-            width: 350px; height: 350px;
-            background: #0072ff;
-            bottom: -10%; right: -5%;
-            animation-duration: 25s;
-            animation-delay: -5s;
-        }
-        .orb:nth-child(3) {
-            width: 300px; height: 300px;
-            background: #00ff88;
-            top: 50%; left: 50%;
-            animation-duration: 30s;
-            animation-delay: -10s;
-        }
+        .orb:nth-child(1) { width: 500px; height: 500px; background: #00e5ff; top: -15%; left: -8%; animation-duration: 22s; }
+        .orb:nth-child(2) { width: 400px; height: 400px; background: #0072ff; bottom: -12%; right: -6%; animation-duration: 28s; animation-delay: -7s; }
+        .orb:nth-child(3) { width: 350px; height: 350px; background: #00ff88; top: 45%; left: 55%; animation-duration: 32s; animation-delay: -14s; }
+        .orb:nth-child(4) { width: 380px; height: 380px; background: #a855f7; top: 60%; left: -8%; animation-duration: 26s; animation-delay: -3s; }
+        .orb:nth-child(5) { width: 300px; height: 300px; background: #ff6b6b; bottom: 30%; right: 30%; animation-duration: 35s; animation-delay: -10s; }
         @keyframes orbFloat {
-            0% { transform: translate(0,0) scale(1); }
-            25% { transform: translate(100px,-50px) scale(1.2); }
-            50% { transform: translate(-50px,100px) scale(0.8); }
-            75% { transform: translate(-100px,-100px) scale(1.1); }
-            100% { transform: translate(0,0) scale(1); }
+            0% { transform: translate(0,0) scale(1) rotate(0deg); }
+            25% { transform: translate(120px,-60px) scale(1.15) rotate(90deg); }
+            50% { transform: translate(-60px,100px) scale(0.85) rotate(180deg); }
+            75% { transform: translate(-120px,-80px) scale(1.1) rotate(270deg); }
+            100% { transform: translate(0,0) scale(1) rotate(360deg); }
         }
 
         /* Floating Particles */
-        .particles {
+        .particles-layer {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none; z-index: 0;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
         }
-        .particle {
+        .particle-dot {
             position: absolute;
-            width: 3px; height: 3px;
-            background: var(--primary);
             border-radius: 50%;
-            animation: floatUp linear infinite;
+            animation: particleRise linear infinite;
             opacity: 0;
-            box-shadow: 0 0 8px var(--primary);
         }
-        @keyframes floatUp {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        @keyframes particleRise {
+            0% { transform: translateY(105vh) scale(0) rotate(0deg); opacity: 0; }
+            5% { opacity: 0.9; }
+            85% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1.8) rotate(720deg); opacity: 0; }
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1150px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
             position: relative;
             z-index: 1;
         }
 
-        /* Language Switcher */
+        /* === LANGUAGE SWITCHER === */
         .lang-switcher {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 24px;
+            right: 24px;
             z-index: 1000;
             display: flex;
-            gap: 0.6rem;
-            background: rgba(10,10,15,0.85);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 50px;
-            padding: 0.4rem;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            gap: 0.5rem;
+            background: rgba(8,8,16,0.9);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 60px;
+            padding: 0.35rem;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.03) inset;
         }
         body.rtl .lang-switcher {
-            right: auto; left: 20px;
-            flex-direction: row-reverse;
+            right: auto; left: 24px;
         }
         .lang-btn {
-            padding: 0.6rem 1.3rem;
-            border-radius: 50px;
+            padding: 0.55rem 1.2rem;
+            border-radius: 60px;
             border: none;
             background: transparent;
             color: var(--text-light);
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.85rem;
-            transition: all 0.4s ease;
+            font-size: 0.82rem;
+            transition: all 0.45s ease;
             letter-spacing: 0.5px;
             position: relative;
             font-family: inherit;
+            white-space: nowrap;
         }
-        .lang-btn::after {
+        .lang-btn::before {
             content: '';
             position: absolute;
             inset: 0;
-            border-radius: 50px;
+            border-radius: 60px;
             background: var(--gradient-1);
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.45s ease;
             z-index: -1;
         }
         .lang-btn.active {
             color: #fff;
-            box-shadow: 0 0 20px rgba(0,229,255,0.3);
+            box-shadow: 0 0 24px rgba(0,229,255,0.35), 0 4px 12px rgba(0,0,0,0.4);
         }
-        .lang-btn.active::after {
-            opacity: 1;
-        }
+        .lang-btn.active::before { opacity: 1; }
         .lang-btn:hover:not(.active) {
             color: #fff;
             transform: translateY(-2px);
+            text-shadow: 0 0 12px rgba(255,255,255,0.3);
         }
-        .lang-icon {
-            margin-right: 4px;
-            animation: flagWave 3s ease-in-out infinite;
+        .lang-flag {
+            display: inline-block;
+            animation: flagWiggle 2.5s ease-in-out infinite;
+            margin-right: 3px;
         }
-        @keyframes flagWave {
-            0%,100% { transform: rotate(0); }
-            25% { transform: rotate(8deg); }
-            75% { transform: rotate(-8deg); }
+        @keyframes flagWiggle {
+            0%,100% { transform: rotate(0) scale(1); }
+            25% { transform: rotate(6deg) scale(1.1); }
+            75% { transform: rotate(-6deg) scale(1.1); }
         }
 
-        /* Header / Hero */
+        /* === HEADER === */
         .header {
             text-align: center;
-            padding: 5rem 0 2rem;
+            padding: 5.5rem 0 2.5rem;
             position: relative;
         }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0.4;
+        }
 
-        /* Profile Picture */
+        /* Profile */
         .profile-wrapper {
             position: relative;
             display: inline-block;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2.8rem;
         }
-        .profile-ring {
+        .profile-orbit {
             position: absolute;
-            inset: -18px;
             border-radius: 50%;
             border: 2px solid transparent;
+            animation: orbitSpin linear infinite;
+        }
+        .profile-orbit:nth-child(1) {
+            inset: -20px;
             border-top-color: var(--primary);
             border-right-color: var(--primary);
-            animation: ringSpin 4s linear infinite;
-            opacity: 0.6;
+            animation-duration: 4s;
+            opacity: 0.7;
         }
-        .profile-ring:nth-child(2) {
-            inset: -28px;
-            border-top-color: transparent;
-            border-right-color: transparent;
+        .profile-orbit:nth-child(2) {
+            inset: -30px;
             border-bottom-color: var(--accent);
             border-left-color: var(--accent);
             animation-duration: 6s;
             animation-direction: reverse;
-            opacity: 0.4;
-        }
-        .profile-ring:nth-child(3) {
-            inset: -38px;
-            border: 1px dashed rgba(255,255,255,0.1);
-            animation-duration: 10s;
             opacity: 0.5;
         }
-        @keyframes ringSpin {
+        .profile-orbit:nth-child(3) {
+            inset: -42px;
+            border: 1.5px dashed rgba(255,255,255,0.08);
+            animation-duration: 10s;
+            opacity: 0.6;
+        }
+        .profile-orbit:nth-child(4) {
+            inset: -54px;
+            border-top-color: rgba(168,85,247,0.4);
+            border-left-color: rgba(168,85,247,0.4);
+            animation-duration: 8s;
+            animation-direction: reverse;
+            opacity: 0.4;
+        }
+        @keyframes orbitSpin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
         .profile-pic {
-            width: 150px;
-            height: 150px;
+            width: 155px;
+            height: 155px;
             border-radius: 50%;
-            background: var(--gradient-1);
+            background: var(--gradient-4);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 900;
             color: #fff;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             position: relative;
             z-index: 1;
-            animation: profileFloat 5s ease-in-out infinite;
-            box-shadow: 0 0 60px var(--glow), 0 0 120px rgba(0,229,255,0.06);
-            border: 3px solid rgba(255,255,255,0.1);
+            animation: avatarFloat 6s ease-in-out infinite;
+            box-shadow: 0 0 70px var(--glow), 0 0 140px rgba(0,229,255,0.04), 0 0 0 4px rgba(255,255,255,0.05);
             transition: all var(--transition);
+            cursor: pointer;
         }
-        @keyframes profileFloat {
-            0%,100% { transform: translateY(0px); }
-            50% { transform: translateY(-14px); }
+        @keyframes avatarFloat {
+            0%,100% { transform: translateY(0px) scale(1); }
+            30% { transform: translateY(-16px) scale(1.02); }
+            60% { transform: translateY(-6px) scale(0.99); }
         }
         .profile-pic:hover {
-            box-shadow: 0 0 80px var(--glow), 0 0 160px rgba(0,229,255,0.12);
-            transform: translateY(-16px) scale(1.03);
+            box-shadow: 0 0 100px var(--glow-strong), 0 0 200px rgba(0,229,255,0.08), 0 0 0 6px rgba(255,255,255,0.08);
+            transform: translateY(-20px) scale(1.06);
+        }
+        .profile-pic .glint {
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            width: 30%;
+            height: 40%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.2), transparent);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
-        /* Glitch text effect */
+        /* Name Styles */
         .name-main {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 900;
             background: var(--gradient-2);
             -webkit-background-clip: text;
@@ -307,27 +327,26 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 0.3rem;
             letter-spacing: 2px;
-            animation: shimmer 4s linear infinite, glitch 5s ease-in-out infinite;
-            background-size: 300% auto;
-            position: relative;
+            animation: textShimmer 5s linear infinite, textGlitch 6s ease-in-out infinite;
+            background-size: 400% auto;
         }
-        @keyframes shimmer {
+        @keyframes textShimmer {
             0% { background-position: 0% center; }
-            100% { background-position: 300% center; }
+            100% { background-position: 400% center; }
         }
-        @keyframes glitch {
-            0%,90%,100% { transform: translate(0); }
-            92% { transform: translate(-3px, 2px); }
-            94% { transform: translate(3px, -1px); }
-            96% { transform: translate(-2px, -2px); }
-            98% { transform: translate(2px, 1px); }
+        @keyframes textGlitch {
+            0%,92%,100% { transform: translate(0); opacity: 1; }
+            93% { transform: translate(-4px, 2px); opacity: 0.9; }
+            95% { transform: translate(4px, -1px); opacity: 0.95; }
+            97% { transform: translate(-2px, -2px); opacity: 0.85; }
+            99% { transform: translate(2px, 1px); opacity: 0.9; }
         }
         .name-sub {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--primary);
-            letter-spacing: 4px;
+            letter-spacing: 5px;
             font-weight: 500;
-            opacity: 0.8;
+            opacity: 0.75;
             text-transform: uppercase;
             transition: all var(--transition);
         }
@@ -335,142 +354,167 @@
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
-            background: rgba(0,229,255,0.08);
+            background: rgba(0,229,255,0.06);
             color: var(--primary);
-            padding: 0.6rem 1.6rem;
-            border-radius: 50px;
+            padding: 0.65rem 1.8rem;
+            border-radius: 60px;
             font-weight: 600;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            border: 1px solid rgba(0,229,255,0.2);
-            animation: pulseBadge 3s ease-in-out infinite;
+            font-size: 0.88rem;
+            margin-top: 1.1rem;
+            border: 1px solid rgba(0,229,255,0.15);
+            animation: badgeGlow 3.5s ease-in-out infinite;
             transition: all var(--transition);
+            backdrop-filter: blur(8px);
         }
-        @keyframes pulseBadge {
-            0%,100% { box-shadow: 0 0 0 0 rgba(0,229,255,0.3); }
-            50% { box-shadow: 0 0 0 18px rgba(0,229,255,0); }
+        @keyframes badgeGlow {
+            0%,100% { box-shadow: 0 0 0 0 rgba(0,229,255,0.25); border-color: rgba(0,229,255,0.15); }
+            50% { box-shadow: 0 0 0 20px rgba(0,229,255,0); border-color: rgba(0,229,255,0.35); }
         }
-        .title-badge .dot {
-            width: 8px; height: 8px;
+        .title-badge .pulse-dot {
+            width: 9px; height: 9px;
             background: var(--accent);
             border-radius: 50%;
-            animation: pulseDot 1.5s ease-in-out infinite;
+            animation: dotPulse 1.6s ease-in-out infinite;
+            box-shadow: 0 0 10px var(--accent);
         }
-        @keyframes pulseDot {
+        @keyframes dotPulse {
             0%,100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(1.8); }
+            50% { opacity: 0.3; transform: scale(2); }
         }
 
-        /* Quick Info */
+        /* Quick Info Chips */
         .quick-info {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 1rem;
-            margin: 2.5rem 0 1rem;
+            margin: 2.8rem 0 1.5rem;
         }
         .info-chip {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            padding: 0.7rem 1.5rem;
-            border-radius: 50px;
+            padding: 0.7rem 1.6rem;
+            border-radius: 60px;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            font-size: 0.9rem;
+            gap: 0.55rem;
+            font-size: 0.88rem;
             cursor: default;
             transition: all 0.4s ease;
-            animation: fadeSlideUp 0.6s ease-out both;
+            animation: chipAppear 0.6s ease-out both;
+            backdrop-filter: blur(4px);
         }
-        .info-chip:nth-child(1) { animation-delay: 0.15s; }
-        .info-chip:nth-child(2) { animation-delay: 0.3s; }
-        .info-chip:nth-child(3) { animation-delay: 0.45s; }
-        .info-chip:nth-child(4) { animation-delay: 0.6s; }
+        .info-chip:nth-child(1) { animation-delay: 0.1s; }
+        .info-chip:nth-child(2) { animation-delay: 0.25s; }
+        .info-chip:nth-child(3) { animation-delay: 0.4s; }
+        .info-chip:nth-child(4) { animation-delay: 0.55s; }
         .info-chip:hover {
-            border-color: var(--primary);
-            background: var(--card-bg);
-            box-shadow: 0 0 25px rgba(0,229,255,0.12);
-            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            background: var(--card-bg-hover);
+            box-shadow: 0 0 30px rgba(0,229,255,0.1), 0 8px 24px rgba(0,0,0,0.5);
+            transform: translateY(-5px);
         }
-        .info-chip i { color: var(--primary); font-size: 0.95rem; }
-        @keyframes fadeSlideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .info-chip i { color: var(--primary); font-size: 0.9rem; }
+        @keyframes chipAppear {
+            from { opacity: 0; transform: translateY(35px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Section Cards */
+        /* === SECTION CARDS === */
         .section-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 2.2rem;
-            margin-bottom: 1.5rem;
+            padding: 2.4rem;
+            margin-bottom: 1.6rem;
             transition: all var(--transition);
             position: relative;
             overflow: hidden;
-            animation: fadeSlideUp 0.7s ease-out both;
+            animation: cardReveal 0.8s ease-out both;
+            backdrop-filter: blur(4px);
         }
-        .section-card:nth-child(1) { animation-delay: 0.1s; }
-        .section-card:nth-child(2) { animation-delay: 0.2s; }
-        .section-card:nth-child(3) { animation-delay: 0.3s; }
-        .section-card:nth-child(4) { animation-delay: 0.4s; }
-        .section-card:nth-child(5) { animation-delay: 0.5s; }
-        .section-card:nth-child(6) { animation-delay: 0.6s; }
+        .section-card:nth-child(1) { animation-delay: 0.08s; }
+        .section-card:nth-child(2) { animation-delay: 0.18s; }
+        .section-card:nth-child(3) { animation-delay: 0.28s; }
+        .section-card:nth-child(4) { animation-delay: 0.38s; }
+        .section-card:nth-child(5) { animation-delay: 0.48s; }
+        .section-card:nth-child(6) { animation-delay: 0.58s; }
         .section-card::before {
             content: '';
             position: absolute;
             top: 0; left: 0;
-            width: 100%; height: 3px;
+            width: 100%; height: 4px;
             background: var(--gradient-2);
             transform: scaleX(0);
-            transition: transform 0.6s ease;
+            transition: transform 0.7s ease;
             transform-origin: left;
         }
         body.rtl .section-card::before { transform-origin: right; }
-        .section-card:hover::before { transform: scaleX(1); }
-        .section-card:hover {
-            border-color: rgba(0,229,255,0.35);
-            background: #0f0f18;
-            box-shadow: var(--shadow-card), 0 0 50px rgba(0,229,255,0.05);
-            transform: translateY(-6px);
+        .section-card::after {
+            content: '';
+            position: absolute;
+            top: -50%; right: -50%;
+            width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%);
+            transition: all 0.8s ease;
+            pointer-events: none;
         }
-        .section-card .card-icon {
-            font-size: 2.2rem;
-            color: var(--primary);
-            margin-bottom: 0.8rem;
+        .section-card:hover::before { transform: scaleX(1); }
+        .section-card:hover::after {
+            top: -30%; right: -30%;
+            width: 300px; height: 300px;
+        }
+        .section-card:hover {
+            border-color: var(--border-hover);
+            background: var(--card-bg-hover);
+            box-shadow: var(--shadow-card), var(--shadow-glow);
+            transform: translateY(-7px);
+        }
+        .section-card .card-icon-wrap {
+            font-size: 2.4rem;
+            margin-bottom: 0.9rem;
             display: inline-block;
-            animation: iconFloat 3s ease-in-out infinite;
+            animation: iconFloat 3.5s ease-in-out infinite;
         }
         @keyframes iconFloat {
-            0%,100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            0%,100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .section-card .card-icon-wrap i {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         .section-card .card-title {
-            font-size: 1.4rem;
+            font-size: 1.45rem;
             font-weight: 800;
             color: #fff;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.3rem;
             position: relative;
             display: inline-block;
         }
         .section-card .card-title::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -10px;
             left: 0;
-            width: 50px;
+            width: 60px;
             height: 3px;
             background: var(--primary);
-            border-radius: 3px;
-            transition: width 0.4s ease;
+            border-radius: 4px;
+            transition: width 0.5s ease, background 0.5s ease;
         }
         body.rtl .section-card .card-title::after { left: auto; right: 0; }
-        .section-card:hover .card-title::after { width: 100%; }
+        .section-card:hover .card-title::after {
+            width: 100%;
+            background: var(--accent);
+        }
 
         /* About Text */
         .about-text {
             color: var(--text-light);
-            line-height: 2;
+            line-height: 2.1;
             font-size: 1rem;
             transition: all var(--transition);
         }
@@ -478,173 +522,212 @@
         /* Info Grid */
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
             gap: 1rem;
         }
         .info-item {
-            background: rgba(255,255,255,0.015);
-            padding: 1.1rem 1.3rem;
-            border-radius: 14px;
+            background: rgba(255,255,255,0.01);
+            padding: 1.2rem 1.3rem;
+            border-radius: var(--radius-sm);
             border: 1px solid var(--border);
-            transition: all 0.35s ease;
+            transition: all 0.4s ease;
             cursor: default;
+            position: relative;
+            overflow: hidden;
         }
+        .info-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+            background: var(--gradient-1);
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+        }
+        .info-item:hover::before { transform: scaleY(1); }
         .info-item:hover {
-            border-color: var(--primary);
-            background: rgba(0,229,255,0.03);
-            transform: scale(1.03);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            border-color: var(--border-hover);
+            background: rgba(0,229,255,0.025);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
         }
         .info-label {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             color: var(--primary);
             font-weight: 600;
-            letter-spacing: 1.5px;
-            margin-bottom: 0.3rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.35rem;
             text-transform: uppercase;
+            opacity: 0.8;
         }
         .info-value {
             color: #fff;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.05rem;
+            letter-spacing: 0.3px;
         }
 
         /* Skills */
         .skills-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.8rem;
+            gap: 0.9rem;
         }
         .skill-tag {
-            background: rgba(0,229,255,0.06);
-            border: 1px solid rgba(0,229,255,0.18);
-            padding: 0.7rem 1.3rem;
-            border-radius: 50px;
+            background: rgba(0,229,255,0.04);
+            border: 1px solid rgba(0,229,255,0.15);
+            padding: 0.75rem 1.4rem;
+            border-radius: 60px;
             font-weight: 600;
-            font-size: 0.88rem;
+            font-size: 0.87rem;
             color: var(--primary);
             cursor: default;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s ease;
+            transition: all 0.45s ease;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            animation: skillPop 0.5s ease-out both;
+        }
+        @keyframes skillPop {
+            from { opacity: 0; transform: scale(0.8) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
         .skill-tag::before {
             content: '';
             position: absolute;
             top: 50%; left: 50%;
             width: 0; height: 0;
-            background: rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.06);
             border-radius: 50%;
             transform: translate(-50%,-50%);
-            transition: all 0.6s ease;
+            transition: all 0.7s ease;
         }
         .skill-tag:hover {
-            background: rgba(0,229,255,0.15);
+            background: rgba(0,229,255,0.14);
             border-color: var(--primary);
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 8px 28px rgba(0,229,255,0.22);
+            transform: translateY(-6px) scale(1.06);
+            box-shadow: 0 10px 35px rgba(0,229,255,0.2);
             color: #fff;
         }
         .skill-tag:hover::before {
-            width: 400px; height: 400px;
+            width: 500px; height: 500px;
         }
+        .skill-tag i { font-size: 0.9rem; }
 
         /* Education */
         .edu-item {
             display: flex;
             align-items: flex-start;
-            gap: 1.2rem;
-            padding: 1.3rem;
-            background: rgba(255,255,255,0.015);
-            border-radius: 14px;
+            gap: 1.3rem;
+            padding: 1.4rem;
+            background: rgba(255,255,255,0.01);
+            border-radius: var(--radius-sm);
             border: 1px solid var(--border);
-            transition: all 0.4s ease;
+            transition: all 0.45s ease;
+            position: relative;
         }
         .edu-item:hover {
-            border-color: var(--primary);
-            background: rgba(0,229,255,0.03);
-            transform: translateX(6px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            border-color: var(--border-hover);
+            background: rgba(0,229,255,0.025);
+            transform: translateX(8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
         }
-        body.rtl .edu-item:hover { transform: translateX(-6px); }
-        .edu-icon {
-            font-size: 2.2rem;
-            color: var(--primary);
+        body.rtl .edu-item:hover { transform: translateX(-8px); }
+        .edu-icon-wrap {
+            font-size: 2.4rem;
             flex-shrink: 0;
             animation: iconFloat 3s ease-in-out infinite;
         }
-        .edu-details h4 { color: #fff; font-weight: 700; margin-bottom: 0.3rem; }
+        .edu-icon-wrap i {
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .edu-details h4 { color: #fff; font-weight: 700; margin-bottom: 0.3rem; font-size: 1.1rem; }
         .edu-details p { color: var(--text-light); font-size: 0.9rem; }
         .edu-details .specialization { color: var(--primary); font-weight: 600; font-size: 0.85rem; }
         .status-badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            background: rgba(0,255,136,0.08);
-            border: 1px solid rgba(0,255,136,0.25);
+            gap: 7px;
+            background: rgba(0,255,136,0.06);
+            border: 1px solid rgba(0,255,136,0.2);
             color: var(--accent);
-            padding: 0.3rem 1rem;
-            border-radius: 50px;
+            padding: 0.35rem 1.1rem;
+            border-radius: 60px;
             font-size: 0.8rem;
             font-weight: 600;
-            margin-top: 0.5rem;
+            margin-top: 0.6rem;
+            transition: all 0.4s ease;
+        }
+        .status-badge:hover {
+            background: rgba(0,255,136,0.12);
+            box-shadow: 0 0 20px rgba(0,255,136,0.15);
         }
         .status-badge .live-dot {
-            width: 7px; height: 7px;
+            width: 8px; height: 8px;
             background: var(--accent);
             border-radius: 50%;
-            animation: pulseDot 1.5s ease-in-out infinite;
+            animation: dotPulse 1.5s ease-in-out infinite;
+            box-shadow: 0 0 8px var(--accent);
         }
 
         /* Objective */
         .objective-box {
             position: relative;
-            padding: 1.8rem;
-            background: rgba(0,229,255,0.025);
-            border-radius: 14px;
-            border-left: 4px solid var(--primary);
+            padding: 2rem;
+            background: rgba(0,229,255,0.02);
+            border-radius: var(--radius-sm);
+            border-left: 5px solid var(--primary);
             color: var(--text-light);
-            line-height: 2.1;
+            line-height: 2.2;
             transition: all var(--transition);
         }
-        body.rtl .objective-box {
-            border-left: none;
-            border-right: 4px solid var(--primary);
-        }
+        body.rtl .objective-box { border-left: none; border-right: 5px solid var(--primary); }
         .objective-box::before {
-            content: '"';
+            content: '\201C';
             position: absolute;
-            top: -25px;
+            top: -30px;
             left: 20px;
-            font-size: 6rem;
-            color: rgba(0,229,255,0.08);
+            font-size: 7rem;
+            color: rgba(0,229,255,0.06);
             font-family: Georgia, serif;
             line-height: 1;
             pointer-events: none;
+            transition: all 0.5s ease;
         }
         body.rtl .objective-box::before { left: auto; right: 20px; }
         .objective-box:hover {
             background: rgba(0,229,255,0.04);
             border-left-color: var(--accent);
-            box-shadow: 0 0 30px rgba(0,229,255,0.05);
+            box-shadow: 0 0 40px rgba(0,229,255,0.04);
+            padding-left: 2.3rem;
         }
-        body.rtl .objective-box:hover { border-right-color: var(--accent); }
+        body.rtl .objective-box:hover {
+            border-right-color: var(--accent);
+            padding-left: 2rem;
+            padding-right: 2.3rem;
+        }
+        .objective-box:hover::before {
+            color: rgba(0,229,255,0.1);
+            transform: scale(1.1);
+        }
 
-        /* Social */
+        /* Social Links */
         .social-links {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 1.1rem;
         }
         .social-btn {
             display: flex;
             align-items: center;
             gap: 0.8rem;
-            padding: 0.9rem 1.8rem;
-            border-radius: 50px;
+            padding: 1rem 2rem;
+            border-radius: 60px;
             text-decoration: none;
             color: #fff;
             font-weight: 600;
@@ -652,7 +735,8 @@
             background: var(--card-bg);
             position: relative;
             overflow: hidden;
-            transition: all 0.4s ease;
+            transition: all 0.45s ease;
+            letter-spacing: 0.3px;
         }
         .social-btn::before {
             content: '';
@@ -660,43 +744,58 @@
             top: 0; left: -100%;
             width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
-            transition: left 0.6s ease;
+            transition: left 0.7s ease;
         }
         .social-btn:hover::before { left: 100%; }
-        .social-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .social-btn i { font-size: 1.3rem; transition: transform 0.3s ease; }
-        .social-btn:hover i { transform: scale(1.25); }
+        .social-btn:hover { transform: translateY(-6px); box-shadow: 0 14px 40px rgba(0,0,0,0.6); }
+        .social-btn i { font-size: 1.4rem; transition: transform 0.35s ease; }
+        .social-btn:hover i { transform: scale(1.3) rotate(-5deg); }
         .social-btn.instagram:hover {
             border-color: #e4405f;
-            background: rgba(228,64,95,0.1);
-            color: #e4405f;
-            box-shadow: 0 10px 35px rgba(228,64,95,0.25);
+            background: rgba(228,64,95,0.12);
+            color: #ff6b8a;
+            box-shadow: 0 12px 40px rgba(228,64,95,0.3);
         }
         .social-btn.github:hover {
             border-color: #fff;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.06);
             color: #fff;
-            box-shadow: 0 10px 35px rgba(255,255,255,0.15);
+            box-shadow: 0 12px 40px rgba(255,255,255,0.2);
         }
 
         /* Footer */
         .footer {
             text-align: center;
-            padding: 2.5rem 0;
+            padding: 3rem 0;
             color: var(--text-light);
             font-size: 0.85rem;
             border-top: 1px solid var(--border);
-            margin-top: 2.5rem;
+            margin-top: 3rem;
             transition: all var(--transition);
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 1px;
+            background: var(--primary);
+            opacity: 0.5;
         }
         .footer .heart {
             color: #e4405f;
-            animation: heartBeat 1.2s ease-in-out infinite;
+            animation: heartBeat 1.3s ease-in-out infinite;
             display: inline-block;
+            filter: drop-shadow(0 0 6px rgba(228,64,95,0.5));
         }
         @keyframes heartBeat {
             0%,100% { transform: scale(1); }
-            50% { transform: scale(1.35); }
+            30% { transform: scale(1.4); }
+            60% { transform: scale(1.1); }
         }
 
         /* Scrollbar */
@@ -708,42 +807,54 @@
         /* Responsive */
         @media (max-width: 768px) {
             .name-main { font-size: 2rem; }
-            .profile-pic { width: 120px; height: 120px; font-size: 2.5rem; }
-            .profile-ring { inset: -14px; }
-            .profile-ring:nth-child(2) { inset: -22px; }
-            .profile-ring:nth-child(3) { inset: -30px; }
-            .section-card { padding: 1.5rem; }
+            .profile-pic { width: 120px; height: 120px; font-size: 2.3rem; }
+            .profile-orbit:nth-child(1) { inset: -15px; }
+            .profile-orbit:nth-child(2) { inset: -24px; }
+            .profile-orbit:nth-child(3) { inset: -34px; }
+            .profile-orbit:nth-child(4) { inset: -44px; }
+            .section-card { padding: 1.6rem; border-radius: 22px; }
             .social-links { flex-direction: column; }
             .social-btn { justify-content: center; }
             .info-grid { grid-template-columns: 1fr 1fr; }
-            .lang-switcher { top: 10px; right: 10px; gap: 0.3rem; }
-            body.rtl .lang-switcher { left: 10px; }
-            .lang-btn { padding: 0.5rem 1rem; font-size: 0.75rem; }
+            .lang-switcher { top: 10px; right: 8px; gap: 0.25rem; padding: 0.25rem; }
+            body.rtl .lang-switcher { left: 8px; }
+            .lang-btn { padding: 0.45rem 0.9rem; font-size: 0.7rem; }
+            .header { padding: 4rem 0 2rem; }
+            .container { padding: 0 1rem; }
+        }
+
+        @media (max-width: 400px) {
+            .info-grid { grid-template-columns: 1fr; }
+            .name-main { font-size: 1.7rem; }
+            .lang-switcher { gap: 0.15rem; }
+            .lang-btn { padding: 0.4rem 0.7rem; font-size: 0.65rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Copy Protection -->
-    <div class="copy-protection"></div>
+    <!-- Protection Layers -->
+    <div class="copy-shield"></div>
     <div class="watermark">BODA</div>
 
-    <!-- Background Effects -->
+    <!-- Background FX -->
     <div class="bg-grid"></div>
-    <div class="orbs-container">
-        <div class="orb"></div>
-        <div class="orb"></div>
-        <div class="orb"></div>
+    <div class="orbs-layer">
+        <div class="orb"></div><div class="orb"></div><div class="orb"></div>
+        <div class="orb"></div><div class="orb"></div>
     </div>
-    <div class="particles" id="particles"></div>
+    <div class="particles-layer" id="particlesLayer"></div>
 
     <!-- Language Switcher -->
     <div class="lang-switcher">
         <button class="lang-btn active" onclick="switchLang('en')" id="btnEn">
-            <span class="lang-icon">🇬🇧</span> EN
+            <span class="lang-flag">🇬🇧</span> EN
         </button>
         <button class="lang-btn" onclick="switchLang('ar')" id="btnAr">
-            <span class="lang-icon">🇪🇬</span> عربي
+            <span class="lang-flag">🇪🇬</span> عربي
+        </button>
+        <button class="lang-btn" onclick="switchLang('de')" id="btnDe">
+            <span class="lang-flag">🇩🇪</span> DE
         </button>
     </div>
 
@@ -751,94 +862,68 @@
         <!-- Header -->
         <header class="header">
             <div class="profile-wrapper">
-                <div class="profile-ring"></div>
-                <div class="profile-ring"></div>
-                <div class="profile-ring"></div>
-                <div class="profile-pic">BODA</div>
+                <div class="profile-orbit"></div><div class="profile-orbit"></div>
+                <div class="profile-orbit"></div><div class="profile-orbit"></div>
+                <div class="profile-pic">
+                    <span>BODA</span>
+                    <span class="glint"></span>
+                </div>
             </div>
-            <h1 class="name-main" data-ar="عبد الرحمن ممدوح" data-en="Abdelrahman Mamdouh">Abdelrahman Mamdouh</h1>
-            <p class="name-sub" data-ar="طالب علوم الحاسب" data-en="Computer Science Student">Computer Science Student</p>
+            <h1 class="name-main" data-ar="عبد الرحمن ممدوح" data-en="Abdelrahman Mamdouh" data-de="Abdelrahman Mamdouh">Abdelrahman Mamdouh</h1>
+            <p class="name-sub" data-ar="طالب علوم الحاسب" data-en="Computer Science Student" data-de="Informatik-Student">Computer Science Student</p>
             <span class="title-badge">
-                <span class="dot"></span>
-                <span data-ar="قسم نظم المعلومات" data-en="Information Systems Department">Information Systems Department</span>
+                <span class="pulse-dot"></span>
+                <span data-ar="قسم نظم المعلومات" data-en="Information Systems Department" data-de="Fachbereich Informationssysteme">Information Systems Department</span>
             </span>
         </header>
 
         <!-- Quick Info -->
         <div class="quick-info">
-            <div class="info-chip">
-                <i class="fas fa-calendar-alt"></i>
-                <span data-ar="20 سنة" data-en="20 Years Old">20 Years Old</span>
-            </div>
-            <div class="info-chip">
-                <i class="fas fa-birthday-cake"></i>
-                <span data-ar="1 أغسطس 2005" data-en="August 1, 2005">August 1, 2005</span>
-            </div>
-            <div class="info-chip">
-                <i class="fas fa-flag"></i>
-                <span data-ar="مصري 🇪🇬" data-en="Egyptian 🇪🇬">Egyptian 🇪🇬</span>
-            </div>
-            <div class="info-chip">
-                <i class="fas fa-graduation-cap"></i>
-                <span data-ar="نظم المعلومات" data-en="Information Systems">Information Systems</span>
-            </div>
+            <div class="info-chip"><i class="fas fa-calendar-alt"></i> <span data-ar="20 سنة" data-en="20 Years Old" data-de="20 Jahre alt">20 Years Old</span></div>
+            <div class="info-chip"><i class="fas fa-birthday-cake"></i> <span data-ar="1 أغسطس 2005" data-en="August 1, 2005" data-de="1. August 2005">August 1, 2005</span></div>
+            <div class="info-chip"><i class="fas fa-flag"></i> <span data-ar="مصري 🇪🇬" data-en="Egyptian 🇪🇬" data-de="Ägypter 🇪🇬">Egyptian 🇪🇬</span></div>
+            <div class="info-chip"><i class="fas fa-graduation-cap"></i> <span data-ar="نظم المعلومات" data-en="Information Systems" data-de="Informationssysteme">Information Systems</span></div>
         </div>
 
         <!-- About -->
         <div class="section-card">
-            <div class="card-icon"><i class="fas fa-user-astronaut"></i></div>
-            <h3 class="card-title" data-ar="نبذة عني" data-en="About Me">About Me</h3>
-            <p class="about-text" data-ar="أنا شغوف بمجال تكنولوجيا المعلومات وتطوير البرمجيات ونظم المعلومات. أعمل بشكل مستمر على تحسين مهاراتي التقنية من خلال التعلم الذاتي والتطبيق العملي لبناء أساس قوي لمسيرتي المهنية المستقبلية. أؤمن بأن التكنولوجيا هي المفتاح لحل المشكلات المعقدة وخلق مستقبل أفضل."
-            data-en="I am passionate about Information Technology, software development, and information systems. I am continuously working on improving my technical skills through self-learning and practical application to build a strong foundation for my future career. I believe that technology is the key to solving complex problems and creating a better future.">
-            I am passionate about Information Technology, software development, and information systems. I am continuously working on improving my technical skills through self-learning and practical application to build a strong foundation for my future career. I believe that technology is the key to solving complex problems and creating a better future.
+            <div class="card-icon-wrap"><i class="fas fa-user-astronaut"></i></div>
+            <h3 class="card-title" data-ar="نبذة عني" data-en="About Me" data-de="Über Mich">About Me</h3>
+            <p class="about-text"
+                data-ar="أنا شغوف بمجال تكنولوجيا المعلومات وتطوير البرمجيات ونظم المعلومات. أعمل بشكل مستمر على تحسين مهاراتي التقنية من خلال التعلم الذاتي والتطبيق العملي لبناء أساس قوي لمسيرتي المهنية المستقبلية. أؤمن بأن التكنولوجيا هي المفتاح لحل المشكلات المعقدة وخلق مستقبل أفضل."
+                data-en="I am passionate about Information Technology, software development, and information systems. I continuously work on improving my technical skills through self-learning and practical application to build a strong foundation for my future career. I believe technology is the key to solving complex problems and creating a better future."
+                data-de="Ich brenne für Informationstechnologie, Softwareentwicklung und Informationssysteme. Ich arbeite kontinuierlich daran, meine technischen Fähigkeiten durch Selbststudium und praktische Anwendung zu verbessern, um eine solide Grundlage für meine zukünftige Karriere zu schaffen. Ich glaube, dass Technologie der Schlüssel zur Lösung komplexer Probleme und zur Schaffung einer besseren Zukunft ist.">
+            I am passionate about Information Technology, software development, and information systems. I continuously work on improving my technical skills through self-learning and practical application to build a strong foundation for my future career. I believe technology is the key to solving complex problems and creating a better future.
             </p>
         </div>
 
         <!-- Personal Info -->
         <div class="section-card">
-            <div class="card-icon"><i class="fas fa-id-card"></i></div>
-            <h3 class="card-title" data-ar="المعلومات الشخصية" data-en="Personal Information">Personal Information</h3>
+            <div class="card-icon-wrap"><i class="fas fa-id-card"></i></div>
+            <h3 class="card-title" data-ar="المعلومات الشخصية" data-en="Personal Information" data-de="Persönliche Daten">Personal Information</h3>
             <div class="info-grid">
-                <div class="info-item">
-                    <div class="info-label" data-ar="الاسم الكامل" data-en="Full Name">Full Name</div>
-                    <div class="info-value">Abdelrahman Mamdouh</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label" data-ar="العمر" data-en="Age">Age</div>
-                    <div class="info-value" data-ar="20 سنة" data-en="20 Years Old">20 Years Old</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label" data-ar="تاريخ الميلاد" data-en="Date of Birth">Date of Birth</div>
-                    <div class="info-value" data-ar="1 أغسطس 2005" data-en="August 1, 2005">August 1, 2005</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label" data-ar="الجنسية" data-en="Nationality">Nationality</div>
-                    <div class="info-value" data-ar="مصري 🇪🇬" data-en="Egyptian 🇪🇬">Egyptian 🇪🇬</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label" data-ar="التخصص" data-en="Specialization">Specialization</div>
-                    <div class="info-value" data-ar="نظم المعلومات" data-en="Information Systems">Information Systems</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label" data-ar="القسم" data-en="Department">Department</div>
-                    <div class="info-value" data-ar="علوم الحاسب" data-en="Computer Science">Computer Science</div>
-                </div>
+                <div class="info-item"><div class="info-label" data-ar="الاسم الكامل" data-en="Full Name" data-de="Vollständiger Name">Full Name</div><div class="info-value">Abdelrahman Mamdouh</div></div>
+                <div class="info-item"><div class="info-label" data-ar="العمر" data-en="Age" data-de="Alter">Age</div><div class="info-value" data-ar="20 سنة" data-en="20 Years Old" data-de="20 Jahre">20 Years Old</div></div>
+                <div class="info-item"><div class="info-label" data-ar="تاريخ الميلاد" data-en="Date of Birth" data-de="Geburtsdatum">Date of Birth</div><div class="info-value" data-ar="1 أغسطس 2005" data-en="August 1, 2005" data-de="1. August 2005">August 1, 2005</div></div>
+                <div class="info-item"><div class="info-label" data-ar="الجنسية" data-en="Nationality" data-de="Nationalität">Nationality</div><div class="info-value" data-ar="مصري 🇪🇬" data-en="Egyptian 🇪🇬" data-de="Ägypter 🇪🇬">Egyptian 🇪🇬</div></div>
+                <div class="info-item"><div class="info-label" data-ar="التخصص" data-en="Specialization" data-de="Spezialisierung">Specialization</div><div class="info-value" data-ar="نظم المعلومات" data-en="Information Systems" data-de="Informationssysteme">Information Systems</div></div>
+                <div class="info-item"><div class="info-label" data-ar="القسم" data-en="Department" data-de="Fachbereich">Department</div><div class="info-value" data-ar="علوم الحاسب" data-en="Computer Science" data-de="Informatik">Computer Science</div></div>
             </div>
         </div>
 
         <!-- Education -->
         <div class="section-card">
-            <div class="card-icon"><i class="fas fa-university"></i></div>
-            <h3 class="card-title" data-ar="التعليم" data-en="Education">Education</h3>
+            <div class="card-icon-wrap"><i class="fas fa-university"></i></div>
+            <h3 class="card-title" data-ar="التعليم" data-en="Education" data-de="Bildung">Education</h3>
             <div class="edu-item">
-                <div class="edu-icon"><i class="fas fa-school"></i></div>
+                <div class="edu-icon-wrap"><i class="fas fa-school"></i></div>
                 <div class="edu-details">
-                    <h4 data-ar="أكاديمية القاهرة الجديدة" data-en="New Cairo Academy">New Cairo Academy</h4>
-                    <p data-ar="بكالوريوس علوم الحاسب" data-en="Bachelor of Computer Science">Bachelor of Computer Science</p>
-                    <p class="specialization" data-ar="التخصص: نظم المعلومات" data-en="Specialization: Information Systems">Specialization: Information Systems</p>
+                    <h4 data-ar="أكاديمية القاهرة الجديدة" data-en="New Cairo Academy" data-de="New Cairo Academy">New Cairo Academy</h4>
+                    <p data-ar="بكالوريوس علوم الحاسب" data-en="Bachelor of Computer Science" data-de="Bachelor of Computer Science">Bachelor of Computer Science</p>
+                    <p class="specialization" data-ar="التخصص: نظم المعلومات" data-en="Specialization: Information Systems" data-de="Spezialisierung: Informationssysteme">Specialization: Information Systems</p>
                     <span class="status-badge">
                         <span class="live-dot"></span>
-                        <span data-ar="قيد الدراسة" data-en="Currently Studying">Currently Studying</span>
+                        <span data-ar="قيد الدراسة" data-en="Currently Studying" data-de="Derzeit am Studieren">Currently Studying</span>
                     </span>
                 </div>
             </div>
@@ -846,25 +931,27 @@
 
         <!-- Skills -->
         <div class="section-card">
-            <div class="card-icon"><i class="fas fa-cogs"></i></div>
-            <h3 class="card-title" data-ar="المهارات" data-en="Skills">Skills</h3>
+            <div class="card-icon-wrap"><i class="fas fa-cogs"></i></div>
+            <h3 class="card-title" data-ar="المهارات" data-en="Skills" data-de="Fähigkeiten">Skills</h3>
             <div class="skills-container" id="skillsContainer"></div>
         </div>
 
         <!-- Objective -->
         <div class="section-card">
-            <div class="card-icon"><i class="fas fa-bullseye"></i></div>
-            <h3 class="card-title" data-ar="الهدف المهني" data-en="Career Objective">Career Objective</h3>
-            <div class="objective-box" data-ar="أهدف إلى تطوير مهاراتي في مجال تكنولوجيا المعلومات ونظم المعلومات من خلال التعلم المستمر والخبرة العملية. أسعى للحصول على فرص تساعدني على النمو تقنيًا ومهنيًا لبناء مسيرة مهنية قوية في تطوير البرمجيات أو تحليل النظم، والمساهمة في مشاريع تقنية مبتكرة تحدث فرقًا حقيقيًا."
-            data-en="I aim to develop my skills in Information Technology and Information Systems through continuous learning and practical experience. I am seeking opportunities that help me grow technically and professionally to build a strong career in software development or systems analysis, and to contribute to innovative technical projects that make a real difference.">
+            <div class="card-icon-wrap"><i class="fas fa-bullseye"></i></div>
+            <h3 class="card-title" data-ar="الهدف المهني" data-en="Career Objective" data-de="Karriereziel">Career Objective</h3>
+            <div class="objective-box"
+                data-ar="أهدف إلى تطوير مهاراتي في مجال تكنولوجيا المعلومات ونظم المعلومات من خلال التعلم المستمر والخبرة العملية. أسعى للحصول على فرص تساعدني على النمو تقنيًا ومهنيًا لبناء مسيرة مهنية قوية في تطوير البرمجيات أو تحليل النظم، والمساهمة في مشاريع تقنية مبتكرة تحدث فرقًا حقيقيًا."
+                data-en="I aim to develop my skills in Information Technology and Information Systems through continuous learning and practical experience. I am seeking opportunities that help me grow technically and professionally to build a strong career in software development or systems analysis, and to contribute to innovative technical projects that make a real difference."
+                data-de="Ich möchte meine Fähigkeiten in Informationstechnologie und Informationssystemen durch kontinuierliches Lernen und praktische Erfahrung weiterentwickeln. Ich suche nach Möglichkeiten, die mir helfen, technisch und beruflich zu wachsen, um eine starke Karriere in der Softwareentwicklung oder Systemanalyse aufzubauen und zu innovativen technischen Projekten beizutragen, die einen echten Unterschied machen.">
             I aim to develop my skills in Information Technology and Information Systems through continuous learning and practical experience. I am seeking opportunities that help me grow technically and professionally to build a strong career in software development or systems analysis, and to contribute to innovative technical projects that make a real difference.
             </div>
         </div>
 
         <!-- Contact -->
         <div class="section-card">
-            <div class="card-icon"><i class="fas fa-paper-plane"></i></div>
-            <h3 class="card-title" data-ar="تواصل معي" data-en="Get In Touch">Get In Touch</h3>
+            <div class="card-icon-wrap"><i class="fas fa-paper-plane"></i></div>
+            <h3 class="card-title" data-ar="تواصل معي" data-en="Get In Touch" data-de="Kontakt">Get In Touch</h3>
             <div class="social-links">
                 <a href="https://www.instagram.com/bboda_7" target="_blank" rel="noopener" class="social-btn instagram">
                     <i class="fab fa-instagram"></i> bboda_7
@@ -879,190 +966,156 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p data-ar="© 2025 عبد الرحمن ممدوح (BODA) — صُنع بـ" data-en="© 2025 Abdelrahman Mamdouh (BODA) — Made with">
-            © 2025 Abdelrahman Mamdouh (BODA) — Made with <span class="heart">❤️</span> <span data-ar="وشغف" data-en="and Passion">and Passion</span>
-            </p>
+            <p id="footerText">© 2025 Abdelrahman Mamdouh (BODA) — Made with <span class="heart">❤️</span> and Passion</p>
         </div>
     </footer>
 
     <script>
-        // ==================== ANTI-THEFT PROTECTION ====================
+        // ==================== ANTI-THEFT ====================
         (function() {
             document.addEventListener('contextmenu', e => e.preventDefault());
             document.addEventListener('keydown', e => {
                 const blocked = ['F12', 'PrintScreen'];
                 const ctrlBlocked = ['u', 'U', 's', 'S', 'p', 'P', 'c', 'C', 'x', 'X', 'v', 'V', 'a', 'A'];
                 if (blocked.includes(e.key) ||
-                    (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) ||
+                    (e.ctrlKey && e.shiftKey && ['I','i','J','j'].includes(e.key)) ||
                     (e.ctrlKey && ctrlBlocked.includes(e.key))) {
-                    e.preventDefault();
-                    return false;
+                    e.preventDefault(); return false;
                 }
             });
             document.addEventListener('dragstart', e => e.preventDefault());
             document.addEventListener('drop', e => e.preventDefault());
-            console.clear();
-            console.log = console.warn = console.error = console.info = console.debug = function() {};
-            const threshold = 160;
-            setInterval(() => {
-                if (window.outerWidth - window.innerWidth > threshold ||
-                    window.outerHeight - window.innerHeight > threshold) {
-                    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;color:#e4405f;font-size:2rem;font-family:sans-serif;text-align:center;">🚫 Access Denied<br><small>Developer tools detected</small></div>';
+            const devToolsCheck = setInterval(() => {
+                if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
+                    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;color:#ff6b6b;font-size:2rem;font-family:Inter,sans-serif;text-align:center;background:#020205;">🚫 Access Denied<br><small style="font-size:1rem;color:#888;">Developer tools detected</small></div>';
+                    clearInterval(devToolsCheck);
                 }
-            }, 1000);
+            }, 1200);
+            console.clear();
+            ['log','warn','error','info','debug'].forEach(m => console[m] = function(){});
         })();
 
         // ==================== PARTICLES ====================
-        function createParticles() {
-            const container = document.getElementById('particles');
-            const colors = ['#00e5ff', '#00ff88', '#0072ff', '#00b8d4'];
-            for (let i = 0; i < 50; i++) {
-                const p = document.createElement('div');
-                p.classList.add('particle');
-                const size = Math.random() * 3 + 1.5;
-                p.style.width = size + 'px';
-                p.style.height = size + 'px';
-                p.style.left = Math.random() * 100 + '%';
-                p.style.background = colors[Math.floor(Math.random() * colors.length)];
-                p.style.animationDuration = (Math.random() * 18 + 10) + 's';
-                p.style.animationDelay = (Math.random() * 18) + 's';
-                p.style.boxShadow = `0 0 ${size*4}px ${p.style.background}`;
-                container.appendChild(p);
+        function spawnParticles() {
+            const layer = document.getElementById('particlesLayer');
+            const colors = ['#00e5ff','#00ff88','#0072ff','#a855f7','#ff6b6b','#ffd93d'];
+            for (let i = 0; i < 70; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'particle-dot';
+                const s = Math.random() * 3.5 + 1.5;
+                dot.style.width = s+'px'; dot.style.height = s+'px';
+                dot.style.left = Math.random()*100+'%';
+                const c = colors[Math.floor(Math.random()*colors.length)];
+                dot.style.background = c;
+                dot.style.boxShadow = `0 0 ${s*5}px ${c}`;
+                dot.style.animationDuration = (Math.random()*20+12)+'s';
+                dot.style.animationDelay = (Math.random()*20)+'s';
+                layer.appendChild(dot);
             }
         }
-        createParticles();
+        spawnParticles();
 
-        // ==================== SKILLS DATA ====================
+        // ==================== SKILLS ====================
         const skillsData = [
-            { en: 'Programming Fundamentals', ar: 'أساسيات البرمجة', icon: 'fa-code' },
-            { en: 'Information Systems Concepts', ar: 'مفاهيم نظم المعلومات', icon: 'fa-database' },
-            { en: 'Problem Solving', ar: 'حل المشكلات', icon: 'fa-puzzle-piece' },
-            { en: 'Self-Learning Ability', ar: 'التعلم الذاتي', icon: 'fa-book-reader' },
-            { en: 'Computer & Software Skills', ar: 'مهارات الحاسب والبرمجيات', icon: 'fa-laptop' },
-            { en: 'Analytical Thinking', ar: 'التفكير التحليلي', icon: 'fa-search' },
-            { en: 'Team Collaboration', ar: 'العمل الجماعي', icon: 'fa-users' },
-            { en: 'Time Management', ar: 'إدارة الوقت', icon: 'fa-clock' }
+            { en:'Programming Fundamentals', ar:'أساسيات البرمجة', de:'Programmiergrundlagen', icon:'fa-code' },
+            { en:'Information Systems Concepts', ar:'مفاهيم نظم المعلومات', de:'Informationssystem-Konzepte', icon:'fa-database' },
+            { en:'Problem Solving', ar:'حل المشكلات', de:'Problemlösung', icon:'fa-puzzle-piece' },
+            { en:'Self-Learning Ability', ar:'التعلم الذاتي', de:'Selbstlernfähigkeit', icon:'fa-book-reader' },
+            { en:'Computer & Software Skills', ar:'مهارات الحاسب والبرمجيات', de:'Computer- & Software-Kenntnisse', icon:'fa-laptop' },
+            { en:'Analytical Thinking', ar:'التفكير التحليلي', de:'Analytisches Denken', icon:'fa-search' },
+            { en:'Team Collaboration', ar:'العمل الجماعي', de:'Teamarbeit', icon:'fa-users' },
+            { en:'Time Management', ar:'إدارة الوقت', de:'Zeitmanagement', icon:'fa-clock' }
         ];
 
         function renderSkills(lang) {
-            const container = document.getElementById('skillsContainer');
-            container.innerHTML = '';
-            skillsData.forEach((skill, i) => {
+            const c = document.getElementById('skillsContainer');
+            c.innerHTML = '';
+            skillsData.forEach((sk, i) => {
                 const tag = document.createElement('span');
                 tag.className = 'skill-tag';
-                tag.style.animationDelay = (i * 0.08) + 's';
-                tag.style.animation = 'fadeSlideUp 0.5s ease-out both';
-                tag.innerHTML = `<i class="fas ${skill.icon}"></i> ${skill[lang]}`;
-                container.appendChild(tag);
+                tag.style.animationDelay = (i*0.07)+'s';
+                tag.innerHTML = `<i class="fas ${sk.icon}"></i> ${sk[lang]}`;
+                c.appendChild(tag);
             });
         }
         renderSkills('en');
 
-        // ==================== LANGUAGE SWITCHING ====================
+        // ==================== LANGUAGE SYSTEM ====================
+        const footerTexts = {
+            en: '© 2025 Abdelrahman Mamdouh (BODA) — Made with <span class="heart">❤️</span> and Passion',
+            ar: '© 2025 عبد الرحمن ممدوح (BODA) — صُنع بـ <span class="heart">❤️</span> وشغف',
+            de: '© 2025 Abdelrahman Mamdouh (BODA) — Gemacht mit <span class="heart">❤️</span> und Leidenschaft'
+        };
+        const titles = {
+            en: 'BODA | Abdelrahman Mamdouh - CV',
+            ar: 'BODA | عبد الرحمن ممدوح - السيرة الذاتية',
+            de: 'BODA | Abdelrahman Mamdouh - Lebenslauf'
+        };
+
         function switchLang(lang) {
             const html = document.documentElement;
             const body = document.body;
             const main = document.getElementById('mainContent');
-            const btnEn = document.getElementById('btnEn');
-            const btnAr = document.getElementById('btnAr');
+            const btns = { en: document.getElementById('btnEn'), ar: document.getElementById('btnAr'), de: document.getElementById('btnDe') };
 
-            main.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+            main.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
             main.style.opacity = '0';
-            main.style.transform = 'translateY(-12px)';
+            main.style.transform = 'translateY(-14px)';
 
             setTimeout(() => {
-                if (lang === 'ar') {
-                    html.lang = 'ar';
-                    html.dir = 'rtl';
-                    body.classList.add('rtl');
-                    btnAr.classList.add('active');
-                    btnEn.classList.remove('active');
-                    document.title = 'BODA | عبد الرحمن ممدوح - السيرة الذاتية';
-                } else {
-                    html.lang = 'en';
-                    html.dir = 'ltr';
-                    body.classList.remove('rtl');
-                    btnEn.classList.add('active');
-                    btnAr.classList.remove('active');
-                    document.title = 'BODA | Abdelrahman Mamdouh - CV';
-                }
+                // Direction
+                html.lang = lang;
+                if (lang === 'ar') { html.dir = 'rtl'; body.classList.add('rtl'); }
+                else { html.dir = 'ltr'; body.classList.remove('rtl'); }
 
-                document.querySelectorAll('[data-ar][data-en]').forEach(el => {
+                // Active button
+                Object.keys(btns).forEach(k => btns[k].classList.remove('active'));
+                btns[lang].classList.add('active');
+
+                // Title
+                document.title = titles[lang];
+
+                // All data attributes
+                document.querySelectorAll('[data-en][data-ar][data-de]').forEach(el => {
                     const val = el.getAttribute(`data-${lang}`);
-                    if (val !== null) {
-                        if (el.classList.contains('title-badge')) {
-                            const dot = el.querySelector('.dot');
-                            el.innerHTML = '';
-                            if (dot) el.appendChild(dot.cloneNode(true));
-                            el.appendChild(document.createTextNode(' ' + val));
-                        } else if (!el.closest('.footer')) {
-                            el.textContent = val;
-                        }
+                    if (val === null) return;
+                    if (el.classList.contains('title-badge')) {
+                        const dot = el.querySelector('.pulse-dot');
+                        el.innerHTML = '';
+                        if (dot) { const d = dot.cloneNode(true); el.appendChild(d); }
+                        el.appendChild(document.createTextNode(' ' + val));
+                    } else if (!el.closest('.footer')) {
+                        el.textContent = val;
                     }
                 });
 
+                // Handle title badge specifically if needed
                 const badge = document.querySelector('.title-badge');
-                if (badge) {
-                    const dot = badge.querySelector('.dot');
-                    const span = badge.querySelector('span');
-                    if (!span) {
-                        const text = badge.getAttribute(`data-${lang}`);
-                        badge.innerHTML = '';
-                        const newDot = document.createElement('span');
-                        newDot.className = 'dot';
-                        badge.appendChild(newDot);
-                        badge.appendChild(document.createTextNode(' ' + text));
-                    }
+                if (badge && !badge.querySelector('.pulse-dot')) {
+                    const dot = document.createElement('span'); dot.className = 'pulse-dot';
+                    badge.prepend(dot);
                 }
 
-                const footerP = document.querySelector('.footer p');
-                if (footerP) {
-                    const name = lang === 'ar' ? 'عبد الرحمن ممدوح (BODA)' : 'Abdelrahman Mamdouh (BODA)';
-                    const made = lang === 'ar' ? ' — صُنع بـ ' : ' — Made with ';
-                    const passion = lang === 'ar' ? ' وشغف' : ' and Passion';
-                    footerP.innerHTML = '© 2025 ' + name + made + '<span class="heart">❤️</span>' + passion;
-                }
+                // Footer
+                document.getElementById('footerText').innerHTML = footerTexts[lang];
 
+                // Skills
                 renderSkills(lang);
 
+                // Restore
                 main.style.opacity = '1';
                 main.style.transform = 'translateY(0)';
-                setTimeout(() => { main.style.transition = ''; }, 400);
+                setTimeout(() => { main.style.transition = ''; }, 450);
 
                 localStorage.setItem('boda_cv_lang', lang);
-            }, 350);
+            }, 380);
         }
 
-        const savedLang = localStorage.getItem('boda_cv_lang') || 'en';
-        if (savedLang === 'ar') {
-            document.documentElement.lang = 'ar';
-            document.documentElement.dir = 'rtl';
-            document.body.classList.add('rtl');
-            document.getElementById('btnAr').classList.add('active');
-            document.getElementById('btnEn').classList.remove('active');
-            document.title = 'BODA | عبد الرحمن ممدوح - السيرة الذاتية';
-            document.querySelectorAll('[data-ar][data-en]').forEach(el => {
-                const val = el.getAttribute('data-ar');
-                if (val !== null && !el.classList.contains('title-badge') && !el.closest('.footer')) {
-                    el.textContent = val;
-                }
-            });
-            const badge = document.querySelector('.title-badge');
-            if (badge) {
-                const dot = badge.querySelector('.dot').cloneNode(true);
-                badge.innerHTML = '';
-                badge.appendChild(dot);
-                badge.appendChild(document.createTextNode(' ' + badge.getAttribute('data-ar')));
-            }
-            const footerP = document.querySelector('.footer p');
-            if (footerP) {
-                footerP.innerHTML = '© 2025 عبد الرحمن ممدوح (BODA) — صُنع بـ <span class="heart">❤️</span> وشغف';
-            }
-            renderSkills('ar');
+        // Initial load
+        const saved = localStorage.getItem('boda_cv_lang') || 'en';
+        if (saved !== 'en') {
+            setTimeout(() => switchLang(saved), 100);
         }
-
-        console.log('%c🛡️ BODA CV - Protected %c| %cArabic/English Ready',
-            'color:#00e5ff;font-size:1.2rem;', '', 'color:#00ff88;');
     </script>
 </body>
 </html>
