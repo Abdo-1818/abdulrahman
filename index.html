@@ -3,50 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>BODA | Abdelrahman Mamdouh</title>
-    <meta name="description" content="Abdelrahman Mamdouh - BODA. Computer Science student at New Cairo Academy, Information Systems Department.">
+    <title>BODA | Abdelrahman Mamdouh - Frontend Developer</title>
+    <meta name="description" content="Abdelrahman Mamdouh - BODA. Frontend Developer & Programmer. Building modern websites and software solutions.">
     <meta name="theme-color" content="#080808">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-        /*
-         *  ═══════════════════════════════════════════
-         *  BODA CV — Handcrafted, every line by a human
-         *  Languages: EN (default) → DE → AR
-         *  Colors: Red 40% | Black 35% | White 25%
-         *  ═══════════════════════════════════════════
-         */
-
         :root {
-            /* ── Red family ~40% of the visual surface ── */
+            --bg: #080808;
+            --surface: #0e0e0e;
+            --surface-hover: #161616;
+            --border: #1e1e1e;
+            --border-hover: #383838;
+            --text: #f0f0f0;
+            --text-soft: #d0d0d0;
+            --text-muted: #848484;
             --red: #d63031;
             --red-bright: #ff3b3b;
-            --red-deep: #b71c1c;
             --red-glow: rgba(214, 48, 49, 0.55);
             --red-glow-strong: rgba(255, 59, 59, 0.7);
             --red-soft: rgba(214, 48, 49, 0.09);
             --red-soft-hover: rgba(214, 48, 49, 0.2);
-
-            /* ── Black family ~35% of the visual surface ── */
-            --black: #080808;
-            --black-surface: #0e0e0e;
-            --black-surface-hover: #161616;
-            --black-border: #1e1e1e;
-            --black-border-hover: #383838;
-
-            /* ── White family ~25% of the visual surface ── */
-            --white: #f0f0f0;
-            --white-soft: #d0d0d0;
-            --white-muted: #848484;
-            --white-border: rgba(255, 255, 255, 0.07);
-
             --radius: 16px;
             --radius-sm: 10px;
             --gap: 14px;
+            --shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        body.light {
+            --bg: #f8f8f8;
+            --surface: #ffffff;
+            --surface-hover: #fafafa;
+            --border: #e5e5e5;
+            --border-hover: #c5c5c5;
+            --text: #1a1a1a;
+            --text-soft: #555555;
+            --text-muted: #8a8a8a;
+            --shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 6px 24px rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -62,8 +61,8 @@
 
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: var(--black);
-            color: var(--white);
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.7;
             overflow-x: hidden;
             user-select: none;
@@ -72,6 +71,7 @@
             cursor: default;
             -webkit-font-smoothing: antialiased;
             min-height: 100dvh;
+            transition: background 0.4s ease, color 0.4s ease;
         }
 
         body.rtl {
@@ -79,9 +79,6 @@
             direction: rtl;
         }
 
-        /* ═══════════════════════════════
-           ANIMATED CANVAS
-           ═══════════════════════════════ */
         canvas#scene {
             position: fixed;
             top: 0;
@@ -90,39 +87,49 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
+            opacity: 0.7;
+            transition: opacity 0.4s ease;
+        }
+
+        body.light canvas#scene {
+            opacity: 0.35;
         }
 
         .container {
-            max-width: 980px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 clamp(1rem, 4vw, 2.5rem);
             position: relative;
             z-index: 1;
         }
 
-        /* ═══════════════════════════════
-           LANGUAGE SWITCHER
-           EN first, DE second, AR third
-           ═══════════════════════════════ */
-        .lang-switch {
+        /* ---- top bar ---- */
+        .top-bar {
             position: fixed;
             top: 14px;
             right: 14px;
             z-index: 100;
             display: flex;
-            gap: 4px;
-            background: rgba(14, 14, 14, 0.88);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid var(--black-border);
-            border-radius: 36px;
-            padding: 3px 4px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            gap: 8px;
+            align-items: center;
         }
 
-        body.rtl .lang-switch {
+        body.rtl .top-bar {
             right: auto;
             left: 14px;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 4px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 36px;
+            padding: 3px 4px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: background 0.4s ease, border 0.4s ease;
         }
 
         .lang-btn {
@@ -130,7 +137,7 @@
             border-radius: 36px;
             border: none;
             background: transparent;
-            color: var(--white-soft);
+            color: var(--text-soft);
             cursor: pointer;
             font-weight: 500;
             font-size: 0.72rem;
@@ -148,192 +155,178 @@
         }
 
         .lang-btn:hover:not(.active) {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            background: rgba(128, 128, 128, 0.1);
         }
 
-        /* ═══════════════════════════════
-           HEADER
-           ═══════════════════════════════ */
-        .header {
-            text-align: center;
-            padding: clamp(2.8rem, 7vw, 5rem) 0 clamp(1.3rem, 3vw, 2rem);
-        }
-
-        .divider {
-            width: clamp(100px, 18vw, 180px);
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            margin: 0 auto clamp(1.3rem, 3vw, 1.8rem);
-        }
-
-        /* ═══════════════════════════════
-           AVATAR WITH RED GLOW BEHIND BODA
-           ═══════════════════════════════ */
-        .avatar-box {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-        }
-
-        /* The breathing red light behind the avatar */
-        .avatar-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle,
-                    rgba(255, 59, 59, 0.55) 0%,
-                    rgba(214, 48, 49, 0.28) 30%,
-                    rgba(214, 48, 49, 0.08) 55%,
-                    transparent 72%);
+        .theme-btn {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            animation: glowBreathe 2.6s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-            filter: blur(13px);
-        }
-
-        @keyframes glowBreathe {
-            0%,
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.65;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.4);
-                opacity: 1;
-            }
-        }
-
-        .ring {
-            position: absolute;
-            border-radius: 50%;
-            border: 1.5px solid transparent;
-            animation: ringSpin linear infinite;
-            pointer-events: none;
-        }
-
-        .ring:first-child {
-            inset: -10px;
-            border-top-color: rgba(214, 48, 49, 0.65);
-            border-right-color: rgba(214, 48, 49, 0.3);
-            animation-duration: 4s;
-        }
-
-        .ring:last-child {
-            inset: -20px;
-            border-bottom-color: rgba(255, 255, 255, 0.14);
-            border-left-color: rgba(255, 255, 255, 0.06);
-            animation-duration: 7s;
-            animation-direction: reverse;
-        }
-
-        @keyframes ringSpin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .avatar {
-            width: clamp(90px, 18vw, 135px);
-            height: clamp(90px, 18vw, 135px);
-            border-radius: 50%;
-            background: var(--black-surface);
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            cursor: pointer;
+            font-size: 1.1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: clamp(1.5rem, 3.5vw, 2.3rem);
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 3px;
-            position: relative;
-            z-index: 1;
-            border: 1px solid var(--white-border);
-            animation: floatAvatar 5s ease-in-out infinite;
             transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
-        @keyframes floatAvatar {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            35% {
-                transform: translateY(-9px);
-            }
-            65% {
-                transform: translateY(-3px);
-            }
+        .theme-btn:hover {
+            border-color: var(--red);
+            color: var(--red-bright);
+            box-shadow: 0 0 16px var(--red-glow);
+            transform: rotate(15deg);
         }
 
-        .avatar:hover {
-            box-shadow: 0 0 70px var(--red-glow-strong);
-            transform: translateY(-11px) scale(1.03);
+        body.light .theme-btn .fa-moon {
+            display: none;
+        }
+        body.light .theme-btn .fa-sun {
+            display: inline-block;
+        }
+        body:not(.light) .theme-btn .fa-sun {
+            display: none;
+        }
+        body:not(.light) .theme-btn .fa-moon {
+            display: inline-block;
         }
 
-        .avatar .shine {
-            position: absolute;
-            top: 9%;
-            left: 13%;
-            width: 34%;
-            height: 44%;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent);
-            border-radius: 50%;
-            pointer-events: none;
+        /* ---- navigation tabs ---- */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            padding: 0 0 clamp(1.5rem, 3vw, 2.5rem);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--bg);
+            padding-top: 16px;
+            padding-bottom: 16px;
+            transition: background 0.4s ease;
         }
 
-        /* ═══════════════════════════════
-           NAME AND ROLE
-           ═══════════════════════════════ */
-        .name {
-            font-size: clamp(1.7rem, 4vw, 2.5rem);
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 0.15rem;
-            letter-spacing: -0.01em;
-        }
-
-        .role {
-            font-size: clamp(0.74rem, 1.3vw, 0.88rem);
-            color: var(--white-soft);
-            letter-spacing: 0.03em;
-            font-weight: 400;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--red-soft);
-            color: var(--red);
-            padding: 6px 18px;
+        .nav-tab {
+            padding: 10px 20px;
             border-radius: 36px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-soft);
+            cursor: pointer;
             font-weight: 500;
-            font-size: 0.76rem;
-            margin-top: 0.8rem;
-            border: 1px solid rgba(214, 48, 49, 0.18);
-            animation: badgePulse 3s ease-in-out infinite;
+            font-size: 0.82rem;
+            font-family: inherit;
+            text-decoration: none;
+            transition: all 0.28s ease;
+            white-space: nowrap;
         }
 
-        @keyframes badgePulse {
-            0%,
-            100% {
-                box-shadow: 0 0 0 0 rgba(214, 48, 49, 0.25);
-            }
-            50% {
-                box-shadow: 0 0 0 14px rgba(214, 48, 49, 0);
-            }
+        .nav-tab:hover {
+            border-color: var(--red);
+            color: var(--red);
+            background: var(--red-soft);
+            transform: translateY(-2px);
         }
 
-        .badge .dot {
-            width: 6px;
-            height: 6px;
-            background: #fff;
-            border-radius: 50%;
+        .nav-tab i {
+            margin-right: 5px;
+        }
+
+        body.rtl .nav-tab i {
+            margin-right: 0;
+            margin-left: 5px;
+        }
+
+        /* ---- hero ---- */
+        .hero {
+            text-align: center;
+            padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(1.5rem, 3vw, 2.5rem);
+            position: relative;
+        }
+
+        .hero-greeting {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--red);
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.5rem;
+            animation: fadeSlideUp 0.6s ease both;
+            animation-delay: 0.05s;
+            opacity: 0;
+        }
+
+        .hero-name {
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            font-weight: 900;
+            color: var(--text);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            animation: fadeSlideUp 0.6s ease both;
+            animation-delay: 0.15s;
+            opacity: 0;
+            transition: color 0.4s ease;
+        }
+
+        .hero-name span {
+            color: var(--red);
+        }
+
+        .hero-title {
+            font-size: clamp(1rem, 2.2vw, 1.4rem);
+            color: var(--text-soft);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            animation: fadeSlideUp 0.6s ease both;
+            animation-delay: 0.25s;
+            opacity: 0;
+            transition: color 0.4s ease;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            margin: 0 auto 1.2rem;
+            font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+            color: var(--text-soft);
+            line-height: 1.9;
+            animation: fadeSlideUp 0.6s ease both;
+            animation-delay: 0.35s;
+            opacity: 0;
+            transition: color 0.4s ease;
+        }
+
+        .hero-tagline {
+            display: inline-block;
+            padding: 10px 24px;
+            background: var(--red-soft);
+            border: 1px solid rgba(214, 48, 49, 0.2);
+            border-radius: 40px;
+            color: var(--red);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+            margin-bottom: 2rem;
+            animation: fadeSlideUp 0.6s ease both;
+            animation-delay: 0.42s;
+            opacity: 0;
+            transition: background 0.4s ease;
+        }
+
+        .hero-tagline i {
+            margin-right: 6px;
             animation: dotBeat 1.5s ease-in-out infinite;
+        }
+
+        body.rtl .hero-tagline i {
+            margin-right: 0;
+            margin-left: 6px;
         }
 
         @keyframes dotBeat {
@@ -348,62 +341,67 @@
             }
         }
 
-        /* ═══════════════════════════════
-           QUICK INFO CHIPS
-           ═══════════════════════════════ */
-        .quick-row {
+        .hero-buttons {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 8px;
-            margin: 1.8rem 0 1rem;
-        }
-
-        .chip {
-            background: var(--black-surface);
-            border: 1px solid var(--black-border);
-            padding: 7px 15px;
-            border-radius: 36px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.79rem;
-            color: var(--white-soft);
-            transition: all 0.28s ease;
+            gap: 12px;
+            animation: fadeSlideUp 0.6s ease both;
+            animation-delay: 0.5s;
             opacity: 0;
-            animation: fadeSlideUp 0.5s ease forwards;
         }
 
-        .chip:nth-child(1) {
-            animation-delay: 0.04s;
-        }
-        .chip:nth-child(2) {
-            animation-delay: 0.14s;
-        }
-        .chip:nth-child(3) {
-            animation-delay: 0.24s;
-        }
-        .chip:nth-child(4) {
-            animation-delay: 0.34s;
-        }
-
-        .chip:hover {
-            border-color: var(--red);
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: var(--red);
             color: #fff;
-            background: var(--black-surface-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px var(--red-glow);
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
         }
 
-        .chip i {
+        .btn-primary:hover {
+            background: var(--red-bright);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--red-glow-strong);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: transparent;
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: all 0.3s ease;
+            border: 1.5px solid var(--border);
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--red);
             color: var(--red);
-            font-size: 0.74rem;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--red-glow);
         }
 
         @keyframes fadeSlideUp {
             from {
                 opacity: 0;
-                transform: translateY(16px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -411,20 +409,161 @@
             }
         }
 
-        /* ═══════════════════════════════
-           CARDS
-           ═══════════════════════════════ */
+        .hero-avatar-box {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+            animation: fadeSlideUp 0.6s ease both;
+            animation-delay: 0.05s;
+            opacity: 0;
+        }
+
+        .hero-avatar-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 130px;
+            height: 130px;
+            background: radial-gradient(circle, rgba(229, 57, 53, 0.45) 0%, rgba(198, 40, 40, 0.22) 30%, rgba(198, 40, 40, 0.06) 55%, transparent 72%);
+            border-radius: 50%;
+            animation: glowBreathe 2.6s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(14px);
+        }
+
+        @keyframes glowBreathe {
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.55;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.45);
+                opacity: 1;
+            }
+        }
+
+        .hero-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1.5px solid transparent;
+            animation: ringSpin linear infinite;
+            pointer-events: none;
+        }
+
+        .hero-ring:first-child {
+            inset: -12px;
+            border-top-color: rgba(214, 48, 49, 0.55);
+            border-right-color: rgba(214, 48, 49, 0.25);
+            animation-duration: 4s;
+        }
+
+        .hero-ring:last-child {
+            inset: -24px;
+            border-bottom-color: rgba(255, 255, 255, 0.12);
+            border-left-color: rgba(255, 255, 255, 0.06);
+            animation-duration: 7s;
+            animation-direction: reverse;
+        }
+
+        @keyframes ringSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero-avatar {
+            width: clamp(100px, 20vw, 150px);
+            height: clamp(100px, 20vw, 150px);
+            border-radius: 50%;
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            animation: floatAvatar 5s ease-in-out infinite;
+            transition: all 0.3s ease, background 0.4s ease, color 0.4s ease;
+        }
+
+        @keyframes floatAvatar {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            35% {
+                transform: translateY(-10px);
+            }
+            65% {
+                transform: translateY(-4px);
+            }
+        }
+
+        .hero-avatar:hover {
+            box-shadow: 0 0 80px var(--red-glow-strong);
+            transform: translateY(-14px) scale(1.04);
+        }
+
+        .hero-avatar .avatar-shine {
+            position: absolute;
+            top: 10%;
+            left: 14%;
+            width: 36%;
+            height: 46%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* ---- section cards ---- */
+        .section {
+            padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 800;
+            color: var(--text);
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--red);
+            border-radius: 3px;
+        }
+
         .card {
-            background: var(--black-surface);
-            border: 1px solid var(--black-border);
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: clamp(1.2rem, 3vw, 1.9rem);
+            padding: clamp(1.3rem, 3vw, 2rem);
             margin-bottom: var(--gap);
-            transition: all 0.3s ease;
+            transition: all 0.3s ease, background 0.4s ease, border 0.4s ease;
             opacity: 0;
             animation: fadeSlideUp 0.55s ease forwards;
             position: relative;
             overflow: hidden;
+            box-shadow: var(--shadow);
         }
 
         .card:nth-child(1) {
@@ -448,14 +587,23 @@
         .card:nth-child(7) {
             animation-delay: 0.52s;
         }
+        .card:nth-child(8) {
+            animation-delay: 0.6s;
+        }
+        .card:nth-child(9) {
+            animation-delay: 0.68s;
+        }
+        .card:nth-child(10) {
+            animation-delay: 0.76s;
+        }
 
         .card::after {
             content: '';
             position: absolute;
             top: -30%;
             right: -30%;
-            width: 170px;
-            height: 170px;
+            width: 180px;
+            height: 180px;
             background: radial-gradient(circle, var(--red-soft), transparent 70%);
             transition: all 0.5s ease;
             pointer-events: none;
@@ -465,27 +613,27 @@
         .card:hover::after {
             top: -12%;
             right: -12%;
-            width: 250px;
-            height: 250px;
+            width: 260px;
+            height: 260px;
             background: radial-gradient(circle, var(--red-soft-hover), transparent 70%);
         }
 
         .card:hover {
-            border-color: var(--black-border-hover);
-            background: var(--black-surface-hover);
+            border-color: var(--border-hover);
+            background: var(--surface-hover);
             transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 42px var(--red-glow);
+            box-shadow: var(--shadow-hover), 0 0 45px var(--red-glow);
         }
 
         .card-icon {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--red);
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.7rem;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             border-radius: var(--radius-sm);
             background: var(--red-soft);
             transition: all 0.3s ease;
@@ -493,24 +641,26 @@
 
         .card:hover .card-icon {
             background: var(--red-soft-hover);
-            box-shadow: 0 0 16px var(--red-glow);
+            box-shadow: 0 0 18px var(--red-glow);
         }
 
         .card-title {
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 700;
-            color: #fff;
-            margin-bottom: 0.9rem;
+            color: var(--text);
+            margin-bottom: 1rem;
             letter-spacing: -0.01em;
+            transition: color 0.4s ease;
         }
 
         .card-text {
-            color: var(--white-soft);
-            line-height: 1.8;
-            font-size: 0.86rem;
+            color: var(--text-soft);
+            line-height: 1.85;
+            font-size: 0.88rem;
+            transition: color 0.4s ease;
         }
         .card-text strong {
-            color: #fff;
+            color: var(--text);
             font-weight: 600;
         }
         .card-text em {
@@ -519,24 +669,22 @@
             font-weight: 500;
         }
 
-        /* ═══════════════════════════════
-           INFO GRID
-           ═══════════════════════════════ */
+        /* ---- info grid ---- */
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(165px, 100%), 1fr));
             gap: 10px;
         }
         .info-cell {
-            background: rgba(255, 255, 255, 0.01);
-            padding: 12px 14px;
+            background: var(--red-soft);
+            padding: 13px 15px;
             border-radius: var(--radius-sm);
-            border: 1px solid var(--black-border);
-            transition: all 0.28s ease;
+            border: 1px solid var(--border);
+            transition: all 0.28s ease, background 0.4s ease, border 0.4s ease;
         }
         .info-cell:hover {
-            border-color: var(--black-border-hover);
-            background: rgba(255, 255, 255, 0.02);
+            border-color: var(--border-hover);
+            background: var(--surface-hover);
             transform: translateY(-2px);
         }
         .info-label {
@@ -548,57 +696,65 @@
             text-transform: uppercase;
         }
         .info-value {
-            color: var(--white);
+            color: var(--text);
             font-weight: 500;
-            font-size: 0.85rem;
+            font-size: 0.86rem;
+            transition: color 0.4s ease;
         }
 
-        /* ═══════════════════════════════
-           SKILLS
-           ═══════════════════════════════ */
-        .skills-wrap {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+        /* ---- skills grid (large blocks) ---- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: 12px;
         }
-        .skill-tag {
+        .skill-block {
             background: var(--red-soft);
             border: 1px solid rgba(214, 48, 49, 0.12);
-            padding: 7px 14px;
-            border-radius: 36px;
-            font-weight: 500;
-            font-size: 0.78rem;
-            color: var(--red);
-            transition: all 0.28s ease;
+            padding: 18px 20px;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 5px;
-            animation: skillPopIn 0.4s ease both;
+            gap: 14px;
+            animation: skillPopIn 0.45s ease both;
         }
         @keyframes skillPopIn {
             from {
                 opacity: 0;
-                transform: scale(0.8) translateY(7px);
+                transform: scale(0.85) translateY(10px);
             }
             to {
                 opacity: 1;
                 transform: scale(1) translateY(0);
             }
         }
-        .skill-tag:hover {
+        .skill-block:hover {
             background: var(--red-soft-hover);
             border-color: rgba(214, 48, 49, 0.3);
-            color: #fff;
-            transform: translateY(-3px) scale(1.04);
-            box-shadow: 0 5px 18px var(--red-glow);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px var(--red-glow);
         }
-        .skill-tag i {
-            font-size: 0.7rem;
+        .skill-block i {
+            font-size: 1.8rem;
+            color: var(--red);
+            width: 40px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .skill-block .skill-info h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+        .skill-block .skill-info p {
+            font-size: 0.76rem;
+            color: var(--text-soft);
+            line-height: 1.4;
         }
 
-        /* ═══════════════════════════════
-           TIMELINE
-           ═══════════════════════════════ */
+        /* ---- timeline ---- */
         .timeline {
             position: relative;
             padding-left: 22px;
@@ -639,7 +795,7 @@
             height: 8px;
             background: var(--red);
             border-radius: 50%;
-            border: 2px solid var(--black);
+            border: 2px solid var(--bg);
             transition: all 0.28s ease;
         }
         body.rtl .tl-item::before {
@@ -647,31 +803,33 @@
             right: -19px;
         }
         .tl-item:hover::before {
-            background: #fff;
+            background: var(--red-bright);
             box-shadow: 0 0 0 5px var(--red-glow);
         }
         .tl-date {
-            font-size: 0.63rem;
-            color: var(--white-muted);
+            font-size: 0.64rem;
+            color: var(--text-muted);
             font-weight: 500;
             letter-spacing: 0.05em;
         }
         .tl-title {
-            color: var(--white);
+            color: var(--text);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
+            transition: color 0.4s ease;
         }
         .tl-desc {
-            color: var(--white-soft);
-            font-size: 0.79rem;
+            color: var(--text-soft);
+            font-size: 0.8rem;
+            transition: color 0.4s ease;
         }
         .status-tag {
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            background: rgba(255, 255, 255, 0.025);
-            border: 1px solid rgba(255, 255, 255, 0.09);
-            color: #fff;
+            background: var(--red-soft);
+            border: 1px solid rgba(214, 48, 49, 0.12);
+            color: var(--red);
             padding: 3px 11px;
             border-radius: 36px;
             font-size: 0.68rem;
@@ -681,62 +839,12 @@
         .status-tag .live {
             width: 5px;
             height: 5px;
-            background: var(--red);
+            background: var(--red-bright);
             border-radius: 50%;
             animation: dotBeat 1.3s ease-in-out infinite;
         }
 
-        /* ═══════════════════════════════
-           OBJECTIVE
-           ═══════════════════════════════ */
-        .obj-box {
-            position: relative;
-            padding: 16px 18px;
-            background: rgba(255, 255, 255, 0.01);
-            border-radius: var(--radius-sm);
-            border-left: 3px solid var(--red);
-            color: var(--white-soft);
-            line-height: 1.8;
-            font-size: 0.86rem;
-            transition: all 0.28s ease;
-        }
-        body.rtl .obj-box {
-            border-left: none;
-            border-right: 3px solid var(--red);
-        }
-        .obj-box:hover {
-            background: rgba(255, 255, 255, 0.02);
-            border-left-color: #fff;
-        }
-        body.rtl .obj-box:hover {
-            border-right-color: #fff;
-        }
-
-        /* ═══════════════════════════════
-           QUOTE
-           ═══════════════════════════════ */
-        .quote {
-            padding: 15px 18px;
-            background: rgba(255, 255, 255, 0.008);
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--black-border);
-            color: var(--white-soft);
-            line-height: 1.75;
-            font-style: italic;
-            transition: all 0.28s ease;
-        }
-        .quote:hover {
-            border-color: var(--black-border-hover);
-            background: rgba(255, 255, 255, 0.018);
-        }
-        .quote i {
-            color: var(--white-muted);
-            margin: 0 3px;
-        }
-
-        /* ═══════════════════════════════
-           SOCIAL
-           ═══════════════════════════════ */
+        /* ---- social ---- */
         .social-row {
             display: flex;
             flex-wrap: wrap;
@@ -745,16 +853,16 @@
         .social-link {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 9px 18px;
+            gap: 9px;
+            padding: 10px 20px;
             border-radius: 36px;
             text-decoration: none;
-            color: var(--white-soft);
+            color: var(--text-soft);
             font-weight: 500;
-            font-size: 0.8rem;
-            border: 1px solid var(--black-border);
-            background: var(--black-surface);
-            transition: all 0.3s ease;
+            font-size: 0.82rem;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            transition: all 0.3s ease, background 0.4s ease, border 0.4s ease, color 0.4s ease;
             position: relative;
             overflow: hidden;
         }
@@ -765,33 +873,38 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+            background: linear-gradient(90deg, transparent, rgba(128, 128, 128, 0.06), transparent);
             transition: left 0.5s ease;
         }
         .social-link:hover::before {
             left: 100%;
         }
         .social-link:hover {
-            color: #fff;
+            color: var(--text);
             border-color: var(--red);
-            background: var(--black-surface-hover);
+            background: var(--surface-hover);
             transform: translateY(-3px);
             box-shadow: 0 7px 22px rgba(0, 0, 0, 0.4), 0 0 18px var(--red-glow);
         }
         .social-link i {
-            font-size: 0.96rem;
+            font-size: 0.98rem;
         }
 
-        /* ═══════════════════════════════
-           FOOTER
-           ═══════════════════════════════ */
+        .contact-note {
+            color: var(--text-soft);
+            font-size: 0.88rem;
+            margin-top: 1rem;
+            line-height: 1.8;
+        }
+
         .footer {
             text-align: center;
-            padding: clamp(1.4rem, 3vw, 2.3rem) 0;
-            color: var(--white-muted);
-            font-size: 0.71rem;
-            border-top: 1px solid var(--black-border);
-            margin-top: clamp(1.4rem, 3vw, 1.8rem);
+            padding: clamp(2rem, 4vw, 3rem) 0;
+            color: var(--text-muted);
+            font-size: 0.73rem;
+            border-top: 1px solid var(--border);
+            margin-top: clamp(2rem, 4vw, 3rem);
+            transition: color 0.4s ease, border 0.4s ease;
         }
         .footer span {
             color: var(--red);
@@ -802,14 +915,17 @@
             width: 4px;
         }
         ::-webkit-scrollbar-track {
-            background: var(--black);
+            background: var(--bg);
         }
         ::-webkit-scrollbar-thumb {
-            background: var(--black-border-hover);
+            background: var(--border-hover);
             border-radius: 8px;
         }
 
         @media (max-width: 480px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
             .info-grid {
                 grid-template-columns: 1fr 1fr;
             }
@@ -819,18 +935,42 @@
             .social-link {
                 justify-content: center;
             }
-            .avatar-glow {
-                width: 90px;
-                height: 90px;
+            .hero-avatar-glow {
+                width: 100px;
+                height: 100px;
+            }
+            .top-bar {
+                gap: 6px;
+            }
+            .theme-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+            .nav-tabs {
+                gap: 6px;
+            }
+            .nav-tab {
+                padding: 8px 14px;
+                font-size: 0.74rem;
             }
         }
         @media (max-width: 360px) {
             .info-grid {
                 grid-template-columns: 1fr;
             }
-            .avatar-glow {
-                width: 75px;
-                height: 75px;
+            .hero-avatar-glow {
+                width: 80px;
+                height: 80px;
             }
         }
     </style>
@@ -839,114 +979,176 @@
 
     <canvas id="scene"></canvas>
 
-    <!-- Language switcher: EN first, DE second, AR third -->
-    <div class="lang-switch">
-        <button class="lang-btn active" onclick="switchLang('en')" id="btnEn">🇬🇧 EN</button>
-        <button class="lang-btn" onclick="switchLang('de')" id="btnDe">🇩🇪 DE</button>
-        <button class="lang-btn" onclick="switchLang('ar')" id="btnAr">🇪🇬 عربي</button>
+    <!-- top bar -->
+    <div class="top-bar">
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="switchLang('en')" id="btnEn">🇬🇧 EN</button>
+            <button class="lang-btn" onclick="switchLang('de')" id="btnDe">🇩🇪 DE</button>
+            <button class="lang-btn" onclick="switchLang('ar')" id="btnAr">🇪🇬 عربي</button>
+        </div>
+        <button class="theme-btn" onclick="toggleTheme()" id="themeToggle" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+        </button>
     </div>
 
     <div class="container" id="main">
-        <header class="header">
-            <div class="avatar-box">
-                <!-- Breathing red glow behind BODA -->
-                <div class="avatar-glow"></div>
-                <span class="ring"></span>
-                <span class="ring"></span>
-                <div class="avatar">
+
+        <!-- ═══════════════════ HERO ═══════════════════ -->
+        <section class="hero" id="hero">
+            <div class="hero-avatar-box">
+                <div class="hero-avatar-glow"></div>
+                <span class="hero-ring"></span>
+                <span class="hero-ring"></span>
+                <div class="hero-avatar">
                     <span>BODA</span>
-                    <span class="shine"></span>
+                    <span class="avatar-shine"></span>
                 </div>
             </div>
-            <h1 class="name" data-ar="عبد الرحمن ممدوح" data-en="Abdelrahman Mamdouh" data-de="Abdelrahman Mamdouh">Abdelrahman Mamdouh</h1>
-            <p class="role" data-ar="طالب علوم الحاسب | مطور نظم معلومات" data-en="Computer Science Student | IS Developer" data-de="Informatik-Student | IS-Entwickler">Computer Science Student | IS Developer</p>
-            <span class="badge"><span class="dot"></span><span data-ar="قسم نظم المعلومات" data-en="Information Systems Department" data-de="Fachbereich Informationssysteme">Information Systems Department</span></span>
-        </header>
 
-        <div class="divider"></div>
+            <p class="hero-greeting" data-ar="مرحباً، أنا عبد الرحمن 👋" data-en="Hi, I'm Abdelrahman 👋" data-de="Hallo, ich bin Abdelrahman 👋">Hi, I'm Abdelrahman 👋</p>
 
-        <div class="quick-row">
-            <div class="chip"><i class="fas fa-calendar-alt"></i><span data-ar="20 سنة" data-en="20 Years Old" data-de="20 Jahre alt">20 Years Old</span></div>
-            <div class="chip"><i class="fas fa-birthday-cake"></i><span data-ar="1 أغسطس 2005" data-en="August 1, 2005" data-de="1. August 2005">August 1, 2005</span></div>
-            <div class="chip"><i class="fas fa-flag"></i><span data-ar="مصري" data-en="Egyptian" data-de="Ägypter">Egyptian</span></div>
-            <div class="chip"><i class="fas fa-map-marker-alt"></i><span data-ar="القاهرة، مصر" data-en="Cairo, Egypt" data-de="Kairo, Ägypten">Cairo, Egypt</span></div>
-        </div>
+            <h1 class="hero-name" data-ar="مطور <span>واجهات أمامية</span> ومبرمج" data-en="<span>Frontend Developer</span> & Programmer" data-de="<span>Frontend-Entwickler</span> & Programmierer"><span>Frontend Developer</span> & Programmer</h1>
 
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-user"></i></div>
-            <h3 class="card-title" data-ar="نبذة عني" data-en="About Me" data-de="Über Mich">About Me</h3>
-            <p class="card-text" data-ar="أنا <strong>عبد الرحمن ممدوح</strong>، طالب في <em>علوم الحاسب</em> تخصص <em>نظم المعلومات</em> في أكاديمية القاهرة الجديدة. شغوف بمجال تكنولوجيا المعلومات وتطوير البرمجيات وتحليل النظم."
-            data-en="I'm <strong>Abdelrahman Mamdouh</strong>, a <em>Computer Science</em> student specialising in <em>Information Systems</em> at New Cairo Academy. Technology, software and systems analysis are what drive me."
-            data-de="Ich bin <strong>Abdelrahman Mamdouh</strong>, ein <em>Informatik</em>-Student mit Schwerpunkt <em>Informationssysteme</em> an der New Cairo Academy.">I'm <strong>Abdelrahman Mamdouh</strong>, a <em>Computer Science</em> student specialising in <em>Information Systems</em> at New Cairo Academy. Technology, software and systems analysis are what drive me.</p>
-        </div>
+            <p class="hero-title" data-ar="أبني مواقع ويب وبرمجيات حديثة ومتجاوبة باستخدام كود نظيف وفعال" data-en="I build modern, responsive websites and software solutions using clean and efficient code" data-de="Ich entwickle moderne, responsive Websites und Softwarelösungen mit sauberem und effizientem Code">I build modern, responsive websites and software solutions using clean and efficient code</p>
 
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-address-card"></i></div>
-            <h3 class="card-title" data-ar="المعلومات الشخصية" data-en="Personal Information" data-de="Persönliche Daten">Personal Information</h3>
-            <div class="info-grid">
-                <div class="info-cell"><div class="info-label" data-ar="الاسم الكامل" data-en="Full Name" data-de="Vollständiger Name">Full Name</div><div class="info-value">Abdelrahman Mamdouh</div></div>
-                <div class="info-cell"><div class="info-label" data-ar="العمر" data-en="Age" data-de="Alter">Age</div><div class="info-value" data-ar="20 سنة" data-en="20 Years Old" data-de="20 Jahre">20 Years Old</div></div>
-                <div class="info-cell"><div class="info-label" data-ar="تاريخ الميلاد" data-en="Date of Birth" data-de="Geburtsdatum">Date of Birth</div><div class="info-value" data-ar="1 أغسطس 2005" data-en="August 1, 2005" data-de="1. August 2005">August 1, 2005</div></div>
-                <div class="info-cell"><div class="info-label" data-ar="الجنسية" data-en="Nationality" data-de="Nationalität">Nationality</div><div class="info-value" data-ar="مصري" data-en="Egyptian" data-de="Ägypter">Egyptian</div></div>
-                <div class="info-cell"><div class="info-label" data-ar="التخصص" data-en="Specialization" data-de="Spezialisierung">Specialization</div><div class="info-value" data-ar="نظم المعلومات" data-en="Information Systems" data-de="Informationssysteme">Information Systems</div></div>
-                <div class="info-cell"><div class="info-label" data-ar="القسم" data-en="Department" data-de="Fachbereich">Department</div><div class="info-value" data-ar="علوم الحاسب" data-en="Computer Science" data-de="Informatik">Computer Science</div></div>
-                <div class="info-cell"><div class="info-label" data-ar="المدينة" data-en="City" data-de="Stadt">City</div><div class="info-value" data-ar="القاهرة" data-en="Cairo" data-de="Kairo">Cairo</div></div>
-                <div class="info-cell"><div class="info-label" data-ar="الحالة الدراسية" data-en="Status" data-de="Status">Status</div><div class="info-value" style="color:#d63031;" data-ar="قيد الدراسة" data-en="Currently Studying" data-de="Studierend">Currently Studying</div></div>
+            <p class="hero-description" data-ar="أستمتع بتحويل الأفكار إلى تطبيقات بسيطة ونظيفة وعملية. أركز على تطوير الويب وحل المشكلات والتعلم المستمر." data-en="I enjoy turning ideas into simple, clean, and functional applications. My focus is on web development, problem solving, and continuous learning." data-de="Ich verwandle gerne Ideen in einfache, saubere und funktionale Anwendungen. Mein Fokus liegt auf Webentwicklung, Problemlösung und kontinuierlichem Lernen.">I enjoy turning ideas into simple, clean, and functional applications. My focus is on web development, problem solving, and continuous learning.</p>
+
+            <div class="hero-tagline">
+                <i class="fas fa-bolt" style="color:var(--red-bright);"></i>
+                <span data-ar="التعلم من خلال بناء مشاريع حقيقية" data-en="Learning by building real projects" data-de="Lernen durch den Aufbau echter Projekte">Learning by building real projects</span>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
-            <h3 class="card-title" data-ar="التعليم" data-en="Education" data-de="Bildung">Education</h3>
-            <div class="timeline">
-                <div class="tl-item">
-                    <div class="tl-date" data-ar="2023 - الحالي" data-en="2023 - Present" data-de="2023 - Heute">2023 - Present</div>
-                    <div class="tl-title" data-ar="أكاديمية القاهرة الجديدة" data-en="New Cairo Academy" data-de="New Cairo Academy">New Cairo Academy</div>
-                    <div class="tl-desc" data-ar="بكالوريوس علوم الحاسب - تخصص نظم المعلومات" data-en="Bachelor of Computer Science - Information Systems" data-de="Bachelor of Computer Science - Informationssysteme">Bachelor of Computer Science - Information Systems</div>
-                    <span class="status-tag"><span class="live"></span><span data-ar="قيد الدراسة" data-en="Currently Studying" data-de="Derzeit am Studieren">Currently Studying</span></span>
+            <div class="hero-buttons">
+                <a href="#about" class="btn-primary"><i class="fas fa-user"></i> <span data-ar="اعرف المزيد عني" data-en="Learn More About Me" data-de="Erfahre mehr über mich">Learn More About Me</span></a>
+                <a href="#contact" class="btn-secondary"><i class="fas fa-paper-plane"></i> <span data-ar="تواصل معي" data-en="Get In Touch" data-de="Kontakt aufnehmen">Get In Touch</span></a>
+            </div>
+        </section>
+
+        <!-- ═══════════════════ NAVIGATION TABS ═══════════════════ -->
+        <nav class="nav-tabs" id="navTabs">
+            <a href="#about" class="nav-tab"><i class="fas fa-user"></i> <span data-ar="نبذة عني" data-en="About Me" data-de="Über Mich">About Me</span></a>
+            <a href="#excel" class="nav-tab"><i class="fas fa-star"></i> <span data-ar="ما أتقنه" data-en="What I Excel At" data-de="Was ich beherrsche">What I Excel At</span></a>
+            <a href="#different" class="nav-tab"><i class="fas fa-rocket"></i> <span data-ar="لماذا أنا مختلف" data-en="Why I'm Different" data-de="Warum ich anders bin">Why I'm Different</span></a>
+            <a href="#personal" class="nav-tab"><i class="fas fa-address-card"></i> <span data-ar="معلومات شخصية" data-en="Personal Info" data-de="Persönliche Daten">Personal Info</span></a>
+            <a href="#education" class="nav-tab"><i class="fas fa-graduation-cap"></i> <span data-ar="التعليم" data-en="Education" data-de="Bildung">Education</span></a>
+            <a href="#languages" class="nav-tab"><i class="fas fa-code"></i> <span data-ar="لغات البرمجة" data-en="Programming Languages" data-de="Programmiersprachen">Programming Languages</span></a>
+            <a href="#technologies" class="nav-tab"><i class="fas fa-tools"></i> <span data-ar="التقنيات" data-en="Technologies" data-de="Technologien">Technologies</span></a>
+            <a href="#skills" class="nav-tab"><i class="fas fa-cogs"></i> <span data-ar="المهارات" data-en="Soft Skills" data-de="Soft Skills">Soft Skills</span></a>
+            <a href="#contact" class="nav-tab"><i class="fas fa-paper-plane"></i> <span data-ar="تواصل معي" data-en="Contact Me" data-de="Kontakt">Contact Me</span></a>
+        </nav>
+
+        <!-- ═══════════════════ ABOUT ME ═══════════════════ -->
+        <section class="section" id="about">
+            <div class="section-header"><h2 data-ar="نبذة عني" data-en="About Me" data-de="Über Mich">About Me</h2></div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-user"></i></div>
+                <p class="card-text" data-ar="أنا مطور أتعلم ذاتياً وشغوف بالتكنولوجيا وتطوير البرمجيات. حالياً أركز على تحسين مهاراتي في تطوير الويب والبرمجة من خلال بناء المشاريع وتعلم التقنيات الجديدة. أؤمن أن أفضل طريقة للتعلم هي الممارسة، لذلك أقضي معظم وقتي في إنشاء مشاريع حقيقية بدلاً من دراسة النظرية فقط."
+                data-en="I'm a self-learning developer passionate about technology and software development. Currently, I'm focusing on improving my skills in web development and programming through building projects and learning new technologies. I believe the best way to learn is by doing, so I spend most of my time creating real projects instead of just studying theory."
+                data-de="Ich bin ein selbstlernender Entwickler mit Leidenschaft für Technologie und Softwareentwicklung. Derzeit konzentriere ich mich darauf, meine Fähigkeiten in Webentwicklung und Programmierung durch Projekte und neue Technologien zu verbessern.">I'm a self-learning developer passionate about technology and software development. Currently, I'm focusing on improving my skills in web development and programming through building projects and learning new technologies. I believe the best way to learn is by doing, so I spend most of my time creating real projects instead of just studying theory.</p>
+            </div>
+        </section>
+
+        <!-- ═══════════════════ WHAT I EXCEL AT ═══════════════════ -->
+        <section class="section" id="excel">
+            <div class="section-header"><h2 data-ar="ما أتقنه" data-en="What I Excel At" data-de="Was ich beherrsche">What I Excel At</h2></div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-star"></i></div>
+                <p class="card-text" data-ar="لدي خبرة قوية في <strong>HTML5</strong> و <strong>CSS3</strong> لبناء واجهات حديثة ومتجاوبة. أكتب كود <strong>JavaScript</strong> نظيف وفعال لإضافة التفاعل والحيوية للمواقع. أعمل أيضاً مع <strong>Python</strong> لبناء تطبيقات قوية ولدي معرفة جيدة بـ <strong>C++</strong> و <strong>C#</strong> لتطوير البرمجيات. أتقن التعامل مع <strong>SQL Server</strong> لإدارة قواعد البيانات بكفاءة. أستخدم <strong>Git و GitHub</strong> للتحكم في النسخ والتعاون في المشاريع. كل مشروع أبنيه هو خطوة جديدة نحو الاحتراف وأنا فخور بكل سطر كود أكتبه."
+                data-en="I have strong experience with <strong>HTML5</strong> and <strong>CSS3</strong> for building modern, responsive interfaces. I write clean, efficient <strong>JavaScript</strong> code to make websites interactive and dynamic. I also work with <strong>Python</strong> for building powerful applications and have solid knowledge of <strong>C++</strong> and <strong>C#</strong> for software development. I'm skilled in <strong>SQL Server</strong> for efficient database management. I use <strong>Git and GitHub</strong> for version control and team collaboration. Every project I build is a step toward mastery, and I take pride in every line of code I write."
+                data-de="Ich habe fundierte Erfahrung mit <strong>HTML5</strong> und <strong>CSS3</strong> für moderne, responsive Oberflächen. Ich schreibe sauberen <strong>JavaScript</strong>-Code für interaktive Websites. Ich arbeite mit <strong>Python</strong> für leistungsstarke Anwendungen und habe gute Kenntnisse in <strong>C++</strong> und <strong>C#</strong>. Ich beherrsche <strong>SQL Server</strong> für effizientes Datenbankmanagement und nutze <strong>Git und GitHub</strong> für Versionskontrolle.">I have strong experience with <strong>HTML5</strong> and <strong>CSS3</strong> for building modern, responsive interfaces. I write clean, efficient <strong>JavaScript</strong> code to make websites interactive and dynamic. I also work with <strong>Python</strong> for building powerful applications and have solid knowledge of <strong>C++</strong> and <strong>C#</strong> for software development. I'm skilled in <strong>SQL Server</strong> for efficient database management. I use <strong>Git and GitHub</strong> for version control and team collaboration. Every project I build is a step toward mastery, and I take pride in every line of code I write.</p>
+            </div>
+        </section>
+
+        <!-- ═══════════════════ WHY I'M DIFFERENT ═══════════════════ -->
+        <section class="section" id="different">
+            <div class="section-header"><h2 data-ar="لماذا أنا مختلف" data-en="Why I'm Different" data-de="Warum ich anders bin">Why I'm Different</h2></div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-rocket"></i></div>
+                <p class="card-text" data-ar="أنا لا أكتفي بتعلم الأساسيات فقط، بل أتعمق في كل تقنية أعمل بها حتى أفهمها من جذورها. أؤمن أن المطور الحقيقي هو من يحل المشكلات، وليس من يحفظ الأكواد فقط. لدي قدرة عالية على <strong>التفكير التحليلي</strong> وحل المشكلات المعقدة بطريقة منهجية. أعمل بشغف وانضباط، وأتعلم بسرعة، ولا أستسلم أمام التحديات. أنا ملتزم بتقديم أفضل ما عندي في كل مشروع، وأسعى دائماً للتميز."
+                data-en="I don't just learn the basics — I dive deep into every technology I work with until I understand it from the ground up. I believe a real developer is someone who solves problems, not someone who just memorizes code. I have strong <strong>analytical thinking</strong> skills and can solve complex problems methodically. I work with passion and discipline, I learn fast, and I never give up when facing challenges. I'm committed to delivering my best in every project and always strive for excellence."
+                data-de="Ich lerne nicht nur die Grundlagen – ich tauche tief in jede Technologie ein. Ich glaube, ein echter Entwickler löst Probleme. Ich habe starke <strong>analytische Denkfähigkeiten</strong> und löse komplexe Probleme methodisch. Ich arbeite mit Leidenschaft und Disziplin.">I don't just learn the basics — I dive deep into every technology I work with until I understand it from the ground up. I believe a real developer is someone who solves problems, not someone who just memorizes code. I have strong <strong>analytical thinking</strong> skills and can solve complex problems methodically. I work with passion and discipline, I learn fast, and I never give up when facing challenges. I'm committed to delivering my best in every project and always strive for excellence.</p>
+            </div>
+        </section>
+
+        <!-- ═══════════════════ PERSONAL INFO ═══════════════════ -->
+        <section class="section" id="personal">
+            <div class="section-header"><h2 data-ar="المعلومات الشخصية" data-en="Personal Information" data-de="Persönliche Daten">Personal Information</h2></div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-address-card"></i></div>
+                <div class="info-grid">
+                    <div class="info-cell"><div class="info-label" data-ar="الاسم الكامل" data-en="Full Name" data-de="Vollständiger Name">Full Name</div><div class="info-value">Abdelrahman Mamdouh</div></div>
+                    <div class="info-cell"><div class="info-label" data-ar="العمر" data-en="Age" data-de="Alter">Age</div><div class="info-value" data-ar="20 سنة" data-en="20 Years Old" data-de="20 Jahre">20 Years Old</div></div>
+                    <div class="info-cell"><div class="info-label" data-ar="تاريخ الميلاد" data-en="Date of Birth" data-de="Geburtsdatum">Date of Birth</div><div class="info-value" data-ar="1 أغسطس 2005" data-en="August 1, 2005" data-de="1. August 2005">August 1, 2005</div></div>
+                    <div class="info-cell"><div class="info-label" data-ar="الجنسية" data-en="Nationality" data-de="Nationalität">Nationality</div><div class="info-value" data-ar="مصري" data-en="Egyptian" data-de="Ägypter">Egyptian</div></div>
+                    <div class="info-cell"><div class="info-label" data-ar="التخصص" data-en="Specialization" data-de="Spezialisierung">Specialization</div><div class="info-value" data-ar="نظم المعلومات" data-en="Information Systems" data-de="Informationssysteme">Information Systems</div></div>
+                    <div class="info-cell"><div class="info-label" data-ar="القسم" data-en="Department" data-de="Fachbereich">Department</div><div class="info-value" data-ar="علوم الحاسب" data-en="Computer Science" data-de="Informatik">Computer Science</div></div>
+                    <div class="info-cell"><div class="info-label" data-ar="الحالة الدراسية" data-en="Status" data-de="Status">Status</div><div class="info-value" style="color:var(--red);" data-ar="قيد الدراسة" data-en="Currently Studying" data-de="Studierend">Currently Studying</div></div>
                 </div>
-                <div class="tl-item">
-                    <div class="tl-date" data-ar="2020 - 2023" data-en="2020 - 2023" data-de="2020 - 2023">2020 - 2023</div>
-                    <div class="tl-title" data-ar="التعليم الثانوي" data-en="High School Education" data-de="Gymnasium">High School Education</div>
-                    <div class="tl-desc" data-ar="التأسيس للدخول في مجال التكنولوجيا" data-en="Foundation for entering the technology field" data-de="Grundlage für den Einstieg in die Technologie">Foundation for entering the technology field</div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════ EDUCATION ═══════════════════ -->
+        <section class="section" id="education">
+            <div class="section-header"><h2 data-ar="التعليم" data-en="Education" data-de="Bildung">Education</h2></div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="timeline">
+                    <div class="tl-item">
+                        <div class="tl-date" data-ar="2023 - الحالي" data-en="2023 - Present" data-de="2023 - Heute">2023 - Present</div>
+                        <div class="tl-title" data-ar="أكاديمية القاهرة الجديدة" data-en="New Cairo Academy" data-de="New Cairo Academy">New Cairo Academy</div>
+                        <div class="tl-desc" data-ar="بكالوريوس علوم الحاسب - تخصص نظم المعلومات" data-en="Bachelor of Computer Science - Information Systems" data-de="Bachelor of Computer Science - Informationssysteme">Bachelor of Computer Science - Information Systems</div>
+                        <span class="status-tag"><span class="live"></span><span data-ar="قيد الدراسة" data-en="Currently Studying" data-de="Derzeit am Studieren">Currently Studying</span></span>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-date" data-ar="2020 - 2023" data-en="2020 - 2023" data-de="2020 - 2023">2020 - 2023</div>
+                        <div class="tl-title" data-ar="التعليم الثانوي" data-en="High School Education" data-de="Gymnasium">High School Education</div>
+                        <div class="tl-desc" data-ar="التأسيس للدخول في مجال التكنولوجيا" data-en="Foundation for entering the technology field" data-de="Grundlage für den Einstieg in die Technologie">Foundation for entering the technology field</div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-code"></i></div>
-            <h3 class="card-title" data-ar="المهارات" data-en="Skills" data-de="Fähigkeiten">Skills</h3>
-            <div class="skills-wrap" id="skillsContainer"></div>
-        </div>
-
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-compass"></i></div>
-            <h3 class="card-title" data-ar="الهدف المهني" data-en="Career Objective" data-de="Karriereziel">Career Objective</h3>
-            <div class="obj-box" data-ar="أهدف إلى تطوير مهاراتي في مجال تكنولوجيا المعلومات ونظم المعلومات من خلال التعلم المستمر والخبرة العملية."
-            data-en="I'm looking to grow my skills across IT and information systems through steady learning and real experience."
-            data-de="Ich möchte meine Fähigkeiten in IT und Informationssystemen durch kontinuierliches Lernen und praktische Erfahrung ausbauen.">I'm looking to grow my skills across IT and information systems through steady learning and real experience.</div>
-        </div>
-
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
-            <h3 class="card-title" data-ar="فلسفتي" data-en="My Philosophy" data-de="Meine Philosophie">My Philosophy</h3>
-            <div class="quote">
-                <i class="fas fa-quote-left"></i>
-                <span data-ar="أؤمن بأن التعلم المستمر هو مفتاح النجاح. كل يوم هو فرصة جديدة. أتبنى مبدأ 'التقدم وليس الكمال'."
-                data-en="I believe constant learning is what moves you forward. Every day gives you a fresh chance to improve."
-                data-de="Ich glaube, dass ständiges Lernen der Schlüssel zum Erfolg ist.">I believe constant learning is what moves you forward. Every day gives you a fresh chance to improve.</span>
-                <i class="fas fa-quote-right"></i>
+        <!-- ═══════════════════ PROGRAMMING LANGUAGES ═══════════════════ -->
+        <section class="section" id="languages">
+            <div class="section-header"><h2 data-ar="لغات البرمجة" data-en="Programming Languages" data-de="Programmiersprachen">Programming Languages</h2></div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-code"></i></div>
+                <div class="skills-grid" id="languagesContainer"></div>
             </div>
-        </div>
+        </section>
 
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-paper-plane"></i></div>
-            <h3 class="card-title" data-ar="تواصل معي" data-en="Get In Touch" data-de="Kontakt">Get In Touch</h3>
-            <div class="social-row">
-                <a href="https://www.instagram.com/bboda_7" target="_blank" rel="noopener" class="social-link"><i class="fab fa-instagram"></i> bboda_7</a>
-                <a href="https://github.com/Abdo1818" target="_blank" rel="noopener" class="social-link"><i class="fab fa-github"></i> Abdo1818</a>
+        <!-- ═══════════════════ TECHNOLOGIES ═══════════════════ -->
+        <section class="section" id="technologies">
+            <div class="section-header"><h2 data-ar="التقنيات والأدوات" data-en="Technologies & Tools" data-de="Technologien & Werkzeuge">Technologies & Tools</h2></div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-tools"></i></div>
+                <div class="skills-grid" id="technologiesContainer"></div>
             </div>
-        </div>
+        </section>
+
+        <!-- ═══════════════════ SOFT SKILLS ═══════════════════ -->
+        <section class="section" id="skills">
+            <div class="section-header"><h2 data-ar="المهارات الشخصية" data-en="Soft Skills" data-de="Soft Skills">Soft Skills</h2></div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-cogs"></i></div>
+                <div class="skills-grid" id="skillsContainer"></div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════ CONTACT ═══════════════════ -->
+        <section class="section" id="contact">
+            <div class="section-header"><h2 data-ar="تواصل معي" data-en="Contact Me" data-de="Kontakt">Contact Me</h2></div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-paper-plane"></i></div>
+                <div class="social-row">
+                    <a href="https://github.com/Abdo1818" target="_blank" rel="noopener" class="social-link"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://www.linkedin.com/in/ab-do-097783272" target="_blank" rel="noopener" class="social-link"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                    <a href="https://www.instagram.com/bboda_7" target="_blank" rel="noopener" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
+                </div>
+                <p class="contact-note" data-ar="أنا دائماً منفتح للفرص أو التعاون أو الملاحظات. لا تتردد في التواصل معي في أي وقت." data-en="I'm always open to opportunities, collaboration, or feedback. Feel free to reach out anytime." data-de="Ich bin immer offen für Möglichkeiten, Zusammenarbeit oder Feedback. Kontaktieren Sie mich jederzeit.">I'm always open to opportunities, collaboration, or feedback. Feel free to reach out anytime.</p>
+            </div>
+        </section>
     </div>
 
     <footer class="footer">
@@ -954,18 +1156,12 @@
     </footer>
 
     <script>
-        /*
-         * ═══════════════════════════════════════
-         *  ANIMATED CANVAS BACKGROUND
-         *  Particles, lines, mouse interaction
-         * ═══════════════════════════════════════
-         */
         (function() {
             var canvas = document.getElementById('scene');
             var ctx = canvas.getContext('2d');
             var particles = [];
             var running = true;
-            var count = 30;
+            var count = 22;
             var mouseX = -1000;
             var mouseY = -1000;
 
@@ -982,218 +1178,214 @@
                     particles.push({
                         x: Math.random() * canvas.width,
                         y: Math.random() * canvas.height,
-                        r: Math.random() * 1.8 + 0.4,
-                        vx: (Math.random() - 0.5) * 0.3,
-                        vy: (Math.random() - 0.5) * 0.3,
-                        alpha: Math.random() * 0.32 + 0.06,
-                        color: ['#d63031', '#ffffff', '#ff3b3b', '#ff8a8a'][Math.floor(Math.random() * 4)]
+                        r: Math.random() * 1.5 + 0.4,
+                        vx: (Math.random() - 0.5) * 0.22,
+                        vy: (Math.random() - 0.5) * 0.22,
+                        alpha: Math.random() * 0.26 + 0.04,
+                        color: '#d63031'
                     });
                 }
             }
 
-            window.addEventListener('mousemove', function(e) {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
-            window.addEventListener('touchmove', function(e) {
-                if (e.touches.length > 0) {
-                    mouseX = e.touches[0].clientX;
-                    mouseY = e.touches[0].clientY;
-                }
-            });
+            window.addEventListener('mousemove', function(e) { mouseX = e.clientX;
+                mouseY = e.clientY; });
+            window.addEventListener('touchmove', function(e) { if (e.touches.length > 0) { mouseX = e.touches[0]
+                    .clientX;
+                    mouseY = e.touches[0].clientY; } });
 
             function draw() {
                 if (!running) return;
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-
                 for (var i = 0; i < particles.length; i++) {
                     var p = particles[i];
                     p.x += p.vx;
                     p.y += p.vy;
-
                     if (p.x < -20) p.x = canvas.width + 20;
                     if (p.x > canvas.width + 20) p.x = -20;
                     if (p.y < -20) p.y = canvas.height + 20;
                     if (p.y > canvas.height + 20) p.y = -20;
-
                     ctx.beginPath();
                     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                     ctx.fillStyle = p.color;
                     ctx.globalAlpha = p.alpha;
                     ctx.fill();
-
                     ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.r * 3.5, 0, Math.PI * 2);
+                    ctx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
                     ctx.fillStyle = p.color;
-                    ctx.globalAlpha = p.alpha * 0.11;
+                    ctx.globalAlpha = p.alpha * 0.09;
                     ctx.fill();
                     ctx.globalAlpha = 1;
                 }
-
                 for (var i = 0; i < particles.length; i++) {
-                    for (var j = i + 1; j < particles.length; j++) {
-                        var dx = particles[i].x - particles[j].x;
-                        var dy = particles[i].y - particles[j].y;
-                        var dist = Math.sqrt(dx * dx + dy * dy);
-                        if (dist < 120) {
+                    for (var j = i + 1; j < particles.length; j++) { var dx = particles[i].x - particles[j].x; var dy =
+                            particles[i].y - particles[j].y; var dist = Math.sqrt(dx * dx + dy * dy); if (dist < 105) {
                             ctx.beginPath();
                             ctx.moveTo(particles[i].x, particles[i].y);
                             ctx.lineTo(particles[j].x, particles[j].y);
-                            ctx.strokeStyle = particles[i].color;
-                            ctx.globalAlpha = 0.045 * (1 - dist / 120);
-                            ctx.lineWidth = 0.5;
+                            ctx.strokeStyle = '#d63031';
+                            ctx.globalAlpha = 0.035 * (1 - dist / 105);
+                            ctx.lineWidth = 0.4;
                             ctx.stroke();
                             ctx.globalAlpha = 1;
-                        }
-                    }
-
+                        } }
                     var dmx = particles[i].x - mouseX;
                     var dmy = particles[i].y - mouseY;
                     var mouseDist = Math.sqrt(dmx * dmx + dmy * dmy);
-                    if (mouseDist < 170) {
-                        ctx.beginPath();
+                    if (mouseDist < 140) { ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(mouseX, mouseY);
                         ctx.strokeStyle = '#ff3b3b';
-                        ctx.globalAlpha = 0.09 * (1 - mouseDist / 170);
-                        ctx.lineWidth = 0.7;
+                        ctx.globalAlpha = 0.07 * (1 - mouseDist / 140);
+                        ctx.lineWidth = 0.5;
                         ctx.stroke();
-                        ctx.globalAlpha = 1;
-                    }
+                        ctx.globalAlpha = 1; }
                 }
-
                 requestAnimationFrame(draw);
             }
-
             resize();
             draw();
-
-            document.addEventListener('visibilitychange', function() {
-                if (document.hidden) {
-                    running = false;
-                } else {
-                    running = true;
-                    draw();
-                }
-            });
+            document.addEventListener('visibilitychange', function() { if (document.hidden) { running = false; } else { running =
+                    true;
+                    draw(); } });
         })();
 
-        /*
-         * ═══════════════════════════════════════
-         *  SKILLS DATA
-         * ═══════════════════════════════════════
-         */
-        var skills = [
-            { en: 'Programming Fundamentals', ar: 'أساسيات البرمجة', de: 'Programmiergrundlagen', icon: 'fa-code' },
-            { en: 'Information Systems', ar: 'نظم المعلومات', de: 'Informationssysteme', icon: 'fa-database' },
-            { en: 'Problem Solving', ar: 'حل المشكلات', de: 'Problemlösung', icon: 'fa-puzzle-piece' },
-            { en: 'Self-Learning', ar: 'التعلم الذاتي', de: 'Selbstlernen', icon: 'fa-book-open' },
-            { en: 'Computer Skills', ar: 'مهارات الحاسب', de: 'Computerkenntnisse', icon: 'fa-laptop' },
-            { en: 'Analytical Thinking', ar: 'التفكير التحليلي', de: 'Analytisches Denken', icon: 'fa-chart-line' },
-            { en: 'Team Collaboration', ar: 'العمل الجماعي', de: 'Teamarbeit', icon: 'fa-users' },
-            { en: 'Time Management', ar: 'إدارة الوقت', de: 'Zeitmanagement', icon: 'fa-clock' },
-            { en: 'Communication', ar: 'التواصل', de: 'Kommunikation', icon: 'fa-comment-dots' },
-            { en: 'Adaptability', ar: 'المرونة', de: 'Anpassungsfähigkeit', icon: 'fa-rotate' }
+        function toggleTheme() { var body = document.body; if (body.classList.contains('light')) { body.classList.remove(
+                'light');
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#080808');
+            localStorage.setItem('boda_theme', 'dark'); } else { body.classList.add('light');
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f5f5f5');
+            localStorage.setItem('boda_theme', 'light'); } }
+        var savedTheme = localStorage.getItem('boda_theme'); if (savedTheme === 'light') { document.body.classList.add(
+            'light');
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f5f5f5'); }
+
+        var languagesData = [
+            { en: 'HTML5', ar: 'HTML5', de: 'HTML5', icon: 'fa-html5',
+                desc: { en: 'Semantic markup for modern web pages',
+                    ar: 'ترميز دلالي لصفحات الويب الحديثة', de: 'Semantisches Markup für moderne Webseiten' } },
+            { en: 'CSS3', ar: 'CSS3', de: 'CSS3', icon: 'fa-css3-alt',
+                desc: { en: 'Responsive layouts with Flexbox & Grid', ar: 'تخطيطات متجاوبة مع Flexbox و Grid',
+                    de: 'Responsive Layouts mit Flexbox & Grid' } },
+            { en: 'JavaScript', ar: 'جافا سكريبت', de: 'JavaScript', icon: 'fa-js',
+                desc: { en: 'Dynamic functionality and interactivity', ar: 'وظائف ديناميكية وتفاعلية',
+                    de: 'Dynamische Funktionalität und Interaktivität' } },
+            { en: 'Python', ar: 'بايثون', de: 'Python', icon: 'fa-python',
+                desc: { en: 'Backend logic, automation, and scripting',
+                ar: 'منطق الخادم والأتمتة والبرمجة النصية', de: 'Backend-Logik, Automatisierung und Scripting' } },
+            { en: 'C++', ar: 'C++', de: 'C++', icon: 'fa-code',
+                desc: { en: 'High-performance software and algorithms', ar: 'برمجيات وخوارزميات عالية الأداء',
+                    de: 'Hochleistungssoftware und Algorithmen' } },
+            { en: 'C#', ar: 'C#', de: 'C#', icon: 'fa-code',
+                desc: { en: 'Desktop applications and .NET development',
+                ar: 'تطبيقات سطح المكتب وتطوير .NET', de: 'Desktop-Anwendungen und .NET-Entwicklung' } }
         ];
 
-        function renderSkills(lang) {
-            var box = document.getElementById('skillsContainer');
+        var technologiesData = [
+            { en: 'SQL Server', ar: 'SQL Server', de: 'SQL Server', icon: 'fa-database',
+                desc: { en: 'Database design, queries, and management', ar: 'تصميم قواعد البيانات والاستعلامات والإدارة',
+                    de: 'Datenbankdesign, Abfragen und Verwaltung' } },
+            { en: 'Git & GitHub', ar: 'Git & GitHub', de: 'Git & GitHub', icon: 'fa-git-alt',
+                desc: { en: 'Version control and team collaboration', ar: 'التحكم في النسخ والتعاون الجماعي',
+                    de: 'Versionskontrolle und Teamzusammenarbeit' } },
+            { en: 'Responsive Design', ar: 'تصميم متجاوب', de: 'Responsive Design', icon: 'fa-mobile-alt',
+                desc: { en: 'Websites that work on all screen sizes', ar: 'مواقع تعمل على جميع أحجام الشاشات',
+                    de: 'Websites für alle Bildschirmgrößen' } },
+            { en: 'REST APIs', ar: 'REST APIs', de: 'REST APIs', icon: 'fa-plug',
+                desc: { en: 'Building and consuming web services', ar: 'بناء واستهلاك خدمات الويب',
+                    de: 'Erstellen und Nutzen von Webdiensten' } }
+        ];
+
+        var softSkillsData = [
+            { en: 'Problem Solving', ar: 'حل المشكلات', de: 'Problemlösung', icon: 'fa-puzzle-piece',
+                desc: { en: 'Breaking down complex issues into manageable steps',
+                ar: 'تقسيم المشكلات المعقدة إلى خطوات قابلة للحل', de: 'Komplexe Probleme in lösbare Schritte zerlegen' } },
+            { en: 'Analytical Thinking', ar: 'التفكير التحليلي', de: 'Analytisches Denken', icon: 'fa-chart-line',
+                desc: { en: 'Data-driven decision making and logic', ar: 'اتخاذ القرارات المبنية على البيانات والمنطق',
+                    de: 'Datengestützte Entscheidungsfindung und Logik' } },
+            { en: 'Team Collaboration', ar: 'العمل الجماعي', de: 'Teamarbeit', icon: 'fa-users',
+                desc: { en: 'Working effectively with developers and designers',
+                ar: 'العمل بفعالية مع المطورين والمصممين', de: 'Effektive Zusammenarbeit mit Entwicklern und Designern' } },
+            { en: 'Time Management', ar: 'إدارة الوقت', de: 'Zeitmanagement', icon: 'fa-clock',
+                desc: { en: 'Prioritizing tasks and meeting deadlines', ar: 'تحديد أولويات المهام والالتزام بالمواعيد',
+                    de: 'Aufgaben priorisieren und Fristen einhalten' } },
+            { en: 'Self-Learning', ar: 'التعلم الذاتي', de: 'Selbstlernen', icon: 'fa-book-open',
+                desc: { en: 'Quickly picking up new tools and languages',
+                ar: 'اكتساب الأدوات واللغات الجديدة بسرعة', de: 'Schnelles Erlernen neuer Werkzeuge und Sprachen' } },
+            { en: 'Adaptability', ar: 'المرونة', de: 'Anpassungsfähigkeit', icon: 'fa-rotate',
+                desc: { en: 'Thriving in fast-changing environments', ar: 'الازدهار في البيئات سريعة التغير',
+                    de: 'Erfolg in sich schnell verändernden Umgebungen' } }
+        ];
+
+        function renderSkillBlocks(containerId, data, lang) { var box = document.getElementById(containerId);
             box.innerHTML = '';
-            skills.forEach(function(s, i) {
-                var tag = document.createElement('span');
-                tag.className = 'skill-tag';
-                tag.style.animationDelay = (i * 0.04) + 's';
-                tag.innerHTML = '<i class="fas ' + s.icon + '"></i>' + s[lang];
-                box.appendChild(tag);
-            });
+            data.forEach(function(s, i) { var block = document.createElement('div');
+                block.className = 'skill-block';
+                block.style.animationDelay = (i * 0.06) + 's';
+                block.innerHTML = '<i class="fab ' + s.icon + '"></i><div class="skill-info"><h4>' + s[lang] +
+                    '</h4><p>' + s.desc[lang] + '</p></div>';
+                box.appendChild(block); }); }
+
+        function renderAllSkills(lang) {
+            renderSkillBlocks('languagesContainer', languagesData, lang);
+            renderSkillBlocks('technologiesContainer', technologiesData, lang);
+            renderSkillBlocks('skillsContainer', softSkillsData, lang);
         }
-        renderSkills('en');
+        renderAllSkills('en');
 
-        /*
-         * ═══════════════════════════════════════
-         *  LANGUAGE SYSTEM
-         * ═══════════════════════════════════════
-         */
-        var footerText = {
-            en: '© 2025 <span>Abdelrahman Mamdouh</span> (BODA) — All rights reserved',
+        var footerText = { en: '© 2025 <span>Abdelrahman Mamdouh</span> (BODA) — All rights reserved',
             ar: '© 2025 <span>عبد الرحمن ممدوح</span> (BODA) — جميع الحقوق محفوظة',
-            de: '© 2025 <span>Abdelrahman Mamdouh</span> (BODA) — Alle Rechte vorbehalten'
-        };
-        var titles = {
-            en: 'BODA | Abdelrahman Mamdouh - CV',
-            ar: 'BODA | عبد الرحمن ممدوح - السيرة الذاتية',
-            de: 'BODA | Abdelrahman Mamdouh - Lebenslauf'
-        };
+            de: '© 2025 <span>Abdelrahman Mamdouh</span> (BODA) — Alle Rechte vorbehalten' };
+        var titles = { en: 'BODA | Abdelrahman Mamdouh - Frontend Developer',
+            ar: 'BODA | عبد الرحمن ممدوح - مطور واجهات أمامية',
+            de: 'BODA | Abdelrahman Mamdouh - Frontend-Entwickler' };
 
-        function switchLang(lang) {
-            var html = document.documentElement;
+        function switchLang(lang) { var html = document.documentElement;
             var body = document.body;
             var main = document.getElementById('main');
-            var btns = {
-                en: document.getElementById('btnEn'),
-                de: document.getElementById('btnDe'),
-                ar: document.getElementById('btnAr')
-            };
-
+            var btns = { en: document.getElementById('btnEn'), de: document.getElementById('btnDe'),
+            ar: document.getElementById('btnAr') };
             main.style.opacity = '0';
             main.style.transform = 'translateY(-5px)';
             main.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
-
-            requestAnimationFrame(function() {
-                setTimeout(function() {
-                    html.lang = lang;
+            requestAnimationFrame(function() { setTimeout(function() { html.lang = lang;
                     html.dir = lang === 'ar' ? 'rtl' : 'ltr';
                     body.classList.toggle('rtl', lang === 'ar');
-
                     Object.keys(btns).forEach(function(k) { btns[k].classList.remove('active'); });
                     btns[lang].classList.add('active');
                     document.title = titles[lang];
-
-                    document.querySelectorAll('[data-en][data-ar][data-de]').forEach(function(el) {
-                        var val = el.getAttribute('data-' + lang);
-                        if (val === null) return;
-                        if (el.classList.contains('badge')) {
-                            var dot = el.querySelector('.dot');
-                            el.innerHTML = '';
-                            if (dot) el.appendChild(dot.cloneNode(true));
-                            el.appendChild(document.createTextNode(' ' + val));
-                        } else if (!el.closest('.footer')) {
-                            el.innerHTML = val;
-                        }
-                    });
-
+                    document.querySelectorAll('[data-en][data-ar][data-de]').forEach(function(el) { var val = el
+                            .getAttribute('data-' + lang); if (val === null) return; if (el.classList.contains(
+                                'hero-name')) { el.innerHTML = val; } else if (!el.closest('.footer')) { el
+                                .innerHTML = val; } });
                     document.getElementById('footerText').innerHTML = footerText[lang];
-                    renderSkills(lang);
-
+                    renderAllSkills(lang);
                     main.style.opacity = '1';
                     main.style.transform = 'translateY(0)';
                     setTimeout(function() { main.style.transition = ''; }, 260);
-                    localStorage.setItem('boda_cv_lang', lang);
-                }, 220);
-            });
-        }
+                    localStorage.setItem('boda_cv_lang', lang); }, 220); }); }
 
-        /*
-         * ═══════════════════════════════════════
-         *  COPY PROTECTION
-         * ═══════════════════════════════════════
-         */
-        (function() {
-            document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-            document.addEventListener('keydown', function(e) {
-                if (['F12', 'PrintScreen'].indexOf(e.key) !== -1 ||
-                    (e.ctrlKey && e.shiftKey && ['I', 'i', 'J', 'j'].indexOf(e.key) !== -1) ||
-                    (e.ctrlKey && ['u', 'U', 's', 'S'].indexOf(e.key) !== -1)) {
-                    e.preventDefault();
-                    return false;
+        (function() { document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+            document.addEventListener('keydown', function(e) { if (['F12', 'PrintScreen'].indexOf(e.key) !== -1 || (e
+                    .ctrlKey && e.shiftKey && ['I', 'i', 'J', 'j'].indexOf(e.key) !== -1) || (e.ctrlKey && ['u',
+                    'U', 's', 'S'
+                ].indexOf(e.key) !== -1)) { e.preventDefault();
+                    return false; } });
+            document.addEventListener('dragstart', function(e) { e.preventDefault(); });
+            document.addEventListener('drop', function(e) { e.preventDefault(); }); })();
+
+        var savedLang = localStorage.getItem('boda_cv_lang') || 'en'; if (savedLang !== 'en') setTimeout(function() { switchLang(
+            savedLang); }, 30);
+
+        // Smooth scroll for nav tabs
+        document.querySelectorAll('.nav-tab').forEach(function(tab) {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
-            document.addEventListener('dragstart', function(e) { e.preventDefault(); });
-            document.addEventListener('drop', function(e) { e.preventDefault(); });
-        })();
-
-        var saved = localStorage.getItem('boda_cv_lang') || 'en';
-        if (saved !== 'en') setTimeout(function() { switchLang(saved); }, 30);
+        });
     </script>
 </body>
 </html>
