@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>BODA | Abdelrahman Mamdouh - Frontend Developer</title>
-    <meta name="description" content="Abdelrahman Mamdouh - BODA. Frontend Developer & Programmer. Building modern websites and software solutions.">
+    <meta name="description" content="Abdelrahman Mamdouh - BODA. Frontend Developer building modern, responsive websites and software solutions.">
     <meta name="theme-color" content="#080808">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,11 +28,11 @@
             --red-glow-strong: rgba(255, 59, 59, 0.7);
             --red-soft: rgba(214, 48, 49, 0.09);
             --red-soft-hover: rgba(214, 48, 49, 0.2);
-            --radius: 16px;
-            --radius-sm: 10px;
+            --radius: 18px;
+            --radius-sm: 11px;
             --gap: 14px;
-            --shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.5);
+            --shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+            --shadow-hover: 0 10px 34px rgba(0, 0, 0, 0.55);
         }
 
         body.light {
@@ -44,8 +44,8 @@
             --text: #1a1a1a;
             --text-soft: #555555;
             --text-muted: #8a8a8a;
-            --shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 6px 24px rgba(0, 0, 0, 0.1);
+            --shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 8px 28px rgba(0, 0, 0, 0.12);
         }
 
         * {
@@ -87,71 +87,72 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.7;
+            opacity: 0.75;
             transition: opacity 0.4s ease;
         }
 
         body.light canvas#scene {
-            opacity: 0.35;
+            opacity: 0.3;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1020px;
             margin: 0 auto;
             padding: 0 clamp(1rem, 4vw, 2.5rem);
             position: relative;
             z-index: 1;
         }
 
-        /* ---- top bar ---- */
+        /* top bar */
         .top-bar {
             position: fixed;
-            top: 14px;
-            right: 14px;
+            top: 16px;
+            right: 16px;
             z-index: 100;
             display: flex;
-            gap: 8px;
+            gap: 10px;
             align-items: center;
         }
 
         body.rtl .top-bar {
             right: auto;
-            left: 14px;
+            left: 16px;
         }
 
         .lang-switch {
             display: flex;
-            gap: 4px;
+            gap: 5px;
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 36px;
-            padding: 3px 4px;
+            border-radius: 40px;
+            padding: 4px 5px;
             box-shadow: var(--shadow);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             transition: background 0.4s ease, border 0.4s ease;
         }
 
         .lang-btn {
-            padding: 6px 13px;
-            border-radius: 36px;
+            padding: 7px 14px;
+            border-radius: 40px;
             border: none;
             background: transparent;
             color: var(--text-soft);
             cursor: pointer;
             font-weight: 500;
-            font-size: 0.72rem;
+            font-size: 0.73rem;
             font-family: inherit;
             white-space: nowrap;
-            min-width: 48px;
+            min-width: 50px;
             text-align: center;
-            transition: all 0.22s ease;
+            transition: all 0.24s ease;
         }
 
         .lang-btn.active {
             color: #fff;
             background: var(--red);
             font-weight: 600;
+            box-shadow: 0 0 12px var(--red-glow);
         }
 
         .lang-btn:hover:not(.active) {
@@ -160,28 +161,28 @@
         }
 
         .theme-btn {
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             border: 1px solid var(--border);
             background: var(--surface);
             color: var(--text);
             cursor: pointer;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
             box-shadow: var(--shadow);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
         .theme-btn:hover {
             border-color: var(--red);
             color: var(--red-bright);
-            box-shadow: 0 0 16px var(--red-glow);
-            transform: rotate(15deg);
+            box-shadow: 0 0 20px var(--red-glow);
+            transform: rotate(20deg) scale(1.08);
         }
 
         body.light .theme-btn .fa-moon {
@@ -197,136 +198,166 @@
             display: inline-block;
         }
 
-        /* ---- navigation tabs ---- */
+        /* nav tabs */
         .nav-tabs {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 8px;
-            padding: 0 0 clamp(1.5rem, 3vw, 2.5rem);
+            gap: 9px;
+            padding: 18px 0;
             position: sticky;
             top: 0;
             z-index: 50;
             background: var(--bg);
-            padding-top: 16px;
-            padding-bottom: 16px;
             transition: background 0.4s ease;
         }
 
         .nav-tab {
-            padding: 10px 20px;
-            border-radius: 36px;
+            padding: 11px 22px;
+            border-radius: 40px;
             border: 1px solid var(--border);
             background: var(--surface);
             color: var(--text-soft);
             cursor: pointer;
             font-weight: 500;
-            font-size: 0.82rem;
+            font-size: 0.83rem;
             font-family: inherit;
             text-decoration: none;
-            transition: all 0.28s ease;
+            transition: all 0.3s ease;
             white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(214, 48, 49, 0.08), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-tab:hover::before {
+            left: 100%;
         }
 
         .nav-tab:hover {
             border-color: var(--red);
             color: var(--red);
             background: var(--red-soft);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px var(--red-glow);
         }
 
         .nav-tab i {
-            margin-right: 5px;
+            margin-right: 6px;
         }
-
         body.rtl .nav-tab i {
             margin-right: 0;
-            margin-left: 5px;
+            margin-left: 6px;
         }
 
-        /* ---- hero ---- */
+        /* hero */
         .hero {
             text-align: center;
-            padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(1.5rem, 3vw, 2.5rem);
+            padding: clamp(3.5rem, 9vw, 6rem) 0 clamp(1.8rem, 4vw, 2.8rem);
             position: relative;
         }
 
         .hero-greeting {
-            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-size: clamp(1.05rem, 2.2vw, 1.35rem);
             color: var(--red);
             font-weight: 600;
             letter-spacing: 0.02em;
-            margin-bottom: 0.5rem;
-            animation: fadeSlideUp 0.6s ease both;
-            animation-delay: 0.05s;
+            margin-bottom: 0.6rem;
+            animation: fadeSlideUp 0.65s ease both;
+            animation-delay: 0.06s;
             opacity: 0;
         }
 
         .hero-name {
-            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            font-size: clamp(2.6rem, 7.5vw, 4.8rem);
             font-weight: 900;
             color: var(--text);
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-            animation: fadeSlideUp 0.6s ease both;
-            animation-delay: 0.15s;
+            line-height: 1.08;
+            margin-bottom: 1.1rem;
+            letter-spacing: -0.025em;
+            animation: fadeSlideUp 0.65s ease both;
+            animation-delay: 0.16s;
             opacity: 0;
             transition: color 0.4s ease;
         }
 
         .hero-name span {
             color: var(--red);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-name span::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--red);
+            border-radius: 3px;
+            opacity: 0.4;
+            animation: underlineShimmer 2.5s ease-in-out infinite;
+        }
+
+        @keyframes underlineShimmer {
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scaleX(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scaleX(1.08);
+            }
         }
 
         .hero-title {
-            font-size: clamp(1rem, 2.2vw, 1.4rem);
+            font-size: clamp(1.02rem, 2.3vw, 1.45rem);
             color: var(--text-soft);
             font-weight: 500;
-            margin-bottom: 1.5rem;
-            animation: fadeSlideUp 0.6s ease both;
-            animation-delay: 0.25s;
+            margin-bottom: 1.6rem;
+            animation: fadeSlideUp 0.65s ease both;
+            animation-delay: 0.26s;
             opacity: 0;
             transition: color 0.4s ease;
-        }
-
-        .hero-description {
-            max-width: 650px;
-            margin: 0 auto 1.2rem;
-            font-size: clamp(0.9rem, 1.5vw, 1.05rem);
-            color: var(--text-soft);
-            line-height: 1.9;
-            animation: fadeSlideUp 0.6s ease both;
-            animation-delay: 0.35s;
-            opacity: 0;
-            transition: color 0.4s ease;
+            max-width: 620px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-tagline {
-            display: inline-block;
-            padding: 10px 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 26px;
             background: var(--red-soft);
-            border: 1px solid rgba(214, 48, 49, 0.2);
-            border-radius: 40px;
+            border: 1px solid rgba(214, 48, 49, 0.22);
+            border-radius: 44px;
             color: var(--red);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             letter-spacing: 0.03em;
-            margin-bottom: 2rem;
-            animation: fadeSlideUp 0.6s ease both;
-            animation-delay: 0.42s;
+            margin-bottom: 2.2rem;
+            animation: fadeSlideUp 0.65s ease both;
+            animation-delay: 0.36s;
             opacity: 0;
             transition: background 0.4s ease;
         }
 
         .hero-tagline i {
-            margin-right: 6px;
             animation: dotBeat 1.5s ease-in-out infinite;
-        }
-
-        body.rtl .hero-tagline i {
-            margin-right: 0;
-            margin-left: 6px;
+            font-size: 0.85rem;
         }
 
         @keyframes dotBeat {
@@ -336,8 +367,8 @@
                 transform: scale(1);
             }
             50% {
-                opacity: 0.3;
-                transform: scale(2);
+                opacity: 0.25;
+                transform: scale(2.2);
             }
         }
 
@@ -345,48 +376,68 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 12px;
-            animation: fadeSlideUp 0.6s ease both;
-            animation-delay: 0.5s;
+            gap: 14px;
+            animation: fadeSlideUp 0.65s ease both;
+            animation-delay: 0.44s;
             opacity: 0;
         }
 
         .btn-primary {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 28px;
+            gap: 9px;
+            padding: 13px 30px;
             background: var(--red);
             color: #fff;
             text-decoration: none;
-            border-radius: 40px;
+            border-radius: 44px;
             font-weight: 600;
-            font-size: 0.92rem;
-            transition: all 0.3s ease;
+            font-size: 0.94rem;
+            transition: all 0.32s ease;
             border: none;
             cursor: pointer;
             font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .btn-primary:hover::after {
+            width: 400px;
+            height: 400px;
         }
 
         .btn-primary:hover {
             background: var(--red-bright);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px var(--red-glow-strong);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px var(--red-glow-strong);
         }
 
         .btn-secondary {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 28px;
+            gap: 9px;
+            padding: 13px 30px;
             background: transparent;
             color: var(--text);
             text-decoration: none;
-            border-radius: 40px;
+            border-radius: 44px;
             font-weight: 600;
-            font-size: 0.92rem;
-            transition: all 0.3s ease;
-            border: 1.5px solid var(--border);
+            font-size: 0.94rem;
+            transition: all 0.32s ease;
+            border: 2px solid var(--border);
             cursor: pointer;
             font-family: inherit;
         }
@@ -394,27 +445,30 @@
         .btn-secondary:hover {
             border-color: var(--red);
             color: var(--red);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px var(--red-glow);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px var(--red-glow);
         }
 
         @keyframes fadeSlideUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(24px);
+                filter: blur(3px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
+                filter: blur(0);
             }
         }
 
+        /* avatar */
         .hero-avatar-box {
             position: relative;
             display: inline-block;
-            margin-bottom: 2rem;
-            animation: fadeSlideUp 0.6s ease both;
-            animation-delay: 0.05s;
+            margin-bottom: 2.2rem;
+            animation: fadeSlideUp 0.65s ease both;
+            animation-delay: 0.06s;
             opacity: 0;
         }
 
@@ -423,24 +477,24 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 130px;
-            height: 130px;
-            background: radial-gradient(circle, rgba(229, 57, 53, 0.45) 0%, rgba(198, 40, 40, 0.22) 30%, rgba(198, 40, 40, 0.06) 55%, transparent 72%);
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle, rgba(229, 57, 53, 0.5) 0%, rgba(198, 40, 40, 0.25) 28%, rgba(198, 40, 40, 0.07) 55%, transparent 74%);
             border-radius: 50%;
-            animation: glowBreathe 2.6s ease-in-out infinite;
+            animation: glowBreathe 2.8s ease-in-out infinite;
             pointer-events: none;
             z-index: 0;
-            filter: blur(14px);
+            filter: blur(16px);
         }
 
         @keyframes glowBreathe {
             0%,
             100% {
                 transform: translate(-50%, -50%) scale(1);
-                opacity: 0.55;
+                opacity: 0.5;
             }
             50% {
-                transform: translate(-50%, -50%) scale(1.45);
+                transform: translate(-50%, -50%) scale(1.5);
                 opacity: 1;
             }
         }
@@ -454,17 +508,17 @@
         }
 
         .hero-ring:first-child {
-            inset: -12px;
-            border-top-color: rgba(214, 48, 49, 0.55);
-            border-right-color: rgba(214, 48, 49, 0.25);
-            animation-duration: 4s;
+            inset: -13px;
+            border-top-color: rgba(214, 48, 49, 0.6);
+            border-right-color: rgba(214, 48, 49, 0.28);
+            animation-duration: 3.8s;
         }
 
         .hero-ring:last-child {
-            inset: -24px;
-            border-bottom-color: rgba(255, 255, 255, 0.12);
-            border-left-color: rgba(255, 255, 255, 0.06);
-            animation-duration: 7s;
+            inset: -26px;
+            border-bottom-color: rgba(255, 255, 255, 0.14);
+            border-left-color: rgba(255, 255, 255, 0.07);
+            animation-duration: 7.5s;
             animation-direction: reverse;
         }
 
@@ -475,22 +529,22 @@
         }
 
         .hero-avatar {
-            width: clamp(100px, 20vw, 150px);
-            height: clamp(100px, 20vw, 150px);
+            width: clamp(105px, 21vw, 155px);
+            height: clamp(105px, 21vw, 155px);
             border-radius: 50%;
             background: var(--surface);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-size: clamp(1.9rem, 4.2vw, 2.9rem);
             font-weight: 700;
             color: var(--text);
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             position: relative;
             z-index: 1;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            animation: floatAvatar 5s ease-in-out infinite;
-            transition: all 0.3s ease, background 0.4s ease, color 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            animation: floatAvatar 5.5s ease-in-out infinite;
+            transition: all 0.35s ease, background 0.4s ease, color 0.4s ease;
         }
 
         @keyframes floatAvatar {
@@ -498,42 +552,42 @@
             100% {
                 transform: translateY(0);
             }
-            35% {
-                transform: translateY(-10px);
+            30% {
+                transform: translateY(-12px);
             }
-            65% {
-                transform: translateY(-4px);
+            60% {
+                transform: translateY(-5px);
             }
         }
 
         .hero-avatar:hover {
-            box-shadow: 0 0 80px var(--red-glow-strong);
-            transform: translateY(-14px) scale(1.04);
+            box-shadow: 0 0 90px var(--red-glow-strong);
+            transform: translateY(-16px) scale(1.05);
         }
 
         .hero-avatar .avatar-shine {
             position: absolute;
             top: 10%;
-            left: 14%;
-            width: 36%;
-            height: 46%;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent);
+            left: 15%;
+            width: 37%;
+            height: 47%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent);
             border-radius: 50%;
             pointer-events: none;
         }
 
-        /* ---- section cards ---- */
+        /* sections */
         .section {
-            padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+            padding: clamp(1.8rem, 3.5vw, 2.8rem) 0;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.2rem;
         }
 
         .section-header h2 {
-            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-size: clamp(1.6rem, 3.2vw, 2.1rem);
             font-weight: 800;
             color: var(--text);
             display: inline-block;
@@ -543,120 +597,91 @@
         .section-header h2::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
+            width: 65px;
             height: 3px;
             background: var(--red);
-            border-radius: 3px;
+            border-radius: 4px;
         }
 
+        /* cards */
         .card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: clamp(1.3rem, 3vw, 2rem);
+            padding: clamp(1.4rem, 3.2vw, 2.2rem);
             margin-bottom: var(--gap);
-            transition: all 0.3s ease, background 0.4s ease, border 0.4s ease;
+            transition: all 0.35s ease, background 0.4s ease, border 0.4s ease;
             opacity: 0;
-            animation: fadeSlideUp 0.55s ease forwards;
+            animation: fadeSlideUp 0.6s ease forwards;
             position: relative;
             overflow: hidden;
             box-shadow: var(--shadow);
         }
 
-        .card:nth-child(1) {
-            animation-delay: 0.04s;
-        }
-        .card:nth-child(2) {
-            animation-delay: 0.12s;
-        }
-        .card:nth-child(3) {
-            animation-delay: 0.2s;
-        }
-        .card:nth-child(4) {
-            animation-delay: 0.28s;
-        }
-        .card:nth-child(5) {
-            animation-delay: 0.36s;
-        }
-        .card:nth-child(6) {
-            animation-delay: 0.44s;
-        }
-        .card:nth-child(7) {
-            animation-delay: 0.52s;
-        }
-        .card:nth-child(8) {
-            animation-delay: 0.6s;
-        }
-        .card:nth-child(9) {
-            animation-delay: 0.68s;
-        }
-        .card:nth-child(10) {
-            animation-delay: 0.76s;
-        }
-
         .card::after {
             content: '';
             position: absolute;
-            top: -30%;
-            right: -30%;
-            width: 180px;
-            height: 180px;
+            top: -35%;
+            right: -35%;
+            width: 200px;
+            height: 200px;
             background: radial-gradient(circle, var(--red-soft), transparent 70%);
-            transition: all 0.5s ease;
+            transition: all 0.55s ease;
             pointer-events: none;
             border-radius: 50%;
         }
 
         .card:hover::after {
-            top: -12%;
-            right: -12%;
-            width: 260px;
-            height: 260px;
+            top: -14%;
+            right: -14%;
+            width: 280px;
+            height: 280px;
             background: radial-gradient(circle, var(--red-soft-hover), transparent 70%);
         }
 
         .card:hover {
             border-color: var(--border-hover);
             background: var(--surface-hover);
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-hover), 0 0 45px var(--red-glow);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover), 0 0 50px var(--red-glow);
         }
 
         .card-icon {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             color: var(--red);
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.8rem;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             border-radius: var(--radius-sm);
             background: var(--red-soft);
-            transition: all 0.3s ease;
+            transition: all 0.35s ease;
         }
 
         .card:hover .card-icon {
             background: var(--red-soft-hover);
-            box-shadow: 0 0 18px var(--red-glow);
+            box-shadow: 0 0 20px var(--red-glow);
+            transform: scale(1.08);
         }
 
         .card-title {
-            font-size: 1.05rem;
+            font-size: 1.08rem;
             font-weight: 700;
             color: var(--text);
-            margin-bottom: 1rem;
+            margin-bottom: 1.1rem;
             letter-spacing: -0.01em;
             transition: color 0.4s ease;
         }
 
         .card-text {
             color: var(--text-soft);
-            line-height: 1.85;
-            font-size: 0.88rem;
+            line-height: 1.9;
+            font-size: 0.89rem;
             transition: color 0.4s ease;
         }
         .card-text strong {
@@ -669,60 +694,61 @@
             font-weight: 500;
         }
 
-        /* ---- info grid ---- */
+        /* info grid */
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(165px, 100%), 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr));
+            gap: 11px;
         }
         .info-cell {
             background: var(--red-soft);
-            padding: 13px 15px;
+            padding: 14px 16px;
             border-radius: var(--radius-sm);
             border: 1px solid var(--border);
-            transition: all 0.28s ease, background 0.4s ease, border 0.4s ease;
+            transition: all 0.3s ease, background 0.4s ease, border 0.4s ease;
         }
         .info-cell:hover {
             border-color: var(--border-hover);
             background: var(--surface-hover);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
         }
         .info-label {
-            font-size: 0.56rem;
+            font-size: 0.57rem;
             color: var(--red);
             font-weight: 500;
-            letter-spacing: 0.08em;
-            margin-bottom: 3px;
+            letter-spacing: 0.09em;
+            margin-bottom: 4px;
             text-transform: uppercase;
         }
         .info-value {
             color: var(--text);
             font-weight: 500;
-            font-size: 0.86rem;
+            font-size: 0.88rem;
             transition: color 0.4s ease;
         }
 
-        /* ---- skills grid (large blocks) ---- */
+        /* skills grid */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(min(285px, 100%), 1fr));
+            gap: 13px;
         }
         .skill-block {
             background: var(--red-soft);
             border: 1px solid rgba(214, 48, 49, 0.12);
-            padding: 18px 20px;
+            padding: 19px 22px;
             border-radius: var(--radius-sm);
-            transition: all 0.3s ease;
+            transition: all 0.32s ease;
             display: flex;
             align-items: center;
-            gap: 14px;
-            animation: skillPopIn 0.45s ease both;
+            gap: 15px;
+            animation: skillPopIn 0.5s ease both;
         }
         @keyframes skillPopIn {
             from {
                 opacity: 0;
-                transform: scale(0.85) translateY(10px);
+                transform: scale(0.82) translateY(12px);
             }
             to {
                 opacity: 1;
@@ -731,138 +757,200 @@
         }
         .skill-block:hover {
             background: var(--red-soft-hover);
-            border-color: rgba(214, 48, 49, 0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px var(--red-glow);
+            border-color: rgba(214, 48, 49, 0.35);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 28px var(--red-glow);
         }
         .skill-block i {
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             color: var(--red);
-            width: 40px;
+            width: 42px;
             text-align: center;
             flex-shrink: 0;
         }
         .skill-block .skill-info h4 {
-            font-size: 0.95rem;
+            font-size: 0.97rem;
             font-weight: 700;
             color: var(--text);
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
         .skill-block .skill-info p {
-            font-size: 0.76rem;
+            font-size: 0.78rem;
             color: var(--text-soft);
-            line-height: 1.4;
+            line-height: 1.45;
         }
 
-        /* ---- timeline ---- */
+        /* projects grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(310px, 100%), 1fr));
+            gap: 15px;
+        }
+        .project-card {
+            background: var(--red-soft);
+            border: 1px solid rgba(214, 48, 49, 0.12);
+            padding: 24px;
+            border-radius: var(--radius-sm);
+            transition: all 0.32s ease;
+            position: relative;
+            animation: skillPopIn 0.5s ease both;
+        }
+        .project-card:hover {
+            background: var(--red-soft-hover);
+            border-color: rgba(214, 48, 49, 0.35);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 34px var(--red-glow);
+        }
+        .project-card .project-number {
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: var(--red);
+            opacity: 0.25;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            line-height: 1;
+        }
+        body.rtl .project-card .project-number {
+            right: auto;
+            left: 20px;
+        }
+        .project-card h4 {
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 7px;
+            margin-top: 0.6rem;
+        }
+        .project-card p {
+            font-size: 0.85rem;
+            color: var(--text-soft);
+            line-height: 1.65;
+        }
+        .project-card .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 13px;
+        }
+        .project-card .project-tag {
+            padding: 4px 11px;
+            border-radius: 22px;
+            font-size: 0.69rem;
+            font-weight: 500;
+            background: rgba(214, 48, 49, 0.16);
+            color: var(--red);
+        }
+
+        /* timeline */
         .timeline {
             position: relative;
-            padding-left: 22px;
+            padding-left: 24px;
         }
         body.rtl .timeline {
             padding-left: 0;
-            padding-right: 22px;
+            padding-right: 24px;
         }
         .timeline::before {
             content: '';
             position: absolute;
-            left: 4px;
-            top: 3px;
-            bottom: 3px;
+            left: 5px;
+            top: 4px;
+            bottom: 4px;
             width: 1.5px;
             background: linear-gradient(180deg, var(--red), transparent);
-            opacity: 0.35;
+            opacity: 0.38;
             border-radius: 2px;
         }
         body.rtl .timeline::before {
             left: auto;
-            right: 4px;
+            right: 5px;
         }
         .tl-item {
             position: relative;
-            padding: 11px 0 11px 15px;
-            transition: all 0.28s ease;
+            padding: 12px 0 12px 16px;
+            transition: all 0.3s ease;
         }
         body.rtl .tl-item {
-            padding: 11px 15px 11px 0;
+            padding: 12px 16px 12px 0;
         }
         .tl-item::before {
             content: '';
             position: absolute;
-            left: -19px;
-            top: 17px;
-            width: 8px;
-            height: 8px;
+            left: -20px;
+            top: 18px;
+            width: 9px;
+            height: 9px;
             background: var(--red);
             border-radius: 50%;
             border: 2px solid var(--bg);
-            transition: all 0.28s ease;
+            transition: all 0.3s ease;
         }
         body.rtl .tl-item::before {
             left: auto;
-            right: -19px;
+            right: -20px;
         }
         .tl-item:hover::before {
             background: var(--red-bright);
-            box-shadow: 0 0 0 5px var(--red-glow);
+            box-shadow: 0 0 0 6px var(--red-glow);
         }
         .tl-date {
-            font-size: 0.64rem;
+            font-size: 0.65rem;
             color: var(--text-muted);
             font-weight: 500;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
         }
         .tl-title {
             color: var(--text);
             font-weight: 600;
-            font-size: 0.92rem;
+            font-size: 0.94rem;
             transition: color 0.4s ease;
         }
         .tl-desc {
             color: var(--text-soft);
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             transition: color 0.4s ease;
         }
         .status-tag {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
             background: var(--red-soft);
-            border: 1px solid rgba(214, 48, 49, 0.12);
+            border: 1px solid rgba(214, 48, 49, 0.14);
             color: var(--red);
-            padding: 3px 11px;
-            border-radius: 36px;
-            font-size: 0.68rem;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.69rem;
             font-weight: 500;
-            margin-top: 5px;
+            margin-top: 6px;
         }
         .status-tag .live {
-            width: 5px;
-            height: 5px;
+            width: 6px;
+            height: 6px;
             background: var(--red-bright);
             border-radius: 50%;
             animation: dotBeat 1.3s ease-in-out infinite;
         }
 
-        /* ---- social ---- */
+        /* social */
         .social-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 11px;
         }
         .social-link {
             display: flex;
             align-items: center;
-            gap: 9px;
-            padding: 10px 20px;
-            border-radius: 36px;
+            gap: 10px;
+            padding: 11px 22px;
+            border-radius: 40px;
             text-decoration: none;
             color: var(--text-soft);
             font-weight: 500;
-            font-size: 0.82rem;
+            font-size: 0.84rem;
             border: 1px solid var(--border);
             background: var(--surface);
-            transition: all 0.3s ease, background 0.4s ease, border 0.4s ease, color 0.4s ease;
+            transition: all 0.32s ease, background 0.4s ease, border 0.4s ease, color 0.4s ease;
             position: relative;
             overflow: hidden;
         }
@@ -873,8 +961,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(128, 128, 128, 0.06), transparent);
-            transition: left 0.5s ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+            transition: left 0.55s ease;
         }
         .social-link:hover::before {
             left: 100%;
@@ -883,27 +971,26 @@
             color: var(--text);
             border-color: var(--red);
             background: var(--surface-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 7px 22px rgba(0, 0, 0, 0.4), 0 0 18px var(--red-glow);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45), 0 0 20px var(--red-glow);
         }
         .social-link i {
-            font-size: 0.98rem;
+            font-size: 1.02rem;
         }
-
         .contact-note {
             color: var(--text-soft);
-            font-size: 0.88rem;
-            margin-top: 1rem;
-            line-height: 1.8;
+            font-size: 0.89rem;
+            margin-top: 1.1rem;
+            line-height: 1.85;
         }
 
         .footer {
             text-align: center;
-            padding: clamp(2rem, 4vw, 3rem) 0;
+            padding: clamp(2.2rem, 4.5vw, 3.2rem) 0;
             color: var(--text-muted);
-            font-size: 0.73rem;
+            font-size: 0.74rem;
             border-top: 1px solid var(--border);
-            margin-top: clamp(2rem, 4vw, 3rem);
+            margin-top: clamp(2.2rem, 4.5vw, 3.2rem);
             transition: color 0.4s ease, border 0.4s ease;
         }
         .footer span {
@@ -912,18 +999,19 @@
         }
 
         ::-webkit-scrollbar {
-            width: 4px;
+            width: 5px;
         }
         ::-webkit-scrollbar-track {
             background: var(--bg);
         }
         ::-webkit-scrollbar-thumb {
             background: var(--border-hover);
-            border-radius: 8px;
+            border-radius: 10px;
         }
 
         @media (max-width: 480px) {
-            .skills-grid {
+            .skills-grid,
+            .projects-grid {
                 grid-template-columns: 1fr;
             }
             .info-grid {
@@ -936,16 +1024,16 @@
                 justify-content: center;
             }
             .hero-avatar-glow {
-                width: 100px;
-                height: 100px;
+                width: 105px;
+                height: 105px;
             }
             .top-bar {
-                gap: 6px;
+                gap: 7px;
             }
             .theme-btn {
-                width: 36px;
-                height: 36px;
-                font-size: 1rem;
+                width: 38px;
+                height: 38px;
+                font-size: 1.05rem;
             }
             .hero-buttons {
                 flex-direction: column;
@@ -957,11 +1045,11 @@
                 justify-content: center;
             }
             .nav-tabs {
-                gap: 6px;
+                gap: 7px;
             }
             .nav-tab {
-                padding: 8px 14px;
-                font-size: 0.74rem;
+                padding: 9px 15px;
+                font-size: 0.75rem;
             }
         }
         @media (max-width: 360px) {
@@ -969,8 +1057,8 @@
                 grid-template-columns: 1fr;
             }
             .hero-avatar-glow {
-                width: 80px;
-                height: 80px;
+                width: 85px;
+                height: 85px;
             }
         }
     </style>
@@ -979,10 +1067,9 @@
 
     <canvas id="scene"></canvas>
 
-    <!-- top bar -->
     <div class="top-bar">
         <div class="lang-switch">
-            <button class="lang-btn active" onclick="switchLang('en')" id="btnEn">🇬🇧 EN</button>
+            <button class="lang-btn active" onclick="switchLang('en')" id="btnEn">🇺🇸 EN</button>
             <button class="lang-btn" onclick="switchLang('de')" id="btnDe">🇩🇪 DE</button>
             <button class="lang-btn" onclick="switchLang('ar')" id="btnAr">🇪🇬 عربي</button>
         </div>
@@ -994,7 +1081,6 @@
 
     <div class="container" id="main">
 
-        <!-- ═══════════════════ HERO ═══════════════════ -->
         <section class="hero" id="hero">
             <div class="hero-avatar-box">
                 <div class="hero-avatar-glow"></div>
@@ -1008,11 +1094,9 @@
 
             <p class="hero-greeting" data-ar="مرحباً، أنا عبد الرحمن 👋" data-en="Hi, I'm Abdelrahman 👋" data-de="Hallo, ich bin Abdelrahman 👋">Hi, I'm Abdelrahman 👋</p>
 
-            <h1 class="hero-name" data-ar="مطور <span>واجهات أمامية</span> ومبرمج" data-en="<span>Frontend Developer</span> & Programmer" data-de="<span>Frontend-Entwickler</span> & Programmierer"><span>Frontend Developer</span> & Programmer</h1>
+            <h1 class="hero-name" data-ar="مطور <span>واجهات أمامية</span>" data-en="<span>Frontend Developer</span> in Progress" data-de="<span>Frontend-Entwickler</span> in Ausbildung"><span>Frontend Developer</span> in Progress</h1>
 
-            <p class="hero-title" data-ar="أبني مواقع ويب وبرمجيات حديثة ومتجاوبة باستخدام كود نظيف وفعال" data-en="I build modern, responsive websites and software solutions using clean and efficient code" data-de="Ich entwickle moderne, responsive Websites und Softwarelösungen mit sauberem und effizientem Code">I build modern, responsive websites and software solutions using clean and efficient code</p>
-
-            <p class="hero-description" data-ar="أستمتع بتحويل الأفكار إلى تطبيقات بسيطة ونظيفة وعملية. أركز على تطوير الويب وحل المشكلات والتعلم المستمر." data-en="I enjoy turning ideas into simple, clean, and functional applications. My focus is on web development, problem solving, and continuous learning." data-de="Ich verwandle gerne Ideen in einfache, saubere und funktionale Anwendungen. Mein Fokus liegt auf Webentwicklung, Problemlösung und kontinuierlichem Lernen.">I enjoy turning ideas into simple, clean, and functional applications. My focus is on web development, problem solving, and continuous learning.</p>
+            <p class="hero-title" data-ar="أبني مواقع ويب حديثة ومتجاوبة وأتعلم باستمرار من خلال إنشاء مشاريع حقيقية" data-en="I build modern, responsive websites and I'm constantly learning by creating real projects" data-de="Ich entwickle moderne, responsive Websites und lerne ständig durch die Erstellung echter Projekte">I build modern, responsive websites and I'm constantly learning by creating real projects</p>
 
             <div class="hero-tagline">
                 <i class="fas fa-bolt" style="color:var(--red-bright);"></i>
@@ -1025,53 +1109,57 @@
             </div>
         </section>
 
-        <!-- ═══════════════════ NAVIGATION TABS ═══════════════════ -->
         <nav class="nav-tabs" id="navTabs">
             <a href="#about" class="nav-tab"><i class="fas fa-user"></i> <span data-ar="نبذة عني" data-en="About Me" data-de="Über Mich">About Me</span></a>
             <a href="#excel" class="nav-tab"><i class="fas fa-star"></i> <span data-ar="ما أتقنه" data-en="What I Excel At" data-de="Was ich beherrsche">What I Excel At</span></a>
+            <a href="#projects" class="nav-tab"><i class="fas fa-folder-open"></i> <span data-ar="المشاريع" data-en="Projects" data-de="Projekte">Projects</span></a>
             <a href="#different" class="nav-tab"><i class="fas fa-rocket"></i> <span data-ar="لماذا أنا مختلف" data-en="Why I'm Different" data-de="Warum ich anders bin">Why I'm Different</span></a>
             <a href="#personal" class="nav-tab"><i class="fas fa-address-card"></i> <span data-ar="معلومات شخصية" data-en="Personal Info" data-de="Persönliche Daten">Personal Info</span></a>
             <a href="#education" class="nav-tab"><i class="fas fa-graduation-cap"></i> <span data-ar="التعليم" data-en="Education" data-de="Bildung">Education</span></a>
-            <a href="#languages" class="nav-tab"><i class="fas fa-code"></i> <span data-ar="لغات البرمجة" data-en="Programming Languages" data-de="Programmiersprachen">Programming Languages</span></a>
+            <a href="#languages" class="nav-tab"><i class="fas fa-code"></i> <span data-ar="لغات البرمجة" data-en="Languages" data-de="Sprachen">Languages</span></a>
             <a href="#technologies" class="nav-tab"><i class="fas fa-tools"></i> <span data-ar="التقنيات" data-en="Technologies" data-de="Technologien">Technologies</span></a>
             <a href="#skills" class="nav-tab"><i class="fas fa-cogs"></i> <span data-ar="المهارات" data-en="Soft Skills" data-de="Soft Skills">Soft Skills</span></a>
-            <a href="#contact" class="nav-tab"><i class="fas fa-paper-plane"></i> <span data-ar="تواصل معي" data-en="Contact Me" data-de="Kontakt">Contact Me</span></a>
+            <a href="#contact" class="nav-tab"><i class="fas fa-paper-plane"></i> <span data-ar="تواصل" data-en="Contact" data-de="Kontakt">Contact</span></a>
         </nav>
 
-        <!-- ═══════════════════ ABOUT ME ═══════════════════ -->
         <section class="section" id="about">
             <div class="section-header"><h2 data-ar="نبذة عني" data-en="About Me" data-de="Über Mich">About Me</h2></div>
             <div class="card">
                 <div class="card-icon"><i class="fas fa-user"></i></div>
-                <p class="card-text" data-ar="أنا مطور أتعلم ذاتياً وشغوف بالتكنولوجيا وتطوير البرمجيات. حالياً أركز على تحسين مهاراتي في تطوير الويب والبرمجة من خلال بناء المشاريع وتعلم التقنيات الجديدة. أؤمن أن أفضل طريقة للتعلم هي الممارسة، لذلك أقضي معظم وقتي في إنشاء مشاريع حقيقية بدلاً من دراسة النظرية فقط."
-                data-en="I'm a self-learning developer passionate about technology and software development. Currently, I'm focusing on improving my skills in web development and programming through building projects and learning new technologies. I believe the best way to learn is by doing, so I spend most of my time creating real projects instead of just studying theory."
-                data-de="Ich bin ein selbstlernender Entwickler mit Leidenschaft für Technologie und Softwareentwicklung. Derzeit konzentriere ich mich darauf, meine Fähigkeiten in Webentwicklung und Programmierung durch Projekte und neue Technologien zu verbessern.">I'm a self-learning developer passionate about technology and software development. Currently, I'm focusing on improving my skills in web development and programming through building projects and learning new technologies. I believe the best way to learn is by doing, so I spend most of my time creating real projects instead of just studying theory.</p>
+                <p class="card-text" data-ar="أنا مطور أتعلم ذاتياً وأركز على تطوير الويب وحل المشكلات. أستمتع ببناء مشاريع حقيقية وتحسين مهاراتي كل يوم من خلال الممارسة."
+                data-en="I'm a self-learning developer focused on web development and problem solving. I enjoy building real projects and improving my skills every day through practice."
+                data-de="Ich bin ein selbstlernender Entwickler mit Fokus auf Webentwicklung und Problemlösung. Ich baue gerne echte Projekte und verbessere meine Fähigkeiten täglich durch Praxis.">I'm a self-learning developer focused on web development and problem solving. I enjoy building real projects and improving my skills every day through practice.</p>
             </div>
         </section>
 
-        <!-- ═══════════════════ WHAT I EXCEL AT ═══════════════════ -->
         <section class="section" id="excel">
             <div class="section-header"><h2 data-ar="ما أتقنه" data-en="What I Excel At" data-de="Was ich beherrsche">What I Excel At</h2></div>
             <div class="card">
                 <div class="card-icon"><i class="fas fa-star"></i></div>
-                <p class="card-text" data-ar="لدي خبرة قوية في <strong>HTML5</strong> و <strong>CSS3</strong> لبناء واجهات حديثة ومتجاوبة. أكتب كود <strong>JavaScript</strong> نظيف وفعال لإضافة التفاعل والحيوية للمواقع. أعمل أيضاً مع <strong>Python</strong> لبناء تطبيقات قوية ولدي معرفة جيدة بـ <strong>C++</strong> و <strong>C#</strong> لتطوير البرمجيات. أتقن التعامل مع <strong>SQL Server</strong> لإدارة قواعد البيانات بكفاءة. أستخدم <strong>Git و GitHub</strong> للتحكم في النسخ والتعاون في المشاريع. كل مشروع أبنيه هو خطوة جديدة نحو الاحتراف وأنا فخور بكل سطر كود أكتبه."
-                data-en="I have strong experience with <strong>HTML5</strong> and <strong>CSS3</strong> for building modern, responsive interfaces. I write clean, efficient <strong>JavaScript</strong> code to make websites interactive and dynamic. I also work with <strong>Python</strong> for building powerful applications and have solid knowledge of <strong>C++</strong> and <strong>C#</strong> for software development. I'm skilled in <strong>SQL Server</strong> for efficient database management. I use <strong>Git and GitHub</strong> for version control and team collaboration. Every project I build is a step toward mastery, and I take pride in every line of code I write."
-                data-de="Ich habe fundierte Erfahrung mit <strong>HTML5</strong> und <strong>CSS3</strong> für moderne, responsive Oberflächen. Ich schreibe sauberen <strong>JavaScript</strong>-Code für interaktive Websites. Ich arbeite mit <strong>Python</strong> für leistungsstarke Anwendungen und habe gute Kenntnisse in <strong>C++</strong> und <strong>C#</strong>. Ich beherrsche <strong>SQL Server</strong> für effizientes Datenbankmanagement und nutze <strong>Git und GitHub</strong> für Versionskontrolle.">I have strong experience with <strong>HTML5</strong> and <strong>CSS3</strong> for building modern, responsive interfaces. I write clean, efficient <strong>JavaScript</strong> code to make websites interactive and dynamic. I also work with <strong>Python</strong> for building powerful applications and have solid knowledge of <strong>C++</strong> and <strong>C#</strong> for software development. I'm skilled in <strong>SQL Server</strong> for efficient database management. I use <strong>Git and GitHub</strong> for version control and team collaboration. Every project I build is a step toward mastery, and I take pride in every line of code I write.</p>
+                <p class="card-text" data-ar="لدي خبرة قوية في <strong>HTML5</strong> و <strong>CSS3</strong> لبناء واجهات حديثة ومتجاوبة. أكتب كود <strong>JavaScript</strong> نظيف وفعال. أعمل مع <strong>Python</strong> لبناء التطبيقات ولدي معرفة جيدة بـ <strong>C++</strong> و <strong>C#</strong>. أتقن <strong>SQL Server</strong> لإدارة قواعد البيانات. أستخدم <strong>Git و GitHub</strong> للتحكم في النسخ."
+                data-en="I have strong experience with <strong>HTML5</strong> and <strong>CSS3</strong> for modern, responsive interfaces. I write clean <strong>JavaScript</strong> code. I work with <strong>Python</strong> for applications and have solid knowledge of <strong>C++</strong> and <strong>C#</strong>. I'm skilled in <strong>SQL Server</strong> for database management. I use <strong>Git and GitHub</strong> for version control."
+                data-de="Ich habe fundierte Erfahrung mit <strong>HTML5</strong> und <strong>CSS3</strong>. Ich schreibe sauberen <strong>JavaScript</strong>-Code. Ich arbeite mit <strong>Python</strong> und habe gute Kenntnisse in <strong>C++</strong> und <strong>C#</strong>. Ich beherrsche <strong>SQL Server</strong> und nutze <strong>Git und GitHub</strong>.">I have strong experience with <strong>HTML5</strong> and <strong>CSS3</strong> for modern, responsive interfaces. I write clean <strong>JavaScript</strong> code. I work with <strong>Python</strong> for applications and have solid knowledge of <strong>C++</strong> and <strong>C#</strong>. I'm skilled in <strong>SQL Server</strong> for database management. I use <strong>Git and GitHub</strong> for version control.</p>
             </div>
         </section>
 
-        <!-- ═══════════════════ WHY I'M DIFFERENT ═══════════════════ -->
+        <section class="section" id="projects">
+            <div class="section-header"><h2 data-ar="المشاريع" data-en="Projects" data-de="Projekte">Projects</h2></div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-folder-open"></i></div>
+                <div class="projects-grid" id="projectsContainer"></div>
+            </div>
+        </section>
+
         <section class="section" id="different">
             <div class="section-header"><h2 data-ar="لماذا أنا مختلف" data-en="Why I'm Different" data-de="Warum ich anders bin">Why I'm Different</h2></div>
             <div class="card">
                 <div class="card-icon"><i class="fas fa-rocket"></i></div>
-                <p class="card-text" data-ar="أنا لا أكتفي بتعلم الأساسيات فقط، بل أتعمق في كل تقنية أعمل بها حتى أفهمها من جذورها. أؤمن أن المطور الحقيقي هو من يحل المشكلات، وليس من يحفظ الأكواد فقط. لدي قدرة عالية على <strong>التفكير التحليلي</strong> وحل المشكلات المعقدة بطريقة منهجية. أعمل بشغف وانضباط، وأتعلم بسرعة، ولا أستسلم أمام التحديات. أنا ملتزم بتقديم أفضل ما عندي في كل مشروع، وأسعى دائماً للتميز."
-                data-en="I don't just learn the basics — I dive deep into every technology I work with until I understand it from the ground up. I believe a real developer is someone who solves problems, not someone who just memorizes code. I have strong <strong>analytical thinking</strong> skills and can solve complex problems methodically. I work with passion and discipline, I learn fast, and I never give up when facing challenges. I'm committed to delivering my best in every project and always strive for excellence."
-                data-de="Ich lerne nicht nur die Grundlagen – ich tauche tief in jede Technologie ein. Ich glaube, ein echter Entwickler löst Probleme. Ich habe starke <strong>analytische Denkfähigkeiten</strong> und löse komplexe Probleme methodisch. Ich arbeite mit Leidenschaft und Disziplin.">I don't just learn the basics — I dive deep into every technology I work with until I understand it from the ground up. I believe a real developer is someone who solves problems, not someone who just memorizes code. I have strong <strong>analytical thinking</strong> skills and can solve complex problems methodically. I work with passion and discipline, I learn fast, and I never give up when facing challenges. I'm committed to delivering my best in every project and always strive for excellence.</p>
+                <p class="card-text" data-ar="أنا لا أكتفي بتعلم الأساسيات فقط، بل أتعمق في كل تقنية حتى أفهمها من جذورها. لدي قدرة عالية على <strong>التفكير التحليلي</strong> وحل المشكلات. أعمل بشغف وانضباط، وأتعلم بسرعة، ولا أستسلم أمام التحديات. أسعى دائماً للتميز في كل مشروع."
+                data-en="I don't just learn the basics — I dive deep into every technology until I understand it completely. I have strong <strong>analytical thinking</strong> and problem-solving skills. I work with passion and discipline, I learn fast, and I never give up. I always strive for excellence in every project."
+                data-de="Ich lerne nicht nur die Grundlagen. Ich habe starke <strong>analytische Denkfähigkeiten</strong>. Ich arbeite mit Leidenschaft und Disziplin und gebe nie auf.">I don't just learn the basics — I dive deep into every technology until I understand it completely. I have strong <strong>analytical thinking</strong> and problem-solving skills. I work with passion and discipline, I learn fast, and I never give up. I always strive for excellence in every project.</p>
             </div>
         </section>
 
-        <!-- ═══════════════════ PERSONAL INFO ═══════════════════ -->
         <section class="section" id="personal">
             <div class="section-header"><h2 data-ar="المعلومات الشخصية" data-en="Personal Information" data-de="Persönliche Daten">Personal Information</h2></div>
             <div class="card">
@@ -1088,7 +1176,6 @@
             </div>
         </section>
 
-        <!-- ═══════════════════ EDUCATION ═══════════════════ -->
         <section class="section" id="education">
             <div class="section-header"><h2 data-ar="التعليم" data-en="Education" data-de="Bildung">Education</h2></div>
             <div class="card">
@@ -1109,7 +1196,6 @@
             </div>
         </section>
 
-        <!-- ═══════════════════ PROGRAMMING LANGUAGES ═══════════════════ -->
         <section class="section" id="languages">
             <div class="section-header"><h2 data-ar="لغات البرمجة" data-en="Programming Languages" data-de="Programmiersprachen">Programming Languages</h2></div>
             <div class="card">
@@ -1118,7 +1204,6 @@
             </div>
         </section>
 
-        <!-- ═══════════════════ TECHNOLOGIES ═══════════════════ -->
         <section class="section" id="technologies">
             <div class="section-header"><h2 data-ar="التقنيات والأدوات" data-en="Technologies & Tools" data-de="Technologien & Werkzeuge">Technologies & Tools</h2></div>
             <div class="card">
@@ -1127,7 +1212,6 @@
             </div>
         </section>
 
-        <!-- ═══════════════════ SOFT SKILLS ═══════════════════ -->
         <section class="section" id="skills">
             <div class="section-header"><h2 data-ar="المهارات الشخصية" data-en="Soft Skills" data-de="Soft Skills">Soft Skills</h2></div>
             <div class="card">
@@ -1136,7 +1220,6 @@
             </div>
         </section>
 
-        <!-- ═══════════════════ CONTACT ═══════════════════ -->
         <section class="section" id="contact">
             <div class="section-header"><h2 data-ar="تواصل معي" data-en="Contact Me" data-de="Kontakt">Contact Me</h2></div>
             <div class="card">
@@ -1161,87 +1244,60 @@
             var ctx = canvas.getContext('2d');
             var particles = [];
             var running = true;
-            var count = 22;
+            var count = 26;
             var mouseX = -1000;
             var mouseY = -1000;
 
-            function resize() {
-                canvas.width = window.innerWidth;
+            function resize() { canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
-                buildParticles();
-            }
+                buildParticles(); }
             window.addEventListener('resize', resize);
 
-            function buildParticles() {
-                particles = [];
-                for (var i = 0; i < count; i++) {
-                    particles.push({
-                        x: Math.random() * canvas.width,
-                        y: Math.random() * canvas.height,
-                        r: Math.random() * 1.5 + 0.4,
-                        vx: (Math.random() - 0.5) * 0.22,
-                        vy: (Math.random() - 0.5) * 0.22,
-                        alpha: Math.random() * 0.26 + 0.04,
-                        color: '#d63031'
-                    });
-                }
-            }
+            function buildParticles() { particles = []; for (var i = 0; i < count; i++) { particles.push({ x: Math.random() *
+                        canvas.width, y: Math.random() * canvas.height, r: Math.random() * 1.6 + 0.5, vx: (Math.random() -
+                        0.5) * 0.24, vy: (Math.random() - 0.5) * 0.24, alpha: Math.random() * 0.28 + 0.05,
+                    color: '#d63031' }); } }
 
             window.addEventListener('mousemove', function(e) { mouseX = e.clientX;
                 mouseY = e.clientY; });
-            window.addEventListener('touchmove', function(e) { if (e.touches.length > 0) { mouseX = e.touches[0]
-                    .clientX;
+            window.addEventListener('touchmove', function(e) { if (e.touches.length > 0) { mouseX = e.touches[0].clientX;
                     mouseY = e.touches[0].clientY; } });
 
-            function draw() {
-                if (!running) return;
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                for (var i = 0; i < particles.length; i++) {
-                    var p = particles[i];
+            function draw() { if (!running) return;
+                ctx.clearRect(0, 0, canvas.width, canvas.height); for (var i = 0; i < particles.length; i++) { var p =
+                        particles[i];
                     p.x += p.vx;
-                    p.y += p.vy;
-                    if (p.x < -20) p.x = canvas.width + 20;
-                    if (p.x > canvas.width + 20) p.x = -20;
-                    if (p.y < -20) p.y = canvas.height + 20;
-                    if (p.y > canvas.height + 20) p.y = -20;
+                    p.y += p.vy; if (p.x < -20) p.x = canvas.width + 20; if (p.x > canvas.width + 20) p.x = -20; if (p.y <
+                        -20) p.y = canvas.height + 20; if (p.y > canvas.height + 20) p.y = -20;
                     ctx.beginPath();
                     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                     ctx.fillStyle = p.color;
                     ctx.globalAlpha = p.alpha;
                     ctx.fill();
                     ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
+                    ctx.arc(p.x, p.y, p.r * 3.5, 0, Math.PI * 2);
                     ctx.fillStyle = p.color;
-                    ctx.globalAlpha = p.alpha * 0.09;
+                    ctx.globalAlpha = p.alpha * 0.1;
                     ctx.fill();
-                    ctx.globalAlpha = 1;
-                }
-                for (var i = 0; i < particles.length; i++) {
-                    for (var j = i + 1; j < particles.length; j++) { var dx = particles[i].x - particles[j].x; var dy =
-                            particles[i].y - particles[j].y; var dist = Math.sqrt(dx * dx + dy * dy); if (dist < 105) {
-                            ctx.beginPath();
+                    ctx.globalAlpha = 1; } for (var i = 0; i < particles.length; i++) { for (var j = i + 1; j < particles
+                        .length; j++) { var dx = particles[i].x - particles[j].x; var dy = particles[i].y - particles[j]
+                            .y; var dist = Math.sqrt(dx * dx + dy * dy); if (dist < 115) { ctx.beginPath();
                             ctx.moveTo(particles[i].x, particles[i].y);
                             ctx.lineTo(particles[j].x, particles[j].y);
                             ctx.strokeStyle = '#d63031';
-                            ctx.globalAlpha = 0.035 * (1 - dist / 105);
-                            ctx.lineWidth = 0.4;
+                            ctx.globalAlpha = 0.04 * (1 - dist / 115);
+                            ctx.lineWidth = 0.45;
                             ctx.stroke();
-                            ctx.globalAlpha = 1;
-                        } }
-                    var dmx = particles[i].x - mouseX;
-                    var dmy = particles[i].y - mouseY;
-                    var mouseDist = Math.sqrt(dmx * dmx + dmy * dmy);
-                    if (mouseDist < 140) { ctx.beginPath();
+                            ctx.globalAlpha = 1; } } var dmx = particles[i].x - mouseX; var dmy = particles[i].y -
+                        mouseY; var mouseDist = Math.sqrt(dmx * dmx + dmy * dmy); if (mouseDist < 155) { ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(mouseX, mouseY);
                         ctx.strokeStyle = '#ff3b3b';
-                        ctx.globalAlpha = 0.07 * (1 - mouseDist / 140);
-                        ctx.lineWidth = 0.5;
+                        ctx.globalAlpha = 0.08 * (1 - mouseDist / 155);
+                        ctx.lineWidth = 0.55;
                         ctx.stroke();
-                        ctx.globalAlpha = 1; }
-                }
-                requestAnimationFrame(draw);
-            }
+                        ctx.globalAlpha = 1; } }
+                requestAnimationFrame(draw); }
             resize();
             draw();
             document.addEventListener('visibilitychange', function() { if (document.hidden) { running = false; } else { running =
@@ -1250,7 +1306,7 @@
         })();
 
         function toggleTheme() { var body = document.body; if (body.classList.contains('light')) { body.classList.remove(
-                'light');
+            'light');
             document.querySelector('meta[name="theme-color"]').setAttribute('content', '#080808');
             localStorage.setItem('boda_theme', 'dark'); } else { body.classList.add('light');
             document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f5f5f5');
@@ -1262,7 +1318,7 @@
         var languagesData = [
             { en: 'HTML5', ar: 'HTML5', de: 'HTML5', icon: 'fa-html5',
                 desc: { en: 'Semantic markup for modern web pages',
-                    ar: 'ترميز دلالي لصفحات الويب الحديثة', de: 'Semantisches Markup für moderne Webseiten' } },
+                ar: 'ترميز دلالي لصفحات الويب الحديثة', de: 'Semantisches Markup für moderne Webseiten' } },
             { en: 'CSS3', ar: 'CSS3', de: 'CSS3', icon: 'fa-css3-alt',
                 desc: { en: 'Responsive layouts with Flexbox & Grid', ar: 'تخطيطات متجاوبة مع Flexbox و Grid',
                     de: 'Responsive Layouts mit Flexbox & Grid' } },
@@ -1279,7 +1335,6 @@
                 desc: { en: 'Desktop applications and .NET development',
                 ar: 'تطبيقات سطح المكتب وتطوير .NET', de: 'Desktop-Anwendungen und .NET-Entwicklung' } }
         ];
-
         var technologiesData = [
             { en: 'SQL Server', ar: 'SQL Server', de: 'SQL Server', icon: 'fa-database',
                 desc: { en: 'Database design, queries, and management', ar: 'تصميم قواعد البيانات والاستعلامات والإدارة',
@@ -1294,7 +1349,6 @@
                 desc: { en: 'Building and consuming web services', ar: 'بناء واستهلاك خدمات الويب',
                     de: 'Erstellen und Nutzen von Webdiensten' } }
         ];
-
         var softSkillsData = [
             { en: 'Problem Solving', ar: 'حل المشكلات', de: 'Problemlösung', icon: 'fa-puzzle-piece',
                 desc: { en: 'Breaking down complex issues into manageable steps',
@@ -1315,6 +1369,22 @@
                 desc: { en: 'Thriving in fast-changing environments', ar: 'الازدهار في البيئات سريعة التغير',
                     de: 'Erfolg in sich schnell verändernden Umgebungen' } }
         ];
+        var projectsData = [
+            { en: 'Portfolio Website', ar: 'موقع شخصي', de: 'Portfolio-Website',
+                desc: { en: 'Personal responsive portfolio built using HTML, CSS, and JavaScript.',
+                    ar: 'موقع شخصي متجاوب تم بناؤه باستخدام HTML و CSS و JavaScript.',
+                de: 'Persönliches responsives Portfolio, erstellt mit HTML, CSS und JavaScript.' },
+                tags: { en: ['HTML', 'CSS', 'JavaScript'], ar: ['HTML', 'CSS', 'JavaScript'], de: ['HTML', 'CSS',
+                        'JavaScript'
+                    ] } },
+            { en: 'Weather App', ar: 'تطبيق الطقس', de: 'Wetter-App',
+                desc: { en: 'Web app that shows real-time weather data using an API.',
+                    ar: 'تطبيق ويب يعرض حالة الطقس الفعلية باستخدام API.',
+                de: 'Web-App, die Echtzeit-Wetterdaten über eine API anzeigt.' },
+                tags: { en: ['JavaScript', 'API', 'CSS'], ar: ['JavaScript', 'API', 'CSS'], de: ['JavaScript', 'API',
+                        'CSS'
+                    ] } }
+        ];
 
         function renderSkillBlocks(containerId, data, lang) { var box = document.getElementById(containerId);
             box.innerHTML = '';
@@ -1325,16 +1395,26 @@
                     '</h4><p>' + s.desc[lang] + '</p></div>';
                 box.appendChild(block); }); }
 
-        function renderAllSkills(lang) {
-            renderSkillBlocks('languagesContainer', languagesData, lang);
+        function renderProjects(lang) { var box = document.getElementById('projectsContainer');
+            box.innerHTML = '';
+            projectsData.forEach(function(p, i) { var card = document.createElement('div');
+                card.className = 'project-card';
+                card.style.animationDelay = (i * 0.08) + 's';
+                var tagsHtml = '';
+                p.tags[lang].forEach(function(t) { tagsHtml += '<span class="project-tag">' + t + '</span>'; });
+                card.innerHTML = '<div class="project-number">0' + (i + 1) + '</div><h4>' + p[lang] + '</h4><p>' + p.desc[
+                    lang] + '</p><div class="project-tags">' + tagsHtml + '</div>';
+                box.appendChild(card); }); }
+
+        function renderAll(lang) { renderSkillBlocks('languagesContainer', languagesData, lang);
             renderSkillBlocks('technologiesContainer', technologiesData, lang);
             renderSkillBlocks('skillsContainer', softSkillsData, lang);
-        }
-        renderAllSkills('en');
+            renderProjects(lang); }
+        renderAll('en');
 
         var footerText = { en: '© 2025 <span>Abdelrahman Mamdouh</span> (BODA) — All rights reserved',
-            ar: '© 2025 <span>عبد الرحمن ممدوح</span> (BODA) — جميع الحقوق محفوظة',
-            de: '© 2025 <span>Abdelrahman Mamdouh</span> (BODA) — Alle Rechte vorbehalten' };
+            ar: '© 2026 <span>عبد الرحمن ممدوح</span> (BODA) — جميع الحقوق محفوظة',
+            de: '© 2026 <span>Abdelrahman Mamdouh</span> (BODA) — Alle Rechte vorbehalten' };
         var titles = { en: 'BODA | Abdelrahman Mamdouh - Frontend Developer',
             ar: 'BODA | عبد الرحمن ممدوح - مطور واجهات أمامية',
             de: 'BODA | Abdelrahman Mamdouh - Frontend-Entwickler' };
@@ -1345,8 +1425,8 @@
             var btns = { en: document.getElementById('btnEn'), de: document.getElementById('btnDe'),
             ar: document.getElementById('btnAr') };
             main.style.opacity = '0';
-            main.style.transform = 'translateY(-5px)';
-            main.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
+            main.style.transform = 'translateY(-6px)';
+            main.style.transition = 'opacity 0.24s ease, transform 0.24s ease';
             requestAnimationFrame(function() { setTimeout(function() { html.lang = lang;
                     html.dir = lang === 'ar' ? 'rtl' : 'ltr';
                     body.classList.toggle('rtl', lang === 'ar');
@@ -1358,11 +1438,11 @@
                                 'hero-name')) { el.innerHTML = val; } else if (!el.closest('.footer')) { el
                                 .innerHTML = val; } });
                     document.getElementById('footerText').innerHTML = footerText[lang];
-                    renderAllSkills(lang);
+                    renderAll(lang);
                     main.style.opacity = '1';
                     main.style.transform = 'translateY(0)';
-                    setTimeout(function() { main.style.transition = ''; }, 260);
-                    localStorage.setItem('boda_cv_lang', lang); }, 220); }); }
+                    setTimeout(function() { main.style.transition = ''; }, 280);
+                    localStorage.setItem('boda_cv_lang', lang); }, 230); }); }
 
         (function() { document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
             document.addEventListener('keydown', function(e) { if (['F12', 'PrintScreen'].indexOf(e.key) !== -1 || (e
@@ -1376,16 +1456,10 @@
         var savedLang = localStorage.getItem('boda_cv_lang') || 'en'; if (savedLang !== 'en') setTimeout(function() { switchLang(
             savedLang); }, 30);
 
-        // Smooth scroll for nav tabs
-        document.querySelectorAll('.nav-tab').forEach(function(tab) {
-            tab.addEventListener('click', function(e) {
-                e.preventDefault();
-                var target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
+        document.querySelectorAll('.nav-tab').forEach(function(tab) { tab.addEventListener('click', function(e) { e
+                .preventDefault();
+            var target = document.querySelector(this.getAttribute('href')); if (target) { target.scrollIntoView({ behavior: 'smooth',
+                    block: 'start' }); } }); });
     </script>
 </body>
 </html>
