@@ -104,12 +104,26 @@
             padding: 0 clamp(1rem, 3vw, 2rem);
         }
 
-        /* ---- hamburger button ---- */
-        .hamburger-btn {
+        /* ---- top controls bar (fixed) ---- */
+        .controls-bar {
             position: fixed;
             top: 16px;
-            left: 16px;
-            z-index: 120;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 0 16px;
+            pointer-events: none;
+        }
+
+        .controls-bar > * {
+            pointer-events: auto;
+        }
+
+        /* theme button - left side */
+        .theme-btn {
             width: 42px;
             height: 42px;
             border-radius: 50%;
@@ -117,7 +131,7 @@
             background: var(--surface);
             color: var(--text);
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -125,160 +139,30 @@
             box-shadow: var(--shadow);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
+            flex-shrink: 0;
         }
 
-        .hamburger-btn:hover {
+        .theme-btn:hover {
             border-color: var(--red);
             color: var(--red-bright);
             box-shadow: 0 0 20px var(--red-glow);
+            transform: rotate(20deg) scale(1.08);
         }
 
-        /* ---- sidebar overlay ---- */
-        .sidebar-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 130;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.35s ease;
+        body.light .theme-btn .fa-moon {
+            display: none;
+        }
+        body.light .theme-btn .fa-sun {
+            display: inline-block;
+        }
+        body:not(.light) .theme-btn .fa-sun {
+            display: none;
+        }
+        body:not(.light) .theme-btn .fa-moon {
+            display: inline-block;
         }
 
-        .sidebar-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        /* ---- sidebar panel ---- */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -300px;
-            width: 280px;
-            height: 100dvh;
-            background: var(--bg);
-            border-right: 1px solid var(--border);
-            z-index: 140;
-            padding: 28px 18px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            transition: left 0.4s cubic-bezier(0.33, 1, 0.68, 1);
-            overflow-y: auto;
-        }
-
-        body.rtl .sidebar {
-            left: auto;
-            right: -300px;
-            border-right: none;
-            border-left: 1px solid var(--border);
-            transition: right 0.4s cubic-bezier(0.33, 1, 0.68, 1);
-        }
-
-        .sidebar.open {
-            left: 0;
-        }
-
-        body.rtl .sidebar.open {
-            left: auto;
-            right: 0;
-        }
-
-        .sidebar .sidebar-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .sidebar .sidebar-header h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text);
-        }
-
-        .sidebar .close-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            background: var(--surface);
-            color: var(--text);
-            cursor: pointer;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar .close-btn:hover {
-            border-color: var(--red);
-            color: var(--red-bright);
-            background: var(--red-soft);
-        }
-
-        .sidebar .sidebar-section-title {
-            font-size: 0.65rem;
-            color: var(--red);
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-top: 16px;
-            margin-bottom: 6px;
-            padding-left: 8px;
-        }
-
-        .sidebar .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 16px;
-            border-radius: 40px;
-            border: 1px solid transparent;
-            background: transparent;
-            color: var(--text-soft);
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 0.82rem;
-            font-family: inherit;
-            text-decoration: none;
-            transition: all 0.28s ease;
-            white-space: nowrap;
-        }
-
-        .sidebar .nav-link i {
-            width: 18px;
-            text-align: center;
-            font-size: 0.85rem;
-        }
-
-        .sidebar .nav-link:hover {
-            border-color: var(--red);
-            color: var(--red);
-            background: var(--red-soft);
-            transform: translateX(4px);
-        }
-
-        body.rtl .sidebar .nav-link:hover {
-            transform: translateX(-4px);
-        }
-
-        .top-bar {
-            position: fixed;
-            top: 16px;
-            right: 16px;
-            z-index: 100;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        body.rtl .top-bar {
-            right: auto;
-            left: 16px;
-        }
-
+        /* language switcher - center */
         .lang-switch {
             display: flex;
             gap: 5px;
@@ -320,7 +204,20 @@
             background: rgba(128, 128, 128, 0.1);
         }
 
-        .theme-btn {
+        /* hamburger wrapper - right side */
+        .hamburger-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            flex-shrink: 0;
+        }
+
+        body.rtl .hamburger-wrapper {
+            align-items: flex-start;
+        }
+
+        .hamburger-btn {
             width: 42px;
             height: 42px;
             border-radius: 50%;
@@ -328,7 +225,7 @@
             background: var(--surface);
             color: var(--text);
             cursor: pointer;
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -338,24 +235,84 @@
             -webkit-backdrop-filter: blur(12px);
         }
 
-        .theme-btn:hover {
+        .hamburger-btn:hover {
             border-color: var(--red);
             color: var(--red-bright);
             box-shadow: 0 0 20px var(--red-glow);
-            transform: rotate(20deg) scale(1.08);
         }
 
-        body.light .theme-btn .fa-moon {
+        /* navigation panel - positioned relative to hamburger */
+        .nav-panel {
             display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            z-index: 115;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            animation: fadeSlideUp 0.25s ease;
         }
-        body.light .theme-btn .fa-sun {
-            display: inline-block;
+
+        body.rtl .nav-panel {
+            right: auto;
+            left: 0;
         }
-        body:not(.light) .theme-btn .fa-sun {
-            display: none;
+
+        .nav-panel.open {
+            display: block;
         }
-        body:not(.light) .theme-btn .fa-moon {
-            display: inline-block;
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav-panel .nav-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            max-width: 340px;
+        }
+
+        .nav-panel .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 13px;
+            border-radius: 32px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-soft);
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.74rem;
+            font-family: inherit;
+            text-decoration: none;
+            transition: all 0.22s ease;
+            white-space: nowrap;
+        }
+
+        .nav-panel .nav-link i {
+            width: 14px;
+            text-align: center;
+            font-size: 0.76rem;
+        }
+
+        .nav-panel .nav-link:hover {
+            border-color: var(--red);
+            color: var(--red);
+            background: var(--red-soft);
         }
 
         .hero {
@@ -370,7 +327,8 @@
             justify-content: center;
             gap: 10px;
             margin-bottom: 2rem;
-            animation: fadeSlideUp 0.65s ease both;
+            margin-top: 3rem;
+            animation: fadeSlideUpFull 0.65s ease both;
             animation-delay: 0.02s;
             opacity: 0;
         }
@@ -425,7 +383,7 @@
             font-weight: 600;
             letter-spacing: 0.02em;
             margin-bottom: 0.6rem;
-            animation: fadeSlideUp 0.65s ease both;
+            animation: fadeSlideUpFull 0.65s ease both;
             animation-delay: 0.08s;
             opacity: 0;
         }
@@ -437,7 +395,7 @@
             line-height: 1.08;
             margin-bottom: 1.1rem;
             letter-spacing: -0.025em;
-            animation: fadeSlideUp 0.65s ease both;
+            animation: fadeSlideUpFull 0.65s ease both;
             animation-delay: 0.18s;
             opacity: 0;
             transition: color 0.4s ease;
@@ -479,7 +437,7 @@
             color: var(--text-soft);
             font-weight: 500;
             margin-bottom: 1.6rem;
-            animation: fadeSlideUp 0.65s ease both;
+            animation: fadeSlideUpFull 0.65s ease both;
             animation-delay: 0.28s;
             opacity: 0;
             transition: color 0.4s ease;
@@ -501,7 +459,7 @@
             font-size: 0.92rem;
             letter-spacing: 0.03em;
             margin-bottom: 2.2rem;
-            animation: fadeSlideUp 0.65s ease both;
+            animation: fadeSlideUpFull 0.65s ease both;
             animation-delay: 0.38s;
             opacity: 0;
             transition: background 0.4s ease;
@@ -529,7 +487,7 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 14px;
-            animation: fadeSlideUp 0.65s ease both;
+            animation: fadeSlideUpFull 0.65s ease both;
             animation-delay: 0.46s;
             opacity: 0;
         }
@@ -601,7 +559,7 @@
             box-shadow: 0 10px 30px var(--red-glow);
         }
 
-        @keyframes fadeSlideUp {
+        @keyframes fadeSlideUpFull {
             from {
                 opacity: 0;
                 transform: translateY(24px);
@@ -618,7 +576,7 @@
             position: relative;
             display: inline-block;
             margin-bottom: 2.2rem;
-            animation: fadeSlideUp 0.65s ease both;
+            animation: fadeSlideUpFull 0.65s ease both;
             animation-delay: 0.08s;
             opacity: 0;
         }
@@ -764,7 +722,7 @@
             margin-bottom: var(--gap);
             transition: all 0.35s ease, background 0.4s ease, border 0.4s ease;
             opacity: 0;
-            animation: fadeSlideUp 0.6s ease forwards;
+            animation: fadeSlideUpFull 0.6s ease forwards;
             position: relative;
             overflow: hidden;
             box-shadow: var(--shadow);
@@ -1052,14 +1010,11 @@
                 width: 105px;
                 height: 105px;
             }
-            .top-bar {
-                gap: 7px;
+            .controls-bar {
+                padding: 0 8px;
                 top: 10px;
-                right: 8px;
             }
             .hamburger-btn {
-                top: 10px;
-                left: 8px;
                 width: 38px;
                 height: 38px;
                 font-size: 1.05rem;
@@ -1068,6 +1023,16 @@
                 width: 38px;
                 height: 38px;
                 font-size: 1.05rem;
+            }
+            .nav-panel {
+                top: 46px;
+            }
+            .nav-panel .nav-grid {
+                max-width: 280px;
+            }
+            .nav-panel .nav-link {
+                padding: 6px 11px;
+                font-size: 0.7rem;
             }
             .hero-buttons {
                 flex-direction: column;
@@ -1078,12 +1043,13 @@
                 width: 100%;
                 justify-content: center;
             }
-            .sidebar {
-                width: 260px;
-                left: -280px;
+            .lang-btn {
+                padding: 6px 10px;
+                font-size: 0.68rem;
+                min-width: 42px;
             }
-            body.rtl .sidebar {
-                right: -280px;
+            .contact-strip {
+                margin-top: 4rem;
             }
         }
         @media (max-width: 360px) {
@@ -1101,49 +1067,36 @@
 
     <canvas id="scene"></canvas>
 
-    <!-- hamburger button -->
-    <button class="hamburger-btn" onclick="openSidebar()" aria-label="Open menu">
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- sidebar overlay -->
-    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
-
-    <!-- sidebar -->
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h3 data-ar="القائمة" data-en="Menu" data-de="Menü">Menu</h3>
-            <button class="close-btn" onclick="closeSidebar()"><i class="fas fa-times"></i></button>
-        </div>
-
-        <div class="sidebar-section-title" data-ar="عنّي" data-en="About" data-de="Über">About</div>
-        <a href="#hero" class="nav-link" onclick="closeSidebar()"><i class="fas fa-home"></i> <span data-ar="الرئيسية" data-en="Home" data-de="Start">Home</span></a>
-        <a href="#about" class="nav-link" onclick="closeSidebar()"><i class="fas fa-user"></i> <span data-ar="نبذة عني" data-en="About Me" data-de="Über Mich">About Me</span></a>
-        <a href="#excel" class="nav-link" onclick="closeSidebar()"><i class="fas fa-star"></i> <span data-ar="ما أتقنه" data-en="What I Excel At" data-de="Was ich beherrsche">What I Excel At</span></a>
-        <a href="#different" class="nav-link" onclick="closeSidebar()"><i class="fas fa-rocket"></i> <span data-ar="لماذا أنا مختلف" data-en="Why I'm Different" data-de="Warum ich anders bin">Why I'm Different</span></a>
-
-        <div class="sidebar-section-title" data-ar="المهارات" data-en="Skills" data-de="Fähigkeiten">Skills</div>
-        <a href="#languages" class="nav-link" onclick="closeSidebar()"><i class="fas fa-code"></i> <span data-ar="لغات البرمجة" data-en="Languages" data-de="Sprachen">Languages</span></a>
-        <a href="#technologies" class="nav-link" onclick="closeSidebar()"><i class="fas fa-tools"></i> <span data-ar="التقنيات" data-en="Technologies" data-de="Technologien">Technologies</span></a>
-        <a href="#skills" class="nav-link" onclick="closeSidebar()"><i class="fas fa-cogs"></i> <span data-ar="المهارات" data-en="Soft Skills" data-de="Soft Skills">Soft Skills</span></a>
-
-        <div class="sidebar-section-title" data-ar="المزيد" data-en="More" data-de="Mehr">More</div>
-        <a href="#personal" class="nav-link" onclick="closeSidebar()"><i class="fas fa-address-card"></i> <span data-ar="معلومات شخصية" data-en="Personal Info" data-de="Persönliche Daten">Personal Info</span></a>
-        <a href="#education" class="nav-link" onclick="closeSidebar()"><i class="fas fa-graduation-cap"></i> <span data-ar="التعليم" data-en="Education" data-de="Bildung">Education</span></a>
-        <a href="#contact" class="nav-link" onclick="closeSidebar()"><i class="fas fa-paper-plane"></i> <span data-ar="تواصل" data-en="Contact" data-de="Kontakt">Contact</span></a>
-    </nav>
-
-    <!-- top bar -->
-    <div class="top-bar">
+    <!-- controls bar: theme left | language center | hamburger right -->
+    <div class="controls-bar">
+        <button class="theme-btn" onclick="toggleTheme()" id="themeToggle" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+        </button>
         <div class="lang-switch">
             <button class="lang-btn active" onclick="switchLang('en')" id="btnEn">🇺🇸 EN</button>
             <button class="lang-btn" onclick="switchLang('de')" id="btnDe">🇩🇪 DE</button>
             <button class="lang-btn" onclick="switchLang('ar')" id="btnAr">🇪🇬 عربي</button>
         </div>
-        <button class="theme-btn" onclick="toggleTheme()" id="themeToggle" aria-label="Toggle theme">
-            <i class="fas fa-moon"></i>
-            <i class="fas fa-sun"></i>
-        </button>
+        <div class="hamburger-wrapper">
+            <button class="hamburger-btn" onclick="toggleNav()" aria-label="Open menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-panel" id="navPanel">
+                <div class="nav-grid">
+                    <a href="#hero" class="nav-link" onclick="closeNav()"><i class="fas fa-home"></i> <span data-ar="الرئيسية" data-en="Home" data-de="Start">Home</span></a>
+                    <a href="#about" class="nav-link" onclick="closeNav()"><i class="fas fa-user"></i> <span data-ar="نبذة عني" data-en="About Me" data-de="Über Mich">About Me</span></a>
+                    <a href="#excel" class="nav-link" onclick="closeNav()"><i class="fas fa-star"></i> <span data-ar="ما أتقنه" data-en="What I Excel At" data-de="Was ich beherrsche">What I Excel At</span></a>
+                    <a href="#different" class="nav-link" onclick="closeNav()"><i class="fas fa-rocket"></i> <span data-ar="لماذا أنا مختلف" data-en="Why I'm Different" data-de="Warum ich anders bin">Why I'm Different</span></a>
+                    <a href="#languages" class="nav-link" onclick="closeNav()"><i class="fas fa-code"></i> <span data-ar="لغات البرمجة" data-en="Languages" data-de="Sprachen">Languages</span></a>
+                    <a href="#technologies" class="nav-link" onclick="closeNav()"><i class="fas fa-tools"></i> <span data-ar="التقنيات" data-en="Technologies" data-de="Technologien">Technologies</span></a>
+                    <a href="#skills" class="nav-link" onclick="closeNav()"><i class="fas fa-cogs"></i> <span data-ar="المهارات" data-en="Soft Skills" data-de="Soft Skills">Soft Skills</span></a>
+                    <a href="#personal" class="nav-link" onclick="closeNav()"><i class="fas fa-address-card"></i> <span data-ar="معلومات شخصية" data-en="Personal Info" data-de="Persönliche Daten">Personal Info</span></a>
+                    <a href="#education" class="nav-link" onclick="closeNav()"><i class="fas fa-graduation-cap"></i> <span data-ar="التعليم" data-en="Education" data-de="Bildung">Education</span></a>
+                    <a href="#contact" class="nav-link" onclick="closeNav()"><i class="fas fa-paper-plane"></i> <span data-ar="تواصل" data-en="Contact" data-de="Kontakt">Contact</span></a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="layout" id="main">
@@ -1328,11 +1281,6 @@
                     ctx.fillStyle = p.color;
                     ctx.globalAlpha = p.alpha;
                     ctx.fill();
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.r * 3.5, 0, Math.PI * 2);
-                    ctx.fillStyle = p.color;
-                    ctx.globalAlpha = p.alpha * 0.1;
-                    ctx.fill();
                     ctx.globalAlpha = 1; } for (var i = 0; i < particles.length; i++) { for (var j = i + 1; j < particles
                         .length; j++) { var dx = particles[i].x - particles[j].x; var dy = particles[i].y - particles[j]
                             .y; var dist = Math.sqrt(dx * dx + dy * dy); if (dist < 115) { ctx.beginPath();
@@ -1369,14 +1317,14 @@
             'light');
         document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f5f5f5'); }
 
-        function openSidebar() {
-            document.getElementById('sidebar').classList.add('open');
-            document.getElementById('sidebarOverlay').classList.add('active');
+        function toggleNav() {
+            var panel = document.getElementById('navPanel');
+            panel.classList.toggle('open');
         }
 
-        function closeSidebar() {
-            document.getElementById('sidebar').classList.remove('open');
-            document.getElementById('sidebarOverlay').classList.remove('active');
+        function closeNav() {
+            var panel = document.getElementById('navPanel');
+            panel.classList.remove('open');
         }
 
         var languagesData = [
