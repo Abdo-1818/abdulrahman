@@ -95,15 +95,79 @@
             opacity: 0.3;
         }
 
-        .container {
-            max-width: 1020px;
+        .layout {
+            display: flex;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 clamp(1rem, 4vw, 2.5rem);
             position: relative;
             z-index: 1;
+            min-height: 100dvh;
         }
 
-        /* top bar */
+        .side-nav {
+            width: 200px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            height: 100dvh;
+            padding: 24px 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 6px;
+            z-index: 50;
+            background: var(--bg);
+            transition: background 0.4s ease;
+            border-right: 1px solid var(--border);
+        }
+
+        body.rtl .side-nav {
+            border-right: none;
+            border-left: 1px solid var(--border);
+        }
+
+        .side-nav .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            border-radius: 40px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--text-soft);
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.8rem;
+            font-family: inherit;
+            text-decoration: none;
+            transition: all 0.28s ease;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .side-nav .nav-link i {
+            width: 18px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .side-nav .nav-link:hover {
+            border-color: var(--red);
+            color: var(--red);
+            background: var(--red-soft);
+            transform: translateX(4px);
+        }
+
+        body.rtl .side-nav .nav-link:hover {
+            transform: translateX(-4px);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 0 clamp(1rem, 3vw, 2rem);
+            max-width: 820px;
+        }
+
         .top-bar {
             position: fixed;
             top: 16px;
@@ -198,73 +262,65 @@
             display: inline-block;
         }
 
-        /* nav tabs */
-        .nav-tabs {
+        .hero {
+            text-align: center;
+            padding: clamp(2rem, 6vw, 4rem) 0 clamp(1.5rem, 3vw, 2rem);
+            position: relative;
+        }
+
+        .contact-strip {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 9px;
-            padding: 18px 0;
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: var(--bg);
-            transition: background 0.4s ease;
+            gap: 10px;
+            margin-bottom: 2rem;
+            animation: fadeSlideUp 0.65s ease both;
+            animation-delay: 0.02s;
+            opacity: 0;
         }
 
-        .nav-tab {
-            padding: 11px 22px;
-            border-radius: 40px;
+        .contact-strip .mini-link {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 16px;
+            border-radius: 36px;
+            text-decoration: none;
+            color: var(--text-soft);
+            font-weight: 500;
+            font-size: 0.78rem;
             border: 1px solid var(--border);
             background: var(--surface);
-            color: var(--text-soft);
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 0.83rem;
-            font-family: inherit;
-            text-decoration: none;
             transition: all 0.3s ease;
-            white-space: nowrap;
             position: relative;
             overflow: hidden;
         }
 
-        .nav-tab::before {
+        .contact-strip .mini-link::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(214, 48, 49, 0.08), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
             transition: left 0.5s ease;
         }
 
-        .nav-tab:hover::before {
+        .contact-strip .mini-link:hover::before {
             left: 100%;
         }
 
-        .nav-tab:hover {
+        .contact-strip .mini-link:hover {
+            color: var(--text);
             border-color: var(--red);
-            color: var(--red);
-            background: var(--red-soft);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px var(--red-glow);
+            background: var(--surface-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px var(--red-glow);
         }
 
-        .nav-tab i {
-            margin-right: 6px;
-        }
-        body.rtl .nav-tab i {
-            margin-right: 0;
-            margin-left: 6px;
-        }
-
-        /* hero */
-        .hero {
-            text-align: center;
-            padding: clamp(3.5rem, 9vw, 6rem) 0 clamp(1.8rem, 4vw, 2.8rem);
-            position: relative;
+        .contact-strip .mini-link i {
+            font-size: 0.88rem;
         }
 
         .hero-greeting {
@@ -274,7 +330,7 @@
             letter-spacing: 0.02em;
             margin-bottom: 0.6rem;
             animation: fadeSlideUp 0.65s ease both;
-            animation-delay: 0.06s;
+            animation-delay: 0.08s;
             opacity: 0;
         }
 
@@ -286,7 +342,7 @@
             margin-bottom: 1.1rem;
             letter-spacing: -0.025em;
             animation: fadeSlideUp 0.65s ease both;
-            animation-delay: 0.16s;
+            animation-delay: 0.18s;
             opacity: 0;
             transition: color 0.4s ease;
         }
@@ -328,10 +384,10 @@
             font-weight: 500;
             margin-bottom: 1.6rem;
             animation: fadeSlideUp 0.65s ease both;
-            animation-delay: 0.26s;
+            animation-delay: 0.28s;
             opacity: 0;
             transition: color 0.4s ease;
-            max-width: 620px;
+            max-width: 580px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -350,7 +406,7 @@
             letter-spacing: 0.03em;
             margin-bottom: 2.2rem;
             animation: fadeSlideUp 0.65s ease both;
-            animation-delay: 0.36s;
+            animation-delay: 0.38s;
             opacity: 0;
             transition: background 0.4s ease;
         }
@@ -378,7 +434,7 @@
             justify-content: center;
             gap: 14px;
             animation: fadeSlideUp 0.65s ease both;
-            animation-delay: 0.44s;
+            animation-delay: 0.46s;
             opacity: 0;
         }
 
@@ -462,13 +518,12 @@
             }
         }
 
-        /* avatar */
         .hero-avatar-box {
             position: relative;
             display: inline-block;
             margin-bottom: 2.2rem;
             animation: fadeSlideUp 0.65s ease both;
-            animation-delay: 0.06s;
+            animation-delay: 0.08s;
             opacity: 0;
         }
 
@@ -576,18 +631,17 @@
             pointer-events: none;
         }
 
-        /* sections */
         .section {
-            padding: clamp(1.8rem, 3.5vw, 2.8rem) 0;
+            padding: clamp(1.5rem, 3vw, 2.5rem) 0;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 2.2rem;
+            margin-bottom: 2rem;
         }
 
         .section-header h2 {
-            font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+            font-size: clamp(1.5rem, 3vw, 2rem);
             font-weight: 800;
             color: var(--text);
             display: inline-block;
@@ -600,18 +654,17 @@
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 65px;
+            width: 60px;
             height: 3px;
             background: var(--red);
             border-radius: 4px;
         }
 
-        /* cards */
         .card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: clamp(1.4rem, 3.2vw, 2.2rem);
+            padding: clamp(1.3rem, 3vw, 2rem);
             margin-bottom: var(--gap);
             transition: all 0.35s ease, background 0.4s ease, border 0.4s ease;
             opacity: 0;
@@ -626,8 +679,8 @@
             position: absolute;
             top: -35%;
             right: -35%;
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             background: radial-gradient(circle, var(--red-soft), transparent 70%);
             transition: all 0.55s ease;
             pointer-events: none;
@@ -637,8 +690,8 @@
         .card:hover::after {
             top: -14%;
             right: -14%;
-            width: 280px;
-            height: 280px;
+            width: 260px;
+            height: 260px;
             background: radial-gradient(circle, var(--red-soft-hover), transparent 70%);
         }
 
@@ -694,7 +747,6 @@
             font-weight: 500;
         }
 
-        /* info grid */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr));
@@ -728,10 +780,9 @@
             transition: color 0.4s ease;
         }
 
-        /* skills grid */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(285px, 100%), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
             gap: 13px;
         }
         .skill-block {
@@ -780,10 +831,9 @@
             line-height: 1.45;
         }
 
-        /* projects grid */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(310px, 100%), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
             gap: 15px;
         }
         .project-card {
@@ -842,7 +892,6 @@
             color: var(--red);
         }
 
-        /* timeline */
         .timeline {
             position: relative;
             padding-left: 24px;
@@ -932,65 +981,13 @@
             animation: dotBeat 1.3s ease-in-out infinite;
         }
 
-        /* social */
-        .social-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 11px;
-        }
-        .social-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 11px 22px;
-            border-radius: 40px;
-            text-decoration: none;
-            color: var(--text-soft);
-            font-weight: 500;
-            font-size: 0.84rem;
-            border: 1px solid var(--border);
-            background: var(--surface);
-            transition: all 0.32s ease, background 0.4s ease, border 0.4s ease, color 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
-            transition: left 0.55s ease;
-        }
-        .social-link:hover::before {
-            left: 100%;
-        }
-        .social-link:hover {
-            color: var(--text);
-            border-color: var(--red);
-            background: var(--surface-hover);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45), 0 0 20px var(--red-glow);
-        }
-        .social-link i {
-            font-size: 1.02rem;
-        }
-        .contact-note {
-            color: var(--text-soft);
-            font-size: 0.89rem;
-            margin-top: 1.1rem;
-            line-height: 1.85;
-        }
-
         .footer {
             text-align: center;
-            padding: clamp(2.2rem, 4.5vw, 3.2rem) 0;
+            padding: clamp(2rem, 4vw, 3rem) 0;
             color: var(--text-muted);
             font-size: 0.74rem;
             border-top: 1px solid var(--border);
-            margin-top: clamp(2.2rem, 4.5vw, 3.2rem);
+            margin-top: clamp(2rem, 4vw, 3rem);
             transition: color 0.4s ease, border 0.4s ease;
         }
         .footer span {
@@ -1009,6 +1006,43 @@
             border-radius: 10px;
         }
 
+        @media (max-width: 900px) {
+            .layout {
+                flex-direction: column;
+            }
+            .side-nav {
+                position: sticky;
+                top: 0;
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 12px 8px;
+                gap: 6px;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                z-index: 50;
+            }
+            body.rtl .side-nav {
+                border-left: none;
+                border-bottom: 1px solid var(--border);
+            }
+            .side-nav .nav-link {
+                padding: 8px 14px;
+                font-size: 0.73rem;
+            }
+            .side-nav .nav-link:hover {
+                transform: translateY(-2px);
+            }
+            body.rtl .side-nav .nav-link:hover {
+                transform: translateY(-2px);
+            }
+            .main-content {
+                padding: 0 clamp(0.8rem, 3vw, 1.5rem);
+            }
+        }
+
         @media (max-width: 480px) {
             .skills-grid,
             .projects-grid {
@@ -1017,18 +1051,14 @@
             .info-grid {
                 grid-template-columns: 1fr 1fr;
             }
-            .social-row {
-                flex-direction: column;
-            }
-            .social-link {
-                justify-content: center;
-            }
             .hero-avatar-glow {
                 width: 105px;
                 height: 105px;
             }
             .top-bar {
                 gap: 7px;
+                top: 10px;
+                right: 8px;
             }
             .theme-btn {
                 width: 38px;
@@ -1044,12 +1074,9 @@
                 width: 100%;
                 justify-content: center;
             }
-            .nav-tabs {
-                gap: 7px;
-            }
-            .nav-tab {
-                padding: 9px 15px;
-                font-size: 0.75rem;
+            .side-nav .nav-link {
+                font-size: 0.7rem;
+                padding: 7px 10px;
             }
         }
         @media (max-width: 360px) {
@@ -1079,164 +1106,179 @@
         </button>
     </div>
 
-    <div class="container" id="main">
+    <div class="layout">
 
-        <section class="hero" id="hero">
-            <div class="hero-avatar-box">
-                <div class="hero-avatar-glow"></div>
-                <span class="hero-ring"></span>
-                <span class="hero-ring"></span>
-                <div class="hero-avatar">
-                    <span>BODA</span>
-                    <span class="avatar-shine"></span>
-                </div>
-            </div>
-
-            <p class="hero-greeting" data-ar="مرحباً، أنا عبد الرحمن 👋" data-en="Hi, I'm Abdelrahman 👋" data-de="Hallo, ich bin Abdelrahman 👋">Hi, I'm Abdelrahman 👋</p>
-
-            <h1 class="hero-name" data-ar="مطور <span>واجهات أمامية</span>" data-en="<span>Frontend Developer</span> in Progress" data-de="<span>Frontend-Entwickler</span> in Ausbildung"><span>Frontend Developer</span> in Progress</h1>
-
-            <p class="hero-title" data-ar="أبني مواقع ويب حديثة ومتجاوبة وأتعلم باستمرار من خلال إنشاء مشاريع حقيقية" data-en="I build modern, responsive websites and I'm constantly learning by creating real projects" data-de="Ich entwickle moderne, responsive Websites und lerne ständig durch die Erstellung echter Projekte">I build modern, responsive websites and I'm constantly learning by creating real projects</p>
-
-            <div class="hero-tagline">
-                <i class="fas fa-bolt" style="color:var(--red-bright);"></i>
-                <span data-ar="التعلم من خلال بناء مشاريع حقيقية" data-en="Learning by building real projects" data-de="Lernen durch den Aufbau echter Projekte">Learning by building real projects</span>
-            </div>
-
-            <div class="hero-buttons">
-                <a href="#about" class="btn-primary"><i class="fas fa-user"></i> <span data-ar="اعرف المزيد عني" data-en="Learn More About Me" data-de="Erfahre mehr über mich">Learn More About Me</span></a>
-                <a href="#contact" class="btn-secondary"><i class="fas fa-paper-plane"></i> <span data-ar="تواصل معي" data-en="Get In Touch" data-de="Kontakt aufnehmen">Get In Touch</span></a>
-            </div>
-        </section>
-
-        <nav class="nav-tabs" id="navTabs">
-            <a href="#about" class="nav-tab"><i class="fas fa-user"></i> <span data-ar="نبذة عني" data-en="About Me" data-de="Über Mich">About Me</span></a>
-            <a href="#excel" class="nav-tab"><i class="fas fa-star"></i> <span data-ar="ما أتقنه" data-en="What I Excel At" data-de="Was ich beherrsche">What I Excel At</span></a>
-            <a href="#projects" class="nav-tab"><i class="fas fa-folder-open"></i> <span data-ar="المشاريع" data-en="Projects" data-de="Projekte">Projects</span></a>
-            <a href="#different" class="nav-tab"><i class="fas fa-rocket"></i> <span data-ar="لماذا أنا مختلف" data-en="Why I'm Different" data-de="Warum ich anders bin">Why I'm Different</span></a>
-            <a href="#personal" class="nav-tab"><i class="fas fa-address-card"></i> <span data-ar="معلومات شخصية" data-en="Personal Info" data-de="Persönliche Daten">Personal Info</span></a>
-            <a href="#education" class="nav-tab"><i class="fas fa-graduation-cap"></i> <span data-ar="التعليم" data-en="Education" data-de="Bildung">Education</span></a>
-            <a href="#languages" class="nav-tab"><i class="fas fa-code"></i> <span data-ar="لغات البرمجة" data-en="Languages" data-de="Sprachen">Languages</span></a>
-            <a href="#technologies" class="nav-tab"><i class="fas fa-tools"></i> <span data-ar="التقنيات" data-en="Technologies" data-de="Technologien">Technologies</span></a>
-            <a href="#skills" class="nav-tab"><i class="fas fa-cogs"></i> <span data-ar="المهارات" data-en="Soft Skills" data-de="Soft Skills">Soft Skills</span></a>
-            <a href="#contact" class="nav-tab"><i class="fas fa-paper-plane"></i> <span data-ar="تواصل" data-en="Contact" data-de="Kontakt">Contact</span></a>
+        <!-- Left side navigation -->
+        <nav class="side-nav" id="sideNav">
+            <a href="#hero" class="nav-link"><i class="fas fa-home"></i> <span data-ar="الرئيسية" data-en="Home" data-de="Start">Home</span></a>
+            <a href="#about" class="nav-link"><i class="fas fa-user"></i> <span data-ar="نبذة عني" data-en="About Me" data-de="Über Mich">About Me</span></a>
+            <a href="#excel" class="nav-link"><i class="fas fa-star"></i> <span data-ar="ما أتقنه" data-en="What I Excel At" data-de="Was ich beherrsche">What I Excel At</span></a>
+            <a href="#projects" class="nav-link"><i class="fas fa-folder-open"></i> <span data-ar="المشاريع" data-en="Projects" data-de="Projekte">Projects</span></a>
+            <a href="#different" class="nav-link"><i class="fas fa-rocket"></i> <span data-ar="لماذا أنا مختلف" data-en="Why I'm Different" data-de="Warum ich anders bin">Why I'm Different</span></a>
+            <a href="#personal" class="nav-link"><i class="fas fa-address-card"></i> <span data-ar="معلومات شخصية" data-en="Personal Info" data-de="Persönliche Daten">Personal Info</span></a>
+            <a href="#education" class="nav-link"><i class="fas fa-graduation-cap"></i> <span data-ar="التعليم" data-en="Education" data-de="Bildung">Education</span></a>
+            <a href="#languages" class="nav-link"><i class="fas fa-code"></i> <span data-ar="لغات البرمجة" data-en="Languages" data-de="Sprachen">Languages</span></a>
+            <a href="#technologies" class="nav-link"><i class="fas fa-tools"></i> <span data-ar="التقنيات" data-en="Technologies" data-de="Technologien">Technologies</span></a>
+            <a href="#skills" class="nav-link"><i class="fas fa-cogs"></i> <span data-ar="المهارات" data-en="Soft Skills" data-de="Soft Skills">Soft Skills</span></a>
         </nav>
 
-        <section class="section" id="about">
-            <div class="section-header"><h2 data-ar="نبذة عني" data-en="About Me" data-de="Über Mich">About Me</h2></div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-user"></i></div>
-                <p class="card-text" data-ar="أنا مطور أتعلم ذاتياً وأركز على تطوير الويب وحل المشكلات. أستمتع ببناء مشاريع حقيقية وتحسين مهاراتي كل يوم من خلال الممارسة."
-                data-en="I'm a self-learning developer focused on web development and problem solving. I enjoy building real projects and improving my skills every day through practice."
-                data-de="Ich bin ein selbstlernender Entwickler mit Fokus auf Webentwicklung und Problemlösung. Ich baue gerne echte Projekte und verbessere meine Fähigkeiten täglich durch Praxis.">I'm a self-learning developer focused on web development and problem solving. I enjoy building real projects and improving my skills every day through practice.</p>
-            </div>
-        </section>
+        <!-- Main content -->
+        <div class="main-content" id="main">
 
-        <section class="section" id="excel">
-            <div class="section-header"><h2 data-ar="ما أتقنه" data-en="What I Excel At" data-de="Was ich beherrsche">What I Excel At</h2></div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-star"></i></div>
-                <p class="card-text" data-ar="لدي خبرة قوية في <strong>HTML5</strong> و <strong>CSS3</strong> لبناء واجهات حديثة ومتجاوبة. أكتب كود <strong>JavaScript</strong> نظيف وفعال. أعمل مع <strong>Python</strong> لبناء التطبيقات ولدي معرفة جيدة بـ <strong>C++</strong> و <strong>C#</strong>. أتقن <strong>SQL Server</strong> لإدارة قواعد البيانات. أستخدم <strong>Git و GitHub</strong> للتحكم في النسخ."
-                data-en="I have strong experience with <strong>HTML5</strong> and <strong>CSS3</strong> for modern, responsive interfaces. I write clean <strong>JavaScript</strong> code. I work with <strong>Python</strong> for applications and have solid knowledge of <strong>C++</strong> and <strong>C#</strong>. I'm skilled in <strong>SQL Server</strong> for database management. I use <strong>Git and GitHub</strong> for version control."
-                data-de="Ich habe fundierte Erfahrung mit <strong>HTML5</strong> und <strong>CSS3</strong>. Ich schreibe sauberen <strong>JavaScript</strong>-Code. Ich arbeite mit <strong>Python</strong> und habe gute Kenntnisse in <strong>C++</strong> und <strong>C#</strong>. Ich beherrsche <strong>SQL Server</strong> und nutze <strong>Git und GitHub</strong>.">I have strong experience with <strong>HTML5</strong> and <strong>CSS3</strong> for modern, responsive interfaces. I write clean <strong>JavaScript</strong> code. I work with <strong>Python</strong> for applications and have solid knowledge of <strong>C++</strong> and <strong>C#</strong>. I'm skilled in <strong>SQL Server</strong> for database management. I use <strong>Git and GitHub</strong> for version control.</p>
-            </div>
-        </section>
+            <!-- Hero with contact strip at the top -->
+            <section class="hero" id="hero">
 
-        <section class="section" id="projects">
-            <div class="section-header"><h2 data-ar="المشاريع" data-en="Projects" data-de="Projekte">Projects</h2></div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-folder-open"></i></div>
-                <div class="projects-grid" id="projectsContainer"></div>
-            </div>
-        </section>
-
-        <section class="section" id="different">
-            <div class="section-header"><h2 data-ar="لماذا أنا مختلف" data-en="Why I'm Different" data-de="Warum ich anders bin">Why I'm Different</h2></div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-rocket"></i></div>
-                <p class="card-text" data-ar="أنا لا أكتفي بتعلم الأساسيات فقط، بل أتعمق في كل تقنية حتى أفهمها من جذورها. لدي قدرة عالية على <strong>التفكير التحليلي</strong> وحل المشكلات. أعمل بشغف وانضباط، وأتعلم بسرعة، ولا أستسلم أمام التحديات. أسعى دائماً للتميز في كل مشروع."
-                data-en="I don't just learn the basics — I dive deep into every technology until I understand it completely. I have strong <strong>analytical thinking</strong> and problem-solving skills. I work with passion and discipline, I learn fast, and I never give up. I always strive for excellence in every project."
-                data-de="Ich lerne nicht nur die Grundlagen. Ich habe starke <strong>analytische Denkfähigkeiten</strong>. Ich arbeite mit Leidenschaft und Disziplin und gebe nie auf.">I don't just learn the basics — I dive deep into every technology until I understand it completely. I have strong <strong>analytical thinking</strong> and problem-solving skills. I work with passion and discipline, I learn fast, and I never give up. I always strive for excellence in every project.</p>
-            </div>
-        </section>
-
-        <section class="section" id="personal">
-            <div class="section-header"><h2 data-ar="المعلومات الشخصية" data-en="Personal Information" data-de="Persönliche Daten">Personal Information</h2></div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-address-card"></i></div>
-                <div class="info-grid">
-                    <div class="info-cell"><div class="info-label" data-ar="الاسم الكامل" data-en="Full Name" data-de="Vollständiger Name">Full Name</div><div class="info-value">Abdelrahman Mamdouh</div></div>
-                    <div class="info-cell"><div class="info-label" data-ar="العمر" data-en="Age" data-de="Alter">Age</div><div class="info-value" data-ar="20 سنة" data-en="20 Years Old" data-de="20 Jahre">20 Years Old</div></div>
-                    <div class="info-cell"><div class="info-label" data-ar="تاريخ الميلاد" data-en="Date of Birth" data-de="Geburtsdatum">Date of Birth</div><div class="info-value" data-ar="1 أغسطس 2005" data-en="August 1, 2005" data-de="1. August 2005">August 1, 2005</div></div>
-                    <div class="info-cell"><div class="info-label" data-ar="الجنسية" data-en="Nationality" data-de="Nationalität">Nationality</div><div class="info-value" data-ar="مصري" data-en="Egyptian" data-de="Ägypter">Egyptian</div></div>
-                    <div class="info-cell"><div class="info-label" data-ar="التخصص" data-en="Specialization" data-de="Spezialisierung">Specialization</div><div class="info-value" data-ar="نظم المعلومات" data-en="Information Systems" data-de="Informationssysteme">Information Systems</div></div>
-                    <div class="info-cell"><div class="info-label" data-ar="القسم" data-en="Department" data-de="Fachbereich">Department</div><div class="info-value" data-ar="علوم الحاسب" data-en="Computer Science" data-de="Informatik">Computer Science</div></div>
-                    <div class="info-cell"><div class="info-label" data-ar="الحالة الدراسية" data-en="Status" data-de="Status">Status</div><div class="info-value" style="color:var(--red);" data-ar="قيد الدراسة" data-en="Currently Studying" data-de="Studierend">Currently Studying</div></div>
+                <!-- Contact strip at the very top -->
+                <div class="contact-strip">
+                    <a href="https://github.com/Abdo1818" target="_blank" rel="noopener" class="mini-link"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://www.linkedin.com/in/ab-do-097783272" target="_blank" rel="noopener" class="mini-link"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                    <a href="https://www.instagram.com/bboda_7" target="_blank" rel="noopener" class="mini-link"><i class="fab fa-instagram"></i> Instagram</a>
                 </div>
-            </div>
-        </section>
 
-        <section class="section" id="education">
-            <div class="section-header"><h2 data-ar="التعليم" data-en="Education" data-de="Bildung">Education</h2></div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
-                <div class="timeline">
-                    <div class="tl-item">
-                        <div class="tl-date" data-ar="2023 - الحالي" data-en="2023 - Present" data-de="2023 - Heute">2023 - Present</div>
-                        <div class="tl-title" data-ar="أكاديمية القاهرة الجديدة" data-en="New Cairo Academy" data-de="New Cairo Academy">New Cairo Academy</div>
-                        <div class="tl-desc" data-ar="بكالوريوس علوم الحاسب - تخصص نظم المعلومات" data-en="Bachelor of Computer Science - Information Systems" data-de="Bachelor of Computer Science - Informationssysteme">Bachelor of Computer Science - Information Systems</div>
-                        <span class="status-tag"><span class="live"></span><span data-ar="قيد الدراسة" data-en="Currently Studying" data-de="Derzeit am Studieren">Currently Studying</span></span>
-                    </div>
-                    <div class="tl-item">
-                        <div class="tl-date" data-ar="2020 - 2023" data-en="2020 - 2023" data-de="2020 - 2023">2020 - 2023</div>
-                        <div class="tl-title" data-ar="التعليم الثانوي" data-en="High School Education" data-de="Gymnasium">High School Education</div>
-                        <div class="tl-desc" data-ar="التأسيس للدخول في مجال التكنولوجيا" data-en="Foundation for entering the technology field" data-de="Grundlage für den Einstieg in die Technologie">Foundation for entering the technology field</div>
+                <div class="hero-avatar-box">
+                    <div class="hero-avatar-glow"></div>
+                    <span class="hero-ring"></span>
+                    <span class="hero-ring"></span>
+                    <div class="hero-avatar">
+                        <span>BODA</span>
+                        <span class="avatar-shine"></span>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section class="section" id="languages">
-            <div class="section-header"><h2 data-ar="لغات البرمجة" data-en="Programming Languages" data-de="Programmiersprachen">Programming Languages</h2></div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-code"></i></div>
-                <div class="skills-grid" id="languagesContainer"></div>
-            </div>
-        </section>
+                <p class="hero-greeting" data-ar="مرحباً، أنا عبد الرحمن 👋" data-en="Hi, I'm Abdelrahman 👋" data-de="Hallo, ich bin Abdelrahman 👋">Hi, I'm Abdelrahman 👋</p>
 
-        <section class="section" id="technologies">
-            <div class="section-header"><h2 data-ar="التقنيات والأدوات" data-en="Technologies & Tools" data-de="Technologien & Werkzeuge">Technologies & Tools</h2></div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-tools"></i></div>
-                <div class="skills-grid" id="technologiesContainer"></div>
-            </div>
-        </section>
+                <h1 class="hero-name" data-ar="مطور <span>واجهات أمامية</span>" data-en="<span>Frontend Developer</span> in Progress" data-de="<span>Frontend-Entwickler</span> in Ausbildung"><span>Frontend Developer</span> in Progress</h1>
 
-        <section class="section" id="skills">
-            <div class="section-header"><h2 data-ar="المهارات الشخصية" data-en="Soft Skills" data-de="Soft Skills">Soft Skills</h2></div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-cogs"></i></div>
-                <div class="skills-grid" id="skillsContainer"></div>
-            </div>
-        </section>
+                <p class="hero-title" data-ar="أبني مواقع ويب حديثة ومتجاوبة وأتعلم باستمرار من خلال إنشاء مشاريع حقيقية" data-en="I build modern, responsive websites and I'm constantly learning by creating real projects" data-de="Ich entwickle moderne, responsive Websites und lerne ständig durch die Erstellung echter Projekte">I build modern, responsive websites and I'm constantly learning by creating real projects</p>
 
-        <section class="section" id="contact">
-            <div class="section-header"><h2 data-ar="تواصل معي" data-en="Contact Me" data-de="Kontakt">Contact Me</h2></div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-paper-plane"></i></div>
-                <div class="social-row">
-                    <a href="https://github.com/Abdo1818" target="_blank" rel="noopener" class="social-link"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="https://www.linkedin.com/in/ab-do-097783272" target="_blank" rel="noopener" class="social-link"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-                    <a href="https://www.instagram.com/bboda_7" target="_blank" rel="noopener" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
+                <div class="hero-tagline">
+                    <i class="fas fa-bolt" style="color:var(--red-bright);"></i>
+                    <span data-ar="التعلم من خلال بناء مشاريع حقيقية" data-en="Learning by building real projects" data-de="Lernen durch den Aufbau echter Projekte">Learning by building real projects</span>
                 </div>
-                <p class="contact-note" data-ar="أنا دائماً منفتح للفرص أو التعاون أو الملاحظات. لا تتردد في التواصل معي في أي وقت." data-en="I'm always open to opportunities, collaboration, or feedback. Feel free to reach out anytime." data-de="Ich bin immer offen für Möglichkeiten, Zusammenarbeit oder Feedback. Kontaktieren Sie mich jederzeit.">I'm always open to opportunities, collaboration, or feedback. Feel free to reach out anytime.</p>
-            </div>
-        </section>
+
+                <div class="hero-buttons">
+                    <a href="#about" class="btn-primary"><i class="fas fa-user"></i> <span data-ar="اعرف المزيد عني" data-en="Learn More About Me" data-de="Erfahre mehr über mich">Learn More About Me</span></a>
+                    <a href="#contact" class="btn-secondary"><i class="fas fa-paper-plane"></i> <span data-ar="تواصل معي" data-en="Get In Touch" data-de="Kontakt aufnehmen">Get In Touch</span></a>
+                </div>
+            </section>
+
+            <section class="section" id="about">
+                <div class="section-header"><h2 data-ar="نبذة عني" data-en="About Me" data-de="Über Mich">About Me</h2></div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-user"></i></div>
+                    <p class="card-text" data-ar="أنا مطور أتعلم ذاتياً وأركز على تطوير الويب وحل المشكلات. أستمتع ببناء مشاريع حقيقية وتحسين مهاراتي كل يوم من خلال الممارسة."
+                    data-en="I'm a self-learning developer focused on web development and problem solving. I enjoy building real projects and improving my skills every day through practice."
+                    data-de="Ich bin ein selbstlernender Entwickler mit Fokus auf Webentwicklung und Problemlösung. Ich baue gerne echte Projekte und verbessere meine Fähigkeiten täglich durch Praxis.">I'm a self-learning developer focused on web development and problem solving. I enjoy building real projects and improving my skills every day through practice.</p>
+                </div>
+            </section>
+
+            <section class="section" id="excel">
+                <div class="section-header"><h2 data-ar="ما أتقنه" data-en="What I Excel At" data-de="Was ich beherrsche">What I Excel At</h2></div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-star"></i></div>
+                    <p class="card-text" data-ar="لدي خبرة قوية في <strong>HTML5</strong> و <strong>CSS3</strong> لبناء واجهات حديثة ومتجاوبة. أكتب كود <strong>JavaScript</strong> نظيف وفعال. أعمل مع <strong>Python</strong> لبناء التطبيقات ولدي معرفة جيدة بـ <strong>C++</strong> و <strong>C#</strong>. أتقن <strong>SQL Server</strong> لإدارة قواعد البيانات وأستخدم <strong>Visual Studio</strong> و <strong>Code::Blocks</strong> كأدوات تطوير أساسية. أجيد العمل على <strong>Cisco Packet Tracer</strong> لمحاكاة الشبكات وحاصل على شهادة <strong>CCNA</strong>. أستخدم <strong>Git و GitHub</strong> للتحكم في النسخ والتعاون."
+                    data-en="I have strong experience with <strong>HTML5</strong> and <strong>CSS3</strong> for modern, responsive interfaces. I write clean <strong>JavaScript</strong> code. I work with <strong>Python</strong> for applications and have solid knowledge of <strong>C++</strong> and <strong>C#</strong>. I'm skilled in <strong>SQL Server</strong> for database management and use <strong>Visual Studio</strong> and <strong>Code::Blocks</strong> as my primary development tools. I'm proficient with <strong>Cisco Packet Tracer</strong> for network simulation and hold a <strong>CCNA</strong> certification. I use <strong>Git and GitHub</strong> for version control and collaboration."
+                    data-de="Ich habe fundierte Erfahrung mit <strong>HTML5</strong> und <strong>CSS3</strong>. Ich schreibe sauberen <strong>JavaScript</strong>-Code. Ich arbeite mit <strong>Python</strong> und habe gute Kenntnisse in <strong>C++</strong> und <strong>C#</strong>. Ich beherrsche <strong>SQL Server</strong> und nutze <strong>Visual Studio</strong> und <strong>Code::Blocks</strong>. Ich arbeite mit <strong>Cisco Packet Tracer</strong> und besitze die <strong>CCNA</strong>-Zertifizierung. Ich verwende <strong>Git und GitHub</strong>.">I have strong experience with <strong>HTML5</strong> and <strong>CSS3</strong> for modern, responsive interfaces. I write clean <strong>JavaScript</strong> code. I work with <strong>Python</strong> for applications and have solid knowledge of <strong>C++</strong> and <strong>C#</strong>. I'm skilled in <strong>SQL Server</strong> for database management and use <strong>Visual Studio</strong> and <strong>Code::Blocks</strong> as my primary development tools. I'm proficient with <strong>Cisco Packet Tracer</strong> for network simulation and hold a <strong>CCNA</strong> certification. I use <strong>Git and GitHub</strong> for version control and collaboration.</p>
+                </div>
+            </section>
+
+            <section class="section" id="projects">
+                <div class="section-header"><h2 data-ar="المشاريع" data-en="Projects" data-de="Projekte">Projects</h2></div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-folder-open"></i></div>
+                    <div class="projects-grid" id="projectsContainer"></div>
+                </div>
+            </section>
+
+            <section class="section" id="different">
+                <div class="section-header"><h2 data-ar="لماذا أنا مختلف" data-en="Why I'm Different" data-de="Warum ich anders bin">Why I'm Different</h2></div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-rocket"></i></div>
+                    <p class="card-text" data-ar="أنا لا أكتفي بتعلم الأساسيات فقط، بل أتعمق في كل تقنية حتى أفهمها من جذورها. لدي قدرة عالية على <strong>التفكير التحليلي</strong> وحل المشكلات. أعمل بشغف وانضباط، وأتعلم بسرعة، ولا أستسلم أمام التحديات. أسعى دائماً للتميز في كل مشروع."
+                    data-en="I don't just learn the basics — I dive deep into every technology until I understand it completely. I have strong <strong>analytical thinking</strong> and problem-solving skills. I work with passion and discipline, I learn fast, and I never give up. I always strive for excellence in every project."
+                    data-de="Ich lerne nicht nur die Grundlagen. Ich habe starke <strong>analytische Denkfähigkeiten</strong>. Ich arbeite mit Leidenschaft und Disziplin und gebe nie auf.">I don't just learn the basics — I dive deep into every technology until I understand it completely. I have strong <strong>analytical thinking</strong> and problem-solving skills. I work with passion and discipline, I learn fast, and I never give up. I always strive for excellence in every project.</p>
+                </div>
+            </section>
+
+            <section class="section" id="personal">
+                <div class="section-header"><h2 data-ar="المعلومات الشخصية" data-en="Personal Information" data-de="Persönliche Daten">Personal Information</h2></div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-address-card"></i></div>
+                    <div class="info-grid">
+                        <div class="info-cell"><div class="info-label" data-ar="الاسم الكامل" data-en="Full Name" data-de="Vollständiger Name">Full Name</div><div class="info-value">Abdelrahman Mamdouh</div></div>
+                        <div class="info-cell"><div class="info-label" data-ar="العمر" data-en="Age" data-de="Alter">Age</div><div class="info-value" data-ar="20 سنة" data-en="20 Years Old" data-de="20 Jahre">20 Years Old</div></div>
+                        <div class="info-cell"><div class="info-label" data-ar="تاريخ الميلاد" data-en="Date of Birth" data-de="Geburtsdatum">Date of Birth</div><div class="info-value" data-ar="1 أغسطس 2005" data-en="August 1, 2005" data-de="1. August 2005">August 1, 2005</div></div>
+                        <div class="info-cell"><div class="info-label" data-ar="الجنسية" data-en="Nationality" data-de="Nationalität">Nationality</div><div class="info-value" data-ar="مصري" data-en="Egyptian" data-de="Ägypter">Egyptian</div></div>
+                        <div class="info-cell"><div class="info-label" data-ar="التخصص" data-en="Specialization" data-de="Spezialisierung">Specialization</div><div class="info-value" data-ar="نظم المعلومات" data-en="Information Systems" data-de="Informationssysteme">Information Systems</div></div>
+                        <div class="info-cell"><div class="info-label" data-ar="القسم" data-en="Department" data-de="Fachbereich">Department</div><div class="info-value" data-ar="علوم الحاسب" data-en="Computer Science" data-de="Informatik">Computer Science</div></div>
+                        <div class="info-cell"><div class="info-label" data-ar="الحالة الدراسية" data-en="Status" data-de="Status">Status</div><div class="info-value" style="color:var(--red);" data-ar="قيد الدراسة" data-en="Currently Studying" data-de="Studierend">Currently Studying</div></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="education">
+                <div class="section-header"><h2 data-ar="التعليم" data-en="Education" data-de="Bildung">Education</h2></div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="timeline">
+                        <div class="tl-item">
+                            <div class="tl-date" data-ar="2023 - الحالي" data-en="2023 - Present" data-de="2023 - Heute">2023 - Present</div>
+                            <div class="tl-title" data-ar="أكاديمية القاهرة الجديدة" data-en="New Cairo Academy" data-de="New Cairo Academy">New Cairo Academy</div>
+                            <div class="tl-desc" data-ar="بكالوريوس علوم الحاسب - تخصص نظم المعلومات" data-en="Bachelor of Computer Science - Information Systems" data-de="Bachelor of Computer Science - Informationssysteme">Bachelor of Computer Science - Information Systems</div>
+                            <span class="status-tag"><span class="live"></span><span data-ar="قيد الدراسة" data-en="Currently Studying" data-de="Derzeit am Studieren">Currently Studying</span></span>
+                        </div>
+                        <div class="tl-item">
+                            <div class="tl-date" data-ar="2020 - 2023" data-en="2020 - 2023" data-de="2020 - 2023">2020 - 2023</div>
+                            <div class="tl-title" data-ar="التعليم الثانوي" data-en="High School Education" data-de="Gymnasium">High School Education</div>
+                            <div class="tl-desc" data-ar="التأسيس للدخول في مجال التكنولوجيا" data-en="Foundation for entering the technology field" data-de="Grundlage für den Einstieg in die Technologie">Foundation for entering the technology field</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="languages">
+                <div class="section-header"><h2 data-ar="لغات البرمجة" data-en="Programming Languages" data-de="Programmiersprachen">Programming Languages</h2></div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-code"></i></div>
+                    <div class="skills-grid" id="languagesContainer"></div>
+                </div>
+            </section>
+
+            <section class="section" id="technologies">
+                <div class="section-header"><h2 data-ar="التقنيات والأدوات" data-en="Technologies & Tools" data-de="Technologien & Werkzeuge">Technologies & Tools</h2></div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-tools"></i></div>
+                    <div class="skills-grid" id="technologiesContainer"></div>
+                </div>
+            </section>
+
+            <section class="section" id="skills">
+                <div class="section-header"><h2 data-ar="المهارات الشخصية" data-en="Soft Skills" data-de="Soft Skills">Soft Skills</h2></div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-cogs"></i></div>
+                    <div class="skills-grid" id="skillsContainer"></div>
+                </div>
+            </section>
+
+            <section class="section" id="contact">
+                <div class="section-header"><h2 data-ar="تواصل معي" data-en="Contact Me" data-de="Kontakt">Contact Me</h2></div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-paper-plane"></i></div>
+                    <p class="card-text" style="margin-bottom:1rem;" data-ar="أنا دائماً منفتح للفرص أو التعاون أو الملاحظات. لا تتردد في التواصل معي في أي وقت." data-en="I'm always open to opportunities, collaboration, or feedback. Feel free to reach out anytime." data-de="Ich bin immer offen für Möglichkeiten, Zusammenarbeit oder Feedback. Kontaktieren Sie mich jederzeit.">I'm always open to opportunities, collaboration, or feedback. Feel free to reach out anytime.</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                        <a href="https://github.com/Abdo1818" target="_blank" rel="noopener" class="mini-link" style="padding:10px 20px;font-size:0.84rem;"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://www.linkedin.com/in/ab-do-097783272" target="_blank" rel="noopener" class="mini-link" style="padding:10px 20px;font-size:0.84rem;"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                        <a href="https://www.instagram.com/bboda_7" target="_blank" rel="noopener" class="mini-link" style="padding:10px 20px;font-size:0.84rem;"><i class="fab fa-instagram"></i> Instagram</a>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <div class="container"><p id="footerText">© 2026 <span>Abdelrahman Mamdouh</span> (BODA) — All rights reserved</p></div>
+            </footer>
+
+        </div>
     </div>
-
-    <footer class="footer">
-        <div class="container"><p id="footerText">© 2025 <span>Abdelrahman Mamdouh</span> (BODA) — All rights reserved</p></div>
-    </footer>
 
     <script>
         (function() {
@@ -1333,12 +1375,24 @@
                     de: 'Hochleistungssoftware und Algorithmen' } },
             { en: 'C#', ar: 'C#', de: 'C#', icon: 'fa-code',
                 desc: { en: 'Desktop applications and .NET development',
-                ar: 'تطبيقات سطح المكتب وتطوير .NET', de: 'Desktop-Anwendungen und .NET-Entwicklung' } }
+                ar: 'تطبيقات سطح المكتب وتطوير .NET', de: 'Desktop-Anwendungen und .NET-Entwicklung' } },
+            { en: 'CCNA', ar: 'CCNA', de: 'CCNA', icon: 'fa-network-wired',
+                desc: { en: 'Cisco Certified Network Associate - networking fundamentals',
+                ar: 'أساسيات الشبكات من سيسكو', de: 'Cisco Certified Network Associate - Netzwerkgrundlagen' } }
         ];
         var technologiesData = [
             { en: 'SQL Server', ar: 'SQL Server', de: 'SQL Server', icon: 'fa-database',
                 desc: { en: 'Database design, queries, and management', ar: 'تصميم قواعد البيانات والاستعلامات والإدارة',
                     de: 'Datenbankdesign, Abfragen und Verwaltung' } },
+            { en: 'Visual Studio', ar: 'Visual Studio', de: 'Visual Studio', icon: 'fa-code',
+                desc: { en: 'Primary IDE for C# and .NET development', ar: 'بيئة التطوير الأساسية لـ C# و .NET',
+                    de: 'Primäre IDE für C# und .NET-Entwicklung' } },
+            { en: 'Code::Blocks', ar: 'Code::Blocks', de: 'Code::Blocks', icon: 'fa-cube',
+                desc: { en: 'Lightweight C/C++ development environment', ar: 'بيئة تطوير خفيفة للـ C/C++',
+                    de: 'Leichte Entwicklungsumgebung für C/C++' } },
+            { en: 'Cisco Packet Tracer', ar: 'Cisco Packet Tracer', de: 'Cisco Packet Tracer', icon: 'fa-network-wired',
+                desc: { en: 'Network simulation and design tool', ar: 'أداة محاكاة وتصميم الشبكات',
+                    de: 'Netzwerk-Simulations- und Design-Tool' } },
             { en: 'Git & GitHub', ar: 'Git & GitHub', de: 'Git & GitHub', icon: 'fa-git-alt',
                 desc: { en: 'Version control and team collaboration', ar: 'التحكم في النسخ والتعاون الجماعي',
                     de: 'Versionskontrolle und Teamzusammenarbeit' } },
@@ -1412,7 +1466,7 @@
             renderProjects(lang); }
         renderAll('en');
 
-        var footerText = { en: '© 2025 <span>Abdelrahman Mamdouh</span> (BODA) — All rights reserved',
+        var footerText = { en: '© 2026 <span>Abdelrahman Mamdouh</span> (BODA) — All rights reserved',
             ar: '© 2026 <span>عبد الرحمن ممدوح</span> (BODA) — جميع الحقوق محفوظة',
             de: '© 2026 <span>Abdelrahman Mamdouh</span> (BODA) — Alle Rechte vorbehalten' };
         var titles = { en: 'BODA | Abdelrahman Mamdouh - Frontend Developer',
@@ -1456,8 +1510,8 @@
         var savedLang = localStorage.getItem('boda_cv_lang') || 'en'; if (savedLang !== 'en') setTimeout(function() { switchLang(
             savedLang); }, 30);
 
-        document.querySelectorAll('.nav-tab').forEach(function(tab) { tab.addEventListener('click', function(e) { e
-                .preventDefault();
+        document.querySelectorAll('.side-nav .nav-link').forEach(function(link) { link.addEventListener('click',
+            function(e) { e.preventDefault();
             var target = document.querySelector(this.getAttribute('href')); if (target) { target.scrollIntoView({ behavior: 'smooth',
                     block: 'start' }); } }); });
     </script>
