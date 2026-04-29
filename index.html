@@ -104,7 +104,6 @@
             padding: 0 clamp(1rem, 3vw, 2rem);
         }
 
-        /* ---- top controls bar (fixed) ---- */
         .controls-bar {
             position: fixed;
             top: 16px;
@@ -112,17 +111,16 @@
             right: 0;
             z-index: 100;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: space-between;
             padding: 0 16px;
             pointer-events: none;
         }
 
-        .controls-bar > * {
+        .controls-bar>* {
             pointer-events: auto;
         }
 
-        /* theme button - left side */
         .theme-btn {
             width: 42px;
             height: 42px;
@@ -162,7 +160,6 @@
             display: inline-block;
         }
 
-        /* language switcher - center */
         .lang-switch {
             display: flex;
             gap: 5px;
@@ -204,7 +201,6 @@
             background: rgba(128, 128, 128, 0.1);
         }
 
-        /* hamburger wrapper - right side */
         .hamburger-wrapper {
             position: relative;
             display: flex;
@@ -241,7 +237,6 @@
             box-shadow: 0 0 20px var(--red-glow);
         }
 
-        /* navigation panel - positioned relative to hamburger */
         .nav-panel {
             display: none;
             position: absolute;
@@ -317,7 +312,7 @@
 
         .hero {
             text-align: center;
-            padding: clamp(2.5rem, 7vw, 5rem) 0 clamp(1.5rem, 3vw, 2rem);
+            padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(1.5rem, 3vw, 2rem);
             position: relative;
         }
 
@@ -327,7 +322,7 @@
             justify-content: center;
             gap: 10px;
             margin-bottom: 2rem;
-            margin-top: 3rem;
+            margin-top: 3.5rem;
             animation: fadeSlideUpFull 0.65s ease both;
             animation-delay: 0.02s;
             opacity: 0;
@@ -1011,8 +1006,8 @@
                 height: 105px;
             }
             .controls-bar {
-                padding: 0 8px;
-                top: 10px;
+                padding: 0 10px;
+                top: 12px;
             }
             .hamburger-btn {
                 width: 38px;
@@ -1051,6 +1046,9 @@
             .contact-strip {
                 margin-top: 4rem;
             }
+            .hero {
+                padding-top: clamp(3.5rem, 10vw, 5.5rem);
+            }
         }
         @media (max-width: 360px) {
             .info-grid {
@@ -1067,7 +1065,6 @@
 
     <canvas id="scene"></canvas>
 
-    <!-- controls bar: theme left | language center | hamburger right -->
     <div class="controls-bar">
         <button class="theme-btn" onclick="toggleTheme()" id="themeToggle" aria-label="Toggle theme">
             <i class="fas fa-moon"></i>
@@ -1101,7 +1098,6 @@
 
     <div class="layout" id="main">
 
-        <!-- Hero -->
         <section class="hero" id="hero">
             <div class="contact-strip">
                 <a href="https://github.com/Abdo1818" target="_blank" rel="noopener" class="mini-link"><i class="fab fa-github"></i> GitHub</a>
