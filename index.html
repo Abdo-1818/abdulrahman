@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta name="google-site-verification" content="Y4Bz6WTtAbsv7AyZVgYEPDdbwZTodIakpMVtW8s3PEM" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>BODA | Abdelrahman Mamdouh - Frontend Developer</title>
-    <meta name="description" content="Abdelrahman Mamdouh - BODA. Frontend Developer building modern, responsive websites and software solutions.">
+    <meta name="description" content="Abdelrahman Mamdouh - BODA. Frontend Developer building modern, responsive websites.">
     <meta name="theme-color" content="#080808">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,17 +33,24 @@
             --gap: 14px;
             --shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
             --shadow-hover: 0 10px 34px rgba(0, 0, 0, 0.55);
+            --avatar-size: clamp(240px, 42vw, 330px);
         }
 
         body.light {
-            --bg: #f8f8f8;
+            --bg: #f0f6fc;
             --surface: #ffffff;
-            --surface-hover: #fafafa;
-            --border: #e5e5e5;
-            --border-hover: #c5c5c5;
-            --text: #1a1a1a;
-            --text-soft: #555555;
-            --text-muted: #8a8a8a;
+            --surface-hover: #f5faff;
+            --border: #d0dff0;
+            --border-hover: #7ab8f5;
+            --text: #0a1a2a;
+            --text-soft: #2a4a6a;
+            --text-muted: #5a7a9a;
+            --red: #1e90ff;
+            --red-bright: #40a0ff;
+            --red-glow: rgba(30, 144, 255, 0.35);
+            --red-glow-strong: rgba(30, 144, 255, 0.5);
+            --red-soft: rgba(30, 144, 255, 0.08);
+            --red-soft-hover: rgba(30, 144, 255, 0.16);
             --shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
             --shadow-hover: 0 8px 28px rgba(0, 0, 0, 0.12);
         }
@@ -97,7 +103,7 @@
         }
 
         .layout {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
@@ -312,21 +318,151 @@
         }
 
         .hero {
-            text-align: center;
-            padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(1.5rem, 3vw, 2rem);
+            display: flex;
+            align-items: center;
+            gap: clamp(2rem, 6vw, 5rem);
+            padding: clamp(4rem, 10vw, 7rem) 0 clamp(2rem, 3vw, 2.5rem);
             position: relative;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: left;
+        }
+
+        .hero-avatar-column {
+            flex-shrink: 0;
+            animation: fadeSlideUpFull 0.65s ease both;
+            animation-delay: 0.08s;
+            opacity: 0;
+        }
+
+        .hero-text-column {
+            flex: 1;
+            min-width: 280px;
+            max-width: 500px;
+            animation: fadeSlideUpFull 0.65s ease both;
+            animation-delay: 0.15s;
+            opacity: 0;
+        }
+
+        .hero-avatar-box {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-avatar-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(var(--avatar-size) + 40px);
+            height: calc(var(--avatar-size) + 40px);
+            background: radial-gradient(circle, rgba(229, 57, 53, 0.5) 0%, rgba(198, 40, 40, 0.25) 28%, rgba(198, 40, 40, 0.07) 55%, transparent 74%);
+            border-radius: 50%;
+            animation: glowBreathe 2.8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(18px);
+        }
+
+        body.light .hero-avatar-glow {
+            background: radial-gradient(circle, rgba(30, 144, 255, 0.5) 0%, rgba(30, 144, 255, 0.25) 28%, rgba(30, 144, 255, 0.07) 55%, transparent 74%);
+        }
+
+        @keyframes glowBreathe {
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        .hero-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1.5px solid transparent;
+            animation: ringSpin linear infinite;
+            pointer-events: none;
+        }
+
+        .hero-ring:first-child {
+            inset: -22px;
+            border-top-color: rgba(214, 48, 49, 0.55);
+            border-right-color: rgba(214, 48, 49, 0.25);
+            animation-duration: 3.8s;
+        }
+
+        body.light .hero-ring:first-child {
+            border-top-color: rgba(30, 144, 255, 0.55);
+            border-right-color: rgba(30, 144, 255, 0.25);
+        }
+
+        .hero-ring:last-child {
+            inset: -38px;
+            border-bottom-color: rgba(255, 255, 255, 0.12);
+            border-left-color: rgba(255, 255, 255, 0.06);
+            animation-duration: 7.5s;
+            animation-direction: reverse;
+        }
+
+        @keyframes ringSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero-avatar {
+            width: var(--avatar-size);
+            height: var(--avatar-size);
+            border-radius: 50%;
+            background-image: url('https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            z-index: 1;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            animation: floatAvatar 5.5s ease-in-out infinite;
+            transition: all 0.35s ease;
+            box-shadow: 0 0 50px var(--red-glow-strong);
+        }
+
+        @keyframes floatAvatar {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-12px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .hero-avatar:hover {
+            box-shadow: 0 0 100px var(--red-glow-strong);
+            transform: translateY(-16px) scale(1.05);
+        }
+
+        .hero-avatar .avatar-shine {
+            position: absolute;
+            top: 10%;
+            left: 15%;
+            width: 37%;
+            height: 47%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
         .contact-strip {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 2rem;
-            margin-top: 3.5rem;
-            animation: fadeSlideUpFull 0.65s ease both;
-            animation-delay: 0.02s;
-            opacity: 0;
+            gap: 8px;
+            margin-top: 1.2rem;
         }
 
         .contact-strip .mini-link {
@@ -374,26 +510,20 @@
         }
 
         .hero-greeting {
-            font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
             color: var(--red);
             font-weight: 600;
             letter-spacing: 0.02em;
-            margin-bottom: 0.6rem;
-            animation: fadeSlideUpFull 0.65s ease both;
-            animation-delay: 0.08s;
-            opacity: 0;
+            margin-bottom: 0.3rem;
         }
 
         .hero-name {
-            font-size: clamp(2.6rem, 7.5vw, 4.8rem);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
             font-weight: 900;
             color: var(--text);
-            line-height: 1.08;
-            margin-bottom: 1.1rem;
-            letter-spacing: -0.025em;
-            animation: fadeSlideUpFull 0.65s ease both;
-            animation-delay: 0.18s;
-            opacity: 0;
+            line-height: 1.15;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.02em;
             transition: color 0.4s ease;
         }
 
@@ -429,41 +559,37 @@
         }
 
         .hero-title {
-            font-size: clamp(1.02rem, 2.3vw, 1.45rem);
+            font-size: clamp(0.95rem, 1.8vw, 1.2rem);
             color: var(--text-soft);
             font-weight: 500;
-            margin-bottom: 1.6rem;
-            animation: fadeSlideUpFull 0.65s ease both;
-            animation-delay: 0.28s;
-            opacity: 0;
+            margin-bottom: 0.8rem;
             transition: color 0.4s ease;
-            max-width: 580px;
-            margin-left: auto;
-            margin-right: auto;
+            line-height: 1.5;
         }
 
         .hero-tagline {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 11px 26px;
+            padding: 10px 22px;
             background: var(--red-soft);
             border: 1px solid rgba(214, 48, 49, 0.22);
             border-radius: 44px;
             color: var(--red);
             font-weight: 600;
-            font-size: 0.92rem;
+            font-size: 0.88rem;
             letter-spacing: 0.03em;
-            margin-bottom: 2.2rem;
-            animation: fadeSlideUpFull 0.65s ease both;
-            animation-delay: 0.38s;
-            opacity: 0;
+            margin-bottom: 1.2rem;
             transition: background 0.4s ease;
+        }
+
+        body.light .hero-tagline {
+            border: 1px solid rgba(30, 144, 255, 0.22);
         }
 
         .hero-tagline i {
             animation: dotBeat 1.5s ease-in-out infinite;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         @keyframes dotBeat {
@@ -481,24 +607,21 @@
         .hero-buttons {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 14px;
-            animation: fadeSlideUpFull 0.65s ease both;
-            animation-delay: 0.46s;
-            opacity: 0;
+            gap: 12px;
+            margin-bottom: 0.5rem;
         }
 
         .btn-primary {
             display: inline-flex;
             align-items: center;
             gap: 9px;
-            padding: 13px 30px;
+            padding: 12px 26px;
             background: var(--red);
             color: #fff;
             text-decoration: none;
             border-radius: 44px;
             font-weight: 600;
-            font-size: 0.94rem;
+            font-size: 0.9rem;
             transition: all 0.32s ease;
             border: none;
             cursor: pointer;
@@ -535,13 +658,13 @@
             display: inline-flex;
             align-items: center;
             gap: 9px;
-            padding: 13px 30px;
+            padding: 12px 26px;
             background: transparent;
             color: var(--text);
             text-decoration: none;
             border-radius: 44px;
             font-weight: 600;
-            font-size: 0.94rem;
+            font-size: 0.9rem;
             transition: all 0.32s ease;
             border: 2px solid var(--border);
             cursor: pointer;
@@ -566,119 +689,6 @@
                 transform: translateY(0);
                 filter: blur(0);
             }
-        }
-
-        .hero-avatar-box {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 2.2rem;
-            animation: fadeSlideUpFull 0.65s ease both;
-            animation-delay: 0.08s;
-            opacity: 0;
-        }
-
-        .hero-avatar-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 140px;
-            height: 140px;
-            background: radial-gradient(circle, rgba(229, 57, 53, 0.5) 0%, rgba(198, 40, 40, 0.25) 28%, rgba(198, 40, 40, 0.07) 55%, transparent 74%);
-            border-radius: 50%;
-            animation: glowBreathe 2.8s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-            filter: blur(16px);
-        }
-
-        @keyframes glowBreathe {
-            0%,
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.5;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.5);
-                opacity: 1;
-            }
-        }
-
-        .hero-ring {
-            position: absolute;
-            border-radius: 50%;
-            border: 1.5px solid transparent;
-            animation: ringSpin linear infinite;
-            pointer-events: none;
-        }
-
-        .hero-ring:first-child {
-            inset: -13px;
-            border-top-color: rgba(214, 48, 49, 0.6);
-            border-right-color: rgba(214, 48, 49, 0.28);
-            animation-duration: 3.8s;
-        }
-
-        .hero-ring:last-child {
-            inset: -26px;
-            border-bottom-color: rgba(255, 255, 255, 0.14);
-            border-left-color: rgba(255, 255, 255, 0.07);
-            animation-duration: 7.5s;
-            animation-direction: reverse;
-        }
-
-        @keyframes ringSpin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .hero-avatar {
-            width: clamp(105px, 21vw, 155px);
-            height: clamp(105px, 21vw, 155px);
-            border-radius: 50%;
-            background: var(--surface);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: clamp(1.9rem, 4.2vw, 2.9rem);
-            font-weight: 700;
-            color: var(--text);
-            letter-spacing: 4px;
-            position: relative;
-            z-index: 1;
-            border: 1px solid rgba(255, 255, 255, 0.09);
-            animation: floatAvatar 5.5s ease-in-out infinite;
-            transition: all 0.35s ease, background 0.4s ease, color 0.4s ease;
-        }
-
-        @keyframes floatAvatar {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            30% {
-                transform: translateY(-12px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-
-        .hero-avatar:hover {
-            box-shadow: 0 0 90px var(--red-glow-strong);
-            transform: translateY(-16px) scale(1.05);
-        }
-
-        .hero-avatar .avatar-shine {
-            position: absolute;
-            top: 10%;
-            left: 15%;
-            width: 37%;
-            height: 47%;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent);
-            border-radius: 50%;
-            pointer-events: none;
         }
 
         .section {
@@ -846,6 +856,11 @@
             gap: 15px;
             animation: skillPopIn 0.5s ease both;
         }
+
+        body.light .skill-block {
+            border: 1px solid rgba(30, 144, 255, 0.12);
+        }
+
         @keyframes skillPopIn {
             from {
                 opacity: 0;
@@ -862,6 +877,11 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 28px var(--red-glow);
         }
+
+        body.light .skill-block:hover {
+            border-color: rgba(30, 144, 255, 0.35);
+        }
+
         .skill-block i {
             font-size: 1.9rem;
             color: var(--red);
@@ -962,6 +982,11 @@
             font-weight: 500;
             margin-top: 6px;
         }
+
+        body.light .status-tag {
+            border: 1px solid rgba(30, 144, 255, 0.14);
+        }
+
         .status-tag .live {
             width: 6px;
             height: 6px;
@@ -995,16 +1020,32 @@
             border-radius: 10px;
         }
 
+        @media (max-width: 850px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-text-column {
+                text-align: center;
+                max-width: 100%;
+            }
+            .contact-strip {
+                justify-content: center;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .hero-avatar-column {
+                order: -1;
+            }
+        }
+
         @media (max-width: 480px) {
             .skills-grid {
                 grid-template-columns: 1fr;
             }
             .info-grid {
                 grid-template-columns: 1fr 1fr;
-            }
-            .hero-avatar-glow {
-                width: 105px;
-                height: 105px;
             }
             .controls-bar {
                 padding: 0 10px;
@@ -1030,34 +1071,15 @@
                 padding: 6px 11px;
                 font-size: 0.7rem;
             }
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            .btn-primary,
-            .btn-secondary {
-                width: 100%;
-                justify-content: center;
-            }
             .lang-btn {
                 padding: 6px 10px;
                 font-size: 0.68rem;
                 min-width: 42px;
             }
-            .contact-strip {
-                margin-top: 4rem;
-            }
-            .hero {
-                padding-top: clamp(3.5rem, 10vw, 5.5rem);
-            }
         }
         @media (max-width: 360px) {
             .info-grid {
                 grid-template-columns: 1fr;
-            }
-            .hero-avatar-glow {
-                width: 85px;
-                height: 85px;
             }
         }
     </style>
@@ -1083,14 +1105,13 @@
             <div class="nav-panel" id="navPanel">
                 <div class="nav-grid">
                     <a href="#hero" class="nav-link" onclick="closeNav()"><i class="fas fa-home"></i> <span data-ar="الرئيسية" data-en="Home" data-de="Start">Home</span></a>
+                    <a href="#personal" class="nav-link" onclick="closeNav()"><i class="fas fa-address-card"></i> <span data-ar="معلومات شخصية" data-en="Personal Info" data-de="Persönliche Daten">Personal Info</span></a>
+                    <a href="#languages" class="nav-link" onclick="closeNav()"><i class="fas fa-code"></i> <span data-ar="لغات البرمجة" data-en="Languages" data-de="Sprachen">Languages</span></a>
+                    <a href="#education" class="nav-link" onclick="closeNav()"><i class="fas fa-graduation-cap"></i> <span data-ar="التعليم" data-en="Education" data-de="Bildung">Education</span></a>
                     <a href="#about" class="nav-link" onclick="closeNav()"><i class="fas fa-user"></i> <span data-ar="نبذة عني" data-en="About Me" data-de="Über Mich">About Me</span></a>
                     <a href="#excel" class="nav-link" onclick="closeNav()"><i class="fas fa-star"></i> <span data-ar="ما أتقنه" data-en="What I Excel At" data-de="Was ich beherrsche">What I Excel At</span></a>
                     <a href="#different" class="nav-link" onclick="closeNav()"><i class="fas fa-rocket"></i> <span data-ar="لماذا أنا مختلف" data-en="Why I'm Different" data-de="Warum ich anders bin">Why I'm Different</span></a>
-                    <a href="#languages" class="nav-link" onclick="closeNav()"><i class="fas fa-code"></i> <span data-ar="لغات البرمجة" data-en="Languages" data-de="Sprachen">Languages</span></a>
-                    <a href="#technologies" class="nav-link" onclick="closeNav()"><i class="fas fa-tools"></i> <span data-ar="التقنيات" data-en="Technologies" data-de="Technologien">Technologies</span></a>
                     <a href="#skills" class="nav-link" onclick="closeNav()"><i class="fas fa-cogs"></i> <span data-ar="المهارات" data-en="Soft Skills" data-de="Soft Skills">Soft Skills</span></a>
-                    <a href="#personal" class="nav-link" onclick="closeNav()"><i class="fas fa-address-card"></i> <span data-ar="معلومات شخصية" data-en="Personal Info" data-de="Persönliche Daten">Personal Info</span></a>
-                    <a href="#education" class="nav-link" onclick="closeNav()"><i class="fas fa-graduation-cap"></i> <span data-ar="التعليم" data-en="Education" data-de="Bildung">Education</span></a>
                     <a href="#contact" class="nav-link" onclick="closeNav()"><i class="fas fa-paper-plane"></i> <span data-ar="تواصل" data-en="Contact" data-de="Kontakt">Contact</span></a>
                 </div>
             </div>
@@ -1100,93 +1121,43 @@
     <div class="layout" id="main">
 
         <section class="hero" id="hero">
-            <div class="contact-strip">
-                <a href="https://github.com/Abdo1818" target="_blank" rel="noopener" class="mini-link"><i class="fab fa-github"></i> GitHub</a>
-                <a href="https://www.linkedin.com/in/ab-do-097783272" target="_blank" rel="noopener" class="mini-link"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-                <a href="https://www.instagram.com/bboda_7" target="_blank" rel="noopener" class="mini-link"><i class="fab fa-instagram"></i> Instagram</a>
-            </div>
-
-            <div class="hero-avatar-box">
-                <div class="hero-avatar-glow"></div>
-                <span class="hero-ring"></span>
-                <span class="hero-ring"></span>
-                <div class="hero-avatar">
-                    <span>BODA</span>
-                    <span class="avatar-shine"></span>
+            <div class="hero-avatar-column">
+                <div class="hero-avatar-box">
+                    <div class="hero-avatar-glow"></div>
+                    <span class="hero-ring"></span>
+                    <span class="hero-ring"></span>
+                    <div class="hero-avatar">
+                        <span class="avatar-shine"></span>
+                    </div>
                 </div>
             </div>
 
-            <p class="hero-greeting" data-ar="مرحباً، أنا عبد الرحمن 👋" data-en="Hi, I'm Abdelrahman 👋" data-de="Hallo, ich bin Abdelrahman 👋">Hi, I'm Abdelrahman 👋</p>
+            <div class="hero-text-column">
+                <p class="hero-greeting" data-ar="مرحباً، أنا عبد الرحمن 👋" data-en="Hi, I'm Abdelrahman 👋" data-de="Hallo, ich bin Abdelrahman 👋">Hi, I'm Abdelrahman 👋</p>
 
-            <h1 class="hero-name" data-ar="مطور <span>واجهات أمامية</span>" data-en="<span>Frontend Developer</span> in Progress" data-de="<span>Frontend-Entwickler</span> in Ausbildung"><span>Frontend Developer</span> in Progress</h1>
+                <h1 class="hero-name" data-ar="مطور <span>واجهات أمامية</span>" data-en="<span>Frontend Developer</span> in Progress" data-de="<span>Frontend-Entwickler</span> in Ausbildung"><span>Frontend Developer</span> in Progress</h1>
 
-            <p class="hero-title" data-ar="أبني مواقع ويب حديثة ومتجاوبة وأتعلم باستمرار من خلال إنشاء مشاريع حقيقية" data-en="I build modern, responsive websites and I'm constantly learning by creating real projects" data-de="Ich entwickle moderne, responsive Websites und lerne ständig durch die Erstellung echter Projekte">I build modern, responsive websites and I'm constantly learning by creating real projects</p>
+                <p class="hero-title" data-ar="أبني مواقع ويب حديثة ومتجاوبة وأتعلم باستمرار من خلال إنشاء مشاريع حقيقية. شغوف بحل المشكلات وكتابة كود نظيف وفعال." data-en="I build modern, responsive websites and I'm constantly learning by creating real projects. Passionate about problem-solving and writing clean, efficient code." data-de="Ich entwickle moderne, responsive Websites und lerne ständig durch die Erstellung echter Projekte. Leidenschaftlich für Problemlösung und sauberen Code.">I build modern, responsive websites and I'm constantly learning by creating real projects. Passionate about problem-solving and writing clean, efficient code.</p>
 
-            <div class="hero-tagline">
-                <i class="fas fa-bolt" style="color:var(--red-bright);"></i>
-                <span data-ar="التعلم من خلال بناء مشاريع حقيقية" data-en="Learning by building real projects" data-de="Lernen durch den Aufbau echter Projekte">Learning by building real projects</span>
-            </div>
+                <div class="hero-tagline">
+                    <i class="fas fa-bolt" style="color:var(--red-bright);"></i>
+                    <span data-ar="التعلم من خلال بناء مشاريع حقيقية" data-en="Learning by building real projects" data-de="Lernen durch den Aufbau echter Projekte">Learning by building real projects</span>
+                </div>
 
-            <div class="hero-buttons">
-                <a href="#about" class="btn-primary"><i class="fas fa-user"></i> <span data-ar="اعرف المزيد عني" data-en="Learn More About Me" data-de="Erfahre mehr über mich">Learn More About Me</span></a>
-                <a href="#contact" class="btn-secondary"><i class="fas fa-paper-plane"></i> <span data-ar="تواصل معي" data-en="Get In Touch" data-de="Kontakt aufnehmen">Get In Touch</span></a>
-            </div>
-        </section>
+                <div class="hero-buttons">
+                    <a href="#personal" class="btn-primary"><i class="fas fa-user"></i> <span data-ar="اعرف المزيد عني" data-en="Learn More About Me" data-de="Erfahre mehr über mich">Learn More About Me</span></a>
+                    <a href="#contact" class="btn-secondary"><i class="fas fa-paper-plane"></i> <span data-ar="تواصل معي" data-en="Get In Touch" data-de="Kontakt aufnehmen">Get In Touch</span></a>
+                </div>
 
-        <section class="section" id="about">
-            <div class="section-header"><h2 data-ar="نبذة عني" data-en="About Me" data-de="Über Mich">About Me</h2></div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-user"></i></div>
-                <p class="card-text" data-ar="أنا مطور أتعلم ذاتياً وأركز على تطوير الويب وحل المشكلات. أستمتع ببناء مشاريع حقيقية وتحسين مهاراتي كل يوم من خلال الممارسة."
-                data-en="I'm a self-learning developer focused on web development and problem solving. I enjoy building real projects and improving my skills every day through practice."
-                data-de="Ich bin ein selbstlernender Entwickler mit Fokus auf Webentwicklung und Problemlösung. Ich baue gerne echte Projekte und verbessere meine Fähigkeiten täglich durch Praxis.">I'm a self-learning developer focused on web development and problem solving. I enjoy building real projects and improving my skills every day through practice.</p>
+                <div class="contact-strip">
+                    <a href="https://github.com/Abdo1818" target="_blank" rel="noopener" class="mini-link"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://www.linkedin.com/in/ab-do-097783272" target="_blank" rel="noopener" class="mini-link"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+                    <a href="https://www.instagram.com/bboda_7" target="_blank" rel="noopener" class="mini-link"><i class="fab fa-instagram"></i> Instagram</a>
+                </div>
             </div>
         </section>
 
-        <section class="section" id="excel">
-            <div class="section-header"><h2 data-ar="ما أتقنه" data-en="What I Excel At" data-de="Was ich beherrsche">What I Excel At</h2></div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-star"></i></div>
-                <p class="card-text" data-ar="لدي خبرة قوية في <strong>HTML5</strong> و <strong>CSS3</strong> لبناء واجهات حديثة ومتجاوبة. أكتب كود <strong>JavaScript</strong> نظيف وفعال. أعمل مع <strong>Python</strong> لبناء التطبيقات ولدي معرفة جيدة بـ <strong>C++</strong> و <strong>C#</strong>. أتقن <strong>SQL Server</strong> لإدارة قواعد البيانات وأستخدم <strong>Visual Studio</strong> و <strong>Code::Blocks</strong> كأدوات تطوير أساسية. أجيد العمل على <strong>Cisco Packet Tracer</strong> لمحاكاة الشبكات وحاصل على شهادة <strong>CCNA</strong>. أستخدم <strong>Git و GitHub</strong> للتحكم في النسخ والتعاون."
-                data-en="I have strong experience with <strong>HTML5</strong> and <strong>CSS3</strong> for modern, responsive interfaces. I write clean <strong>JavaScript</strong> code. I work with <strong>Python</strong> for applications and have solid knowledge of <strong>C++</strong> and <strong>C#</strong>. I'm skilled in <strong>SQL Server</strong> for database management and use <strong>Visual Studio</strong> and <strong>Code::Blocks</strong> as my primary development tools. I'm proficient with <strong>Cisco Packet Tracer</strong> for network simulation and hold a <strong>CCNA</strong> certification. I use <strong>Git and GitHub</strong> for version control and collaboration."
-                data-de="Ich habe fundierte Erfahrung mit <strong>HTML5</strong> und <strong>CSS3</strong>. Ich schreibe sauberen <strong>JavaScript</strong>-Code. Ich arbeite mit <strong>Python</strong> und habe gute Kenntnisse in <strong>C++</strong> und <strong>C#</strong>. Ich beherrsche <strong>SQL Server</strong> und nutze <strong>Visual Studio</strong> und <strong>Code::Blocks</strong>. Ich arbeite mit <strong>Cisco Packet Tracer</strong> und besitze die <strong>CCNA</strong>-Zertifizierung. Ich verwende <strong>Git und GitHub</strong>.">I have strong experience with <strong>HTML5</strong> and <strong>CSS3</strong> for modern, responsive interfaces. I write clean <strong>JavaScript</strong> code. I work with <strong>Python</strong> for applications and have solid knowledge of <strong>C++</strong> and <strong>C#</strong>. I'm skilled in <strong>SQL Server</strong> for database management and use <strong>Visual Studio</strong> and <strong>Code::Blocks</strong> as my primary development tools. I'm proficient with <strong>Cisco Packet Tracer</strong> for network simulation and hold a <strong>CCNA</strong> certification. I use <strong>Git and GitHub</strong> for version control and collaboration.</p>
-            </div>
-        </section>
-
-        <section class="section" id="different">
-            <div class="section-header"><h2 data-ar="لماذا أنا مختلف" data-en="Why I'm Different" data-de="Warum ich anders bin">Why I'm Different</h2></div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-rocket"></i></div>
-                <p class="card-text" data-ar="أنا لا أكتفي بتعلم الأساسيات فقط، بل أتعمق في كل تقنية حتى أفهمها من جذورها. لدي قدرة عالية على <strong>التفكير التحليلي</strong> وحل المشكلات. أعمل بشغف وانضباط، وأتعلم بسرعة، ولا أستسلم أمام التحديات. أسعى دائماً للتميز في كل مشروع."
-                data-en="I don't just learn the basics — I dive deep into every technology until I understand it completely. I have strong <strong>analytical thinking</strong> and problem-solving skills. I work with passion and discipline, I learn fast, and I never give up. I always strive for excellence in every project."
-                data-de="Ich lerne nicht nur die Grundlagen. Ich habe starke <strong>analytische Denkfähigkeiten</strong>. Ich arbeite mit Leidenschaft und Disziplin und gebe nie auf.">I don't just learn the basics — I dive deep into every technology until I understand it completely. I have strong <strong>analytical thinking</strong> and problem-solving skills. I work with passion and discipline, I learn fast, and I never give up. I always strive for excellence in every project.</p>
-            </div>
-        </section>
-
-        <section class="section" id="languages">
-            <div class="section-header"><h2 data-ar="لغات البرمجة" data-en="Programming Languages" data-de="Programmiersprachen">Programming Languages</h2></div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-code"></i></div>
-                <div class="skills-grid" id="languagesContainer"></div>
-            </div>
-        </section>
-
-        <section class="section" id="technologies">
-            <div class="section-header"><h2 data-ar="التقنيات والأدوات" data-en="Technologies & Tools" data-de="Technologien & Werkzeuge">Technologies & Tools</h2></div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-tools"></i></div>
-                <div class="skills-grid" id="technologiesContainer"></div>
-            </div>
-        </section>
-
-        <section class="section" id="skills">
-            <div class="section-header"><h2 data-ar="المهارات الشخصية" data-en="Soft Skills" data-de="Soft Skills">Soft Skills</h2></div>
-            <div class="card">
-                <div class="card-icon"><i class="fas fa-cogs"></i></div>
-                <div class="skills-grid" id="skillsContainer"></div>
-            </div>
-        </section>
-
+        <!-- المعلومات الشخصية -->
         <section class="section" id="personal">
             <div class="section-header"><h2 data-ar="المعلومات الشخصية" data-en="Personal Information" data-de="Persönliche Daten">Personal Information</h2></div>
             <div class="card">
@@ -1203,6 +1174,16 @@
             </div>
         </section>
 
+        <!-- لغات البرمجة -->
+        <section class="section" id="languages">
+            <div class="section-header"><h2 data-ar="لغات البرمجة" data-en="Programming Languages" data-de="Programmiersprachen">Programming Languages</h2></div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-code"></i></div>
+                <div class="skills-grid" id="languagesContainer"></div>
+            </div>
+        </section>
+
+        <!-- التعليم -->
         <section class="section" id="education">
             <div class="section-header"><h2 data-ar="التعليم" data-en="Education" data-de="Bildung">Education</h2></div>
             <div class="card">
@@ -1216,10 +1197,52 @@
                     </div>
                     <div class="tl-item">
                         <div class="tl-date" data-ar="2020 - 2023" data-en="2020 - 2023" data-de="2020 - 2023">2020 - 2023</div>
-                        <div class="tl-title" data-ar="التعليم الثانوي" data-en="High School Education" data-de="Gymnasium">High School Education</div>
+                        <div class="tl-title" data-ar="ثانوية عامة" data-en="General Secondary School" data-de="Allgemeine Sekundarschule">General Secondary School</div>
                         <div class="tl-desc" data-ar="التأسيس للدخول في مجال التكنولوجيا" data-en="Foundation for entering the technology field" data-de="Grundlage für den Einstieg in die Technologie">Foundation for entering the technology field</div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- نبذة عني -->
+        <section class="section" id="about">
+            <div class="section-header"><h2 data-ar="نبذة عني" data-en="About Me" data-de="Über Mich">About Me</h2></div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-user"></i></div>
+                <p class="card-text" data-ar="أنا مطور أتعلم ذاتياً وأركز على تطوير الويب وحل المشكلات. أستمتع ببناء مشاريع حقيقية وتحسين مهاراتي كل يوم من خلال الممارسة."
+                data-en="I'm a self-learning developer focused on web development and problem solving. I enjoy building real projects and improving my skills every day through practice."
+                data-de="Ich bin ein selbstlernender Entwickler mit Fokus auf Webentwicklung und Problemlösung. Ich baue gerne echte Projekte und verbessere meine Fähigkeiten täglich durch Praxis.">I'm a self-learning developer focused on web development and problem solving. I enjoy building real projects and improving my skills every day through practice.</p>
+            </div>
+        </section>
+
+        <!-- ما أتقنه -->
+        <section class="section" id="excel">
+            <div class="section-header"><h2 data-ar="ما أتقنه" data-en="What I Excel At" data-de="Was ich beherrsche">What I Excel At</h2></div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-star"></i></div>
+                <p class="card-text" data-ar="لدي خبرة قوية في <strong>HTML5</strong> و <strong>CSS3</strong> لبناء واجهات حديثة ومتجاوبة. أكتب كود <strong>JavaScript</strong> نظيف وفعال. أعمل مع <strong>Python</strong> لبناء التطبيقات ولدي معرفة جيدة بـ <strong>C++</strong>. أتقن <strong>SQL Server</strong> لإدارة قواعد البيانات. أجيد العمل على <strong>Cisco Packet Tracer</strong> لمحاكاة الشبكات وحاصل على شهادة <strong>CCNA</strong>. أستخدم <strong>Git و GitHub</strong> للتحكم في النسخ والتعاون."
+                data-en="I have strong experience with <strong>HTML5</strong> and <strong>CSS3</strong> for modern, responsive interfaces. I write clean <strong>JavaScript</strong> code. I work with <strong>Python</strong> for applications and have solid knowledge of <strong>C++</strong>. I'm skilled in <strong>SQL Server</strong> for database management. I'm proficient with <strong>Cisco Packet Tracer</strong> for network simulation and hold a <strong>CCNA</strong> certification. I use <strong>Git and GitHub</strong> for version control and collaboration."
+                data-de="Ich habe fundierte Erfahrung mit <strong>HTML5</strong> und <strong>CSS3</strong>. Ich schreibe sauberen <strong>JavaScript</strong>-Code. Ich arbeite mit <strong>Python</strong> und habe gute Kenntnisse in <strong>C++</strong>. Ich beherrsche <strong>SQL Server</strong>. Ich arbeite mit <strong>Cisco Packet Tracer</strong> und besitze die <strong>CCNA</strong>-Zertifizierung. Ich verwende <strong>Git und GitHub</strong>.">I have strong experience with <strong>HTML5</strong> and <strong>CSS3</strong> for modern, responsive interfaces. I write clean <strong>JavaScript</strong> code. I work with <strong>Python</strong> for applications and have solid knowledge of <strong>C++</strong>. I'm skilled in <strong>SQL Server</strong> for database management. I'm proficient with <strong>Cisco Packet Tracer</strong> for network simulation and hold a <strong>CCNA</strong> certification. I use <strong>Git and GitHub</strong> for version control and collaboration.</p>
+            </div>
+        </section>
+
+        <!-- لماذا أنا مختلف -->
+        <section class="section" id="different">
+            <div class="section-header"><h2 data-ar="لماذا أنا مختلف" data-en="Why I'm Different" data-de="Warum ich anders bin">Why I'm Different</h2></div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-rocket"></i></div>
+                <p class="card-text" data-ar="أنا لا أكتفي بتعلم الأساسيات فقط، بل أتعمق في كل تقنية حتى أفهمها من جذورها. لدي قدرة عالية على <strong>التفكير التحليلي</strong> وحل المشكلات. أعمل بشغف وانضباط، وأتعلم بسرعة، ولا أستسلم أمام التحديات. أسعى دائماً للتميز في كل مشروع."
+                data-en="I don't just learn the basics — I dive deep into every technology until I understand it completely. I have strong <strong>analytical thinking</strong> and problem-solving skills. I work with passion and discipline, I learn fast, and I never give up. I always strive for excellence in every project."
+                data-de="Ich lerne nicht nur die Grundlagen. Ich habe starke <strong>analytische Denkfähigkeiten</strong>. Ich arbeite mit Leidenschaft und Disziplin und gebe nie auf.">I don't just learn the basics — I dive deep into every technology until I understand it completely. I have strong <strong>analytical thinking</strong> and problem-solving skills. I work with passion and discipline, I learn fast, and I never give up. I always strive for excellence in every project.</p>
+            </div>
+        </section>
+
+        <!-- المهارات الشخصية -->
+        <section class="section" id="skills">
+            <div class="section-header"><h2 data-ar="المهارات الشخصية" data-en="Soft Skills" data-de="Soft Skills">Soft Skills</h2></div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-cogs"></i></div>
+                <div class="skills-grid" id="skillsContainer"></div>
             </div>
         </section>
 
@@ -1308,11 +1331,11 @@
             'light');
             document.querySelector('meta[name="theme-color"]').setAttribute('content', '#080808');
             localStorage.setItem('boda_theme', 'dark'); } else { body.classList.add('light');
-            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f5f5f5');
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f0f6fc');
             localStorage.setItem('boda_theme', 'light'); } }
         var savedTheme = localStorage.getItem('boda_theme'); if (savedTheme === 'light') { document.body.classList.add(
             'light');
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f5f5f5'); }
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f0f6fc'); }
 
         function toggleNav() {
             var panel = document.getElementById('navPanel');
@@ -1340,36 +1363,11 @@
             { en: 'C++', ar: 'C++', de: 'C++', icon: 'fa-code',
                 desc: { en: 'High-performance software and algorithms', ar: 'برمجيات وخوارزميات عالية الأداء',
                     de: 'Hochleistungssoftware und Algorithmen' } },
-            { en: 'C#', ar: 'C#', de: 'C#', icon: 'fa-code',
-                desc: { en: 'Desktop applications and .NET development',
-                ar: 'تطبيقات سطح المكتب وتطوير .NET', de: 'Desktop-Anwendungen und .NET-Entwicklung' } },
             { en: 'CCNA', ar: 'CCNA', de: 'CCNA', icon: 'fa-network-wired',
                 desc: { en: 'Cisco Certified Network Associate - networking fundamentals',
                 ar: 'أساسيات الشبكات من سيسكو', de: 'Cisco Certified Network Associate - Netzwerkgrundlagen' } }
         ];
-        var technologiesData = [
-            { en: 'SQL Server', ar: 'SQL Server', de: 'SQL Server', icon: 'fa-database',
-                desc: { en: 'Database design, queries, and management', ar: 'تصميم قواعد البيانات والاستعلامات والإدارة',
-                    de: 'Datenbankdesign, Abfragen und Verwaltung' } },
-            { en: 'Visual Studio', ar: 'Visual Studio', de: 'Visual Studio', icon: 'fa-code',
-                desc: { en: 'Primary IDE for C# and .NET development', ar: 'بيئة التطوير الأساسية لـ C# و .NET',
-                    de: 'Primäre IDE für C# und .NET-Entwicklung' } },
-            { en: 'Code::Blocks', ar: 'Code::Blocks', de: 'Code::Blocks', icon: 'fa-cube',
-                desc: { en: 'Lightweight C/C++ development environment', ar: 'بيئة تطوير خفيفة للـ C/C++',
-                    de: 'Leichte Entwicklungsumgebung für C/C++' } },
-            { en: 'Cisco Packet Tracer', ar: 'Cisco Packet Tracer', de: 'Cisco Packet Tracer', icon: 'fa-network-wired',
-                desc: { en: 'Network simulation and design tool', ar: 'أداة محاكاة وتصميم الشبكات',
-                    de: 'Netzwerk-Simulations- und Design-Tool' } },
-            { en: 'Git & GitHub', ar: 'Git & GitHub', de: 'Git & GitHub', icon: 'fa-git-alt',
-                desc: { en: 'Version control and team collaboration', ar: 'التحكم في النسخ والتعاون الجماعي',
-                    de: 'Versionskontrolle und Teamzusammenarbeit' } },
-            { en: 'Responsive Design', ar: 'تصميم متجاوب', de: 'Responsive Design', icon: 'fa-mobile-alt',
-                desc: { en: 'Websites that work on all screen sizes', ar: 'مواقع تعمل على جميع أحجام الشاشات',
-                    de: 'Websites für alle Bildschirmgrößen' } },
-            { en: 'REST APIs', ar: 'REST APIs', de: 'REST APIs', icon: 'fa-plug',
-                desc: { en: 'Building and consuming web services', ar: 'بناء واستهلاك خدمات الويب',
-                    de: 'Erstellen und Nutzen von Webdiensten' } }
-        ];
+
         var softSkillsData = [
             { en: 'Problem Solving', ar: 'حل المشكلات', de: 'Problemlösung', icon: 'fa-puzzle-piece',
                 desc: { en: 'Breaking down complex issues into manageable steps',
@@ -1401,7 +1399,6 @@
                 box.appendChild(block); }); }
 
         function renderAll(lang) { renderSkillBlocks('languagesContainer', languagesData, lang);
-            renderSkillBlocks('technologiesContainer', technologiesData, lang);
             renderSkillBlocks('skillsContainer', softSkillsData, lang); }
         renderAll('en');
 
