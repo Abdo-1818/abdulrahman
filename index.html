@@ -13,9 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
-    <!-- Supabase -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     <meta name="theme-color" content="#0a0000">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -976,22 +973,8 @@
     <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fas fa-arrow-up"></i></button>
 
     <script>
-        // ===== SUPABASE CLIENT =====
-        const SUPABASE_URL = "https://zqjnnbfjsemagnkvaokz.supabase.co";
-        const SUPABASE_KEY = "PUT_YOUR_ANON_KEY_HERE";
-
-        var supabase;
-
-        function initSupabase() {
-            if (typeof window.supabase !== 'undefined') {
-                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-            } else {
-                console.warn('Supabase library not loaded yet. Retrying...');
-                setTimeout(initSupabase, 1000);
-            }
-        }
-
-        initSupabase();
+        // إعدادات API
+        var API_URL = 'api/messages.php'; // رابط الـ API الخاص بك
 
         function toggleMessageBox() {
             var box = document.getElementById('messageBox');
@@ -1015,15 +998,8 @@
             var message = document.getElementById('msgMessage').value.trim();
 
             if (!name || !email || !message) {
-                status.textContent = translations[currentLang]?.['message.fill_fields'] || 'Please fill all fields';
+                status.textContent = (translations[currentLang] && translations[currentLang]['message.fill_fields']) || 'Please fill all fields';
                 status.style.color = 'var(--accent-bright)';
-                return;
-            }
-
-            if (!supabase) {
-                status.textContent = translations[currentLang]?.['message.not_connected'] || 'Connecting to server...';
-                status.style.color = 'var(--accent-bright)';
-                initSupabase();
                 return;
             }
 
@@ -1032,26 +1008,32 @@
             status.textContent = '';
 
             try {
-                var { data, error } = await supabase
-                    .from('messages')
-                    .insert([
-                        { name: name, email: email, message: message, created_at: new Date().toISOString() }
-                    ]);
+                var response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        message: message
+                    })
+                });
 
-                if (error) {
-                    console.error('Supabase error:', error);
-                    status.textContent = translations[currentLang]?.['message.error'] || 'Error sending message ❌';
-                    status.style.color = '#ff4757';
-                } else {
-                    status.textContent = translations[currentLang]?.['message.success'] || 'Message sent successfully ✅';
+                var data = await response.json();
+
+                if (response.ok && data.success) {
+                    status.textContent = (translations[currentLang] && translations[currentLang]['message.success']) || 'Message sent successfully ✅';
                     status.style.color = '#00e676';
                     document.getElementById('msgName').value = '';
                     document.getElementById('msgEmail').value = '';
                     document.getElementById('msgMessage').value = '';
+                } else {
+                    throw new Error(data.error || 'Server error');
                 }
             } catch (err) {
                 console.error('Send error:', err);
-                status.textContent = translations[currentLang]?.['message.error'] || 'Error sending message ❌';
+                status.textContent = (translations[currentLang] && translations[currentLang]['message.error']) || 'Error sending message ❌';
                 status.style.color = '#ff4757';
             } finally {
                 btn.disabled = false;
@@ -1172,8 +1154,7 @@
                 'message.send': 'Send',
                 'message.success': 'Message sent successfully ✅',
                 'message.error': 'Error sending message ❌',
-                'message.fill_fields': 'Please fill all fields',
-                'message.not_connected': 'Connecting to server...'
+                'message.fill_fields': 'Please fill all fields'
             },
             de: {
                 'hero.greeting': 'Hallo, ich bin', 'hero.role.prefix': 'Ich bin',
@@ -1200,8 +1181,7 @@
                 'message.send': 'Senden',
                 'message.success': 'Nachricht erfolgreich gesendet ✅',
                 'message.error': 'Fehler beim Senden ❌',
-                'message.fill_fields': 'Bitte alle Felder ausfüllen',
-                'message.not_connected': 'Verbinde mit Server...'
+                'message.fill_fields': 'Bitte alle Felder ausfüllen'
             },
             ar: {
                 'hero.greeting': 'مرحباً، أنا', 'hero.role.prefix': 'أنا',
@@ -1228,8 +1208,7 @@
                 'message.send': 'إرسال',
                 'message.success': 'تم إرسال الرسالة بنجاح ✅',
                 'message.error': 'حدث خطأ في الإرسال ❌',
-                'message.fill_fields': 'الرجاء ملء جميع الحقول',
-                'message.not_connected': 'جارٍ الاتصال بالخادم...'
+                'message.fill_fields': 'الرجاء ملء جميع الحقول'
             }
         };
 
@@ -1286,8 +1265,8 @@
             en: { 'Repos': 'Repos', 'Connect': 'Connect', 'Follow': 'Follow' }, de: { 'Repos': 'Repos', 'Connect': 'Verbinden', 'Follow': 'Folgen' }, ar: { 'Repos': 'مستودعات', 'Connect': 'تواصل', 'Follow': 'متابعة' }
         };
 
-        var currentLang = localStorage.getItem('abd_lang_v16') || 'en';
-        var currentTheme = localStorage.getItem('abd_theme_v16') || 'dark';
+        var currentLang = localStorage.getItem('abd_lang_v17') || 'en';
+        var currentTheme = localStorage.getItem('abd_theme_v17') || 'dark';
 
         var typedStringsAll = { en: ['Web Developer', 'Frontend Developer', 'Programmer'], de: ['Webentwickler', 'Frontend-Entwickler', 'Programmierer'], ar: ['مطور ويب', 'مطور واجهات', 'مبرمج'] };
         var typedStrings = typedStringsAll[currentLang];
@@ -1336,7 +1315,7 @@
             bc(); }
 
         function switchLang(l) { currentLang = l;
-            localStorage.setItem('abd_lang_v16', l);
+            localStorage.setItem('abd_lang_v17', l);
             document.documentElement.lang = l;
             document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
             document.body.classList.toggle('rtl', l === 'ar'); var btns = document.querySelectorAll('.lang-btn'); for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
@@ -1353,7 +1332,7 @@
                 document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0a0000'); } }
 
         function toggleTheme() { currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            localStorage.setItem('abd_theme_v16', currentTheme);
+            localStorage.setItem('abd_theme_v17', currentTheme);
             applyTheme(); }
 
         function toggleMobileMenu() { var m = document.getElementById('mobileMenu'),
@@ -1369,7 +1348,7 @@
                 cur = 'home'; for (var i = 0; i < secs.length; i++) { if (secs[i].offsetTop - 150 <= sy) cur = secs[i].id; } var links = document.querySelectorAll('.nav-desktop li a,.mobile-nav li a'); for (var i = 0; i < links.length; i++) { links[i].classList.remove('active'); if (links[i].getAttribute('href') === '#' + cur) links[i].classList.add('active'); } var revs = document.querySelectorAll('.reveal,.stagger-container'),
                 wh = window.innerHeight; for (var i = 0; i < revs.length; i++) { if (revs[i].getBoundingClientRect().top < wh - 50) revs[i].classList.add('visible'); } var wrappers = document.querySelectorAll('.section-wrapper'); for (var i = 0; i < wrappers.length; i++) { var rect = wrappers[i].getBoundingClientRect(); if (rect.top < wh * 0.5 && rect.bottom > wh * 0.15) { wrappers[i].classList.add('active-border'); } else { wrappers[i].classList.remove('active-border'); } } }
 
-        function init() { applyTheme(); var sl = localStorage.getItem('abd_lang_v16') || 'en';
+        function init() { applyTheme(); var sl = localStorage.getItem('abd_lang_v17') || 'en';
             document.getElementById(sl === 'de' ? 'btnDe' : sl === 'ar' ? 'btnAr' : 'btnEn').classList.add('active');
             ra(); if (sl !== 'en') { var tmp = sl;
                 currentLang = 'en';
