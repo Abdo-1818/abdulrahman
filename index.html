@@ -613,6 +613,126 @@
         .status-badge .live-dot { width: 6px; height: 6px; background: var(--accent-bright); border-radius: 50%; animation: dotPulse 1.4s ease-in-out infinite; }
         @keyframes dotPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.18; } }
 
+        /* ===== PROJECTS SECTION ===== */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; justify-content: center; }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.5s var(--transition-smooth);
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 280px;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.06);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.8) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 24px;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-view-btn {
+            padding: 12px 28px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.4s var(--transition-bounce);
+            text-decoration: none;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .project-card:hover .project-view-btn {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .project-view-btn:hover {
+            background: var(--accent-bright);
+            box-shadow: 0 10px 30px var(--accent-glow);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        .project-body {
+            padding: 22px 26px;
+        }
+
+        .project-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .project-desc {
+            color: var(--text-soft);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-tag {
+            padding: 5px 14px;
+            background: var(--accent-soft);
+            color: var(--accent-bright);
+            border-radius: 50px;
+            font-size: 0.73rem;
+            font-weight: 500;
+            border: 1px solid rgba(230,57,70,0.1);
+        }
+
         .platforms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; max-width: 650px; margin: 0 auto; }
         .platform-card {
             display: flex; align-items: center; gap: 14px; padding: 22px;
@@ -716,6 +836,8 @@
         @media (max-width: 768px) {
             .contact-form-section { top: auto; bottom: 20px; right: 10px; width: 290px; }
             body.rtl .contact-form-section { right: auto; left: 10px; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .project-img-wrapper { height: 220px; }
         }
         @media (max-width: 1050px) {
             .nav-desktop li a { padding: 8px 12px; font-size: 0.74rem; }
@@ -747,12 +869,14 @@
             .section-header { margin-bottom: 32px; }
             .section-wrapper { padding: 28px 16px; }
             .contact-form-section { width: 260px; right: 6px; }
+            .project-img-wrapper { height: 200px; }
         }
         @media (max-width: 400px) {
             .info-grid { grid-template-columns: 1fr; }
             .hero-buttons { flex-direction: column; }
             .hero-buttons .btn { justify-content: center; width: 100%; }
             .platforms-grid { grid-template-columns: 1fr; }
+            .project-img-wrapper { height: 180px; }
         }
     </style>
 </head>
@@ -797,6 +921,7 @@
                     <li><a href="#home" class="active" data-i18n-nav="home">Home</a></li>
                     <li><a href="#personal" data-i18n-nav="personal">Personal Info</a></li>
                     <li><a href="#languages" data-i18n-nav="languages">Languages</a></li>
+                    <li><a href="#projects" data-i18n-nav="projects">Projects</a></li>
                     <li><a href="#education" data-i18n-nav="education">Education</a></li>
                     <li><a href="#excel" data-i18n-nav="excel">Strengths</a></li>
                     <li><a href="#different" data-i18n-nav="different">Why Different</a></li>
@@ -826,6 +951,7 @@
             <li><a href="#home" onclick="toggleMobileMenu()" data-i18n-nav="home">Home</a></li>
             <li><a href="#personal" onclick="toggleMobileMenu()" data-i18n-nav="personal">Personal Info</a></li>
             <li><a href="#languages" onclick="toggleMobileMenu()" data-i18n-nav="languages">Languages</a></li>
+            <li><a href="#projects" onclick="toggleMobileMenu()" data-i18n-nav="projects">Projects</a></li>
             <li><a href="#education" onclick="toggleMobileMenu()" data-i18n-nav="education">Education</a></li>
             <li><a href="#excel" onclick="toggleMobileMenu()" data-i18n-nav="excel">Strengths</a></li>
             <li><a href="#different" onclick="toggleMobileMenu()" data-i18n-nav="different">Why Different</a></li>
@@ -888,7 +1014,41 @@
         </div>
     </section>
 
-    <section class="section" id="education">
+    <!-- ===== PROJECTS SECTION ===== -->
+    <section class="section" id="projects">
+        <div class="container">
+            <div class="section-wrapper" id="wrapper-projects">
+                <div class="section-header from-bottom reveal">
+                    <h2 class="section-title" data-i18n="projects.title">My Projects</h2>
+                </div>
+                <div class="projects-grid stagger-container">
+                    <!-- Project: Abdulrahman TEC -->
+                    <div class="project-card stagger-item">
+                        <div class="project-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=500&fit=crop" alt="Programming Code on Computer" class="project-img" loading="lazy">
+                            <div class="project-overlay">
+                                <a href="https://abdo-1818.github.io/abdulrahman_tec/" target="_blank" rel="noopener" class="project-view-btn">
+                                    <i class="fas fa-external-link-alt"></i> View Details
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title" data-i18n="projects.item1.title">Abdulrahman TEC</h3>
+                            <p class="project-desc" data-i18n="projects.item1.desc">A modern technology website showcasing services and solutions with a sleek, responsive design.</p>
+                            <div class="project-tags">
+                                <span class="project-tag">HTML5</span>
+                                <span class="project-tag">CSS3</span>
+                                <span class="project-tag">JavaScript</span>
+                                <span class="project-tag">Responsive</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="education">
         <div class="container">
             <div class="section-wrapper" id="wrapper-education">
                 <div class="section-header from-bottom reveal"><h2 class="section-title" data-i18n="education.title">Education</h2></div>
@@ -901,7 +1061,7 @@
         </div>
     </section>
 
-    <section class="section section-alt" id="excel">
+    <section class="section" id="excel">
         <div class="container">
             <div class="section-wrapper" id="wrapper-excel">
                 <div class="section-header from-bottom reveal"><h2 class="section-title" data-i18n="excel.title">My Strengths</h2></div>
@@ -914,7 +1074,7 @@
         </div>
     </section>
 
-    <section class="section" id="different">
+    <section class="section section-alt" id="different">
         <div class="container">
             <div class="section-wrapper" id="wrapper-different">
                 <div class="section-header from-bottom reveal"><h2 class="section-title" data-i18n="different.title">What Sets Me Apart</h2></div>
@@ -927,7 +1087,7 @@
         </div>
     </section>
 
-    <section class="section section-alt" id="softskills">
+    <section class="section" id="softskills">
         <div class="container">
             <div class="section-wrapper" id="wrapper-softskills">
                 <div class="section-header from-bottom reveal"><h2 class="section-title" data-i18n="softskills.title">Personal Qualities</h2></div>
@@ -957,23 +1117,19 @@
         var API_URL = 'https://YOUR-API-LINK/api/messages';
 
         // ===== CONTACT FORM =====
-        function toggleContactForm() {
-            var box = document.getElementById('contactFormBox');
-            var icon = document.getElementById('contactToggleIcon');
-            if (box.classList.contains('show')) { box.classList.remove('show');
+        function toggleContactForm() { var box = document.getElementById('contactFormBox'),
+                icon = document.getElementById('contactToggleIcon'); if (box.classList.contains('show')) { box.classList.remove(
+                    'show');
                 icon.className = 'fas fa-chevron-down'; } else { box.classList.add('show');
-                icon.className = 'fas fa-chevron-up'; }
-        }
+                icon.className = 'fas fa-chevron-up'; } }
 
-        function sendContactMessage() {
-            var btn = document.getElementById('contactSubmitBtn');
-            var status = document.getElementById('contactFormStatus');
-            var name = document.getElementById('contactName').value.trim();
-            var email = document.getElementById('contactEmail').value.trim();
-            var message = document.getElementById('contactMessage').value.trim();
-            if (!name || !email || !message) { status.textContent = (translations[currentLang] && translations[currentLang][
-                    'contact_form.fill_fields'
-                ]) || 'Please fill all fields';
+        function sendContactMessage() { var btn = document.getElementById('contactSubmitBtn'),
+                status = document.getElementById('contactFormStatus'),
+                name = document.getElementById('contactName').value.trim(),
+                email = document.getElementById('contactEmail').value.trim(),
+                message = document.getElementById('contactMessage').value.trim(); if (!name || !email || !message) { status
+                    .textContent = (translations[currentLang] && translations[currentLang]['contact_form.fill_fields']) ||
+                    'Please fill all fields';
                 status.className = 'contact-form-status error'; return; }
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
@@ -997,8 +1153,7 @@
                     'Error sending message ❌';
                 status.className = 'contact-form-status error';
                 btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-i18n="contact_form.send">Send</span>'; });
-        }
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-i18n="contact_form.send">Send</span>'; }); }
 
         // ===== PARTICLES =====
         (function() { var c = document.getElementById('particlesCanvas'),
@@ -1048,12 +1203,14 @@
         // ===== TRANSLATIONS =====
         var translations = { en: { 'hero.greeting': "Hi, I'm", 'hero.role.prefix': "I'm a", 'hero.desc': 'I build modern, responsive websites and constantly learn through real projects.',
                 'hero.cta1': 'Learn More About Me', 'hero.cta2': 'Get In Touch', 'nav.home': 'Home',
-                'nav.personal': 'Personal Info', 'nav.languages': 'Languages', 'nav.education': 'Education',
-                'nav.excel': 'Strengths', 'nav.different': 'Why Different', 'nav.softskills': 'Soft Skills',
-                'nav.contact': 'Contact', 'personal.title': 'About Me',
+                'nav.personal': 'Personal Info', 'nav.languages': 'Languages', 'nav.projects': 'Projects',
+                'nav.education': 'Education', 'nav.excel': 'Strengths', 'nav.different': 'Why Different',
+                'nav.softskills': 'Soft Skills', 'nav.contact': 'Contact', 'personal.title': 'About Me',
                 'personal.desc': "I'm a self-learning developer focused on web development and problem solving.",
-                'languages.title': 'Programming Languages I Master', 'education.title': 'Education',
-                'excel.title': 'My Strengths',
+                'languages.title': 'Programming Languages I Master', 'projects.title': 'My Projects',
+                'projects.item1.title': 'Abdulrahman TEC',
+                'projects.item1.desc': 'A modern technology website showcasing services and solutions with a sleek, responsive design.',
+                'education.title': 'Education', 'excel.title': 'My Strengths',
                 'excel.desc': 'I have strong experience with <strong>HTML5</strong> and <strong>CSS3</strong>. I write clean <strong>JavaScript</strong>. I work with <strong>Python</strong> and <strong>C++</strong>. Skilled in <strong>SQL Server</strong>, <strong>Cisco Packet Tracer</strong> and hold <strong>CCNA</strong>. <br><br><em>Dedicated, fast-learning, and always eager to build something meaningful.</em>',
                 'different.title': 'What Sets Me Apart',
                 'different.desc': "I dive deep into every technology. Strong <strong>analytical thinking</strong> and problem-solving. I work with <strong>passion, discipline, and consistency</strong>. I never give up.",
@@ -1066,10 +1223,12 @@
                 'contact_form.fill_fields': 'Please fill all fields' }, de: { 'hero.greeting': 'Hallo, ich bin',
                 'hero.role.prefix': 'Ich bin', 'hero.desc': 'Ich entwickle moderne, responsive Websites.',
                 'hero.cta1': 'Erfahre mehr', 'hero.cta2': 'Kontakt', 'nav.home': 'Start',
-                'nav.personal': 'Persönliches', 'nav.languages': 'Sprachen', 'nav.education': 'Bildung',
-                'nav.excel': 'Stärken', 'nav.different': 'Warum anders', 'nav.softskills': 'Soft Skills',
-                'nav.contact': 'Kontakt', 'personal.title': 'Über mich',
+                'nav.personal': 'Persönliches', 'nav.languages': 'Sprachen', 'nav.projects': 'Projekte',
+                'nav.education': 'Bildung', 'nav.excel': 'Stärken', 'nav.different': 'Warum anders',
+                'nav.softskills': 'Soft Skills', 'nav.contact': 'Kontakt', 'personal.title': 'Über mich',
                 'personal.desc': 'Ich bin ein selbstlernender Entwickler.', 'languages.title': 'Programmiersprachen',
+                'projects.title': 'Meine Projekte', 'projects.item1.title': 'Abdulrahman TEC',
+                'projects.item1.desc': 'Eine moderne Technologie-Website mit Dienstleistungen und Lösungen in elegantem, responsivem Design.',
                 'education.title': 'Bildung', 'excel.title': 'Meine Stärken',
                 'excel.desc': 'Fundierte Erfahrung mit <strong>HTML5</strong> und <strong>CSS3</strong>. <strong>JavaScript</strong>, <strong>Python</strong>, <strong>C++</strong>, <strong>SQL Server</strong>, <strong>CCNA</strong>. <br><br><em>Engagiert und lernbegierig.</em>',
                 'different.title': 'Was mich auszeichnet',
@@ -1083,10 +1242,13 @@
                 'contact_form.error': 'Fehler beim Senden ❌', 'contact_form.fill_fields': 'Bitte alle Felder ausfüllen' },
             ar: { 'hero.greeting': 'مرحباً، أنا', 'hero.role.prefix': 'أنا', 'hero.desc': 'أبني مواقع ويب حديثة ومتجاوبة.',
                 'hero.cta1': 'اعرف المزيد عني', 'hero.cta2': 'تواصل معي', 'nav.home': 'الرئيسية',
-                'nav.personal': 'معلومات شخصية', 'nav.languages': 'لغات البرمجة', 'nav.education': 'التعليم',
-                'nav.excel': 'نقاط القوة', 'nav.different': 'لماذا أنا مختلف', 'nav.softskills': 'مهارات شخصية',
-                'nav.contact': 'تواصل', 'personal.title': 'عنّي', 'personal.desc': 'أنا مطور أتعلم ذاتياً.',
-                'languages.title': 'لغات البرمجة التي أجيدها', 'education.title': 'التعليم', 'excel.title': 'نقاط قوتي',
+                'nav.personal': 'معلومات شخصية', 'nav.languages': 'لغات البرمجة', 'nav.projects': 'مشاريع',
+                'nav.education': 'التعليم', 'nav.excel': 'نقاط القوة', 'nav.different': 'لماذا أنا مختلف',
+                'nav.softskills': 'مهارات شخصية', 'nav.contact': 'تواصل', 'personal.title': 'عنّي',
+                'personal.desc': 'أنا مطور أتعلم ذاتياً.', 'languages.title': 'لغات البرمجة التي أجيدها',
+                'projects.title': 'مشاريعي', 'projects.item1.title': 'عبدالرحمن تك',
+                'projects.item1.desc': 'موقع تقني حديث يعرض الخدمات والحلول بتصميم أنيق ومتجاوب.',
+                'education.title': 'التعليم', 'excel.title': 'نقاط قوتي',
                 'excel.desc': 'خبرة قوية في <strong>HTML5</strong> و <strong>CSS3</strong>. <strong>JavaScript</strong>، <strong>Python</strong>، <strong>C++</strong>، <strong>SQL Server</strong>، <strong>CCNA</strong>. <br><br><em>ملتزم وسريع التعلم.</em>',
                 'different.title': 'ما يميزني',
                 'different.desc': 'قدرة عالية على <strong>التفكير التحليلي</strong>. <strong>شغف وانضباط</strong>.',
@@ -1115,8 +1277,8 @@
         var pt = [{ i: 'fab fa-github', c: '#6e5494', n: 'GitHub', u: 'https://github.com/Abdo-1818', dk: 'Repos' }, { i: 'fab fa-linkedin-in', c: '#0077b5', n: 'LinkedIn', u: 'https://www.linkedin.com/in/ab-do-097783272', dk: 'Connect' }, { i: 'fab fa-instagram', c: '#e4405f', n: 'Instagram', u: 'https://www.instagram.com/bboda_7', dk: 'Follow' }];
         var pdi = { en: { 'Repos': 'Repos', 'Connect': 'Connect', 'Follow': 'Follow' }, de: { 'Repos': 'Repos', 'Connect': 'Verbinden', 'Follow': 'Folgen' }, ar: { 'Repos': 'مستودعات', 'Connect': 'تواصل', 'Follow': 'متابعة' } };
 
-        var cl = localStorage.getItem('abd_lang_v19') || 'en';
-        var ct = localStorage.getItem('abd_theme_v19') || 'dark';
+        var cl = localStorage.getItem('abd_lang_v22') || 'en';
+        var ct = localStorage.getItem('abd_theme_v22') || 'dark';
         var tsa = { en: ['Web Developer', 'Frontend Developer', 'Programmer'], de: ['Webentwickler', 'Frontend-Entwickler', 'Programmierer'], ar: ['مطور ويب', 'مطور واجهات', 'مبرمج'] };
         var ts = tsa[cl], ti = 0, ci = 0, id = false, tt;
 
@@ -1180,7 +1342,7 @@
             bc(); }
 
         function switchLang(l) { cl = l;
-            localStorage.setItem('abd_lang_v19', l);
+            localStorage.setItem('abd_lang_v22', l);
             document.documentElement.lang = l;
             document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
             document.body.classList.toggle('rtl', l === 'ar'); var btns = document.querySelectorAll('.lang-btn'); for (var i =
@@ -1207,7 +1369,7 @@
                 document.querySelector('meta[name="theme-color"]').setAttribute('content', '#060000'); } }
 
         function toggleTheme() { ct = ct === 'dark' ? 'light' : 'dark';
-            localStorage.setItem('abd_theme_v19', ct);
+            localStorage.setItem('abd_theme_v22', ct);
             applyTheme(); }
 
         function tmm() { var m = document.getElementById('mobileMenu'),
@@ -1230,7 +1392,7 @@
                     rect.bottom > wh * 0.2) { wrappers[i].classList.add('active-border'); } else { wrappers[i].classList.remove(
                         'active-border'); } } }
 
-        function init() { applyTheme(); var sl = localStorage.getItem('abd_lang_v19') || 'en';
+        function init() { applyTheme(); var sl = localStorage.getItem('abd_lang_v22') || 'en';
             document.getElementById(sl === 'de' ? 'btnDe' : sl === 'ar' ? 'btnAr' : 'btnEn').classList.add('active');
             ra(); if (sl !== 'en') { var tmp = sl;
                 cl = 'en';
