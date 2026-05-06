@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AbdulRahman Mamdouh - Professional Frontend Developer building modern, responsive websites.">
+    <meta name="description" content="AbdulRahman Mamdouh - UI/UX Designer & Low-Code Developer crafting exceptional digital experiences.">
     <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg">
     <title>AbdulRahman | Frontend Developer</title>
 
@@ -95,7 +95,31 @@
             text-align: right;
         }
 
-        /* ===== PARTICLES.JS CONTAINER (lightweight) ===== */
+        /* ===== SPLASH SCREEN ===== */
+        #splash {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease;
+        }
+        #splash.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .splash-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            color: var(--accent-bright);
+            letter-spacing: 2px;
+            text-shadow: 0 0 40px var(--accent-glow);
+        }
+
+        /* ===== PARTICLES.JS CONTAINER ===== */
         #particles-js {
             position: fixed;
             top: 0; left: 0;
@@ -119,29 +143,16 @@
 
         .from-right { transform: translateX(50px); filter: blur(2px); }
         .from-right.visible { transform: translateX(0); filter: blur(0); }
-
         .from-left { transform: translateX(-50px); filter: blur(2px); }
         .from-left.visible { transform: translateX(0); filter: blur(0); }
-
         .from-bottom { transform: translateY(40px); filter: blur(2px); }
         .from-bottom.visible { transform: translateY(0); filter: blur(0); }
-
         .from-scale { transform: scale(0.85); filter: blur(3px); }
         .from-scale.visible { transform: scale(1); filter: blur(0); }
-
         .from-rotate { transform: rotateY(30deg) scale(0.9); filter: blur(2px); }
         .from-rotate.visible { transform: rotateY(0) scale(1); filter: blur(0); }
-
-        .from-ripple {
-            transform: scale(1.2);
-            filter: blur(4px);
-            animation: none;
-        }
-        .from-ripple.visible {
-            transform: scale(1);
-            filter: blur(0);
-            animation: rippleSettle 0.6s var(--transition-spring) forwards;
-        }
+        .from-ripple { transform: scale(1.2); filter: blur(4px); animation: none; }
+        .from-ripple.visible { transform: scale(1); filter: blur(0); animation: rippleSettle 0.6s var(--transition-spring) forwards; }
 
         @keyframes rippleSettle {
             0% { transform: scale(0.96); }
@@ -458,7 +469,6 @@
             padding: 40px 30px;
             transition: all 0.7s ease;
         }
-
         .section-wrapper::before {
             content: '';
             position: absolute;
@@ -474,7 +484,6 @@
             animation: borderGlow 5s ease-in-out infinite;
             pointer-events: none;
         }
-
         @keyframes borderGlow {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -492,7 +501,6 @@
             position: relative;
             transition: all 0.5s ease;
         }
-
         .section-title::after {
             content: '';
             position: absolute;
@@ -505,7 +513,6 @@
             border-radius: 3px;
             transition: transform 0.5s var(--transition-spring);
         }
-
         .section-wrapper.active-border .section-title::after {
             transform: translateX(-50%) scaleX(1);
         }
@@ -525,7 +532,6 @@
             box-shadow: var(--shadow-hover);
             background: var(--surface-alt);
         }
-
         .card-glow {
             position: absolute;
             top: -40%; right: -40%;
@@ -614,7 +620,6 @@
 
         /* ===== PROJECTS SECTION ===== */
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; justify-content: center; }
-
         .project-card {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -630,106 +635,32 @@
             transform: translateY(-6px);
             box-shadow: var(--shadow-hover);
         }
-
-        .project-img-wrapper {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            height: 240px;
-        }
-
-        .project-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .project-card:hover .project-img {
-            transform: scale(1.05);
-        }
-
+        .project-img-wrapper { position: relative; overflow: hidden; width: 100%; height: 240px; }
+        .project-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .project-card:hover .project-img { transform: scale(1.05); }
         .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.7) 100%);
-            opacity: 0;
-            transition: opacity 0.35s ease;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 20px;
+            opacity: 0; transition: opacity 0.35s ease;
+            display: flex; align-items: flex-end; justify-content: center; padding-bottom: 20px;
         }
-
-        .project-card:hover .project-overlay {
-            opacity: 1;
-        }
-
+        .project-card:hover .project-overlay { opacity: 1; }
         .project-view-btn {
-            padding: 10px 24px;
-            background: var(--accent);
-            color: #fff;
-            border: none;
-            border-radius: 40px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            cursor: pointer;
-            font-family: inherit;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.35s var(--transition-bounce);
-            text-decoration: none;
-            transform: translateY(15px);
-            opacity: 0;
+            padding: 10px 24px; background: var(--accent); color: #fff; border: none; border-radius: 40px;
+            font-weight: 700; font-size: 0.85rem; cursor: pointer; font-family: inherit;
+            display: flex; align-items: center; gap: 6px;
+            transition: all 0.35s var(--transition-bounce); text-decoration: none;
+            transform: translateY(15px); opacity: 0;
         }
-
-        .project-card:hover .project-view-btn {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .project-view-btn:hover {
-            background: var(--accent-bright);
-            box-shadow: 0 8px 24px var(--accent-glow);
-            transform: translateY(-2px) scale(1.04);
-        }
-
-        .project-body {
-            padding: 20px 22px;
-        }
-
-        .project-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 6px;
-        }
-
-        .project-desc {
-            color: var(--text-soft);
-            font-size: 0.82rem;
-            line-height: 1.55;
-            margin-bottom: 12px;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
+        .project-card:hover .project-view-btn { transform: translateY(0); opacity: 1; }
+        .project-view-btn:hover { background: var(--accent-bright); box-shadow: 0 8px 24px var(--accent-glow); transform: translateY(-2px) scale(1.04); }
+        .project-body { padding: 20px 22px; }
+        .project-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+        .project-desc { color: var(--text-soft); font-size: 0.82rem; line-height: 1.55; margin-bottom: 12px; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
         .project-tag {
-            padding: 4px 12px;
-            background: var(--accent-soft);
-            color: var(--accent-bright);
-            border-radius: 40px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            border: 1px solid rgba(30,128,224,0.08);
+            padding: 4px 12px; background: var(--accent-soft); color: var(--accent-bright);
+            border-radius: 40px; font-size: 0.7rem; font-weight: 500; border: 1px solid rgba(30,128,224,0.08);
         }
         body.dark .project-tag { border-color: rgba(230,57,70,0.1); }
 
@@ -762,50 +693,50 @@
         .scroll-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
         .scroll-top:hover { background: var(--accent-bright); box-shadow: 0 12px 30px var(--accent-glow-strong); transform: translateY(-4px) scale(1.06); }
 
-        /* ===== CONTACT FORM ===== */
-        .contact-form-section {
+        /* ===== CONTACT ENVELOPE BUTTON ===== */
+        .contact-envelope-btn {
             position: fixed;
-            top: 100px;
-            right: 20px;
-            z-index: 999;
-            width: 320px;
-        }
-        body.rtl .contact-form-section { right: auto; left: 20px; }
-
-        .contact-toggle-btn {
-            width: 100%;
-            padding: 12px 20px;
+            bottom: 85px;
+            right: 24px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             background: var(--accent);
             color: #fff;
             border: none;
-            border-radius: 40px;
-            font-weight: 700;
-            font-size: 0.88rem;
             cursor: pointer;
-            font-family: inherit;
+            z-index: 98;
+            font-size: 1.3rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            box-shadow: 0 8px 24px var(--accent-glow);
+            box-shadow: 0 6px 22px var(--accent-glow);
             transition: all 0.35s var(--transition-bounce);
-            letter-spacing: 0.4px;
         }
-        .contact-toggle-btn:hover { background: var(--accent-bright); box-shadow: 0 14px 35px var(--accent-glow-strong); transform: translateY(-2px); }
-
+        .contact-envelope-btn:hover {
+            background: var(--accent-bright);
+            box-shadow: 0 12px 32px var(--accent-glow-strong);
+            transform: translateY(-3px) scale(1.08);
+        }
         .contact-form-box {
             display: none;
+            position: fixed;
+            bottom: 145px;
+            right: 24px;
+            width: 320px;
             background: var(--surface);
             border: 1px solid var(--border-light);
             border-radius: var(--radius);
             padding: 20px;
-            margin-top: 10px;
             box-shadow: var(--shadow-card);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
+            z-index: 97;
+            animation: slideUp 0.4s var(--transition-spring);
         }
-        .contact-form-box.show { display: block; animation: slideDown 0.4s var(--transition-spring); }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .contact-form-box.show { display: block; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
         .contact-form-box h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 14px; text-align: center; }
         .contact-form-group { margin-bottom: 11px; }
         .contact-form-input {
@@ -834,8 +765,8 @@
         .contact-form-status.error { color: #ff1744; }
 
         @media (max-width: 768px) {
-            .contact-form-section { top: auto; bottom: 16px; right: 8px; width: 280px; }
-            body.rtl .contact-form-section { right: auto; left: 8px; }
+            .contact-envelope-btn { bottom: 75px; right: 12px; }
+            .contact-form-box { bottom: 135px; right: 12px; width: 280px; }
             .projects-grid { grid-template-columns: 1fr; }
             .project-img-wrapper { height: 200px; }
         }
@@ -868,7 +799,7 @@
             .section { padding: 38px 0; }
             .section-header { margin-bottom: 30px; }
             .section-wrapper { padding: 26px 14px; }
-            .contact-form-section { width: 250px; right: 4px; }
+            .contact-form-box { width: 260px; }
         }
         @media (max-width: 400px) {
             .info-grid { grid-template-columns: 1fr; }
@@ -881,33 +812,34 @@
 </head>
 <body class="light">
 
+    <!-- Splash Screen -->
+    <div id="splash"><span class="splash-text" id="splashText"></span></div>
+
     <!-- Particles.js container -->
     <div id="particles-js"></div>
 
-    <!-- ===== CONTACT FORM ===== -->
-    <div class="contact-form-section">
-        <button class="contact-toggle-btn" onclick="toggleContactForm()">
-            <i class="fas fa-envelope"></i>
-            <span data-i18n="contact_form.toggle">Send Message</span>
-            <i class="fas fa-chevron-down" id="contactToggleIcon"></i>
-        </button>
-        <div class="contact-form-box" id="contactFormBox">
-            <h3 data-i18n="contact_form.title">Contact Me</h3>
-            <div class="contact-form-group">
-                <input type="text" id="contactName" class="contact-form-input" data-i18n-placeholder="contact_form.name" placeholder="Your Name" required>
-            </div>
-            <div class="contact-form-group">
-                <input type="email" id="contactEmail" class="contact-form-input" data-i18n-placeholder="contact_form.email" placeholder="Your Email" required>
-            </div>
-            <div class="contact-form-group">
-                <textarea id="contactMessage" class="contact-form-input contact-form-textarea" data-i18n-placeholder="contact_form.message" placeholder="Your Message" required></textarea>
-            </div>
-            <button class="contact-form-submit" id="contactSubmitBtn" onclick="sendContactMessage()">
-                <i class="fas fa-paper-plane"></i>
-                <span data-i18n="contact_form.send">Send</span>
-            </button>
-            <p class="contact-form-status" id="contactFormStatus"></p>
+    <!-- Envelope Contact Button -->
+    <button class="contact-envelope-btn" onclick="toggleContactForm()" aria-label="Contact">
+        <i class="fas fa-envelope"></i>
+    </button>
+
+    <!-- Contact Form Box -->
+    <div class="contact-form-box" id="contactFormBox">
+        <h3 data-i18n="contact_form.title">Contact Me</h3>
+        <div class="contact-form-group">
+            <input type="text" id="contactName" class="contact-form-input" data-i18n-placeholder="contact_form.name" placeholder="Your Name" required>
         </div>
+        <div class="contact-form-group">
+            <input type="email" id="contactEmail" class="contact-form-input" data-i18n-placeholder="contact_form.email" placeholder="Your Email" required>
+        </div>
+        <div class="contact-form-group">
+            <textarea id="contactMessage" class="contact-form-input contact-form-textarea" data-i18n-placeholder="contact_form.message" placeholder="Your Message" required></textarea>
+        </div>
+        <button class="contact-form-submit" id="contactSubmitBtn" onclick="sendContactMessage()">
+            <i class="fas fa-paper-plane"></i>
+            <span data-i18n="contact_form.send">Send</span>
+        </button>
+        <p class="contact-form-status" id="contactFormStatus"></p>
     </div>
 
     <header class="header" id="header">
@@ -1110,226 +1042,186 @@
 
     <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fas fa-arrow-up"></i></button>
 
-    <!-- particles.js library -->
+    <!-- particles.js -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
     <script>
+        // ===== SPLASH ANIMATION =====
+        (function() {
+            var splash = document.getElementById('splash');
+            var textEl = document.getElementById('splashText');
+            var message = "Welcome";
+            var i = 0;
+            var typeSpeed = 100; // medium speed
+
+            function type() {
+                if (i < message.length) {
+                    textEl.textContent += message.charAt(i);
+                    i++;
+                    setTimeout(type, typeSpeed);
+                } else {
+                    // keep for 1.5s then fade out
+                    setTimeout(function() {
+                        splash.classList.add('fade-out');
+                        // remove from DOM after transition
+                        setTimeout(function() {
+                            if (splash.parentNode) splash.parentNode.removeChild(splash);
+                        }, 600);
+                    }, 1500);
+                }
+            }
+            type();
+        })();
+
         // ===== API CONFIGURATION =====
         var API_URL = 'https://YOUR-API-LINK/api/messages';
 
-        // ===== CONTACT FORM =====
-        function toggleContactForm() { var box = document.getElementById('contactFormBox'),
-                icon = document.getElementById('contactToggleIcon'); if (box.classList.contains('show')) { box.classList.remove(
-                    'show');
-                icon.className = 'fas fa-chevron-down'; } else { box.classList.add('show');
-                icon.className = 'fas fa-chevron-up'; } }
+        // ===== CONTACT FORM TOGGLE =====
+        function toggleContactForm() {
+            var box = document.getElementById('contactFormBox');
+            if (box.classList.contains('show')) {
+                box.classList.remove('show');
+            } else {
+                box.classList.add('show');
+            }
+        }
 
-        function sendContactMessage() { var btn = document.getElementById('contactSubmitBtn'),
-                status = document.getElementById('contactFormStatus'),
-                name = document.getElementById('contactName').value.trim(),
-                email = document.getElementById('contactEmail').value.trim(),
-                message = document.getElementById('contactMessage').value.trim(); if (!name || !email || !message) { status
-                    .textContent = (translations[currentLang] && translations[currentLang]['contact_form.fill_fields']) ||
-                    'Please fill all fields';
-                status.className = 'contact-form-status error'; return; }
+        function sendContactMessage() {
+            var btn = document.getElementById('contactSubmitBtn');
+            var status = document.getElementById('contactFormStatus');
+            var name = document.getElementById('contactName').value.trim();
+            var email = document.getElementById('contactEmail').value.trim();
+            var message = document.getElementById('contactMessage').value.trim();
+            if (!name || !email || !message) {
+                status.textContent = (translations[currentLang] && translations[currentLang]['contact_form.fill_fields']) || 'Please fill all fields';
+                status.className = 'contact-form-status error';
+                return;
+            }
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             status.textContent = '';
             status.className = 'contact-form-status';
-            fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ Name: name,
-                    Email: email, MessageText: message }) }).then(function(response) { if (!response.ok) { throw new Error(
-                        'Network error'); } return response.text(); }).then(function(data) { status.textContent = (
-                    translations[currentLang] && translations[currentLang]['contact_form.success']) ||
-                'Message sent successfully ✔';
+            fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ Name: name, Email: email, MessageText: message })
+            })
+            .then(function(response) { if (!response.ok) throw new Error('Network error'); return response.text(); })
+            .then(function(data) {
+                status.textContent = (translations[currentLang] && translations[currentLang]['contact_form.success']) || 'Message sent successfully ✔';
                 status.className = 'contact-form-status success';
                 document.getElementById('contactName').value = '';
                 document.getElementById('contactEmail').value = '';
                 document.getElementById('contactMessage').value = '';
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-i18n="contact_form.send">Send</span>';
-                setTimeout(function() { status.textContent = '';
-                    status.className = 'contact-form-status'; }, 5000); }).catch(function(error) { console.log('Error:',
-                    error);
-                status.textContent = (translations[currentLang] && translations[currentLang]['contact_form.error']) ||
-                    'Error sending message ❌';
+                setTimeout(function() { status.textContent = ''; status.className = 'contact-form-status'; }, 5000);
+            })
+            .catch(function(error) {
+                console.log('Error:', error);
+                status.textContent = (translations[currentLang] && translations[currentLang]['contact_form.error']) || 'Error sending message ❌';
                 status.className = 'contact-form-status error';
                 btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-i18n="contact_form.send">Send</span>'; }); }
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-i18n="contact_form.send">Send</span>';
+            });
+        }
 
-        // ===== PARTICLES.JS (lightweight config) =====
+        // ===== PARTICLES.JS =====
         particlesJS('particles-js', {
             "particles": {
-                "number": {
-                    "value": 40,
-                    "density": {
-                        "enable": true,
-                        "value_area": 900
-                    }
-                },
-                "color": {
-                    "value": "#1e80e0"
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    },
-                    "polygon": {
-                        "nb_sides": 5
-                    }
-                },
-                "opacity": {
-                    "value": 0.35,
-                    "random": false,
-                    "anim": {
-                        "enable": false,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 2.5,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 40,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 130,
-                    "color": "#1e80e0",
-                    "opacity": 0.25,
-                    "width": 0.8
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 1.2,
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
-                }
+                "number": { "value": 40, "density": { "enable": true, "value_area": 900 } },
+                "color": { "value": "#1e80e0" },
+                "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } },
+                "opacity": { "value": 0.35, "random": false, "anim": { "enable": false } },
+                "size": { "value": 2.5, "random": true, "anim": { "enable": false } },
+                "line_linked": { "enable": true, "distance": 130, "color": "#1e80e0", "opacity": 0.25, "width": 0.8 },
+                "move": { "enable": true, "speed": 1.2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false } }
             },
             "interactivity": {
                 "detect_on": "canvas",
                 "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "grab"
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push"
-                    },
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" },
                     "resize": true
                 },
                 "modes": {
-                    "grab": {
-                        "distance": 180,
-                        "line_linked": {
-                            "opacity": 0.5
-                        }
-                    },
-                    "bubble": {
-                        "distance": 300,
-                        "size": 30,
-                        "duration": 2,
-                        "opacity": 6,
-                        "speed": 3
-                    },
-                    "repulse": {
-                        "distance": 180,
-                        "duration": 0.4
-                    },
-                    "push": {
-                        "particles_nb": 3
-                    },
-                    "remove": {
-                        "particles_nb": 2
-                    }
+                    "grab": { "distance": 180, "line_linked": { "opacity": 0.5 } },
+                    "bubble": { "distance": 300, "size": 30, "duration": 2, "opacity": 6, "speed": 3 },
+                    "repulse": { "distance": 180, "duration": 0.4 },
+                    "push": { "particles_nb": 3 },
+                    "remove": { "particles_nb": 2 }
                 }
             },
             "retina_detect": true
         });
 
-        // ===== TRANSLATIONS =====
+        // ===== TRANSLATIONS (updated with new "different" text) =====
         var translations = {
             en: {
                 'hero.greeting': "Hi, I'm", 'hero.role.prefix': "I'm a", 'hero.desc': 'I build modern, responsive websites and constantly learn through real projects.',
-                'hero.cta1': 'Learn More About Me', 'hero.cta2': 'Get In Touch', 'nav.home': 'Home',
-                'nav.personal': 'Personal Info', 'nav.languages': 'Languages', 'nav.projects': 'Projects',
-                'nav.education': 'Education', 'nav.excel': 'Strengths', 'nav.different': 'Why Different',
-                'nav.softskills': 'Soft Skills', 'nav.contact': 'Contact', 'personal.title': 'About Me',
-                'personal.desc': "I'm a self-learning developer focused on web development and problem solving.",
+                'hero.cta1': 'Learn More About Me', 'hero.cta2': 'Get In Touch',
+                'nav.home': 'Home', 'nav.personal': 'Personal Info', 'nav.languages': 'Languages', 'nav.projects': 'Projects',
+                'nav.education': 'Education', 'nav.excel': 'Strengths', 'nav.different': 'Why Different', 'nav.softskills': 'Soft Skills', 'nav.contact': 'Contact',
+                'personal.title': 'About Me', 'personal.desc': "I'm a self-learning developer focused on web development and problem solving.",
                 'languages.title': 'Programming Languages I Master', 'projects.title': 'My Projects',
-                'projects.item1.title': 'Abdulrahman TEC',
-                'projects.item1.desc': 'A modern technology website showcasing services and solutions with a sleek, responsive design.',
-                'education.title': 'Education', 'excel.title': 'My Strengths',
+                'projects.item1.title': 'Abdulrahman TEC', 'projects.item1.desc': 'A modern technology website showcasing services and solutions with a sleek, responsive design.',
+                'education.title': 'Education',
+                'excel.title': 'My Strengths',
                 'excel.desc': 'I have strong experience with <strong>HTML5</strong> and <strong>CSS3</strong>. I write clean <strong>JavaScript</strong>. I work with <strong>Python</strong> and <strong>C++</strong>. Skilled in <strong>SQL Server</strong>, <strong>Cisco Packet Tracer</strong> and hold <strong>CCNA</strong>. <br><br><em>Dedicated, fast-learning, and always eager to build something meaningful.</em>',
                 'different.title': 'What Sets Me Apart',
-                'different.desc': "I dive deep into every technology. Strong <strong>analytical thinking</strong> and problem-solving. I work with <strong>passion, discipline, and consistency</strong>. I never give up.",
+                'different.desc': 'I am a <strong>UI/UX designer and low-code developer</strong> with extensive experience, passionate about crafting exceptional digital experiences. I translate user needs into intuitive designs and interactive prototypes using the latest design tools. I combine creativity with technical skill, bridging the gap between design and development, delivering impactful solutions without traditional coding. Committed to visually appealing interfaces and optimized user experience, I bring a unique blend of design thinking and no-code expertise to every project.',
                 'softskills.title': 'Personal Qualities', 'contact.title': 'Contact Me Via',
                 'contact.subtitle': 'Reach out to me on any of these platforms', 'footer.rights': 'All rights reserved',
                 'contact_form.toggle': 'Send Message', 'contact_form.title': 'Contact Me',
-                'contact_form.name': 'Your Name', 'contact_form.email': 'Your Email',
-                'contact_form.message': 'Your Message', 'contact_form.send': 'Send',
-                'contact_form.success': 'Message sent successfully ✔', 'contact_form.error': 'Error sending message ❌',
+                'contact_form.name': 'Your Name', 'contact_form.email': 'Your Email', 'contact_form.message': 'Your Message',
+                'contact_form.send': 'Send', 'contact_form.success': 'Message sent successfully ✔', 'contact_form.error': 'Error sending message ❌',
                 'contact_form.fill_fields': 'Please fill all fields'
             },
             de: {
                 'hero.greeting': 'Hallo, ich bin', 'hero.role.prefix': 'Ich bin', 'hero.desc': 'Ich entwickle moderne, responsive Websites.',
-                'hero.cta1': 'Erfahre mehr', 'hero.cta2': 'Kontakt', 'nav.home': 'Start',
-                'nav.personal': 'Persönliches', 'nav.languages': 'Sprachen', 'nav.projects': 'Projekte',
-                'nav.education': 'Bildung', 'nav.excel': 'Stärken', 'nav.different': 'Warum anders',
-                'nav.softskills': 'Soft Skills', 'nav.contact': 'Kontakt', 'personal.title': 'Über mich',
-                'personal.desc': 'Ich bin ein selbstlernender Entwickler.', 'languages.title': 'Programmiersprachen',
+                'hero.cta1': 'Erfahre mehr', 'hero.cta2': 'Kontakt',
+                'nav.home': 'Start', 'nav.personal': 'Persönliches', 'nav.languages': 'Sprachen', 'nav.projects': 'Projekte',
+                'nav.education': 'Bildung', 'nav.excel': 'Stärken', 'nav.different': 'Warum anders', 'nav.softskills': 'Soft Skills', 'nav.contact': 'Kontakt',
+                'personal.title': 'Über mich', 'personal.desc': 'Ich bin ein selbstlernender Entwickler.',
+                'languages.title': 'Programmiersprachen',
                 'projects.title': 'Meine Projekte', 'projects.item1.title': 'Abdulrahman TEC',
                 'projects.item1.desc': 'Eine moderne Technologie-Website mit Dienstleistungen und Lösungen in elegantem, responsivem Design.',
-                'education.title': 'Bildung', 'excel.title': 'Meine Stärken',
+                'education.title': 'Bildung',
+                'excel.title': 'Meine Stärken',
                 'excel.desc': 'Fundierte Erfahrung mit <strong>HTML5</strong> und <strong>CSS3</strong>. <strong>JavaScript</strong>, <strong>Python</strong>, <strong>C++</strong>, <strong>SQL Server</strong>, <strong>CCNA</strong>. <br><br><em>Engagiert und lernbegierig.</em>',
                 'different.title': 'Was mich auszeichnet',
-                'different.desc': 'Starke <strong>analytische Denkfähigkeiten</strong>. <strong>Leidenschaft und Disziplin</strong>.',
+                'different.desc': 'Ich bin ein <strong>UI/UX-Designer und Low-Code-Entwickler</strong> mit umfassender Erfahrung und Leidenschaft für außergewöhnliche digitale Erlebnisse. Ich übersetze Nutzerbedürfnisse in intuitive Designs und interaktive Prototypen mit modernsten Design-Tools. Ich verbinde Kreativität mit technischem Können, schließe die Lücke zwischen Design und Entwicklung und liefere wirkungsvolle Lösungen ohne traditionelle Programmierung. Engagiert für visuell ansprechende Oberflächen und optimierte Nutzererfahrung bringe ich eine einzigartige Mischung aus Design Thinking und No-Code-Expertise in jedes Projekt.',
                 'softskills.title': 'Persönliche Qualitäten', 'contact.title': 'Kontaktiere mich über',
-                'contact.subtitle': 'Erreiche mich auf einer dieser Plattformen',
-                'footer.rights': 'Alle Rechte vorbehalten', 'contact_form.toggle': 'Nachricht senden',
-                'contact_form.title': 'Kontaktiere mich', 'contact_form.name': 'Dein Name',
-                'contact_form.email': 'Deine E-Mail', 'contact_form.message': 'Deine Nachricht',
-                'contact_form.send': 'Senden', 'contact_form.success': 'Nachricht erfolgreich gesendet ✔',
-                'contact_form.error': 'Fehler beim Senden ❌', 'contact_form.fill_fields': 'Bitte alle Felder ausfüllen'
+                'contact.subtitle': 'Erreiche mich auf einer dieser Plattformen', 'footer.rights': 'Alle Rechte vorbehalten',
+                'contact_form.toggle': 'Nachricht senden', 'contact_form.title': 'Kontaktiere mich',
+                'contact_form.name': 'Dein Name', 'contact_form.email': 'Deine E-Mail', 'contact_form.message': 'Deine Nachricht',
+                'contact_form.send': 'Senden', 'contact_form.success': 'Nachricht erfolgreich gesendet ✔', 'contact_form.error': 'Fehler beim Senden ❌',
+                'contact_form.fill_fields': 'Bitte alle Felder ausfüllen'
             },
             ar: {
                 'hero.greeting': 'مرحباً، أنا', 'hero.role.prefix': 'أنا', 'hero.desc': 'أبني مواقع ويب حديثة ومتجاوبة.',
-                'hero.cta1': 'اعرف المزيد عني', 'hero.cta2': 'تواصل معي', 'nav.home': 'الرئيسية',
-                'nav.personal': 'معلومات شخصية', 'nav.languages': 'لغات البرمجة', 'nav.projects': 'مشاريع',
-                'nav.education': 'التعليم', 'nav.excel': 'نقاط القوة', 'nav.different': 'لماذا أنا مختلف',
-                'nav.softskills': 'مهارات شخصية', 'nav.contact': 'تواصل', 'personal.title': 'عنّي',
-                'personal.desc': 'أنا مطور أتعلم ذاتياً.', 'languages.title': 'لغات البرمجة التي أجيدها',
+                'hero.cta1': 'اعرف المزيد عني', 'hero.cta2': 'تواصل معي',
+                'nav.home': 'الرئيسية', 'nav.personal': 'معلومات شخصية', 'nav.languages': 'لغات البرمجة', 'nav.projects': 'مشاريع',
+                'nav.education': 'التعليم', 'nav.excel': 'نقاط القوة', 'nav.different': 'لماذا أنا مختلف', 'nav.softskills': 'مهارات شخصية', 'nav.contact': 'تواصل',
+                'personal.title': 'عنّي', 'personal.desc': 'أنا مطور أتعلم ذاتياً.',
+                'languages.title': 'لغات البرمجة التي أجيدها',
                 'projects.title': 'مشاريعي', 'projects.item1.title': 'عبدالرحمن تك',
                 'projects.item1.desc': 'موقع تقني حديث يعرض الخدمات والحلول بتصميم أنيق ومتجاوب.',
-                'education.title': 'التعليم', 'excel.title': 'نقاط قوتي',
+                'education.title': 'التعليم',
+                'excel.title': 'نقاط قوتي',
                 'excel.desc': 'خبرة قوية في <strong>HTML5</strong> و <strong>CSS3</strong>. <strong>JavaScript</strong>، <strong>Python</strong>، <strong>C++</strong>، <strong>SQL Server</strong>، <strong>CCNA</strong>. <br><br><em>ملتزم وسريع التعلم.</em>',
                 'different.title': 'ما يميزني',
-                'different.desc': 'قدرة عالية على <strong>التفكير التحليلي</strong>. <strong>شغف وانضباط</strong>.',
+                'different.desc': 'أنا <strong>مصمم واجهات مستخدم وتجربة مستخدم، ومطور برامج منخفض البرمجة</strong> ذو خبرة واسعة، شغوف بابتكار تجارب رقمية استثنائية. أتقن ترجمة احتياجات المستخدمين إلى تصاميم بديهية ونماذج أولية تفاعلية باستخدام أحدث أدوات التصميم. أجمع بين الإبداع والمهارة التقنية، وأعمل على سد الفجوة بين التصميم والتطوير، مقدماً حلولاً مؤثرة دون الحاجة إلى البرمجة التقليدية. ملتزم بتصميم واجهات جذابة بصرياً وتحسين تجربة المستخدم، وأقدم مزيجاً فريداً من التفكير التصميمي وخبرة البرمجة بدون كتابة أكواد في كل مشروع.',
                 'softskills.title': 'صفاتي الشخصية', 'contact.title': 'تواصل معي عبر',
                 'contact.subtitle': 'تواصل معي على أي من هذه المنصات', 'footer.rights': 'جميع الحقوق محفوظة',
-                'contact_form.toggle': 'إرسال رسالة', 'contact_form.title': 'تواصل معي', 'contact_form.name': 'الاسم',
-                'contact_form.email': 'الإيميل', 'contact_form.message': 'اكتب رسالتك', 'contact_form.send': 'إرسال',
-                'contact_form.success': 'تم إرسال الرسالة بنجاح ✔', 'contact_form.error': 'حصل خطأ في الإرسال ❌',
+                'contact_form.toggle': 'إرسال رسالة', 'contact_form.title': 'تواصل معي',
+                'contact_form.name': 'الاسم', 'contact_form.email': 'الإيميل', 'contact_form.message': 'اكتب رسالتك',
+                'contact_form.send': 'إرسال', 'contact_form.success': 'تم إرسال الرسالة بنجاح ✔', 'contact_form.error': 'حصل خطأ في الإرسال ❌',
                 'contact_form.fill_fields': 'الرجاء ملء جميع الحقول'
             }
         };
 
+        // ... rest of the existing JS logic for data population, language switching, theme, etc. (unchanged) ...
         var pi = [{ lk: 'Full Name', v: 'AbdulRahman Mamdouh' }, { lk: 'Age', vk: 'age' }, { lk: 'Date of Birth', vk: 'dob' }, { lk: 'Nationality', vk: 'nat' }, { lk: 'Specialization', vk: 'spec' }, { lk: 'Department', vk: 'dept' }, { lk: 'Status', vk: 'status', ia: true }];
         var pv = { en: { age: '20 Years', dob: 'August 1, 2005', nat: 'Egyptian', spec: 'Information Systems', dept: 'Computer Science', status: 'Currently Studying' }, de: { age: '20 Jahre', dob: '1. August 2005', nat: 'Ägypter', spec: 'Informationssysteme', dept: 'Informatik', status: 'Studierend' }, ar: { age: '20 سنة', dob: '1 أغسطس 2005', nat: 'مصري', spec: 'نظم المعلومات', dept: 'علوم الحاسب', status: 'قيد الدراسة' } };
         var pl = { en: { 'Full Name': 'Full Name', 'Age': 'Age', 'Date of Birth': 'Date of Birth', 'Nationality': 'Nationality', 'Specialization': 'Specialization', 'Department': 'Department', 'Status': 'Status' }, de: { 'Full Name': 'Vollständiger Name', 'Age': 'Alter', 'Date of Birth': 'Geburtsdatum', 'Nationality': 'Nationalität', 'Specialization': 'Spezialisierung', 'Department': 'Fachbereich', 'Status': 'Status' }, ar: { 'Full Name': 'الاسم الكامل', 'Age': 'العمر', 'Date of Birth': 'تاريخ الميلاد', 'Nationality': 'الجنسية', 'Specialization': 'التخصص', 'Department': 'القسم', 'Status': 'الحالة الدراسية' } };
@@ -1347,53 +1239,15 @@
             { i: 'fas fa-book-open', n: 'Self-Learning', dk: 'Fast tool adoption' },
             { i: 'fas fa-rotate', n: 'Adaptability', dk: 'Quick environment shifts' }
         ];
-        var si = {
-            en: {
-                'Problem Solving': 'Problem Solving',
-                'Complex issues': 'Complex issues',
-                'Analytical Thinking': 'Analytical Thinking',
-                'Data-driven logic': 'Data-driven logic',
-                'Team Collaboration': 'Team Collaboration',
-                'Effective teamwork': 'Effective teamwork',
-                'Time Management': 'Time Management',
-                'Task prioritization': 'Task prioritization',
-                'Self-Learning': 'Self-Learning',
-                'Fast tool adoption': 'Fast tool adoption',
-                'Adaptability': 'Adaptability',
-                'Quick environment shifts': 'Quick environment shifts'
-            },
-            de: {
-                'Problem Solving': 'Problemlösung',
-                'Complex issues': 'Komplexe Probleme',
-                'Analytical Thinking': 'Analytisches Denken',
-                'Data-driven logic': 'Datengestützte Logik',
-                'Team Collaboration': 'Teamarbeit',
-                'Effective teamwork': 'Effektive Teamarbeit',
-                'Time Management': 'Zeitmanagement',
-                'Task prioritization': 'Aufgabenpriorisierung',
-                'Self-Learning': 'Selbstlernen',
-                'Fast tool adoption': 'Schnelle Werkzeugübernahme',
-                'Adaptability': 'Anpassungsfähigkeit',
-                'Quick environment shifts': 'Schnelle Umgebungswechsel'
-            },
-            ar: {
-                'Problem Solving': 'حل المشكلات',
-                'Complex issues': 'قضايا معقدة',
-                'Analytical Thinking': 'التفكير التحليلي',
-                'Data-driven logic': 'منطق قائم على البيانات',
-                'Team Collaboration': 'التعاون الجماعي',
-                'Effective teamwork': 'عمل جماعي فعال',
-                'Time Management': 'إدارة الوقت',
-                'Task prioritization': 'تحديد أولويات المهام',
-                'Self-Learning': 'التعلم الذاتي',
-                'Fast tool adoption': 'سرعة تبني الأدوات',
-                'Adaptability': 'القدرة على التكيف',
-                'Quick environment shifts': 'التكيف السريع مع البيئات'
-            }
-        };
+        var si = { en: {}, de: {}, ar: {} };
+        ['Problem Solving','Complex issues','Analytical Thinking','Data-driven logic','Team Collaboration','Effective teamwork','Time Management','Task prioritization','Self-Learning','Fast tool adoption','Adaptability','Quick environment shifts'].forEach(function(k) {
+            si.en[k] = k;
+            si.de[k] = { 'Problem Solving':'Problemlösung','Complex issues':'Komplexe Probleme','Analytical Thinking':'Analytisches Denken','Data-driven logic':'Datengestützte Logik','Team Collaboration':'Teamarbeit','Effective teamwork':'Effektive Teamarbeit','Time Management':'Zeitmanagement','Task prioritization':'Aufgabenpriorisierung','Self-Learning':'Selbstlernen','Fast tool adoption':'Schnelle Werkzeugübernahme','Adaptability':'Anpassungsfähigkeit','Quick environment shifts':'Schnelle Umgebungswechsel' }[k] || k;
+            si.ar[k] = { 'Problem Solving':'حل المشكلات','Complex issues':'قضايا معقدة','Analytical Thinking':'التفكير التحليلي','Data-driven logic':'منطق قائم على البيانات','Team Collaboration':'التعاون الجماعي','Effective teamwork':'عمل جماعي فعال','Time Management':'إدارة الوقت','Task prioritization':'تحديد أولويات المهام','Self-Learning':'التعلم الذاتي','Fast tool adoption':'سرعة تبني الأدوات','Adaptability':'القدرة على التكيف','Quick environment shifts':'التكيف السريع مع البيئات' }[k] || k;
+        });
 
         var pt = [{ i: 'fab fa-github', c: '#6e5494', n: 'GitHub', u: 'https://github.com/Abdo-1818', dk: 'Repos' }, { i: 'fab fa-linkedin-in', c: '#0077b5', n: 'LinkedIn', u: 'https://www.linkedin.com/in/ab-do-097783272', dk: 'Connect' }, { i: 'fab fa-instagram', c: '#e4405f', n: 'Instagram', u: 'https://www.instagram.com/bboda_7', dk: 'Follow' }];
-        var pdi = { en: { 'Repos': 'Repos', 'Connect': 'Connect', 'Follow': 'Follow' }, de: { 'Repos': 'Repos', 'Connect': 'Verbinden', 'Follow': 'Folgen' }, ar: { 'Repos': 'مستودعات', 'Connect': 'تواصل', 'Follow': 'متابعة' } };
+        var pdi = { en: { 'Repos':'Repos','Connect':'Connect','Follow':'Follow' }, de: { 'Repos':'Repos','Connect':'Verbinden','Follow':'Folgen' }, ar: { 'Repos':'مستودعات','Connect':'تواصل','Follow':'متابعة' } };
 
         var cl = localStorage.getItem('abd_lang_v22') || 'en';
         var ct = localStorage.getItem('abd_theme_v22') || 'light';
@@ -1430,13 +1284,11 @@
 
         function applyTheme() {
             if (ct === 'dark') {
-                document.body.classList.add('dark');
-                document.body.classList.remove('light');
+                document.body.classList.add('dark'); document.body.classList.remove('light');
                 document.querySelector('meta[name="theme-color"]').setAttribute('content', '#060000');
                 document.querySelector('.icon-btn[aria-label="Theme"] i').classList.replace('fa-sun', 'fa-moon');
             } else {
-                document.body.classList.add('light');
-                document.body.classList.remove('dark');
+                document.body.classList.add('light'); document.body.classList.remove('dark');
                 document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f0f4fa');
                 document.querySelector('.icon-btn[aria-label="Theme"] i').classList.replace('fa-moon', 'fa-sun');
             }
