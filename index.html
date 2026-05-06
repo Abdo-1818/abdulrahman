@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="AbdulRahman Mamdouh - Professional Frontend Developer building modern, responsive websites.">
     <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg">
-    <title>AbdulRahman Mamdouh | Frontend Developer</title>
+    <title>AbdulRahman | Frontend Developer</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -99,7 +99,7 @@
             text-align: right;
         }
 
-        /* ===== ADVANCED PARTICLES CANVAS ===== */
+        /* ===== PARTICLES CANVAS (optimized) ===== */
         #particlesCanvas {
             position: fixed;
             top: 0;
@@ -108,11 +108,11 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.7;
+            opacity: 0.65;
             transition: opacity 0.5s ease;
         }
         body.light #particlesCanvas {
-            opacity: 0.25;
+            opacity: 0.22;
         }
 
         /* ===== ULTRA SMOOTH REVEAL SYSTEM ===== */
@@ -1714,7 +1714,7 @@
         <div class="header-inner">
             <a href="#home" class="logo-link">
                 <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="AbdulRahman" class="logo-img">
-                <span class="logo-text">AbdulRahman Mamdouh</span>
+                <span class="logo-text">AbdulRahman</span>
             </a>
             <nav>
                 <ul class="nav-desktop" id="navDesktop">
@@ -1974,495 +1974,171 @@
             });
         }
 
-        // ===== ENHANCED INTERACTIVE PARTICLE SYSTEM =====
+        // ===== LIGHTWEIGHT PARTICLE NETWORK (smooth, no lag) =====
         (function() {
             var c = document.getElementById('particlesCanvas');
             var ctx = c.getContext('2d');
-
-            // --- Configuration ---
-            var isMobile = innerWidth < 768;
-            var isSmall = innerWidth < 500;
-
-            // Particle counts per layer
-            var AMBIENT_COUNT = isSmall ? 6 : isMobile ? 10 : 16;
-            var NETWORK_COUNT = isSmall ? 12 : isMobile ? 20 : 35;
-            var SPARKLE_COUNT = isSmall ? 4 : isMobile ? 6 : 10;
-            var MAX_BURST = 80;
-            var MAX_TRAIL = 14;
-
-            // --- State ---
-            var particles = []; // All persistent particles (ambient + network + sparkle)
-            var burstParticles = []; // Temporary burst particles
-            var mouseTrail = []; // Mouse trail positions
-            var mouseX = -200;
-            var mouseY = -200;
-            var smoothMouseX = -200;
-            var smoothMouseY = -200;
-            var targetMouseX = -200;
-            var targetMouseY = -200;
+            var particles = [];
+            var mouseX = -200,
+                mouseY = -200;
             var isDown = false;
             var animFrame;
             var globalTime = 0;
-            var trailTick = 0;
 
-            // --- Resize ---
+            // Config (light counts)
+            var AMBIENT = 8;
+            var NETWORK = 16;
+            var SPARKLE = 5;
+            var MAX_BURST = 40;
+            var CONNECTION_DIST = 110;
+
             function resize() {
                 c.width = innerWidth;
                 c.height = innerHeight;
-                isMobile = innerWidth < 768;
-                isSmall = innerWidth < 500;
-                AMBIENT_COUNT = isSmall ? 6 : isMobile ? 10 : 16;
-                NETWORK_COUNT = isSmall ? 12 : isMobile ? 20 : 35;
-                SPARKLE_COUNT = isSmall ? 4 : isMobile ? 6 : 10;
-                createAllParticles();
+                createParticles();
             }
 
-            // --- Theme detection ---
-            function isLightTheme() {
-                return document.body.classList.contains('light');
-            }
-
-            // --- Create a single particle ---
             function createParticle(type) {
                 var p = {
                     x: Math.random() * c.width,
                     y: Math.random() * c.height,
-                    type: type, // 'ambient' | 'network' | 'sparkle'
-                    life: 1,
+                    type: type,
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4,
+                    radius: type === 'sparkle' ? 0.8 : type === 'ambient' ? 1.8 : 1.2,
+                    alpha: 0.3 + Math.random() * 0.5,
                     pulse: Math.random() * Math.PI * 2,
-                    pulseSpeed: 0.015 + Math.random() * 0.04,
-                    angle: Math.random() * Math.PI * 2,
-                    angleDrift: (Math.random() - 0.5) * 0.008
+                    pulseSpeed: 0.02 + Math.random() * 0.03
                 };
-
-                if (type === 'ambient') {
-                    p.radius = 1.4 + Math.random() * 2.2;
-                    p.vx = (Math.random() - 0.5) * 0.25;
-                    p.vy = (Math.random() - 0.5) * 0.25;
-                    p.baseAlpha = 0.06 + Math.random() * 0.14;
-                    p.waveAmp = 0.3 + Math.random() * 0.7;
-                    p.waveFreq = 0.003 + Math.random() * 0.006;
-                } else if (type === 'network') {
-                    p.radius = 0.7 + Math.random() * 1.5;
-                    p.vx = (Math.random() - 0.5) * 0.5;
-                    p.vy = (Math.random() - 0.5) * 0.5;
-                    p.baseAlpha = 0.25 + Math.random() * 0.4;
-                    p.waveAmp = 0.15 + Math.random() * 0.5;
-                    p.waveFreq = 0.005 + Math.random() * 0.01;
-                } else { // sparkle
-                    p.radius = 0.3 + Math.random() * 0.7;
-                    p.vx = (Math.random() - 0.5) * 0.9;
-                    p.vy = (Math.random() - 0.5) * 0.9;
-                    p.baseAlpha = 0.4 + Math.random() * 0.5;
-                    p.waveAmp = 0.1 + Math.random() * 0.3;
-                    p.waveFreq = 0.01 + Math.random() * 0.025;
-                    p.sparkTimer = Math.random() * 200;
-                    p.sparkInterval = 150 + Math.random() * 350;
-                }
                 return p;
             }
 
-            // --- Create all persistent particles ---
-            function createAllParticles() {
+            function createParticles() {
                 particles = [];
-                for (var i = 0; i < AMBIENT_COUNT; i++) particles.push(createParticle('ambient'));
-                for (var i = 0; i < NETWORK_COUNT; i++) particles.push(createParticle('network'));
-                for (var i = 0; i < SPARKLE_COUNT; i++) particles.push(createParticle('sparkle'));
+                for (var i = 0; i < AMBIENT; i++) particles.push(createParticle('ambient'));
+                for (var i = 0; i < NETWORK; i++) particles.push(createParticle('network'));
+                for (var i = 0; i < SPARKLE; i++) particles.push(createParticle('sparkle'));
             }
 
-            // --- Create burst particles at position ---
-            function createBurst(x, y, count) {
-                var light = isLightTheme();
-                for (var i = 0; i < count; i++) {
-                    var angle = Math.random() * Math.PI * 2;
-                    var speed = 1.5 + Math.random() * 7;
-                    var life = 0.6 + Math.random() * 1.2;
-                    burstParticles.push({
-                        x: x,
-                        y: y,
-                        vx: Math.cos(angle) * speed,
-                        vy: Math.sin(angle) * speed,
-                        radius: 0.5 + Math.random() * 2.5,
-                        life: life,
-                        maxLife: life,
-                        alpha: 0.6 + Math.random() * 0.4,
-                        color: light ?
-                            (Math.random() < 0.5 ? '100,180,255' : '30,120,220') :
-                            (Math.random() < 0.5 ? '255,180,180' : '255,71,87')
-                    });
-                }
-                // Cap burst particles
-                if (burstParticles.length > MAX_BURST) {
-                    burstParticles.splice(0, burstParticles.length - MAX_BURST);
-                }
-            }
-
-            // --- Add to mouse trail ---
-            function addTrailPoint(x, y) {
-                mouseTrail.push({
-                    x: x,
-                    y: y,
-                    life: 1,
-                    radius: 1 + Math.random() * 2.5
-                });
-                if (mouseTrail.length > MAX_TRAIL) {
-                    mouseTrail.shift();
-                }
-            }
-
-            // --- Update particles ---
-            function updateParticles() {
-                var light = isLightTheme();
-                var i, p;
-
-                // Update persistent particles
-                for (i = 0; i < particles.length; i++) {
-                    p = particles[i];
-
-                    // Organic movement: sine wave modulation
-                    var sinX = Math.sin(globalTime * p.waveFreq + p.pulse) * p.waveAmp;
-                    var cosY = Math.cos(globalTime * p.waveFreq * 1.3 + p.pulse) * p.waveAmp;
-
-                    p.x += p.vx + sinX * 0.3;
-                    p.y += p.vy + cosY * 0.3;
-
-                    // Slow angle drift for more organic paths
-                    p.angle += p.angleDrift;
-                    p.vx += Math.cos(p.angle) * 0.002;
-                    p.vy += Math.sin(p.angle) * 0.002;
-
-                    // Dampen velocity
-                    p.vx *= 0.9995;
-                    p.vy *= 0.9995;
-
-                    // Keep speed within reasonable range
-                    var speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-                    var maxSpeed = p.type === 'sparkle' ? 1.2 : p.type === 'network' ? 0.7 : 0.4;
-                    if (speed > maxSpeed) {
-                        p.vx = (p.vx / speed) * maxSpeed;
-                        p.vy = (p.vy / speed) * maxSpeed;
-                    }
-                    var minSpeed = p.type === 'sparkle' ? 0.15 : 0.03;
-                    if (speed < minSpeed && speed > 0.001) {
-                        p.vx = (p.vx / speed) * minSpeed;
-                        p.vy = (p.vy / speed) * minSpeed;
-                    }
-
-                    // Mouse interaction
-                    var dx = p.x - smoothMouseX;
-                    var dy = p.y - smoothMouseY;
-                    var dist = Math.sqrt(dx * dx + dy * dy);
-                    var inBounds = smoothMouseX > -100 && smoothMouseX < c.width + 100 &&
-                        smoothMouseY > -100 && smoothMouseY < c.height + 100;
-
-                    if (inBounds && dist < 200) {
-                        var force = (200 - dist) / 200;
-                        if (isDown && dist < 180 && dist > 1) {
-                            // Strong repulsion when holding
-                            var repForce = force * 4.5;
-                            p.vx += (dx / dist) * repForce * 0.06;
-                            p.vy += (dy / dist) * repForce * 0.06;
-                            // Spawn tiny sparks near cursor when holding
-                            if (Math.random() < 0.35 && burstParticles.length < MAX_BURST) {
-                                burstParticles.push({
-                                    x: smoothMouseX + (Math.random() - 0.5) * 30,
-                                    y: smoothMouseY + (Math.random() - 0.5) * 30,
-                                    vx: (Math.random() - 0.5) * 4,
-                                    vy: (Math.random() - 0.5) * 4,
-                                    radius: 0.3 + Math.random() * 1.2,
-                                    life: 0.3 + Math.random() * 0.5,
-                                    maxLife: 0.8,
-                                    alpha: 0.7,
-                                    color: light ? '150,210,255' : '255,200,200'
-                                });
-                            }
-                        } else if (!isDown && dist < 130 && dist > 1) {
-                            // Gentle attraction when idle
-                            var attrForce = force * 0.6;
-                            p.vx -= (dx / dist) * attrForce * 0.015;
-                            p.vy -= (dy / dist) * attrForce * 0.015;
-                        }
-                    }
-
-                    // Wrap around edges with padding
-                    var pad = 30;
-                    if (p.x < -pad) p.x = c.width + pad;
-                    if (p.x > c.width + pad) p.x = -pad;
-                    if (p.y < -pad) p.y = c.height + pad;
-                    if (p.y > c.height + pad) p.y = -pad;
-
-                    // Pulse alpha
-                    p.pulse += p.pulseSpeed;
-
-                    // Sparkle brightness burst
-                    if (p.type === 'sparkle') {
-                        p.sparkTimer++;
-                        if (p.sparkTimer > p.sparkInterval) {
-                            p.sparkTimer = 0;
-                            p.baseAlpha = 0.7 + Math.random() * 0.3;
-                            p.radius = 0.6 + Math.random() * 1.4;
-                        }
-                        // Decay back
-                        p.baseAlpha += (0.45 - p.baseAlpha) * 0.02;
-                        p.radius += (0.5 - p.radius) * 0.02;
-                    }
-                }
-
-                // Update burst particles
-                for (i = burstParticles.length - 1; i >= 0; i--) {
-                    p = burstParticles[i];
+            function update() {
+                for (var i = 0; i < particles.length; i++) {
+                    var p = particles[i];
                     p.x += p.vx;
                     p.y += p.vy;
-                    p.vx *= 0.94;
-                    p.vy *= 0.94;
-                    p.life -= 0.016;
-                    if (p.life <= 0) {
-                        burstParticles.splice(i, 1);
-                    }
-                }
 
-                // Update mouse trail
-                for (i = mouseTrail.length - 1; i >= 0; i--) {
-                    mouseTrail[i].life -= 0.04;
-                    mouseTrail[i].radius *= 0.97;
-                    if (mouseTrail[i].life <= 0) {
-                        mouseTrail.splice(i, 1);
-                    }
-                }
-
-                // Smooth mouse follow
-                smoothMouseX += (targetMouseX - smoothMouseX) * 0.12;
-                smoothMouseY += (targetMouseY - smoothMouseY) * 0.12;
-
-                // Add trail points periodically
-                trailTick++;
-                if (trailTick >= 3 && inBoundsCheck()) {
-                    trailTick = 0;
-                    addTrailPoint(smoothMouseX, smoothMouseY);
-                }
-            }
-
-            function inBoundsCheck() {
-                return smoothMouseX > 0 && smoothMouseX < c.width &&
-                    smoothMouseY > 0 && smoothMouseY < c.height;
-            }
-
-            // --- Render ---
-            function render() {
-                ctx.clearRect(0, 0, c.width, c.height);
-                var light = isLightTheme();
-                var i, j, p;
-
-                // --- Draw connections (network layer only) ---
-                var networkParticles = [];
-                for (i = 0; i < particles.length; i++) {
-                    if (particles[i].type === 'network') {
-                        networkParticles.push(particles[i]);
-                    }
-                }
-
-                for (i = 0; i < networkParticles.length; i++) {
-                    for (j = i + 1; j < networkParticles.length; j++) {
-                        var dx = networkParticles[i].x - networkParticles[j].x;
-                        var dy = networkParticles[i].y - networkParticles[j].y;
+                    // Mouse repulsion
+                    if (isDown && mouseX > 0 && mouseY > 0) {
+                        var dx = p.x - mouseX;
+                        var dy = p.y - mouseY;
                         var dist = Math.sqrt(dx * dx + dy * dy);
-                        var maxDist = isMobile ? 90 : 140;
-                        if (dist < maxDist) {
-                            var alpha = (1 - dist / maxDist) * 0.13;
-                            var lineColor = light ?
-                                'rgba(100,160,230,' + alpha + ')' :
-                                'rgba(255,200,200,' + alpha + ')';
+                        if (dist < 150 && dist > 1) {
+                            var force = (150 - dist) / 150;
+                            p.vx += (dx / dist) * force * 0.07;
+                            p.vy += (dy / dist) * force * 0.07;
+                        }
+                    }
+
+                    // Dampen
+                    p.vx *= 0.998;
+                    p.vy *= 0.998;
+
+                    // Wrap
+                    if (p.x < -20) p.x = c.width + 20;
+                    if (p.x > c.width + 20) p.x = -20;
+                    if (p.y < -20) p.y = c.height + 20;
+                    if (p.y > c.height + 20) p.y = -20;
+
+                    p.pulse += p.pulseSpeed;
+                }
+                globalTime++;
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, c.width, c.height);
+                var light = document.body.classList.contains('light');
+
+                // Connection lines
+                for (var i = 0; i < particles.length; i++) {
+                    if (particles[i].type === 'sparkle') continue;
+                    for (var j = i + 1; j < particles.length; j++) {
+                        if (particles[j].type === 'sparkle') continue;
+                        var dx = particles[i].x - particles[j].x;
+                        var dy = particles[i].y - particles[j].y;
+                        var dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < CONNECTION_DIST) {
+                            var alpha = (1 - dist / CONNECTION_DIST) * 0.12;
                             ctx.beginPath();
-                            ctx.moveTo(networkParticles[i].x, networkParticles[i].y);
-                            ctx.lineTo(networkParticles[j].x, networkParticles[j].y);
-                            ctx.strokeStyle = lineColor;
-                            ctx.lineWidth = 0.4;
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = light ? 'rgba(100,160,220,' + alpha + ')' : 'rgba(255,180,180,' + alpha + ')';
+                            ctx.lineWidth = 0.5;
                             ctx.stroke();
                         }
                     }
                 }
 
-                // --- Draw mouse trail ---
-                for (i = 0; i < mouseTrail.length; i++) {
-                    var t = mouseTrail[i];
-                    var trailAlpha = t.life * 0.35;
-                    var trailColor = light ?
-                        'rgba(120,180,240,' + trailAlpha + ')' :
-                        'rgba(255,180,180,' + trailAlpha + ')';
-                    ctx.beginPath();
-                    ctx.arc(t.x, t.y, t.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = trailColor;
-                    ctx.fill();
+                // Draw particles
+                for (var i = 0; i < particles.length; i++) {
+                    var p = particles[i];
+                    var alpha = p.alpha + Math.sin(p.pulse) * 0.1;
+                    var rgb = light ? '100,180,240' : '255,180,180';
+                    if (p.type === 'sparkle') rgb = light ? '60,150,230' : '255,120,140';
 
-                    // Glow
-                    ctx.beginPath();
-                    ctx.arc(t.x, t.y, t.radius * 3, 0, Math.PI * 2);
-                    ctx.fillStyle = light ?
-                        'rgba(100,160,230,' + (trailAlpha * 0.3) + ')' :
-                        'rgba(255,140,140,' + (trailAlpha * 0.3) + ')';
-                    ctx.fill();
-                }
-
-                // --- Draw all persistent particles with glow ---
-                for (i = 0; i < particles.length; i++) {
-                    p = particles[i];
-                    var alpha = p.baseAlpha + Math.sin(p.pulse) * 0.12;
-                    alpha = Math.max(0.03, Math.min(0.85, alpha));
-
-                    // Determine color based on theme and type
-                    var rgb;
-                    if (light) {
-                        if (p.type === 'ambient') {
-                            rgb = '160,200,240';
-                        } else if (p.type === 'network') {
-                            rgb = '100,170,230';
-                        } else {
-                            rgb = '60,140,220';
-                        }
-                    } else {
-                        if (p.type === 'ambient') {
-                            rgb = '240,210,210';
-                        } else if (p.type === 'network') {
-                            rgb = '255,190,190';
-                        } else {
-                            rgb = '255,120,140';
-                        }
-                    }
-
-                    // Outer glow
-                    var glowRadius = p.radius * 4;
-                    var glow = ctx.createRadialGradient(p.x, p.y, p.radius * 0.3, p.x, p.y, glowRadius);
-                    glow.addColorStop(0, 'rgba(' + rgb + ',' + (alpha * 0.7) + ')');
-                    glow.addColorStop(0.5, 'rgba(' + rgb + ',' + (alpha * 0.2) + ')');
-                    glow.addColorStop(1, 'rgba(' + rgb + ',0)');
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, glowRadius, 0, Math.PI * 2);
-                    ctx.fillStyle = glow;
-                    ctx.fill();
-
-                    // Core
                     ctx.beginPath();
                     ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
                     ctx.fillStyle = 'rgba(' + rgb + ',' + alpha + ')';
                     ctx.fill();
 
-                    // Bright center for sparkle
-                    if (p.type === 'sparkle') {
+                    // Soft glow for network
+                    if (p.type === 'network') {
                         ctx.beginPath();
-                        ctx.arc(p.x, p.y, p.radius * 0.4, 0, Math.PI * 2);
-                        ctx.fillStyle = 'rgba(255,255,255,' + (alpha * 0.8) + ')';
+                        ctx.arc(p.x, p.y, p.radius * 3, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(' + rgb + ',' + (alpha * 0.2) + ')';
                         ctx.fill();
                     }
                 }
-
-                // --- Draw burst particles ---
-                for (i = 0; i < burstParticles.length; i++) {
-                    p = burstParticles[i];
-                    var lifeRatio = p.life / p.maxLife;
-                    var burstAlpha = p.alpha * lifeRatio;
-                    var burstRadius = p.radius * lifeRatio;
-
-                    // Glow
-                    var bg = ctx.createRadialGradient(p.x, p.y, burstRadius * 0.2, p.x, p.y, burstRadius * 4);
-                    bg.addColorStop(0, 'rgba(' + p.color + ',' + burstAlpha + ')');
-                    bg.addColorStop(0.6, 'rgba(' + p.color + ',' + (burstAlpha * 0.25) + ')');
-                    bg.addColorStop(1, 'rgba(' + p.color + ',0)');
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, burstRadius * 4, 0, Math.PI * 2);
-                    ctx.fillStyle = bg;
-                    ctx.fill();
-
-                    // Core
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, burstRadius, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(' + p.color + ',' + burstAlpha + ')';
-                    ctx.fill();
-
-                    // Bright center
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, burstRadius * 0.35, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(255,255,255,' + (burstAlpha * 0.7) + ')';
-                    ctx.fill();
-                }
-
-                // --- Draw cursor glow when mouse is on screen ---
-                if (inBoundsCheck() && smoothMouseX > -100) {
-                    var cursorGlow = ctx.createRadialGradient(smoothMouseX, smoothMouseY, 0, smoothMouseX, smoothMouseY, 80);
-                    var cursorRgb = light ? '100,170,240' : '255,150,150';
-                    var cursorAlpha = isDown ? 0.5 : 0.2;
-                    cursorGlow.addColorStop(0, 'rgba(' + cursorRgb + ',' + cursorAlpha + ')');
-                    cursorGlow.addColorStop(1, 'rgba(' + cursorRgb + ',0)');
-                    ctx.beginPath();
-                    ctx.arc(smoothMouseX, smoothMouseY, 80, 0, Math.PI * 2);
-                    ctx.fillStyle = cursorGlow;
-                    ctx.fill();
-                }
             }
 
-            // --- Animation loop ---
             function animate() {
-                globalTime++;
-                updateParticles();
-                render();
+                update();
+                draw();
                 animFrame = requestAnimationFrame(animate);
             }
 
-            // --- Event handlers ---
-            function onMouseMove(e) {
-                targetMouseX = e.clientX;
-                targetMouseY = e.clientY;
-            }
-
-            function onTouchMove(e) {
-                if (e.touches.length > 0) {
-                    targetMouseX = e.touches[0].clientX;
-                    targetMouseY = e.touches[0].clientY;
-                }
-            }
-
-            function onDown(e) {
-                isDown = true;
-                var cx, cy;
-                if (e.clientX !== undefined) {
-                    cx = e.clientX;
-                    cy = e.clientY;
-                } else if (e.touches && e.touches.length > 0) {
-                    cx = e.touches[0].clientX;
-                    cy = e.touches[0].clientY;
-                }
-                if (cx !== undefined && cy !== undefined) {
-                    targetMouseX = cx;
-                    targetMouseY = cy;
-                    smoothMouseX = cx;
-                    smoothMouseY = cy;
-                    createBurst(cx, cy, isMobile ? 12 : 22);
-                }
-            }
-
-            function onUp() {
-                isDown = false;
-            }
-
-            function onVisibilityChange() {
-                if (document.hidden) {
-                    cancelAnimationFrame(animFrame);
-                } else {
-                    animFrame = requestAnimationFrame(animate);
-                }
-            }
-
-            // --- Initialize ---
+            // Events
             window.addEventListener('resize', resize);
-            document.addEventListener('mousemove', onMouseMove, { passive: true });
-            document.addEventListener('touchmove', onTouchMove, { passive: true });
-            document.addEventListener('mousedown', onDown);
-            document.addEventListener('touchstart', onDown, { passive: true });
-            document.addEventListener('mouseup', onUp);
-            document.addEventListener('touchend', onUp);
-            document.addEventListener('visibilitychange', onVisibilityChange);
+            document.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+            document.addEventListener('touchmove', function(e) {
+                if (e.touches.length > 0) {
+                    mouseX = e.touches[0].clientX;
+                    mouseY = e.touches[0].clientY;
+                }
+            }, { passive: true });
+            document.addEventListener('mousedown', function(e) {
+                isDown = true;
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+            document.addEventListener('touchstart', function(e) {
+                isDown = true;
+                if (e.touches.length > 0) {
+                    mouseX = e.touches[0].clientX;
+                    mouseY = e.touches[0].clientY;
+                }
+            }, { passive: true });
+            document.addEventListener('mouseup', function() { isDown = false; });
+            document.addEventListener('touchend', function() { isDown = false; });
+
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) cancelAnimationFrame(animFrame);
+                else animFrame = requestAnimationFrame(animate);
+            });
 
             resize();
-            createAllParticles();
+            createParticles();
             animFrame = requestAnimationFrame(animate);
         })();
 
@@ -2825,9 +2501,9 @@
             for (var i = 0; i < btns.length; i++) btns[i].classList.remove('active');
             document.getElementById(l === 'en' ? 'btnEn' : l === 'de' ? 'btnDe' : 'btnAr').classList.add('active');
             document.title = {
-                en: 'AbdulRahman Mamdouh | Frontend Developer',
-                de: 'AbdulRahman Mamdouh | Frontend-Entwickler',
-                ar: 'عبدالرحمن ممدوح | مطور واجهات'
+                en: 'AbdulRahman | Frontend Developer',
+                de: 'AbdulRahman | Frontend-Entwickler',
+                ar: 'عبدالرحمن | مطور واجهات'
             }[l];
             var els = document.querySelectorAll('[data-i18n]');
             for (var i = 0; i < els.length; i++) {
