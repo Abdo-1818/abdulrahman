@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Abdulrahman Mamdouh - UI/UX Designer & Low-Code Developer crafting exceptional digital experiences.">
+    <meta name="author" content="Abdulrahman Mamdouh">
+    <meta name="theme-color" content="#0a0c10">
+    <meta property="og:title" content="Abdulrahman | Frontend Developer">
+    <meta property="og:description" content="Modern portfolio of Abdulrahman Mamdouh – UI/UX & Low-Code Developer.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abdo-1818.github.io/">
+    <meta property="og:image" content="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg">
     <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg">
     <title>Abdulrahman | Frontend Developer</title>
 
@@ -17,356 +24,335 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <meta name="theme-color" content="#08090d">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
     <style>
         :root {
-            --bg: #08090d;
-            --bg-alt: #0c0e14;
-            --surface: #111318;
-            --surface-alt: #161920;
-            --border: rgba(255, 255, 255, 0.06);
-            --border-light: rgba(255, 255, 255, 0.10);
+            --bg: #0a0c10;
+            --bg-alt: #0e1117;
+            --surface: #13161e;
+            --surface-alt: #191c25;
+            --border: rgba(255, 255, 255, 0.05);
+            --border-light: rgba(255, 255, 255, 0.09);
             --text: #f0f0f2;
-            --text-soft: #c4c6cc;
-            --text-muted: #8a8d94;
-            --accent: #5b8def;
-            --accent-bright: #7ba9ff;
-            --accent-glow: rgba(91, 141, 239, 0.25);
-            --accent-glow-strong: rgba(91, 141, 239, 0.45);
-            --accent-soft: rgba(91, 141, 239, 0.06);
-            --accent-soft-hover: rgba(91, 141, 239, 0.13);
+            --text-soft: #c2c4ca;
+            --text-muted: #9a9ea6;
+            --accent: #4dabf7;
+            --accent-bright: #77c4fc;
+            --accent-glow: rgba(77, 171, 247, 0.2);
+            --accent-soft: rgba(77, 171, 247, 0.08);
             --radius: 24px;
-            --radius-sm: 14px;
-            --radius-lg: 32px;
-            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5);
-            --shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.05);
+            --radius-sm: 12px;
+            --radius-lg: 28px;
+            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 14px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.04);
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
             --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
-            --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
-            --book-spine: rgba(91, 141, 239, 0.3);
+            --book-spine: rgba(77, 171, 247, 0.25);
         }
 
         *,
         *::before,
         *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 100px; font-display: swap; }
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            scroll-padding-top: 100px;
+        }
 
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: var(--bg); color: var(--text); line-height: 1.7;
-            overflow-x: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            font-size: 0.875rem;
         }
         body.rtl { font-family: 'Cairo', system-ui, sans-serif; direction: rtl; text-align: right; }
 
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+        #customCursor {
+            position: fixed;
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            background: var(--accent);
+            mix-blend-mode: difference;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+        #customCursor.hover {
+            width: 30px; height: 30px;
+            background: var(--accent-bright);
+            mix-blend-mode: normal;
+            opacity: 0.8;
+        }
+        @media (hover: none) and (pointer: coarse) {
+            #customCursor { display: none; }
+            body { cursor: auto; }
+        }
+
         .loader-overlay {
-            position: fixed; inset: 0; z-index: 10000; background: var(--bg);
+            position: fixed; inset: 0; z-index: 10001; background: var(--bg);
             display: flex; align-items: center; justify-content: center;
-            transition: opacity 0.6s var(--ease-out-expo), visibility 0.6s var(--ease-out-expo);
+            transition: opacity 0.6s var(--ease-out-expo), visibility 0.6s;
         }
         .loader-overlay.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
         .loader-spinner {
-            width: 48px; height: 48px; border: 4px solid var(--border-light);
-            border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite;
+            width: 44px; height: 44px; border: 4px solid var(--border-light);
+            border-top-color: var(--accent); border-radius: 50%;
+            animation: spin 0.8s linear infinite;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
         .bg-ambiance { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-        #particlesCanvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.4; }
-        .bg-orb { position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.18; will-change: transform; animation: orbDrift 20s ease-in-out infinite; }
-        .bg-orb.orb-1 { width: 600px; height: 600px; background: var(--accent); top: -15%; right: -10%; }
-        .bg-orb.orb-2 { width: 400px; height: 400px; background: #7c5bef; bottom: -12%; left: -8%; animation-delay: -7s; animation-duration: 24s; }
-        .bg-orb.orb-3 { width: 300px; height: 300px; background: var(--accent-bright); top: 50%; left: 50%; animation-delay: -14s; animation-duration: 18s; opacity: 0.10; }
+        #particlesCanvas {
+            position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.35;
+        }
+        .bg-orb {
+            position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.1;
+            will-change: transform; animation: orbDrift 30s ease-in-out infinite;
+        }
+        .bg-orb.orb-1 { width: 500px; height: 500px; background: var(--accent); top: -10%; right: -5%; }
+        .bg-orb.orb-2 { width: 350px; height: 350px; background: #7c5bef; bottom: -10%; left: -5%; animation-delay: -10s; animation-duration: 35s; }
         @keyframes orbDrift {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(50px, -60px) scale(1.12); }
-            50% { transform: translate(-30px, 40px) scale(0.9); }
-            75% { transform: translate(-40px, -20px) scale(1.06); }
+            25% { transform: translate(30px, -40px) scale(1.1); }
+            50% { transform: translate(-20px, 30px) scale(0.9); }
+            75% { transform: translate(-30px, -15px) scale(1.05); }
         }
 
-        .reveal { opacity: 0; transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo), filter 0.7s var(--ease-out-expo); will-change: transform, opacity; }
+        .reveal { opacity: 0; transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo); will-change: transform, opacity; }
         .reveal.visible { opacity: 1; }
-        .from-bottom { transform: translateY(40px); filter: blur(1px); }
-        .from-bottom.visible { transform: translateY(0); filter: blur(0); }
-        .from-left { transform: translateX(-35px); filter: blur(1px); }
-        .from-left.visible { transform: translateX(0); filter: blur(0); }
-        .from-right { transform: translateX(35px); filter: blur(1px); }
-        .from-right.visible { transform: translateX(0); filter: blur(0); }
-        .from-scale { transform: scale(0.9); filter: blur(2px); }
-        .from-scale.visible { transform: scale(1); filter: blur(0); }
+        .from-bottom { transform: translateY(25px); }
+        .from-bottom.visible { transform: translateY(0); }
+        .from-left { transform: translateX(-20px); }
+        .from-left.visible { transform: translateX(0); }
+        .from-right { transform: translateX(20px); }
+        .from-right.visible { transform: translateX(0); }
+        .from-scale { transform: scale(0.94); }
+        .from-scale.visible { transform: scale(1); }
 
-        .stagger-container .stagger-item { opacity: 0; transform: translateY(30px); transition: opacity 0.55s var(--ease-out-expo), transform 0.55s var(--ease-out-expo); will-change: transform, opacity; }
-        .stagger-container.visible .stagger-item:nth-child(1) { transition-delay: 0.03s; opacity: 1; transform: translateY(0); }
-        .stagger-container.visible .stagger-item:nth-child(2) { transition-delay: 0.08s; opacity: 1; transform: translateY(0); }
-        .stagger-container.visible .stagger-item:nth-child(3) { transition-delay: 0.13s; opacity: 1; transform: translateY(0); }
-        .stagger-container.visible .stagger-item:nth-child(4) { transition-delay: 0.18s; opacity: 1; transform: translateY(0); }
-        .stagger-container.visible .stagger-item:nth-child(5) { transition-delay: 0.23s; opacity: 1; transform: translateY(0); }
-        .stagger-container.visible .stagger-item:nth-child(6) { transition-delay: 0.28s; opacity: 1; transform: translateY(0); }
-        .stagger-container.visible .stagger-item:nth-child(7) { transition-delay: 0.33s; opacity: 1; transform: translateY(0); }
-        .stagger-container.visible .stagger-item:nth-child(8) { transition-delay: 0.38s; opacity: 1; transform: translateY(0); }
+        .stagger-container .stagger-item {
+            opacity: 0; transform: translateY(20px);
+            transition: opacity 0.45s var(--ease-out-expo), transform 0.45s var(--ease-out-expo);
+        }
+        .stagger-container.visible .stagger-item:nth-child(1) { transition-delay: 0.02s; opacity: 1; transform: translateY(0); }
+        .stagger-container.visible .stagger-item:nth-child(2) { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
+        .stagger-container.visible .stagger-item:nth-child(3) { transition-delay: 0.08s; opacity: 1; transform: translateY(0); }
+        .stagger-container.visible .stagger-item:nth-child(4) { transition-delay: 0.11s; opacity: 1; transform: translateY(0); }
+        .stagger-container.visible .stagger-item:nth-child(5) { transition-delay: 0.14s; opacity: 1; transform: translateY(0); }
+        .stagger-container.visible .stagger-item:nth-child(6) { transition-delay: 0.17s; opacity: 1; transform: translateY(0); }
+        .stagger-container.visible .stagger-item:nth-child(7) { transition-delay: 0.20s; opacity: 1; transform: translateY(0); }
+        .stagger-container.visible .stagger-item:nth-child(8) { transition-delay: 0.23s; opacity: 1; transform: translateY(0); }
 
         .header {
             position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 1000;
             width: calc(100% - 28px); max-width: 1100px; border-radius: 50px; padding: 7px 20px;
-            transition: all 0.45s var(--ease-out-expo); background: rgba(12, 14, 20, 0.75);
-            backdrop-filter: blur(24px) saturate(150%); -webkit-backdrop-filter: blur(24px) saturate(150%);
-            border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
-            will-change: transform, width, border-radius;
+            transition: all 0.4s var(--ease-out-expo); background: rgba(10,12,16,0.8);
+            backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 8px 35px rgba(0,0,0,0.4);
         }
         .header.scrolled {
-            top: 0; width: 100%; max-width: 100%; border-radius: 0; background: rgba(8, 9, 13, 0.92);
-            border-left: none; border-right: none; border-top: none; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            top: 0; width: 100%; max-width: 100%; border-radius: 0;
+            background: rgba(10,12,16,0.92); border-left: none; border-right: none; border-top: none;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.5);
         }
         .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
         .logo-link { display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
-        .logo-img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255, 255, 255, 0.5); transition: all 0.4s var(--ease-out-back); will-change: transform; }
-        .logo-img:hover { transform: scale(1.08) rotate(-4deg); box-shadow: 0 0 22px rgba(255, 255, 255, 0.4); }
-        .logo-text { font-family: 'Great Vibes', cursive; font-weight: 400; font-size: 1.9rem; letter-spacing: 2px; color: #ffffff; line-height: 1; padding-top: 3px; text-shadow: 0 0 12px rgba(255, 255, 255, 0.7), 0 0 35px rgba(180, 200, 255, 0.4); animation: logoGlow 3.5s ease-in-out infinite; }
-        @keyframes logoGlow {
-            0%, 100% { text-shadow: 0 0 12px rgba(255, 255, 255, 0.7), 0 0 35px rgba(180, 200, 255, 0.4); }
-            50% { text-shadow: 0 0 22px rgba(255, 255, 255, 1), 0 0 55px rgba(180, 200, 255, 0.65), 0 0 90px rgba(140, 170, 240, 0.3); }
-        }
+        .logo-img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.5); transition: all 0.3s; }
+        .logo-img:hover { transform: scale(1.08) rotate(-3deg); box-shadow: 0 0 16px rgba(255,255,255,0.3); }
+        .logo-text { font-family: 'Great Vibes', cursive; font-size: 1.8rem; letter-spacing: 2px; color: #ffffff; line-height: 1; padding-top: 3px; text-shadow: 0 0 8px rgba(255,255,255,0.5); }
         .nav-desktop { display: flex; list-style: none; gap: 1px; align-items: center; flex-wrap: wrap; justify-content: center; }
-        .nav-desktop li a { color: rgba(255, 255, 255, 0.72); text-decoration: none; padding: 7px 13px; border-radius: 40px; font-size: 0.76rem; font-weight: 500; transition: all 0.35s var(--ease-out-back); white-space: nowrap; position: relative; }
-        .nav-desktop li a::after { content: ''; position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%) scaleX(0); width: 14px; height: 2px; background: var(--accent-bright); border-radius: 2px; transition: transform 0.35s var(--ease-out-back); }
+        .nav-desktop li a { color: rgba(255,255,255,0.72); text-decoration: none; padding: 7px 13px; border-radius: 40px; font-size: 0.76rem; font-weight: 500; transition: all 0.3s; white-space: nowrap; position: relative; }
+        .nav-desktop li a::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%) scaleX(0); width: 14px; height: 2px; background: var(--accent-bright); border-radius: 2px; transition: transform 0.3s; }
         .nav-desktop li a:hover::after, .nav-desktop li a.active::after { transform: translateX(-50%) scaleX(1); }
-        .nav-desktop li a:hover, .nav-desktop li a.active { color: #ffffff; background: rgba(255, 255, 255, 0.07); }
+        .nav-desktop li a:hover, .nav-desktop li a.active { color: #ffffff; background: rgba(255,255,255,0.06); }
         .header-actions { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
-        .lang-switch { display: flex; gap: 2px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 40px; padding: 2px; }
-        .lang-btn { padding: 6px 10px; border-radius: 40px; border: none; background: transparent; color: rgba(255, 255, 255, 0.65); cursor: pointer; font-weight: 500; font-size: 0.68rem; font-family: inherit; white-space: nowrap; transition: all 0.35s var(--ease-out-back); }
-        .lang-btn.active { color: #fff; background: var(--accent); font-weight: 600; box-shadow: 0 0 16px var(--accent-glow); }
+        .lang-switch { display: flex; gap: 2px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 40px; padding: 2px; }
+        .lang-btn { padding: 6px 10px; border-radius: 40px; border: none; background: transparent; color: rgba(255,255,255,0.65); cursor: pointer; font-weight: 500; font-size: 0.68rem; font-family: inherit; white-space: nowrap; transition: all 0.3s; }
+        .lang-btn.active { color: #fff; background: var(--accent); font-weight: 600; box-shadow: 0 0 12px var(--accent-glow); }
         .hamburger-btn { display: none; }
 
-        .mobile-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.65); z-index: 1100; opacity: 0; pointer-events: none; transition: opacity 0.4s var(--ease-smooth); }
+        .mobile-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1100; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
         .mobile-overlay.open { opacity: 1; pointer-events: auto; }
-        .mobile-menu { position: fixed; top: 0; right: -290px; width: 270px; height: 100vh; background: #0c0e14; z-index: 1200; padding: 24px; transition: right 0.45s var(--ease-out-expo); overflow-y: auto; border-left: 1px solid rgba(255, 255, 255, 0.06); }
-        body.rtl .mobile-menu { right: auto; left: -290px; border-left: none; border-right: 1px solid rgba(255, 255, 255, 0.06); transition: left 0.45s var(--ease-out-expo); }
+        .mobile-menu { position: fixed; top: 0; right: -280px; width: 260px; height: 100vh; background: var(--bg); z-index: 1200; padding: 24px; transition: right 0.4s var(--ease-out-expo); overflow-y: auto; border-left: 1px solid rgba(255,255,255,0.06); }
+        body.rtl .mobile-menu { right: auto; left: -280px; transition: left 0.4s; }
         .mobile-menu.open { right: 0; } body.rtl .mobile-menu.open { left: 0; }
-        .mobile-menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 26px; }
-        .mobile-menu-close { background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; transition: all 0.3s ease; }
-        .mobile-menu-close:hover { color: var(--accent-bright); transform: rotate(90deg); }
-        .mobile-nav { list-style: none; } .mobile-nav li { margin-bottom: 2px; }
-        .mobile-nav li a { color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; display: block; padding: 10px 14px; border-radius: 12px; transition: all 0.35s ease; }
-        .mobile-nav li a:hover { color: #ffffff; background: rgba(255, 255, 255, 0.06); padding-left: 20px; }
 
-        .hero { min-height: 100vh; display: flex; align-items: center; padding: 140px 0 80px; position: relative; overflow: hidden; }
-        .hero .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: center; position: relative; z-index: 2; }
-        .hero-greeting { display: inline-flex; align-items: center; gap: 8px; padding: 7px 17px; background: var(--accent-soft); border: 1px solid var(--border); border-radius: 40px; font-size: 0.82rem; font-weight: 600; margin-bottom: 16px; color: var(--accent-bright); }
-        .hero-greeting .wave { display: inline-block; animation: waveAnim 2s ease-in-out infinite; }
-        @keyframes waveAnim { 0%,100%{transform:rotate(0deg)} 25%{transform:rotate(20deg)} 75%{transform:rotate(-12deg)} }
-        .hero-name { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.6rem, 6.5vw, 4.4rem); font-weight: 800; line-height: 1.06; margin-bottom: 8px; letter-spacing: -0.03em; background: linear-gradient(135deg, #ffffff 0%, #c0d4f8 30%, #ffffff 60%, #a0c0f0 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradientShift 5s ease-in-out infinite; }
-        @keyframes gradientShift { 0%,100%{background-position:0% center} 50%{background-position:200% center} }
-        .hero-title-role { font-size: clamp(1.1rem, 2vw, 1.45rem); font-weight: 700; color: var(--text-soft); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-        .hero-title-role .typed-text { color: var(--accent-bright); font-weight: 800; }
-        .hero-title-role .typed-text::after { content: '|'; animation: blink 0.8s infinite; color: var(--accent-bright); margin-left: 3px; font-weight: 300; }
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-        .hero-desc { color: var(--text-soft); font-size: 0.93rem; line-height: 1.7; margin-bottom: 22px; max-width: 520px; }
-        .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 40px; font-weight: 600; font-size: 0.86rem; text-decoration: none; cursor: pointer; transition: all 0.45s var(--ease-out-back); border: none; font-family: inherit; position: relative; overflow: hidden; will-change: transform; }
-        .btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent); transition: left 0.55s ease; }
-        .btn:hover::before { left: 100%; }
-        .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 6px 22px var(--accent-glow); }
-        .btn-primary:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 14px 36px var(--accent-glow-strong); }
+        .hero { min-height: 100vh; display: flex; align-items: center; padding: 140px 0 80px; position: relative; }
+        .hero .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: center; position: relative; z-index: 2; }
+        .hero-greeting { display: inline-flex; align-items: center; gap: 8px; padding: 7px 18px; background: var(--accent-soft); border: 1px solid var(--border); border-radius: 40px; font-size: 0.82rem; font-weight: 600; margin-bottom: 16px; color: var(--accent-bright); }
+        .hero-name { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 800; line-height: 1.08; margin-bottom: 10px; background: linear-gradient(135deg, #ffffff 0%, #a0c4f8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-title-role { font-size: 1.15rem; font-weight: 700; color: var(--text-soft); margin-bottom: 18px; }
+        .hero-desc { color: var(--text-soft); font-size: 0.93rem; line-height: 1.7; margin-bottom: 24px; max-width: 500px; }
+        .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 40px; font-weight: 600; font-size: 0.84rem; text-decoration: none; cursor: pointer; transition: all 0.35s var(--ease-out-back); border: none; font-family: inherit; }
+        .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 6px 20px var(--accent-glow); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(77,171,247,0.35); }
         .btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border-light); }
-        .btn-outline:hover { border-color: var(--accent); color: var(--accent-bright); transform: translateY(-4px) scale(1.03); box-shadow: 0 10px 28px var(--accent-glow); }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent-bright); transform: translateY(-3px); }
         .hero-social { display: flex; flex-wrap: wrap; gap: 10px; }
-        .social-pill { display: flex; align-items: center; gap: 7px; padding: 8px 17px; border-radius: 40px; text-decoration: none; color: var(--text-soft); font-weight: 500; font-size: 0.78rem; border: 1px solid var(--border-light); background: var(--surface); transition: all 0.35s var(--ease-out-back); }
-        .social-pill:hover { color: var(--accent-bright); border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 6px 18px var(--accent-glow); }
+        .social-pill { display: flex; align-items: center; gap: 7px; padding: 8px 16px; border-radius: 40px; text-decoration: none; color: var(--text-soft); font-weight: 500; font-size: 0.78rem; border: 1px solid var(--border-light); background: var(--surface); transition: all 0.3s; }
+        .social-pill:hover { color: var(--accent-bright); border-color: var(--accent); transform: translateY(-2px); }
         .hero-visual { display: flex; justify-content: center; align-items: center; }
-        .avatar-wrapper { position: relative; }
-        .avatar-ring { position: absolute; border-radius: 50%; border: 2px solid transparent; animation: ringSpin 4s linear infinite; }
-        .avatar-ring:nth-child(1) { inset: -22px; border-top-color: var(--accent); animation-duration: 3s; }
-        .avatar-ring:nth-child(2) { inset: -38px; border-bottom-color: rgba(255,255,255,0.08); animation-duration: 6s; animation-direction: reverse; }
-        .avatar-ring:nth-child(3) { inset: -54px; border-top-color: rgba(255,255,255,0.03); border-left-color: var(--accent-glow); animation-duration: 9s; }
-        @keyframes ringSpin { to { transform: rotate(360deg); } }
-        .avatar-img { width: clamp(220px, 32vw, 310px); height: clamp(220px, 32vw, 310px); border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); box-shadow: 0 0 55px var(--accent-glow-strong); position: relative; z-index: 1; animation: floatAvatar 7s ease-in-out infinite; transition: all 0.45s var(--ease-out-back); }
-        .avatar-img:hover { box-shadow: 0 0 100px var(--accent-glow-strong); transform: scale(1.04); }
-        @keyframes floatAvatar { 0%,100%{transform:translateY(0)} 30%{transform:translateY(-10px)} 60%{transform:translateY(-4px)} }
+        .avatar-img { width: clamp(200px, 30vw, 300px); height: clamp(200px, 30vw, 300px); border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); box-shadow: 0 0 35px rgba(77,171,247,0.3); }
 
-        .section { padding: 80px 0; position: relative; z-index: 1; }
+        .section { padding: 64px 0; position: relative; z-index: 1; }
         .section-alt { background: var(--bg-alt); }
-        .section .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-        .section-wrapper { position: relative; border-radius: var(--radius-lg); padding: 60px 40px; transition: all 0.7s ease; border: 1px solid transparent; }
-        .section-wrapper.active-border { border-color: var(--border); box-shadow: 0 0 0 1px rgba(255,255,255,0.02); }
-        .section-header { text-align: center; margin-bottom: 48px; }
-        .section-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.5rem, 2.8vw, 2.1rem); font-weight: 700; color: var(--text); letter-spacing: -0.02em; display: inline-block; position: relative; }
-        .section-title::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%) scaleX(0); width: 28px; height: 3px; background: var(--accent-bright); border-radius: 3px; transition: transform 0.5s var(--ease-out-back); }
+        .section .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .section-wrapper { border-radius: var(--radius-lg); padding: 48px 32px; transition: 0.5s; border: 1px solid transparent; }
+        .section-wrapper.active-border { border-color: var(--border); }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--text); display: inline-block; position: relative; }
+        .section-title::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%) scaleX(0); width: 24px; height: 2px; background: var(--accent-bright); border-radius: 2px; transition: transform 0.4s; }
         .section-wrapper.active-border .section-title::after { transform: translateX(-50%) scaleX(1); }
 
-        .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: all 0.4s var(--ease-out-expo); position: relative; overflow: hidden; }
-        .card:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-5px); box-shadow: var(--shadow-hover); background: var(--surface-alt); }
-        .card-glow { position: absolute; top: -40%; right: -40%; width: 160px; height: 160px; background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%); transition: all 0.8s ease; pointer-events: none; border-radius: 50%; }
-        .card:hover .card-glow { top: -8%; right: -8%; width: 280px; height: 280px; background: radial-gradient(circle, var(--accent-soft-hover) 0%, transparent 70%); }
-        .card-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--accent-bright); margin-bottom: 14px; transition: all 0.4s var(--ease-out-back); position: relative; z-index: 1; }
-        .card:hover .card-icon { background: var(--accent-soft-hover); box-shadow: 0 0 22px var(--accent-glow); transform: scale(1.05) rotate(-3deg); }
-        .card-text { color: var(--text-soft); font-size: 0.92rem; line-height: 1.8; position: relative; z-index: 1; }
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: all 0.3s; }
+        .card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+        .card-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--accent-bright); margin-bottom: 14px; transition: 0.3s; }
+        .card:hover .card-icon { background: rgba(77,171,247,0.15); transform: scale(1.04); }
+        .card-text { color: var(--text-soft); font-size: 0.9rem; line-height: 1.7; }
 
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
-        .info-cell { background: var(--accent-soft); padding: 13px 15px; border-radius: var(--radius-sm); border: 1px solid var(--border); transition: all 0.35s var(--ease-out-back); position: relative; overflow: hidden; }
-        .info-cell::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--accent-bright); transition: height 0.4s var(--ease-out-back); border-radius: 0 0 3px 0; }
-        body.rtl .info-cell::before { left: auto; right: 0; }
-        .info-cell:hover::before { height: 100%; }
-        .info-cell:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.3); padding-left: 18px; }
-        body.rtl .info-cell:hover { padding-left: 15px; padding-right: 18px; }
-        .info-label { font-size: 0.58rem; color: var(--accent-bright); font-weight: 600; letter-spacing: 0.06em; margin-bottom: 2px; text-transform: uppercase; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+        .info-cell { background: var(--accent-soft); padding: 14px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border); transition: 0.3s; }
+        .info-cell:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .info-label { font-size: 0.6rem; color: var(--accent-bright); font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px; text-transform: uppercase; }
         .info-value { color: var(--text); font-weight: 600; font-size: 0.8rem; }
 
-        /* 3D BOOK (skills & strengths) */
-        .skills-book { position: relative; max-width: 850px; margin: 0 auto; perspective: 1600px; padding: 20px 0; }
-        .skills-book::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, transparent 0%, var(--book-spine) 10%, var(--accent) 30%, var(--accent) 70%, var(--book-spine) 90%, transparent 100%); opacity: 0.5; transform: translateX(-50%); border-radius: 2px; z-index: 0; }
-        .book-row { display: flex; align-items: center; position: relative; margin-bottom: 32px; min-height: 130px; z-index: 1; }
-        .book-row:last-child { margin-bottom: 0; }
-        .book-row.left { justify-content: flex-start; padding-right: 53%; }
-        .book-row.right { justify-content: flex-end; padding-left: 53%; }
-        .book-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 26px; width: 100%; max-width: 380px; cursor: default; transition: transform 0.75s var(--ease-out-expo), box-shadow 0.75s var(--ease-out-expo), border-color 0.75s ease; will-change: transform; position: relative; overflow: hidden; box-shadow: 0 8px 35px rgba(0,0,0,0.4); }
-        .book-card::before { content: ''; position: absolute; inset: 0; border-radius: var(--radius); opacity: 0; transition: opacity 0.6s ease; pointer-events: none; background: radial-gradient(ellipse at center, var(--accent-soft) 0%, transparent 70%); z-index: 0; }
-        .book-card:hover::before { opacity: 1; }
-        .book-row.left .book-card { transform-origin: right center; transform: rotateY(22deg); border-right: 2px solid var(--book-spine); box-shadow: -6px 0 30px rgba(0,0,0,0.5), 0 8px 35px rgba(0,0,0,0.4); }
-        .book-row.right .book-card { transform-origin: left center; transform: rotateY(-22deg); border-left: 2px solid var(--book-spine); box-shadow: 6px 0 30px rgba(0,0,0,0.5), 0 8px 35px rgba(0,0,0,0.4); }
-        .book-row.visible .book-card { transform: rotateY(0deg); box-shadow: 0 8px 35px rgba(0,0,0,0.4); border-right-color: transparent; border-left-color: transparent; }
-        .book-row.left .book-card:hover { transform: rotateY(-6deg); border-color: rgba(255,255,255,0.15); box-shadow: -10px 0 40px rgba(0,0,0,0.55), 0 16px 50px rgba(0,0,0,0.5); }
-        .book-row.right .book-card:hover { transform: rotateY(6deg); border-color: rgba(255,255,255,0.15); box-shadow: 10px 0 40px rgba(0,0,0,0.55), 0 16px 50px rgba(0,0,0,0.5); }
-        .book-dot { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 12px; height: 12px; background: var(--accent); border-radius: 50%; z-index: 2; box-shadow: 0 0 18px var(--accent-glow), 0 0 40px var(--accent-glow-strong); transition: all 0.45s var(--ease-out-back); border: 2px solid var(--bg); }
-        .book-row:hover .book-dot { box-shadow: 0 0 30px var(--accent-glow-strong), 0 0 60px var(--accent-glow); transform: translate(-50%, -50%) scale(1.6); background: var(--accent-bright); }
-        .book-inner { display: flex; align-items: flex-start; gap: 15px; position: relative; z-index: 1; }
-        .book-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; font-size: 1.35rem; color: var(--accent-bright); flex-shrink: 0; transition: all 0.45s var(--ease-out-back); }
-        .book-card:hover .book-icon { background: var(--accent-soft-hover); box-shadow: 0 0 24px var(--accent-glow); transform: scale(1.08) rotate(-3deg); }
-        .book-info h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-        .book-info p { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
-        .book-glow-line { position: absolute; bottom: 0; left: 20px; right: 20px; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-glow), transparent); opacity: 0; transition: opacity 0.5s ease; z-index: 1; }
-        .book-card:hover .book-glow-line { opacity: 1; }
-        body.rtl .skills-book::before { left: 50%; }
-        body.rtl .book-row.left { justify-content: flex-end; padding-right: 0; padding-left: 53%; }
-        body.rtl .book-row.right { justify-content: flex-start; padding-left: 0; padding-right: 53%; }
-        body.rtl .book-row.left .book-card { transform-origin: left center; transform: rotateY(-22deg); border-right: none; border-left: 2px solid var(--book-spine); box-shadow: 6px 0 30px rgba(0,0,0,0.5), 0 8px 35px rgba(0,0,0,0.4); }
-        body.rtl .book-row.right .book-card { transform-origin: right center; transform: rotateY(22deg); border-left: none; border-right: 2px solid var(--book-spine); box-shadow: -6px 0 30px rgba(0,0,0,0.5), 0 8px 35px rgba(0,0,0,0.4); }
-        body.rtl .book-row.visible .book-card { transform: rotateY(0deg); border-left-color: transparent; border-right-color: transparent; }
-        body.rtl .book-row.left .book-card:hover { transform: rotateY(6deg); }
-        body.rtl .book-row.right .book-card:hover { transform: rotateY(-6deg); }
+        .skills-book { position: relative; max-width: 800px; margin: 0 auto; perspective: 1400px; }
+        .skills-book::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, transparent, var(--book-spine) 20%, var(--accent) 50%, var(--book-spine) 80%, transparent); opacity: 0.4; transform: translateX(-50%); z-index: 0; }
+        .book-row { display: flex; align-items: center; margin-bottom: 28px; position: relative; z-index: 1; }
+        .book-row.left { justify-content: flex-start; padding-right: 52%; }
+        .book-row.right { justify-content: flex-end; padding-left: 52%; }
+        .book-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; max-width: 350px; transition: all 0.6s var(--ease-out-expo); position: relative; box-shadow: var(--shadow-sm); }
+        .book-row.left .book-card { transform: rotateY(12deg); border-right: 2px solid var(--book-spine); }
+        .book-row.right .book-card { transform: rotateY(-12deg); border-left: 2px solid var(--book-spine); }
+        .book-row.visible .book-card { transform: rotateY(0deg); border-right-color: transparent; border-left-color: transparent; }
+        .book-row.left .book-card:hover { transform: rotateY(-3deg); }
+        .book-row.right .book-card:hover { transform: rotateY(3deg); }
+        .book-dot { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; background: var(--accent); border-radius: 50%; z-index: 2; box-shadow: 0 0 14px var(--accent-glow); border: 2px solid var(--bg); transition: 0.3s; }
+        .book-row:hover .book-dot { transform: translate(-50%, -50%) scale(1.5); box-shadow: 0 0 22px var(--accent-glow); }
+        .book-inner { display: flex; align-items: flex-start; gap: 14px; }
+        .book-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--accent-bright); flex-shrink: 0; transition: 0.3s; }
+        .book-card:hover .book-icon { background: rgba(77,171,247,0.14); transform: scale(1.05); }
+        .book-info h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+        .book-info p { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
 
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-        .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: all 0.45s var(--ease-out-expo); max-width: 520px; margin: 0 auto; position: relative; }
-        .project-card::before { content: ''; position: absolute; inset: -1px; border-radius: var(--radius); background: linear-gradient(135deg, var(--accent-glow), transparent 50%); opacity: 0; transition: opacity 0.5s; z-index: 0; pointer-events: none; }
-        .project-card:hover::before { opacity: 0.3; }
-        .project-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-6px); box-shadow: var(--shadow-hover), 0 0 30px var(--accent-glow); }
-        .project-img-wrapper { position: relative; overflow: hidden; height: 220px; z-index: 1; }
-        .project-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s var(--ease-out-expo); loading: lazy; decoding: async; }
-        .project-card:hover .project-img { transform: scale(1.06); }
-        .project-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, rgba(0,0,0,0.75) 100%); opacity: 0; transition: opacity 0.4s; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 18px; z-index: 2; }
-        .project-card:hover .project-overlay { opacity: 1; }
-        .project-view-btn { padding: 10px 22px; background: var(--accent); color: #fff; border: none; border-radius: 40px; font-weight: 700; font-size: 0.82rem; cursor: pointer; font-family: inherit; display: flex; align-items: center; gap: 6px; transition: all 0.35s var(--ease-out-back); text-decoration: none; transform: translateY(14px); opacity: 0; }
-        .project-card:hover .project-view-btn { transform: translateY(0); opacity: 1; }
-        .project-body { padding: 18px 20px; position: relative; z-index: 1; }
-        .project-title { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 5px; }
+        .filter-bar { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+        .filter-btn { padding: 8px 18px; border-radius: 40px; background: transparent; border: 1px solid var(--border-light); color: var(--text-soft); cursor: pointer; transition: 0.3s; font-size: 0.78rem; font-family: inherit; }
+        .filter-btn.active, .filter-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: all 0.35s; position: relative; }
+        .project-card:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        .project-img-wrapper { height: 200px; overflow: hidden; }
+        .project-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .project-card:hover .project-img { transform: scale(1.04); }
+        .project-body { padding: 18px 20px; }
+        .project-title { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
         .project-desc { color: var(--text-soft); font-size: 0.8rem; line-height: 1.5; margin-bottom: 10px; }
         .project-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-        .project-tag { padding: 4px 11px; background: var(--accent-soft); color: var(--accent-bright); border-radius: 40px; font-size: 0.68rem; font-weight: 500; border: 1px solid transparent; transition: 0.3s; }
-        .project-tag:hover { border-color: var(--accent); background: var(--accent-soft-hover); }
+        .project-tag { padding: 4px 10px; background: var(--accent-soft); color: var(--accent-bright); border-radius: 40px; font-size: 0.68rem; }
 
-        .timeline { position: relative; padding-left: 24px; }
-        body.rtl .timeline { padding-left: 0; padding-right: 24px; }
-        .timeline::before { content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg, var(--accent), transparent); opacity: 0.35; border-radius: 2px; }
-        body.rtl .timeline::before { left: auto; right: 5px; }
-        .tl-item { padding: 10px 0 10px 16px; position: relative; }
-        body.rtl .tl-item { padding: 10px 16px 10px 0; }
-        .tl-item::before { content: ''; position: absolute; left: -20px; top: 18px; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; border: 2px solid var(--bg); transition: all 0.35s var(--ease-out-back); }
-        body.rtl .tl-item::before { left: auto; right: -20px; }
-        .tl-item:hover::before { background: var(--accent-bright); box-shadow: 0 0 0 5px var(--accent-glow); transform: scale(1.2); }
-        .tl-date { font-size: 0.66rem; color: var(--text-muted); font-weight: 500; margin-bottom: 2px; }
-        .tl-title { font-weight: 700; font-size: 0.88rem; }
-        .tl-desc { color: var(--text-soft); font-size: 0.78rem; margin-top: 2px; }
-        .status-badge { display: inline-flex; align-items: center; gap: 5px; background: var(--accent-soft); border: 1px solid rgba(255,255,255,0.08); color: var(--accent-bright); padding: 4px 11px; border-radius: 40px; font-size: 0.66rem; font-weight: 600; margin-top: 5px; }
-        .status-badge .live-dot { width: 5px; height: 5px; background: var(--accent-bright); border-radius: 50%; animation: dotPulse 1.2s ease-in-out infinite; }
-        @keyframes dotPulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
+        .timeline { padding-left: 20px; position: relative; }
+        body.rtl .timeline { padding-left: 0; padding-right: 20px; }
+        .timeline::before { content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px; background: var(--accent); opacity: 0.2; }
+        .tl-item { padding: 8px 0 8px 16px; position: relative; }
+        .tl-item::before { content: ''; position: absolute; left: -18px; top: 14px; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+        .tl-date { font-size: 0.68rem; color: var(--text-muted); }
+        .tl-title { font-weight: 700; font-size: 0.85rem; }
+
+        .contact-form-inline { max-width: 480px; margin: 0 auto 24px; }
+        .contact-form-input { width: 100%; padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 0.82rem; font-family: inherit; margin-bottom: 10px; transition: 0.3s; }
+        .contact-form-input:focus { outline: none; border-color: var(--accent); }
+        .contact-form-textarea { min-height: 80px; resize: vertical; }
+        .contact-form-submit { width: 100%; padding: 11px; background: var(--accent); color: #fff; border: none; border-radius: 40px; font-weight: 700; font-size: 0.84rem; cursor: pointer; transition: 0.3s; }
+        .contact-form-submit:hover { background: var(--accent-bright); }
+
+        .footer { padding: 32px 0; border-top: 1px solid var(--border); background: var(--bg-alt); text-align: center; }
+        .footer-links { display: flex; justify-content: center; gap: 16px; margin: 16px 0; }
+        .footer-links a { color: var(--text-muted); font-size: 1.2rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--accent-bright); }
+        .footer-text { color: var(--text-muted); font-size: 0.76rem; margin-top: 8px; }
+
+        .scroll-top { position: fixed; bottom: 20px; right: 20px; width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; z-index: 99; opacity: 0; transition: 0.3s; pointer-events: none; cursor: pointer; border: none; }
+        .scroll-top.visible { opacity: 1; pointer-events: auto; }
 
         .softskills-vertical { display: flex; flex-direction: column; gap: 18px; max-width: 680px; margin: 0 auto; }
-        .softskill-card { background: var(--surface); border-radius: var(--radius); padding: 22px 26px; display: flex; align-items: flex-start; gap: 16px; transition: all 0.45s var(--ease-out-expo); border: 1px solid var(--border); }
-        .softskill-card:hover { transform: translateX(6px); box-shadow: var(--shadow-hover); background: var(--surface-alt); border-color: rgba(255,255,255,0.1); }
+        .softskill-card {
+            background: var(--surface); border-radius: var(--radius); padding: 22px 26px;
+            display: flex; align-items: flex-start; gap: 16px;
+            transition: all 0.45s var(--ease-out-expo); border: 1px solid var(--border);
+        }
+        .softskill-card:hover {
+            transform: translateX(6px); box-shadow: var(--shadow-hover);
+            background: var(--surface-alt); border-color: rgba(255,255,255,0.1);
+        }
         body.rtl .softskill-card:hover { transform: translateX(-6px); }
-        .softskill-icon-wrap { width: 46px; height: 46px; border-radius: 12px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--accent-bright); flex-shrink: 0; transition: all 0.4s var(--ease-out-back); }
-        .softskill-card:hover .softskill-icon-wrap { background: var(--accent-soft-hover); box-shadow: 0 0 24px var(--accent-glow); transform: scale(1.07) rotate(-4deg); }
+        .softskill-icon-wrap {
+            width: 46px; height: 46px; border-radius: 12px; background: var(--accent-soft);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--accent-bright); flex-shrink: 0;
+            transition: all 0.4s var(--ease-out-back);
+        }
+        .softskill-card:hover .softskill-icon-wrap {
+            background: rgba(77,171,247,0.14); box-shadow: 0 0 24px var(--accent-glow);
+            transform: scale(1.07) rotate(-4deg);
+        }
         .softskill-content h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.92rem; font-weight: 700; margin-bottom: 3px; }
         .softskill-content p { font-size: 0.78rem; color: var(--text-soft); }
 
-        .platforms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; max-width: 580px; margin: 0 auto; }
-        .platform-card { display: flex; align-items: center; gap: 11px; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; transition: all 0.4s var(--ease-out-back); }
-        .platform-card:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-4px); box-shadow: 0 8px 22px var(--accent-glow); }
-        .platform-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-        .platform-info h4 { font-size: 0.82rem; font-weight: 700; } .platform-info p { font-size: 0.68rem; color: var(--text-muted); }
-
-        .contact-form-inline { max-width: 520px; margin: 0 auto 30px; }
-        .contact-form-group { margin-bottom: 12px; }
-        .contact-form-input { width: 100%; padding: 11px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 0.82rem; font-family: inherit; transition: all 0.35s ease; resize: vertical; }
-        .contact-form-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 14px var(--accent-glow); }
-        .contact-form-textarea { min-height: 80px; }
-        .contact-form-submit { width: 100%; padding: 11px; background: var(--accent); color: #fff; border: none; border-radius: 40px; font-weight: 700; font-size: 0.84rem; cursor: pointer; font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.35s var(--ease-out-back); }
-        .contact-form-submit:hover { background: var(--accent-bright); box-shadow: 0 8px 22px var(--accent-glow); transform: translateY(-2px); }
-        .contact-form-status { text-align: center; margin-top: 8px; font-size: 0.78rem; font-weight: 500; min-height: 18px; }
-        .contact-form-status.success { color: #00c853; } .contact-form-status.error { color: #ff1744; }
-
-        .footer { text-align: center; padding: 28px 0; border-top: 1px solid var(--border); }
-        .footer-text { color: var(--text-muted); font-size: 0.76rem; } .footer-text span { color: var(--accent-bright); font-weight: 700; }
-
-        .scroll-top { position: fixed; bottom: 22px; right: 22px; width: 42px; height: 42px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 99; opacity: 0; transform: translateY(14px); pointer-events: none; transition: all 0.4s var(--ease-out-back); box-shadow: 0 6px 20px var(--accent-glow); border: none; font-size: 0.95rem; }
-        .scroll-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-        .scroll-top:hover { background: var(--accent-bright); box-shadow: 0 12px 30px var(--accent-glow-strong); transform: translateY(-4px) scale(1.06); }
-
         @media (max-width: 940px) {
             .nav-desktop { display: none; } .hamburger-btn { display: flex; }
-            .hero .container { grid-template-columns: 1fr; text-align: center; gap: 28px; }
-            .hero-desc { margin: 0 auto 20px; } .hero-buttons, .hero-social { justify-content: center; }
-            .hero-visual { order: -1; } .avatar-img { width: 190px; height: 190px; }
-            .hero-title-role { justify-content: center; }
-            .skills-book::before { left: 18px; } body.rtl .skills-book::before { left: auto; right: 18px; }
-            .book-row.left, .book-row.right { padding-left: 44px; padding-right: 0; justify-content: flex-start; }
-            body.rtl .book-row.left, body.rtl .book-row.right { padding-left: 0; padding-right: 44px; justify-content: flex-start; }
-            .book-row.left .book-card, .book-row.right .book-card { transform-origin: left center; transform: rotateY(-12deg); max-width: 100%; border-left: 2px solid var(--book-spine); border-right: none; box-shadow: 6px 0 30px rgba(0,0,0,0.5), 0 8px 35px rgba(0,0,0,0.4); }
-            body.rtl .book-row.left .book-card, body.rtl .book-row.right .book-card { transform-origin: right center; transform: rotateY(12deg); border-left: none; border-right: 2px solid var(--book-spine); box-shadow: -6px 0 30px rgba(0,0,0,0.5), 0 8px 35px rgba(0,0,0,0.4); }
-            .book-row.visible .book-card { transform: rotateY(0deg); border-left-color: transparent; border-right-color: transparent; }
-            .book-dot { left: 18px; } body.rtl .book-dot { left: auto; right: 18px; }
+            .hero .container { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+            .hero-visual { order: -1; } .avatar-img { width: 170px; height: 170px; }
+            .book-row.left, .book-row.right { padding-left: 40px; padding-right: 0; justify-content: flex-start; }
+            .book-row.left .book-card, .book-row.right .book-card { transform: rotateY(0deg); border: none; max-width: 90%; }
+            .skills-book::before { left: 20px; } .book-dot { left: 20px; }
+            .section-wrapper { padding: 36px 20px; }
             .softskill-card { flex-direction: column; align-items: flex-start; }
-            .section-wrapper { padding: 40px 24px; }
         }
         @media (max-width: 600px) {
-            .header { width: calc(100% - 10px); padding: 5px 10px; border-radius: 40px; top: 6px; }
-            .logo-text { font-size: 1.3rem; } .logo-img { width: 30px; height: 30px; }
-            .lang-btn { padding: 5px 8px; font-size: 0.6rem; }
-            .info-grid { grid-template-columns: 1fr 1fr; } .platforms-grid { grid-template-columns: 1fr 1fr; }
-            .hero-name { font-size: 1.9rem; } .section { padding: 48px 0; } .section-wrapper { padding: 28px 16px; }
-            .skills-book::before { left: 10px; } body.rtl .skills-book::before { left: auto; right: 10px; }
-            .book-row.left, .book-row.right { padding-left: 32px; } body.rtl .book-row.left, body.rtl .book-row.right { padding-left: 0; padding-right: 32px; }
-            .book-dot { left: 10px; width: 8px; height: 8px; } body.rtl .book-dot { left: auto; right: 10px; }
-            .book-card { padding: 14px 16px; } .book-info h4 { font-size: 0.95rem; }
-        }
-        @media (max-width: 400px) {
-            .info-grid { grid-template-columns: 1fr; } .hero-buttons { flex-direction: column; } .platforms-grid { grid-template-columns: 1fr; }
+            .header { width: calc(100% - 10px); padding: 5px 10px; top: 6px; }
+            .hero { padding: 120px 0 60px; }
+            .info-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.5rem; }
+            .book-row.left, .book-row.right { padding-left: 28px; }
+            .skills-book::before { left: 14px; } .book-dot { left: 14px; }
         }
     </style>
 </head>
 <body class="dark">
 
-    <!-- LOADER -->
+    <div id="customCursor"></div>
     <div id="loader" class="loader-overlay"><div class="loader-spinner"></div></div>
 
-    <!-- BACKGROUND AMBIANCE -->
     <div class="bg-ambiance">
         <canvas id="particlesCanvas"></canvas>
-        <div class="bg-orb orb-1"></div><div class="bg-orb orb-2"></div><div class="bg-orb orb-3"></div>
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
     </div>
 
-    <!-- HEADER -->
     <header class="header" id="header">
         <div class="header-inner">
             <a href="#home" class="logo-link">
-                <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="Abdulrahman" class="logo-img" loading="lazy" decoding="async">
+                <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="Abdulrahman" class="logo-img" loading="lazy">
                 <span class="logo-text">Abdulrahman</span>
             </a>
             <nav>
                 <ul class="nav-desktop" id="navDesktop">
                     <li><a href="#home" class="active" data-i18n-nav="home">Home</a></li>
-                    <li><a href="#personal" data-i18n-nav="personal">Personal Info</a></li>
+                    <li><a href="#personal" data-i18n-nav="personal">About</a></li>
+                    <li><a href="#services" data-i18n-nav="services">Services</a></li>
                     <li><a href="#skills" data-i18n-nav="skills">Skills</a></li>
                     <li><a href="#projects" data-i18n-nav="projects">Projects</a></li>
                     <li><a href="#education" data-i18n-nav="education">Education</a></li>
@@ -387,13 +373,13 @@
         </div>
     </header>
 
-    <!-- MOBILE MENU -->
     <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header"><span class="logo-text" style="font-size:1.6rem;">Abdulrahman</span><button class="mobile-menu-close" onclick="toggleMobileMenu()"><i class="fas fa-times"></i></button></div>
         <ul class="mobile-nav">
             <li><a href="#home" onclick="toggleMobileMenu()" data-i18n-nav="home">Home</a></li>
-            <li><a href="#personal" onclick="toggleMobileMenu()" data-i18n-nav="personal">Personal Info</a></li>
+            <li><a href="#personal" onclick="toggleMobileMenu()" data-i18n-nav="personal">About</a></li>
+            <li><a href="#services" onclick="toggleMobileMenu()" data-i18n-nav="services">Services</a></li>
             <li><a href="#skills" onclick="toggleMobileMenu()" data-i18n-nav="skills">Skills</a></li>
             <li><a href="#projects" onclick="toggleMobileMenu()" data-i18n-nav="projects">Projects</a></li>
             <li><a href="#education" onclick="toggleMobileMenu()" data-i18n-nav="education">Education</a></li>
@@ -404,16 +390,15 @@
         </ul>
     </div>
 
-    <!-- HERO -->
     <section class="hero" id="home">
         <div class="container">
-            <div class="hero-content from-right reveal">
+            <div class="hero-content from-left reveal">
                 <div class="hero-greeting"><span class="wave">👋</span> <span data-i18n="hero.greeting">Hi, I'm</span></div>
                 <h1 class="hero-name">Abdulrahman Mamdouh</h1>
-                <span class="hero-title-role"><span data-i18n="hero.role.prefix">I'm a</span> <span class="typed-text" id="typedText"></span></span>
+                <div class="hero-title-role"><span data-i18n="hero.role.prefix">I'm a</span> <span class="typed-text" id="typedText"></span></div>
                 <p class="hero-desc" data-i18n="hero.desc">I build modern, responsive websites and constantly learn through real projects.</p>
                 <div class="hero-buttons">
-                    <a href="#personal" class="btn btn-primary" data-i18n="hero.cta1">Learn More About Me</a>
+                    <a href="#projects" class="btn btn-primary" data-i18n="hero.cta1">View My Work</a>
                     <a href="#contact" class="btn btn-outline" data-i18n="hero.cta2">Get In Touch</a>
                 </div>
                 <div class="hero-social">
@@ -422,32 +407,39 @@
                     <a href="https://www.instagram.com/bboda_7" target="_blank" rel="noopener" class="social-pill"><i class="fab fa-instagram"></i> Instagram</a>
                 </div>
             </div>
-            <div class="hero-visual from-left reveal">
-                <div class="avatar-wrapper from-scale reveal">
-                    <span class="avatar-ring"></span><span class="avatar-ring"></span><span class="avatar-ring"></span>
-                    <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="Abdulrahman" class="avatar-img" loading="lazy" decoding="async">
-                </div>
+            <div class="hero-visual from-right reveal">
+                <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="Abdulrahman" class="avatar-img" loading="lazy">
             </div>
         </div>
     </section>
 
-    <!-- PERSONAL INFO -->
     <section class="section" id="personal">
         <div class="container">
             <div class="section-wrapper" id="wrapper-personal">
                 <div class="section-header from-bottom reveal"><h2 class="section-title" data-i18n="personal.title">About Me</h2></div>
-                <div class="card stagger-container" style="max-width:860px;margin:0 auto;">
+                <div class="card stagger-container" style="max-width:800px;margin:0 auto;">
                     <div class="card-icon stagger-item"><i class="fas fa-address-card"></i></div>
-                    <div class="card-glow"></div>
                     <div class="info-grid stagger-item" id="infoGrid"></div>
-                    <div class="stagger-item" style="margin-top:18px;"><p class="card-text" data-i18n="personal.desc">I'm a self-learning developer focused on web development and problem solving.</p></div>
+                    <div class="stagger-item" style="margin-top:18px;">
+                        <p class="card-text" data-i18n="personal.desc">I'm a self-learning developer focused on web development and problem solving.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 3D SKILLS BOOK -->
-    <section class="section section-alt" id="skills">
+    <section class="section section-alt" id="services">
+        <div class="container">
+            <div class="section-wrapper" id="wrapper-services">
+                <div class="section-header from-bottom reveal">
+                    <h2 class="section-title" data-i18n="services.title">What I Offer You</h2>
+                </div>
+                <div class="softskills-vertical stagger-container" id="servicesList"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="skills">
         <div class="container">
             <div class="section-wrapper" id="wrapper-skills">
                 <div class="section-header from-bottom reveal"><h2 class="section-title" data-i18n="skills.title">Programming Languages I Master</h2></div>
@@ -456,33 +448,29 @@
         </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section class="section" id="projects">
+    <section class="section section-alt" id="projects">
         <div class="container">
             <div class="section-wrapper" id="wrapper-projects">
                 <div class="section-header from-bottom reveal"><h2 class="section-title" data-i18n="projects.title">My Projects</h2></div>
-                <div class="projects-grid stagger-container">
-                    <div class="project-card stagger-item">
-                        <div class="project-img-wrapper"><img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=500&fit=crop" alt="Code" class="project-img" loading="lazy" decoding="async"><div class="project-overlay"><a href="https://abdo-1818.github.io/abdulrahman_tec/" target="_blank" rel="noopener" class="project-view-btn"><i class="fas fa-external-link-alt"></i> View Details</a></div></div>
-                        <div class="project-body"><h3 class="project-title" data-i18n="projects.item1.title">Abdulrahman TEC</h3><p class="project-desc" data-i18n="projects.item1.desc">A modern technology website showcasing services and solutions with a sleek, responsive design.</p><div class="project-tags"><span class="project-tag">HTML5</span><span class="project-tag">CSS3</span><span class="project-tag">JavaScript</span><span class="project-tag">Responsive</span></div></div>
-                    </div>
+                <div class="filter-bar" id="filterBar"></div>
+                <div class="projects-grid stagger-container" id="projectsGrid"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="education">
+        <div class="container">
+            <div class="section-wrapper" id="wrapper-education">
+                <div class="section-header from-bottom reveal"><h2 class="section-title" data-i18n="education.title">Education</h2></div>
+                <div class="card from-scale reveal" style="max-width:580px;margin:0 auto;">
+                    <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="timeline" id="educationTimeline"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- EDUCATION -->
-    <section class="section section-alt" id="education">
-        <div class="container">
-            <div class="section-wrapper" id="wrapper-education">
-                <div class="section-header from-bottom reveal"><h2 class="section-title" data-i18n="education.title">Education</h2></div>
-                <div class="card from-scale reveal" style="max-width:620px;margin:0 auto;"><div class="card-icon"><i class="fas fa-graduation-cap"></i></div><div class="card-glow"></div><div class="timeline" id="educationTimeline"></div></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- STRENGTHS (NOW BOOK STYLE) -->
-    <section class="section" id="strengths">
+   <section class="section section-alt" id="strengths">
         <div class="container">
             <div class="section-wrapper" id="wrapper-strengths">
                 <div class="section-header from-bottom reveal"><h2 class="section-title" data-i18n="strengths.title">My Strengths</h2></div>
@@ -491,18 +479,19 @@
         </div>
     </section>
 
-    <!-- DIFFERENT -->
-    <section class="section section-alt" id="different">
+    <section class="section" id="different">
         <div class="container">
             <div class="section-wrapper" id="wrapper-different">
                 <div class="section-header from-bottom reveal"><h2 class="section-title" data-i18n="different.title">What Sets Me Apart</h2></div>
-                <div class="card from-bottom reveal" style="max-width:760px;margin:0 auto;"><div class="card-icon"><i class="fas fa-rocket"></i></div><div class="card-glow"></div><p class="card-text" data-i18n="different.desc" style="font-size:0.92rem;line-height:1.9;"></p></div>
+                <div class="card from-bottom reveal" style="max-width:760px;margin:0 auto;">
+                    <div class="card-icon"><i class="fas fa-rocket"></i></div>
+                    <p class="card-text" data-i18n="different.desc" style="font-size:0.95rem;line-height:1.8;"></p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- SOFT SKILLS -->
-    <section class="section" id="softskills">
+    <section class="section section-alt" id="softskills">
         <div class="container">
             <div class="section-wrapper" id="wrapper-softskills">
                 <div class="section-header from-bottom reveal"><h2 class="section-title" data-i18n="softskills.title">Personal Qualities</h2></div>
@@ -511,19 +500,18 @@
         </div>
     </section>
 
-    <!-- CONTACT -->
-    <section class="section section-alt" id="contact">
+    <section class="section" id="contact">
         <div class="container">
             <div class="section-wrapper" id="wrapper-contact">
                 <div class="section-header from-bottom reveal">
                     <h2 class="section-title" data-i18n="contact.title">Contact Me</h2>
-                    <p style="color:var(--text-soft);margin-top:10px;font-size:0.83rem;" data-i18n="contact.subtitle">Reach out to me on any of these platforms</p>
+                    <p style="color:var(--text-soft);margin-top:6px; font-size:0.83rem;" data-i18n="contact.subtitle">Reach out to me on any of these platforms</p>
                 </div>
                 <div class="contact-form-inline from-bottom reveal">
-                    <div class="contact-form-group"><input type="text" id="formName" class="contact-form-input" data-i18n-placeholder="contact_form.name" placeholder="Your Name" required></div>
-                    <div class="contact-form-group"><input type="email" id="formEmail" class="contact-form-input" data-i18n-placeholder="contact_form.email" placeholder="Your Email" required></div>
-                    <div class="contact-form-group"><textarea id="formMessage" class="contact-form-input contact-form-textarea" data-i18n-placeholder="contact_form.message" placeholder="Your Message" required></textarea></div>
-                    <button class="contact-form-submit" id="formSubmitBtn" onclick="sendFormMessage()"><i class="fas fa-paper-plane"></i> <span data-i18n="contact_form.send">Send</span></button>
+                    <input type="text" id="formName" class="contact-form-input" data-i18n-placeholder="contact_form.name" placeholder="Your Name" required>
+                    <input type="email" id="formEmail" class="contact-form-input" data-i18n-placeholder="contact_form.email" placeholder="Your Email" required>
+                    <textarea id="formMessage" class="contact-form-input contact-form-textarea" data-i18n-placeholder="contact_form.message" placeholder="Your Message" required></textarea>
+                    <button class="contact-form-submit" onclick="sendFormMessage()"><i class="fas fa-paper-plane"></i> <span data-i18n="contact_form.send">Send</span></button>
                     <p class="contact-form-status" id="formStatus"></p>
                 </div>
                 <div class="platforms-grid stagger-container" id="contactPlatforms"></div>
@@ -531,410 +519,538 @@
         </div>
     </section>
 
-    <footer class="footer from-bottom reveal"><div class="container"><p class="footer-text">© <span id="currentYear">2026</span> <span>Abdulrahman Mamdouh</span> — <span data-i18n="footer.rights">All rights reserved</span></p></div></footer>
+    <footer class="footer from-bottom reveal">
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://github.com/Abdo-1818" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/ab-do-097783272" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/bboda_7" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="footer-text">© <span id="currentYear">2026</span> <span>Abdulrahman Mamdouh</span> — <span data-i18n="footer.rights">All rights reserved</span></p>
+        </div>
+    </footer>
     <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
 
     <script>
         (function() {
-            function ready(fn) { if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
-
-            var API_URL = 'https://YOUR-API-LINK/api/messages';
+            const API_URL = 'https://YOUR-API-LINK/api/messages';
 
             window.sendFormMessage = function() {
-                var btn = document.getElementById('formSubmitBtn'),
+                const btn = document.getElementById('formSubmitBtn'),
                     status = document.getElementById('formStatus'),
                     n = document.getElementById('formName'),
                     e = document.getElementById('formEmail'),
                     m = document.getElementById('formMessage');
                 if (!btn || !status || !n || !e || !m) return;
-                var name = n.value.trim(), email = e.value.trim(), msg = m.value.trim();
-                var t = window.translations && window.translations[window.currentLang] ? window.translations[window.currentLang] : {};
+                const name = n.value.trim(), email = e.value.trim(), msg = m.value.trim();
+                const t = window.translations && window.translations[window.currentLang] ? window.translations[window.currentLang] : {};
                 if (!name || !email || !msg) {
                     status.textContent = t['contact_form.fill_fields'] || 'Please fill all fields';
                     status.className = 'contact-form-status error'; return;
                 }
                 btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                status.textContent = ''; status.className = 'contact-form-status';
                 fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ Name: name, Email: email, MessageText: msg }) })
-                .then(function(r) { if (!r.ok) throw new Error('err'); return r.text(); })
-                .then(function() {
+                .then(r => r.ok ? r.text() : Promise.reject())
+                .then(() => {
                     status.textContent = t['contact_form.success'] || 'Sent ✔';
                     status.className = 'contact-form-status success';
                     n.value = ''; e.value = ''; m.value = '';
-                    btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-i18n="contact_form.send">Send</span>';
-                    setTimeout(function() { status.textContent = ''; status.className = 'contact-form-status'; }, 5000);
-                }).catch(function() {
+                    btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send';
+                    setTimeout(() => { status.textContent = ''; status.className = ''; }, 5000);
+                }).catch(() => {
                     status.textContent = t['contact_form.error'] || 'Error ❌';
                     status.className = 'contact-form-status error';
-                    btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-i18n="contact_form.send">Send</span>';
+                    btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send';
                 });
             };
 
             window.translations = {
                 en: {
-                    'hero.greeting': "Hi, I'm", 'hero.role.prefix': "I'm a",
+                    'hero.greeting': "Hi, I'm",
+                    'hero.role.prefix': "I'm a",
                     'hero.desc': 'I build modern, responsive websites and constantly learn through real projects.',
-                    'hero.cta1': 'Learn More About Me', 'hero.cta2': 'Get In Touch',
-                    'personal.title': 'About Me', 'personal.desc': "I'm a self-learning developer focused on web development and problem solving.",
-                    'skills.title': 'Programming Languages I Master', 'projects.title': 'My Projects',
-                    'projects.item1.title': 'Abdulrahman TEC', 'projects.item1.desc': 'A modern technology website showcasing services and solutions with a sleek, responsive design.',
+                    'hero.cta1': 'View My Work',
+                    'hero.cta2': 'Get In Touch',
+                    'personal.title': 'About Me',
+                    'personal.desc': "I'm a self-learning developer focused on web development and problem solving.",
+                    'services.title': 'What I Offer You',
+                    'skills.title': 'Programming Languages I Master',
+                    'projects.title': 'My Projects',
+                    'projects.item1.title': 'Abdulrahman TEC',
+                    'projects.item1.desc': 'A modern technology website showcasing services and solutions.',
+                    'projects.item2.title': 'Portfolio Dashboard',
+                    'projects.item2.desc': 'A clean admin dashboard UI for managing projects.',
                     'education.title': 'Education',
                     'strengths.title': 'My Strengths',
                     'different.title': 'What Sets Me Apart',
-                    'different.desc': 'I am a <strong>UI/UX designer and low-code developer</strong> with extensive experience, passionate about crafting exceptional digital experiences.',
+                    'different.desc': 'I am a <strong>highly motivated and passionate UI/UX Designer and Low‑Code Developer</strong>. I thrive on transforming complex ideas into elegant, user‑friendly digital experiences. My commitment to detail, creativity, and continuous improvement sets me apart. I am dedicated to delivering top‑quality work that exceeds expectations and brings real value to every project. With a proactive mindset and a strong sense of ownership, I always go the extra mile to ensure success.',
                     'softskills.title': 'Personal Qualities',
-                    'contact.title': 'Contact Me', 'contact.subtitle': 'Reach out to me on any of these platforms',
+                    'contact.title': 'Contact Me',
+                    'contact.subtitle': 'Reach out to me on any of these platforms',
                     'footer.rights': 'All rights reserved',
-                    'contact_form.title': 'Contact Me',
-                    'contact_form.name': 'Your Name', 'contact_form.email': 'Your Email', 'contact_form.message': 'Your Message',
-                    'contact_form.send': 'Send', 'contact_form.success': 'Message sent successfully ✔', 'contact_form.error': 'Error sending message ❌',
                     'contact_form.fill_fields': 'Please fill all fields',
-                    'nav.home': 'Home', 'nav.personal': 'Personal Info', 'nav.skills': 'Skills', 'nav.projects': 'Projects',
-                    'nav.education': 'Education', 'nav.strengths': 'Strengths', 'nav.different': 'Why Different', 'nav.softskills': 'Soft Skills', 'nav.contact': 'Contact'
+                    'contact_form.success': 'Message sent successfully ✔',
+                    'contact_form.error': 'Error sending message ❌',
+                    'nav.home': 'Home',
+                    'nav.personal': 'About',
+                    'nav.services': 'Services',
+                    'nav.skills': 'Skills',
+                    'nav.projects': 'Projects',
+                    'nav.education': 'Education',
+                    'nav.strengths': 'Strengths',
+                    'nav.different': 'Why Different',
+                    'nav.softskills': 'Soft Skills',
+                    'nav.contact': 'Contact'
                 },
                 de: {
-                    'hero.greeting': 'Hallo, ich bin', 'hero.role.prefix': 'Ich bin',
+                    'hero.greeting': 'Hallo, ich bin',
+                    'hero.role.prefix': 'Ich bin',
                     'hero.desc': 'Ich entwickle moderne, responsive Websites und lerne ständig durch echte Projekte.',
-                    'hero.cta1': 'Erfahre mehr', 'hero.cta2': 'Kontakt',
-                    'personal.title': 'Über mich', 'personal.desc': 'Ich bin ein selbstlernender Entwickler mit Fokus auf Webentwicklung und Problemlösung.',
-                    'skills.title': 'Programmiersprachen', 'projects.title': 'Meine Projekte',
-                    'projects.item1.title': 'Abdulrahman TEC', 'projects.item1.desc': 'Eine moderne Technologie-Website mit einem eleganten, responsiven Design.',
+                    'hero.cta1': 'Meine Arbeit',
+                    'hero.cta2': 'Kontakt',
+                    'personal.title': 'Über mich',
+                    'personal.desc': 'Ich bin ein selbstlernender Entwickler.',
+                    'services.title': 'Was ich Ihnen biete',
+                    'skills.title': 'Programmiersprachen',
+                    'projects.title': 'Meine Projekte',
+                    'projects.item1.title': 'Abdulrahman TEC',
+                    'projects.item1.desc': 'Eine moderne Technologie-Website.',
+                    'projects.item2.title': 'Portfolio Dashboard',
+                    'projects.item2.desc': 'Ein sauberes Admin-Dashboard UI.',
                     'education.title': 'Bildung',
                     'strengths.title': 'Meine Stärken',
                     'different.title': 'Was mich auszeichnet',
-                    'different.desc': 'Ich bin ein <strong>UI/UX-Designer und Low-Code-Entwickler</strong> mit umfassender Erfahrung.',
+                    'different.desc': 'Ich bin ein <strong>hochmotivierter und leidenschaftlicher UI/UX-Designer und Low‑Code‑Entwickler</strong>. Es begeistert mich, komplexe Ideen in elegante, benutzerfreundliche digitale Erlebnisse zu verwandeln. Mein Engagement für Detailgenauigkeit, Kreativität und ständige Verbesserung zeichnet mich aus. Ich liefere stets erstklassige Arbeit, die Erwartungen übertrifft und echten Mehrwert schafft. Mit einer proaktiven Einstellung und einem ausgeprägten Verantwortungsbewusstsein gehe ich immer den entscheidenden Schritt weiter, um Erfolg zu gewährleisten.',
                     'softskills.title': 'Persönliche Qualitäten',
-                    'contact.title': 'Kontaktiere mich über', 'contact.subtitle': 'Erreiche mich auf einer dieser Plattformen',
+                    'contact.title': 'Kontakt',
+                    'contact.subtitle': 'Erreiche mich auf diesen Plattformen',
                     'footer.rights': 'Alle Rechte vorbehalten',
-                    'contact_form.title': 'Kontaktiere mich',
-                    'contact_form.name': 'Dein Name', 'contact_form.email': 'Deine E-Mail', 'contact_form.message': 'Deine Nachricht',
-                    'contact_form.send': 'Senden', 'contact_form.success': 'Nachricht erfolgreich gesendet ✔', 'contact_form.error': 'Fehler beim Senden ❌',
                     'contact_form.fill_fields': 'Bitte alle Felder ausfüllen',
-                    'nav.home': 'Start', 'nav.personal': 'Persönliches', 'nav.skills': 'Fähigkeiten', 'nav.projects': 'Projekte',
-                    'nav.education': 'Bildung', 'nav.strengths': 'Stärken', 'nav.different': 'Besonderheiten', 'nav.softskills': 'Soft Skills', 'nav.contact': 'Kontakt'
+                    'nav.home': 'Start',
+                    'nav.personal': 'Über',
+                    'nav.services': 'Leistungen',
+                    'nav.skills': 'Fähigkeiten',
+                    'nav.projects': 'Projekte',
+                    'nav.education': 'Bildung',
+                    'nav.strengths': 'Stärken',
+                    'nav.different': 'Besonderheiten',
+                    'nav.softskills': 'Soft Skills',
+                    'nav.contact': 'Kontakt'
                 },
                 ar: {
-                    'hero.greeting': 'مرحباً، أنا', 'hero.role.prefix': 'أنا',
-                    'hero.desc': 'أبني مواقع ويب حديثة ومتجاوبة وأتعلم باستمرار من خلال المشاريع الحقيقية.',
-                    'hero.cta1': 'اعرف المزيد عني', 'hero.cta2': 'تواصل معي',
-                    'personal.title': 'عنّي', 'personal.desc': 'أنا مطور أتعلم ذاتياً وأركز على تطوير الويب وحل المشكلات.',
-                    'skills.title': 'لغات البرمجة التي أجيدها', 'projects.title': 'مشاريعي',
-                    'projects.item1.title': 'عبدالرحمن تك', 'projects.item1.desc': 'موقع تقني حديث يعرض الخدمات والحلول بتصميم أنيق ومتجاوب.',
+                    'hero.greeting': 'مرحباً، أنا',
+                    'hero.role.prefix': 'أنا',
+                    'hero.desc': 'أبني مواقع ويب حديثة ومتجاوبة وأتعلم باستمرار.',
+                    'hero.cta1': 'أعمالي',
+                    'hero.cta2': 'تواصل معي',
+                    'personal.title': 'عنّي',
+                    'personal.desc': 'مطور أتعلم ذاتياً وأركز على تطوير الويب.',
+                    'services.title': 'ما أقدمه لك',
+                    'skills.title': 'لغات البرمجة التي أجيدها',
+                    'projects.title': 'مشاريعي',
+                    'projects.item1.title': 'عبدالرحمن تك',
+                    'projects.item1.desc': 'موقع تقني حديث.',
+                    'projects.item2.title': 'لوحة تحكم',
+                    'projects.item2.desc': 'واجهة إدارية نظيفة.',
                     'education.title': 'التعليم',
                     'strengths.title': 'نقاط قوتي',
                     'different.title': 'ما يميزني',
-                    'different.desc': 'أنا <strong>مصمم واجهات مستخدم وتجربة مستخدم، ومطور برامج منخفض البرمجة</strong> ذو خبرة واسعة.',
+                    'different.desc': 'أنا <strong>مصمم واجهات مستخدم وتجربة مستخدم ومطور برامج منخفضة الكود، شغوف ومتحمس للغاية</strong>. أزدهر في تحويل الأفكار المعقدة إلى تجارب رقمية أنيقة وسهلة الاستخدام. التزامي بالتفاصيل والإبداع والتحسين المستمر يميزني عن غيري. أنا ملتزم بتقديم عمل عالي الجودة يتجاوز التوقعات ويضيف قيمة حقيقية لكل مشروع. بعقلية استباقية وحس قوي بالمسؤولية، أذهب دائماً إلى أبعد الحدود لضمان النجاح.',
                     'softskills.title': 'صفاتي الشخصية',
-                    'contact.title': 'تواصل معي عبر', 'contact.subtitle': 'تواصل معي على أي من هذه المنصات',
+                    'contact.title': 'تواصل معي',
+                    'contact.subtitle': 'تواصل عبر هذه المنصات',
                     'footer.rights': 'جميع الحقوق محفوظة',
-                    'contact_form.title': 'تواصل معي',
-                    'contact_form.name': 'الاسم', 'contact_form.email': 'الإيميل', 'contact_form.message': 'اكتب رسالتك',
-                    'contact_form.send': 'إرسال', 'contact_form.success': 'تم إرسال الرسالة بنجاح ✔', 'contact_form.error': 'حصل خطأ في الإرسال ❌',
-                    'contact_form.fill_fields': 'الرجاء ملء جميع الحقول',
-                    'nav.home': 'الرئيسية', 'nav.personal': 'معلومات شخصية', 'nav.skills': 'المهارات', 'nav.projects': 'المشاريع',
-                    'nav.education': 'التعليم', 'nav.strengths': 'نقاط القوة', 'nav.different': 'ما يميزني', 'nav.softskills': 'المهارات الشخصية', 'nav.contact': 'تواصل'
+                    'contact_form.fill_fields': 'الرجاء ملء الحقول',
+                    'nav.home': 'الرئيسية',
+                    'nav.personal': 'عنّي',
+                    'nav.services': 'الخدمات',
+                    'nav.skills': 'المهارات',
+                    'nav.projects': 'المشاريع',
+                    'nav.education': 'التعليم',
+                    'nav.strengths': 'نقاط القوة',
+                    'nav.different': 'ما يميزني',
+                    'nav.softskills': 'المهارات الشخصية',
+                    'nav.contact': 'تواصل'
                 }
             };
 
-            // Strengths statements (8 lines)
-            var strengthItems = [
-                { i: 'fas fa-star', ar: 'أنا شخص طموح أؤمن إن النجاح محتاج تعب واستمرار يومي.', en: 'I am an ambitious person who believes that success requires daily effort and persistence.', de: 'Ich bin eine ehrgeizige Person und glaube, dass Erfolg tägliche Anstrengung und Ausdauer erfordert.' },
-                { i: 'fas fa-star', ar: 'بحب أطور نفسي باستمرار وأتعلم من كل تجربة بمر بيها.', en: 'I love continuously improving myself and learning from every experience I go through.', de: 'Ich entwickle mich ständig weiter und lerne aus jeder Erfahrung.' },
-                { i: 'fas fa-star', ar: 'بشوف التحديات فرص مهمة تساعدني أكون أقوى وأحسن في حياتي.', en: 'I see challenges as important opportunities to become stronger and better in my life.', de: 'Ich betrachte Herausforderungen als wichtige Chancen, um stärker und besser zu werden.' },
-                { i: 'fas fa-star', ar: 'بشتغل بجد وبنظم وقتي علشان أوصل لكل أهدافي خطوة خطوة.', en: 'I work hard and organize my time to reach all my goals step by step.', de: 'Ich arbeite hart und organisiere meine Zeit, um alle meine Ziele Schritt für Schritt zu erreichen.' },
-                { i: 'fas fa-star', ar: 'ما بحبش أستسلم وبكمل مهما كانت الصعوبات اللي بتقابلني في الطريق.', en: 'I never give up and keep going no matter the difficulties I face.', de: 'Ich gebe niemals auf und mache weiter, egal welche Schwierigkeiten auf mich zukommen.' },
-                { i: 'fas fa-star', ar: 'بؤمن إن الإرادة القوية هي سر النجاح الحقيقي في أي مجال.', en: 'I believe that strong will is the secret to real success in any field.', de: 'Ich glaube, dass ein starker Wille das Geheimnis echten Erfolgs in jedem Bereich ist.' },
-                { i: 'fas fa-star', ar: 'بحاول أكون شخص مؤثر وإيجابي في أي مكان بروحه أو أكون فيه.', en: 'I strive to be an influential and positive person wherever I go.', de: 'Ich bemühe mich, eine einflussreiche und positive Person zu sein, wo immer ich bin.' },
-                { i: 'fas fa-star', ar: 'هدفي إني أحقق ذاتي وأوصل لمستوى يليق بطموحي وتفكيري.', en: 'My goal is to achieve self‑fulfillment and reach a level worthy of my ambition and mindset.', de: 'Mein Ziel ist es, mich selbst zu verwirklichen und ein Niveau zu erreichen, das meinem Ehrgeiz und Denken entspricht.' }
+            const projectsData = [
+                { titleKey: 'projects.item1.title', descKey: 'projects.item1.desc', img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop', tags: ['HTML5','CSS3','JavaScript'], category: 'web' },
+                { titleKey: 'projects.item2.title', descKey: 'projects.item2.desc', img: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop', tags: ['React','Tailwind','TypeScript'], category: 'react' }
             ];
+
+            const strengthItems = [
+                { i: 'fas fa-star', ar: 'أنا شخص طموح أؤمن إن النجاح محتاج تعب واستمرار يومي.', en: 'I am ambitious and believe success requires daily effort.', de: 'Ich bin ehrgeizig und glaube, dass Erfolg tägliche Anstrengung erfordert.' },
+                { i: 'fas fa-star', ar: 'بحب أطور نفسي باستمرار وأتعلم من كل تجربة.', en: 'I love continuously improving myself.', de: 'Ich entwickle mich ständig weiter.' },
+                { i: 'fas fa-star', ar: 'بشوف التحديات فرص مهمة تساعدني أكون أقوى.', en: 'I see challenges as opportunities to grow stronger.', de: 'Herausforderungen sind Chancen, stärker zu werden.' },
+                { i: 'fas fa-star', ar: 'بشتغل بجد وبنظم وقتي علشان أوصل لأهدافي.', en: 'I work hard and manage my time to reach my goals.', de: 'Ich arbeite hart und organisiere meine Zeit.' },
+                { i: 'fas fa-star', ar: 'ما بحبش أستسلم وبكمل مهما كانت الصعوبات.', en: 'I never give up, no matter the difficulties.', de: 'Ich gebe niemals auf.' },
+                { i: 'fas fa-star', ar: 'بؤمن إن الإرادة القوية هي سر النجاح.', en: 'Strong will is the secret to real success.', de: 'Ein starker Wille ist das Geheimnis des Erfolgs.' },
+                { i: 'fas fa-star', ar: 'بحاول أكون شخص مؤثر وإيجابي في أي مكان.', en: 'I strive to be a positive influence wherever I go.', de: 'Ich bemühe mich, eine positive Person zu sein.' },
+                { i: 'fas fa-star', ar: 'هدفي تحقيق ذاتي والوصول لمستوى طموحي.', en: 'My goal is self‑fulfillment and reaching my ambition.', de: 'Mein Ziel ist Selbstverwirklichung.' }
+            ];
+
+            const skillsData = [
+                { i:'fab fa-html5', n:'HTML5', descEn:'Semantic markup', descDe:'Semantische Struktur', descAr:'ترميز دلالي' },
+                { i:'fab fa-css3-alt', n:'CSS3', descEn:'Responsive layouts', descDe:'Responsive Layouts', descAr:'تخطيطات متجاوبة' },
+                { i:'fab fa-js', n:'JavaScript', descEn:'Dynamic interactivity', descDe:'Dynamische Interaktivität', descAr:'تفاعل ديناميكي' },
+                { i:'fab fa-python', n:'Python', descEn:'Backend & automation', descDe:'Backend & Automatisierung', descAr:'الخلفية والأتمتة' },
+                { i:'fas fa-code', n:'C++', descEn:'High-performance', descDe:'Hochleistung', descAr:'أداء عالي' },
+                { i:'fas fa-hashtag', n:'C#', descEn:'.NET & desktop', descDe:'.NET & Desktop', descAr:'تطبيقات سطح المكتب' },
+                { i:'fab fa-php', n:'PHP', descEn:'Server-side web', descDe:'Serverseitiges Web', descAr:'ويب من جانب الخادم' }
+            ];
+
+            const softSkillData = [
+                { i:'fas fa-puzzle-piece', nameEn:'Problem Solving', nameDe:'Problemlösung', nameAr:'حل المشكلات', descEn:'Complex issues', descDe:'Komplexe Probleme', descAr:'قضايا معقدة' },
+                { i:'fas fa-chart-line', nameEn:'Analytical Thinking', nameDe:'Analytisches Denken', nameAr:'التفكير التحليلي', descEn:'Data-driven logic', descDe:'Datengestützte Logik', descAr:'منطق قائم على البيانات' },
+                { i:'fas fa-users', nameEn:'Team Collaboration', nameDe:'Teamarbeit', nameAr:'التعاون الجماعي', descEn:'Effective teamwork', descDe:'Effektive Teamarbeit', descAr:'عمل جماعي فعال' },
+                { i:'fas fa-clock', nameEn:'Time Management', nameDe:'Zeitmanagement', nameAr:'إدارة الوقت', descEn:'Task prioritization', descDe:'Aufgabenpriorisierung', descAr:'تحديد أولويات المهام' },
+                { i:'fas fa-book-open', nameEn:'Self-Learning', nameDe:'Selbstlernen', nameAr:'التعلم الذاتي', descEn:'Fast tool adoption', descDe:'Schnelle Werkzeugübernahme', descAr:'سرعة تبني الأدوات' },
+                { i:'fas fa-rotate', nameEn:'Adaptability', nameDe:'Anpassungsfähigkeit', nameAr:'القدرة على التكيف', descEn:'Quick environment shifts', descDe:'Schnelle Umgebungswechsel', descAr:'التكيف السريع' }
+            ];
+
+            const serviceData = [
+                { i: 'fas fa-pencil-ruler', titleEn:'UI/UX Design', titleDe:'UI/UX-Design', titleAr:'تصميم واجهة المستخدم/تجربة المستخدم', descEn:'Each design reflects my methodology and dedication to detail and creativity.', descDe:'Jedes Design spiegelt meine Methodik und Hingabe an Details und Kreativität wider.', descAr:'كل منها يعكس منهجي وتفاني في التفاصيل والإبداع.' },
+                { i: 'fas fa-code', titleEn:'Web Development', titleDe:'Webentwicklung', titleAr:'تطوير مواقع الويب', descEn:'Each project reflects my methodology and dedication to detail and creativity.', descDe:'Jedes Projekt spiegelt meine Methodik und Hingabe an Details und Kreativität wider.', descAr:'كل منها يعكس منهجي وتفاني في التفاصيل والإبداع.' },
+                { i: 'fas fa-briefcase', titleEn:'Business Solutions', titleDe:'Geschäftslösungen', titleAr:'حلول الأعمال', descEn:'Each solution reflects my methodology and dedication to detail and creativity.', descDe:'Jede Lösung spiegelt meine Methodik und Hingabe an Details und Kreativität wider.', descAr:'كل منها يعكس منهجي وتفاني في التفاصيل والإبداع.' }
+            ];
+
+            const eduData = [
+                { date:'2023 - Present', schoolEn:'New Cairo Academy', schoolDe:'New Cairo Academy', schoolAr:'أكاديمية القاهرة الجديدة', descEn:'BSc Computer Science - IS', descDe:'BSc Informatik - IS', descAr:'بكالوريوس علوم حاسب', active:true },
+                { date:'2020 - 2023', schoolEn:'General Secondary School', schoolDe:'Allgemeine Sekundarschule', schoolAr:'ثانوية عامة', descEn:'Technology foundation', descDe:'Technologiegrundlage', descAr:'أساسيات التكنولوجيا', active:false }
+            ];
+
+            const platformData = [
+                { i:'fab fa-github', c:'#6e5494', n:'GitHub', u:'https://github.com/Abdo-1818', dEn:'Repos', dDe:'Repos', dAr:'مستودعات' },
+                { i:'fab fa-linkedin-in', c:'#0077b5', n:'LinkedIn', u:'https://www.linkedin.com/in/ab-do-097783272', dEn:'Connect', dDe:'Verbinden', dAr:'تواصل' },
+                { i:'fab fa-instagram', c:'#e4405f', n:'Instagram', u:'https://www.instagram.com/bboda_7', dEn:'Follow', dDe:'Folgen', dAr:'متابعة' }
+            ];
+
+            let currentLang = localStorage.getItem('abd_lang_final') || 'en';
+            window.currentLang = currentLang;
+
+            const typedRoles = {
+                en: ['Web Developer','Frontend Developer','Programmer'],
+                de: ['Webentwickler','Frontend-Entwickler','Programmierer'],
+                ar: ['مطور ويب','مطور واجهات','مبرمج']
+            };
+            let typedTexts = typedRoles[currentLang], typedIndex = 0, charIndex = 0, isDeleting = false, typeTimer;
+
+            function typeLoop() {
+                const el = document.getElementById('typedText');
+                if (!el) return;
+                const current = typedTexts[typedIndex];
+                if (isDeleting) {
+                    el.textContent = current.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    el.textContent = current.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+                if (!isDeleting && charIndex === current.length) {
+                    isDeleting = true;
+                    typeTimer = setTimeout(typeLoop, 1800);
+                    return;
+                }
+                if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    typedIndex = (typedIndex + 1) % typedTexts.length;
+                }
+                typeTimer = setTimeout(typeLoop, isDeleting ? 30 : 60);
+            }
+
+            function buildSkillsBook() {
+                const container = document.getElementById('skillsBook');
+                if (!container) return;
+                const lang = currentLang;
+                container.innerHTML = skillsData.map((s, i) => {
+                    const side = i % 2 === 0 ? 'left' : 'right';
+                    const desc = lang === 'de' ? s.descDe : lang === 'ar' ? s.descAr : s.descEn;
+                    return `<div class="book-row ${side} stagger-item">
+                        <div class="book-card">
+                            <div class="book-inner">
+                                <div class="book-icon"><i class="${s.i}"></i></div>
+                                <div class="book-info"><h4>${s.n}</h4><p>${desc}</p></div>
+                            </div>
+                        </div>
+                        <div class="book-dot"></div>
+                    </div>`;
+                }).join('');
+            }
 
             function buildStrengthsBook() {
-                var container = document.getElementById('strengthsBook');
+                const container = document.getElementById('strengthsBook');
                 if (!container) return;
-                var html = '';
-                for (var i = 0; i < strengthItems.length; i++) {
-                    var s = strengthItems[i];
-                    var side = (i % 2 === 0) ? 'left' : 'right';
-                    var text = s[cl] || s.en;
-                    html += '<div class="book-row ' + side + ' stagger-item">' +
-                                '<div class="book-card">' +
-                                    '<div class="book-inner">' +
-                                        '<div class="book-icon"><i class="' + s.i + '"></i></div>' +
-                                        '<div class="book-info"><p style="font-size:0.82rem;color:var(--text);">' + text + '</p></div>' +
-                                    '</div>' +
-                                    '<div class="book-glow-line"></div>' +
-                                '</div>' +
-                                '<div class="book-dot"></div>' +
-                            '</div>';
-                }
-                container.innerHTML = html;
+                container.innerHTML = strengthItems.map((s, i) => {
+                    const side = i % 2 === 0 ? 'left' : 'right';
+                    const text = s[currentLang] || s.en;
+                    return `<div class="book-row ${side} stagger-item">
+                        <div class="book-card">
+                            <div class="book-inner">
+                                <div class="book-icon"><i class="${s.i}"></i></div>
+                                <div class="book-info"><p style="font-size:0.8rem;">${text}</p></div>
+                            </div>
+                        </div>
+                        <div class="book-dot"></div>
+                    </div>`;
+                }).join('');
             }
 
-            var pi = [
-                { lk: 'Full Name', vk: 'fullname' }, { lk: 'Age', vk: 'age' }, { lk: 'Date of Birth', vk: 'dob' },
-                { lk: 'Nationality', vk: 'nat' }, { lk: 'Specialization', vk: 'spec' }, { lk: 'Department', vk: 'dept' },
-                { lk: 'Status', vk: 'status', ia: true }
-            ];
-            var pv = {
-                en: { fullname: 'Abdulrahman Mamdouh', age: '20 Years', dob: 'August 1, 2005', nat: 'Egyptian', spec: 'Information Systems', dept: 'Computer Science', status: 'Currently Studying' },
-                de: { fullname: 'Abdulrahman Mamdouh', age: '20 Jahre', dob: '1. August 2005', nat: 'Ägypter', spec: 'Informationssysteme', dept: 'Informatik', status: 'Studierend' },
-                ar: { fullname: 'عبدالرحمن ممدوح', age: '20 سنة', dob: '1 أغسطس 2005', nat: 'مصري', spec: 'نظم المعلومات', dept: 'علوم الحاسب', status: 'قيد الدراسة' }
+            function buildServicesList() {
+                const container = document.getElementById('servicesList');
+                if (!container) return;
+                const lang = currentLang;
+                container.innerHTML = serviceData.map(s => {
+                    const title = s['title' + lang.charAt(0).toUpperCase() + lang.slice(1)] || s.titleEn;
+                    const desc = s['desc' + lang.charAt(0).toUpperCase() + lang.slice(1)] || s.descEn;
+                    return `<div class="softskill-card stagger-item">
+                        <div class="softskill-icon-wrap"><i class="${s.i}"></i></div>
+                        <div class="softskill-content">
+                            <h4>${title}</h4>
+                            <p>${desc}</p>
+                        </div>
+                    </div>`;
+                }).join('');
+            }
+
+            function buildInfo() {
+                const data = {
+                    en: { fullname:'Abdulrahman Mamdouh', age:'20 Years', dob:'August 1, 2005', nat:'Egyptian', spec:'Information Systems', dept:'Computer Science', status:'Currently Studying' },
+                    de: { fullname:'Abdulrahman Mamdouh', age:'20 Jahre', dob:'1. August 2005', nat:'Ägypter', spec:'Informationssysteme', dept:'Informatik', status:'Studierend' },
+                    ar: { fullname:'عبدالرحمن ممدوح', age:'20 سنة', dob:'1 أغسطس 2005', nat:'مصري', spec:'نظم المعلومات', dept:'علوم الحاسب', status:'قيد الدراسة' }
+                };
+                const labels = {
+                    en: { fullname:'Full Name', age:'Age', dob:'Date of Birth', nat:'Nationality', spec:'Specialization', dept:'Department', status:'Status' },
+                    de: { fullname:'Name', age:'Alter', dob:'Geburtsdatum', nat:'Nationalität', spec:'Spezialisierung', dept:'Fachbereich', status:'Status' },
+                    ar: { fullname:'الاسم', age:'العمر', dob:'تاريخ الميلاد', nat:'الجنسية', spec:'التخصص', dept:'القسم', status:'الحالة' }
+                };
+                const v = data[currentLang], l = labels[currentLang];
+                const grid = document.getElementById('infoGrid'); if (!grid) return;
+                grid.innerHTML = Object.keys(v).map(k => `<div class="info-cell"><div class="info-label">${l[k]}</div><div class="info-value" style="${k==='status'?'color:var(--accent-bright)':''}">${v[k]}</div></div>`).join('');
+            }
+
+            function buildEducation() {
+                const container = document.getElementById('educationTimeline');
+                if (!container) return;
+                const lang = currentLang;
+                container.innerHTML = eduData.map(e => `<div class="tl-item">
+                    <div class="tl-date">${e.date}</div>
+                    <div class="tl-title">${e['school'+lang.charAt(0).toUpperCase()+lang.slice(1)] || e.schoolEn}</div>
+                    <div class="tl-desc">${e['desc'+lang.charAt(0).toUpperCase()+lang.slice(1)] || e.descEn}</div>
+                    ${e.active ? '<span class="status-badge"><span class="live-dot"></span> '+(lang==='en'?'Currently Studying':lang==='de'?'Studierend':'قيد الدراسة')+'</span>' : ''}
+                </div>`).join('');
+            }
+
+            function buildSoftSkills() {
+                const container = document.getElementById('softSkillsVertical');
+                if (!container) return;
+                const lang = currentLang;
+                container.innerHTML = softSkillData.map(s => `<div class="softskill-card stagger-item">
+                    <div class="softskill-icon-wrap"><i class="${s.i}"></i></div>
+                    <div class="softskill-content">
+                        <h4>${s['name'+lang.charAt(0).toUpperCase()+lang.slice(1)] || s.nameEn}</h4>
+                        <p>${s['desc'+lang.charAt(0).toUpperCase()+lang.slice(1)] || s.descEn}</p>
+                    </div>
+                </div>`).join('');
+            }
+
+            function buildProjects() {
+                const grid = document.getElementById('projectsGrid');
+                if (!grid) return;
+                const t = window.translations[currentLang];
+                grid.innerHTML = projectsData.map(p => `
+                    <div class="project-card" data-category="${p.category}">
+                        <div class="project-img-wrapper"><img src="${p.img}" alt="${t[p.titleKey]}" class="project-img" loading="lazy"></div>
+                        <div class="project-body">
+                            <h3 class="project-title">${t[p.titleKey]}</h3>
+                            <p class="project-desc">${t[p.descKey]}</p>
+                            <div class="project-tags">${p.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            function buildFilterBar() {
+                const bar = document.getElementById('filterBar'); if (!bar) return;
+                const allText = currentLang === 'en' ? 'All' : currentLang === 'de' ? 'Alle' : 'الكل';
+                bar.innerHTML = `
+                    <button class="filter-btn active" data-filter="all" onclick="window.filterProjects('all')">${allText}</button>
+                    <button class="filter-btn" data-filter="web" onclick="window.filterProjects('web')">HTML/CSS</button>
+                    <button class="filter-btn" data-filter="react" onclick="window.filterProjects('react')">React</button>
+                `;
+            }
+
+            function buildContactPlatforms() {
+                const container = document.getElementById('contactPlatforms');
+                if (!container) return;
+                const lang = currentLang;
+                container.innerHTML = platformData.map(p => `<a href="${p.u}" target="_blank" rel="noopener" class="platform-card stagger-item">
+                    <div class="platform-icon" style="background:${p.c}20;color:${p.c};"><i class="${p.i}"></i></div>
+                    <div class="platform-info"><h4>${p.n}</h4><p>${p['d'+lang.charAt(0).toUpperCase()+lang.slice(1)] || p.dEn}</p></div>
+                </a>`).join('');
+            }
+
+            window.filterProjects = function(category) {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                document.querySelector(`.filter-btn[data-filter="${category}"]`).classList.add('active');
+                document.querySelectorAll('.project-card').forEach(card => {
+                    card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
+                });
             };
-            var pl = {
-                en: { 'Full Name': 'Full Name', 'Age': 'Age', 'Date of Birth': 'Date of Birth', 'Nationality': 'Nationality', 'Specialization': 'Specialization', 'Department': 'Department', 'Status': 'Status' },
-                de: { 'Full Name': 'Vollständiger Name', 'Age': 'Alter', 'Date of Birth': 'Geburtsdatum', 'Nationality': 'Nationalität', 'Specialization': 'Spezialisierung', 'Department': 'Fachbereich', 'Status': 'Status' },
-                ar: { 'Full Name': 'الاسم الكامل', 'Age': 'العمر', 'Date of Birth': 'تاريخ الميلاد', 'Nationality': 'الجنسية', 'Specialization': 'التخصص', 'Department': 'القسم', 'Status': 'الحالة الدراسية' }
-            };
-            var ed = [
-                { dk: '2023 - Present', tk: 'New Cairo Academy', dsk: 'Bachelor of Computer Science - IS', st: true, sk: 'Currently Studying' },
-                { dk: '2020 - 2023', tk: 'General Secondary School', dsk: 'Technology foundation', st: false }
-            ];
-            var ei = {
-                en: { '2023 - Present': '2023 - Present', 'New Cairo Academy': 'New Cairo Academy', 'Bachelor of Computer Science - IS': 'BSc Computer Science - IS', 'Currently Studying': 'Currently Studying', '2020 - 2023': '2020 - 2023', 'General Secondary School': 'General Secondary School', 'Technology foundation': 'Technology foundation' },
-                de: { '2023 - Present': '2023 - Heute', 'New Cairo Academy': 'New Cairo Academy', 'Bachelor of Computer Science - IS': 'BSc Informatik - IS', 'Currently Studying': 'Studierend', '2020 - 2023': '2020 - 2023', 'General Secondary School': 'Allgemeine Sekundarschule', 'Technology foundation': 'Technologiegrundlage' },
-                ar: { '2023 - Present': '2023 - الحالي', 'New Cairo Academy': 'أكاديمية القاهرة الجديدة', 'Bachelor of Computer Science - IS': 'بكالوريوس علوم حاسب', 'Currently Studying': 'قيد الدراسة', '2020 - 2023': '2020 - 2023', 'General Secondary School': 'ثانوية عامة', 'Technology foundation': 'أساسيات التكنولوجيا' }
-            };
-            var ld = [
-                { i: 'fab fa-html5', n: 'HTML5', dk: 'Semantic markup' },
-                { i: 'fab fa-css3-alt', n: 'CSS3', dk: 'Responsive layouts' },
-                { i: 'fab fa-js', n: 'JavaScript', dk: 'Dynamic interactivity' },
-                { i: 'fab fa-python', n: 'Python', dk: 'Backend & automation' },
-                { i: 'fas fa-code', n: 'C++', dk: 'High-performance software' },
-                { i: 'fas fa-hashtag', n: 'C#', dk: '.NET & desktop apps' },
-                { i: 'fab fa-php', n: 'PHP', dk: 'Server-side web' }
-            ];
-            var ldi = { en:{}, de:{}, ar:{} };
-            ['Semantic markup','Responsive layouts','Dynamic interactivity','Backend & automation','High-performance software','.NET & desktop apps','Server-side web'].forEach(function(k){ ldi.en[k]=k; ldi.de[k]=k; ldi.ar[k]=k; });
-            var sd = [
-                { i: 'fas fa-puzzle-piece', n: 'Problem Solving', dk: 'Complex issues' },
-                { i: 'fas fa-chart-line', n: 'Analytical Thinking', dk: 'Data-driven logic' },
-                { i: 'fas fa-users', n: 'Team Collaboration', dk: 'Effective teamwork' },
-                { i: 'fas fa-clock', n: 'Time Management', dk: 'Task prioritization' },
-                { i: 'fas fa-book-open', n: 'Self-Learning', dk: 'Fast tool adoption' },
-                { i: 'fas fa-rotate', n: 'Adaptability', dk: 'Quick environment shifts' }
-            ];
-            var si = { en:{}, de:{}, ar:{} };
-            ['Problem Solving','Complex issues','Analytical Thinking','Data-driven logic','Team Collaboration','Effective teamwork','Time Management','Task prioritization','Self-Learning','Fast tool adoption','Adaptability','Quick environment shifts'].forEach(function(k){
-                si.en[k]=k;
-                si.de[k]={ 'Problem Solving':'Problemlösung','Complex issues':'Komplexe Probleme','Analytical Thinking':'Analytisches Denken','Data-driven logic':'Datengestützte Logik','Team Collaboration':'Teamarbeit','Effective teamwork':'Effektive Teamarbeit','Time Management':'Zeitmanagement','Task prioritization':'Aufgabenpriorisierung','Self-Learning':'Selbstlernen','Fast tool adoption':'Schnelle Werkzeugübernahme','Adaptability':'Anpassungsfähigkeit','Quick environment shifts':'Schnelle Umgebungswechsel' }[k] || k;
-                si.ar[k]={ 'Problem Solving':'حل المشكلات','Complex issues':'قضايا معقدة','Analytical Thinking':'التفكير التحليلي','Data-driven logic':'منطق قائم على البيانات','Team Collaboration':'التعاون الجماعي','Effective teamwork':'عمل جماعي فعال','Time Management':'إدارة الوقت','Task prioritization':'تحديد أولويات المهام','Self-Learning':'التعلم الذاتي','Fast tool adoption':'سرعة تبني الأدوات','Adaptability':'القدرة على التكيف','Quick environment shifts':'التكيف السريع مع البيئات' }[k] || k;
-            });
-            var pt = [
-                { i: 'fab fa-github', c: '#6e5494', n: 'GitHub', u: 'https://github.com/Abdo-1818', dk: 'Repos' },
-                { i: 'fab fa-linkedin-in', c: '#0077b5', n: 'LinkedIn', u: 'https://www.linkedin.com/in/ab-do-097783272', dk: 'Connect' },
-                { i: 'fab fa-instagram', c: '#e4405f', n: 'Instagram', u: 'https://www.instagram.com/bboda_7', dk: 'Follow' }
-            ];
-            var pdi = { en:{ 'Repos':'Repos','Connect':'Connect','Follow':'Follow' }, de:{ 'Repos':'Repos','Connect':'Verbinden','Follow':'Folgen' }, ar:{ 'Repos':'مستودعات','Connect':'تواصل','Follow':'متابعة' } };
 
-            var cl = localStorage.getItem('abd_lang_v30') || 'en';
-            window.currentLang = cl;
-            var tsa = { en: ['Web Developer','Frontend Developer','Programmer'], de: ['Webentwickler','Frontend-Entwickler','Programmierer'], ar: ['مطور ويب','مطور واجهات','مبرمج'] };
-            var ts = tsa[cl], ti = 0, ci = 0, id = false, tt;
-
-            function te() {
-                var el = document.getElementById('typedText'); if (!el) return;
-                var cur = ts[ti];
-                if (id) { el.textContent = cur.substring(0, ci-1); ci--; if (ci===0) { id=false; ti=(ti+1)%ts.length; tt=setTimeout(te,300); return; } }
-                else { el.textContent = cur.substring(0, ci+1); ci++; if (ci===cur.length) { tt=setTimeout(function(){ id=true; te(); },1600); return; } }
-                tt = setTimeout(te, id?22:50);
-            }
-
-            function rt() { clearTimeout(tt); ti=0; ci=0; id=false; ts=tsa[cl]; te(); }
-
-            function bpi() {
-                var g = document.getElementById('infoGrid'); if (!g) return;
-                var v = pv[cl], l = pl[cl], h = '';
-                for (var i=0; i<pi.length; i++) {
-                    var info = pi[i], val = info.vk ? v[info.vk] : info.v, s = info.ia ? 'color:var(--accent-bright);' : '';
-                    h += '<div class="info-cell stagger-item"><div class="info-label">'+(l[info.lk]||info.lk)+'</div><div class="info-value" style="'+s+'">'+val+'</div></div>';
-                }
-                g.innerHTML = h;
-            }
-
-            function be() {
-                var t = document.getElementById('educationTimeline'); if (!t) return;
-                var i18 = ei[cl], h = '';
-                for (var i=0; i<ed.length; i++) {
-                    var item = ed[i];
-                    h += '<div class="tl-item"><div class="tl-date">'+(i18[item.dk]||item.dk)+'</div><div class="tl-title">'+(i18[item.tk]||item.tk)+'</div><div class="tl-desc">'+(i18[item.dsk]||item.dsk)+'</div>';
-                    if (item.st) h += '<span class="status-badge"><span class="live-dot"></span>'+(i18[item.sk]||item.sk)+'</span>';
-                    h += '</div>';
-                }
-                t.innerHTML = h;
-            }
-
-            function bsk() {
-                var g = document.getElementById('skillsBook'); if (!g) return;
-                var d = ldi[cl], h = '';
-                for (var i=0; i<ld.length; i++) {
-                    var s = ld[i], side = (i%2===0)?'left':'right';
-                    h += '<div class="book-row '+side+' stagger-item"><div class="book-card"><div class="book-inner"><div class="book-icon"><i class="'+s.i+'"></i></div><div class="book-info"><h4>'+s.n+'</h4><p>'+(d[s.dk]||s.dk)+'</p></div></div><div class="book-glow-line"></div></div><div class="book-dot"></div></div>';
-                }
-                g.innerHTML = h;
-            }
-
-            function bs() {
-                var g = document.getElementById('softSkillsVertical'); if (!g) return;
-                var i18 = si[cl], h = '';
-                for (var i=0; i<sd.length; i++) {
-                    var s = sd[i];
-                    h += '<div class="softskill-card stagger-item"><div class="softskill-icon-wrap"><i class="'+s.i+'"></i></div><div class="softskill-content"><h4>'+(i18[s.n]||s.n)+'</h4><p>'+(i18[s.dk]||s.dk)+'</p></div></div>';
-                }
-                g.innerHTML = h;
-            }
-
-            function bc() {
-                var g = document.getElementById('contactPlatforms'); if (!g) return;
-                var d = pdi[cl], h = '';
-                for (var i=0; i<pt.length; i++) {
-                    var p = pt[i];
-                    h += '<a href="'+p.u+'" target="_blank" rel="noopener" class="platform-card stagger-item"><div class="platform-icon" style="background:'+p.c+'20;color:'+p.c+';"><i class="'+p.i+'"></i></div><div class="platform-info"><h4>'+p.n+'</h4><p>'+(d[p.dk]||p.dk)+'</p></div></a>';
-                }
-                g.innerHTML = h;
-            }
-
-            function ra() { bpi(); bsk(); be(); bs(); bc(); buildStrengthsBook(); }
-
-            window.switchLang = function(l) {
-                cl = l;
-                window.currentLang = l;
-                localStorage.setItem('abd_lang_v30', l);
-                document.documentElement.lang = l;
-                document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
-                document.body.classList.toggle('rtl', l === 'ar');
-                var btns = document.querySelectorAll('.lang-btn');
-                for (var i=0; i<btns.length; i++) btns[i].classList.remove('active');
-                document.getElementById(l==='en'?'btnEn':l==='de'?'btnDe':'btnAr').classList.add('active');
-                document.title = { en:'Abdulrahman | Frontend Developer', de:'Abdulrahman | Frontend-Entwickler', ar:'عبدالرحمن | مطور واجهات' }[l];
-                var els = document.querySelectorAll('[data-i18n]');
-                for (var i=0; i<els.length; i++) { var k = els[i].getAttribute('data-i18n'); if (window.translations[l] && window.translations[l][k]) els[i].innerHTML = window.translations[l][k]; }
-                var nls = document.querySelectorAll('[data-i18n-placeholder]');
-                for (var i=0; i<nls.length; i++) { var k = nls[i].getAttribute('data-i18n-placeholder'); if (window.translations[l] && window.translations[l][k]) nls[i].placeholder = window.translations[l][k]; }
-                var navs = document.querySelectorAll('[data-i18n-nav]');
-                for (var i=0; i<navs.length; i++) { var k = navs[i].getAttribute('data-i18n-nav'); if (window.translations[l] && window.translations[l]['nav.'+k]) navs[i].textContent = window.translations[l]['nav.'+k]; }
-                ra();
+            function refreshAll() {
+                buildInfo();
+                buildServicesList();
+                buildSkillsBook();
+                buildProjects();
+                buildFilterBar();
+                buildStrengthsBook();
+                buildEducation();
+                buildSoftSkills();
+                buildContactPlatforms();
                 document.getElementById('currentYear').textContent = new Date().getFullYear();
-                rt();
-                setTimeout(function(){
-                    var revs = document.querySelectorAll('.reveal,.stagger-container');
-                    for (var i=0; i<revs.length; i++) revs[i].classList.remove('visible');
-                    var brows = document.querySelectorAll('.book-row');
-                    for (var i=0; i<brows.length; i++) brows[i].classList.remove('visible');
-                    refreshObservers();
-                }, 180);
+                clearTimeout(typeTimer);
+                typedTexts = typedRoles[currentLang];
+                typedIndex = 0; charIndex = 0; isDeleting = false;
+                typeLoop();
+            }
+
+            window.switchLang = function(lang) {
+                currentLang = lang;
+                window.currentLang = lang;
+                localStorage.setItem('abd_lang_final', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                document.body.classList.toggle('rtl', lang === 'ar');
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                document.getElementById(lang === 'en' ? 'btnEn' : lang === 'de' ? 'btnDe' : 'btnAr').classList.add('active');
+                document.title = { en:'Abdulrahman | Frontend Developer', de:'Abdulrahman | Frontend-Entwickler', ar:'عبدالرحمن | مطور واجهات' }[lang];
+
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (window.translations[lang] && window.translations[lang][key]) {
+                        el.innerHTML = window.translations[lang][key];
+                    }
+                });
+                document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-placeholder');
+                    if (window.translations[lang] && window.translations[lang][key]) {
+                        el.placeholder = window.translations[lang][key];
+                    }
+                });
+                document.querySelectorAll('[data-i18n-nav]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-nav');
+                    if (window.translations[lang] && window.translations[lang]['nav.'+key]) {
+                        el.textContent = window.translations[lang]['nav.'+key];
+                    }
+                });
+
+                refreshAll();
+                setTimeout(() => {
+                    document.querySelectorAll('.reveal,.stagger-container,.book-row,.section-wrapper').forEach(el => el.classList.remove('visible'));
+                    initObservers();
+                }, 200);
             };
 
-            function toggleMobileMenu() {
-                var m = document.getElementById('mobileMenu'), o = document.getElementById('mobileOverlay');
-                if (m.classList.contains('open')) { m.classList.remove('open'); o.classList.remove('open'); }
-                else { m.classList.add('open'); o.classList.add('open'); }
-            }
-            window.toggleMobileMenu = toggleMobileMenu;
+            window.toggleMobileMenu = function() {
+                document.getElementById('mobileMenu').classList.toggle('open');
+                document.getElementById('mobileOverlay').classList.toggle('open');
+            };
 
-            var mainObs, bookObs;
-            function setupObservers() {
-                if (mainObs) mainObs.disconnect();
-                if (bookObs) bookObs.disconnect();
-                mainObs = new IntersectionObserver(function(entries) {
-                    for (var i=0; i<entries.length; i++) { if (entries[i].isIntersecting) entries[i].target.classList.add('visible'); }
-                }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-                var revs = document.querySelectorAll('.reveal,.stagger-container');
-                for (var i=0; i<revs.length; i++) mainObs.observe(revs[i]);
-                var wrappers = document.querySelectorAll('.section-wrapper');
-                for (var i=0; i<wrappers.length; i++) mainObs.observe(wrappers[i]);
-
-                bookObs = new IntersectionObserver(function(entries) {
-                    for (var i=0; i<entries.length; i++) { if (entries[i].isIntersecting) entries[i].target.classList.add('visible'); }
-                }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
-                var brows = document.querySelectorAll('.book-row');
-                for (var i=0; i<brows.length; i++) bookObs.observe(brows[i]);
-            }
-            function refreshObservers() {
-                setupObservers();
-                setTimeout(function(){
-                    var all = document.querySelectorAll('.reveal,.stagger-container,.book-row,.section-wrapper');
-                    for (var i=0; i<all.length; i++) { var rect = all[i].getBoundingClientRect(); if (rect.top < window.innerHeight-50) all[i].classList.add('visible'); }
-                }, 220);
+            function initObservers() {
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+                }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+                document.querySelectorAll('.reveal,.stagger-container,.book-row,.section-wrapper').forEach(el => observer.observe(el));
             }
 
-            var st = false;
-            function onScroll() {
-                if (!st) {
-                    requestAnimationFrame(function(){
-                        var h = document.getElementById('header'), stb = document.getElementById('scrollTop'), sy = window.scrollY;
-                        if (sy > 60) { h.classList.add('scrolled'); stb.classList.add('visible'); }
-                        else { h.classList.remove('scrolled'); stb.classList.remove('visible'); }
-                        var secs = document.querySelectorAll('section[id]'), cur = 'home';
-                        for (var i=0; i<secs.length; i++) { if (secs[i].offsetTop-180 <= sy) cur = secs[i].id; }
-                        var links = document.querySelectorAll('.nav-desktop li a,.mobile-nav li a');
-                        for (var i=0; i<links.length; i++) { links[i].classList.remove('active'); if (links[i].getAttribute('href')==='#'+cur) links[i].classList.add('active'); }
-                        var wrappers = document.querySelectorAll('.section-wrapper'), wh = window.innerHeight;
-                        for (var i=0; i<wrappers.length; i++) { var rect = wrappers[i].getBoundingClientRect(); if (rect.top < wh*0.5 && rect.bottom > wh*0.15) wrappers[i].classList.add('active-border'); else wrappers[i].classList.remove('active-border'); }
-                        st = false;
-                    });
-                    st = true;
-                }
+            function initCursor() {
+                const cursor = document.getElementById('customCursor');
+                if (!cursor || 'ontouchstart' in window) return;
+                document.addEventListener('mousemove', e => {
+                    cursor.style.transform = `translate(${e.clientX - 7}px, ${e.clientY - 7}px)`;
+                });
+                document.querySelectorAll('a,button,.btn,.project-card,.book-card,.softskill-card,.info-cell,.platform-card').forEach(el => {
+                    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+                });
             }
 
             function initParticles() {
-                var canvas = document.getElementById('particlesCanvas');
+                const canvas = document.getElementById('particlesCanvas');
                 if (!canvas) return;
-                var ctx = canvas.getContext('2d');
-                var particles = [], animId;
+                const ctx = canvas.getContext('2d');
+                let particles = [], animId;
                 function resize() {
-                    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-                    particles = [];
-                    var count = Math.floor(window.innerWidth * 0.04);
-                    for (var i=0; i<count; i++) particles.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3, size: Math.random()*1.5+0.5 });
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                    const count = Math.min(70, Math.floor(window.innerWidth * 0.05));
+                    particles = Array.from({ length: count }, () => ({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 0.4,
+                        vy: (Math.random() - 0.5) * 0.4,
+                        size: Math.random() * 1.8 + 0.4
+                    }));
                 }
                 function draw() {
-                    ctx.clearRect(0,0,canvas.width,canvas.height);
-                    var accent = getComputedStyle(document.body).getPropertyValue('--accent-bright').trim() || '#7ba9ff';
-                    for (var i=0; i<particles.length; i++) {
-                        var p = particles[i]; p.x += p.vx; p.y += p.vy;
-                        if (p.x<0||p.x>canvas.width) p.vx*=-1; if (p.y<0||p.y>canvas.height) p.vy*=-1;
-                        ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fillStyle=accent; ctx.globalAlpha=0.3; ctx.fill();
-                        for (var j=i+1; j<particles.length; j++) {
-                            var p2=particles[j], dx=p.x-p2.x, dy=p.y-p2.y, dist=Math.sqrt(dx*dx+dy*dy);
-                            if (dist < 120) { ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(p2.x,p2.y); ctx.strokeStyle=accent; ctx.globalAlpha=0.08*(1-dist/120); ctx.lineWidth=0.5; ctx.stroke(); }
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    const accent = '#4dabf7';
+                    particles.forEach(p => {
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        ctx.fillStyle = accent;
+                        ctx.globalAlpha = 0.35;
+                        ctx.fill();
+                    });
+                    for (let i = 0; i < particles.length; i++) {
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const dx = particles[i].x - particles[j].x;
+                            const dy = particles[i].y - particles[j].y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < 100) {
+                                ctx.beginPath();
+                                ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.strokeStyle = accent;
+                                ctx.globalAlpha = 0.12 * (1 - dist / 100);
+                                ctx.lineWidth = 0.5;
+                                ctx.stroke();
+                            }
                         }
                     }
                     animId = requestAnimationFrame(draw);
                 }
-                resize(); draw();
-                window.addEventListener('resize', function(){ cancelAnimationFrame(animId); resize(); draw(); });
-            }
-
-            function init() {
-                window.addEventListener('load', function(){
-                    var loader = document.getElementById('loader');
-                    if (loader) { loader.classList.add('fade-out'); setTimeout(function(){ if (loader.parentNode) loader.parentNode.removeChild(loader); }, 600); }
-                    initParticles();
+                resize();
+                draw();
+                window.addEventListener('resize', () => {
+                    cancelAnimationFrame(animId);
+                    resize();
+                    draw();
                 });
-
-                var sl = localStorage.getItem('abd_lang_v30') || 'en';
-                document.getElementById(sl==='de'?'btnDe':sl==='ar'?'btnAr':'btnEn').classList.add('active');
-                ra();
-                if (sl !== 'en') { var tmp=sl; cl='en'; switchLang(tmp); } else switchLang('en');
-                document.getElementById('currentYear').textContent = new Date().getFullYear();
-                setTimeout(te, 500);
-                window.addEventListener('scroll', onScroll, { passive: true });
-                onScroll();
-                setupObservers();
-
-                var anchors = document.querySelectorAll('a[href^="#"]');
-                for (var i=0; i<anchors.length; i++) {
-                    anchors[i].addEventListener('click', function(e) {
-                        var href = this.getAttribute('href'); if (!href || href==='#') return;
-                        var tgt = document.querySelector(href); if (tgt) { e.preventDefault(); tgt.scrollIntoView({behavior:'smooth',block:'start'}); if (history.pushState) history.pushState(null,null,href); }
-                    });
-                }
-                document.addEventListener('contextmenu', function(e) { if (e.target.closest('img')) e.preventDefault(); });
-                document.addEventListener('dragstart', function(e) { if (e.target.closest('img')) e.preventDefault(); });
-
-                setTimeout(function(){ var all = document.querySelectorAll('.reveal,.stagger-container,.book-row,.section-wrapper'); for (var i=0; i<all.length; i++) { var rect = all[i].getBoundingClientRect(); if (rect.top < window.innerHeight-40) all[i].classList.add('visible'); } }, 350);
             }
-            ready(function() { init(); });
+
+            window.addEventListener('load', () => {
+                const loader = document.getElementById('loader');
+                if (loader) { loader.classList.add('fade-out'); setTimeout(() => { if (loader.parentNode) loader.remove(); }, 600); }
+                initParticles();
+                initCursor();
+                refreshAll();
+                initObservers();
+                window.addEventListener('scroll', () => {
+                    const sy = window.scrollY;
+                    document.getElementById('header').classList.toggle('scrolled', sy > 60);
+                    document.getElementById('scrollTop').classList.toggle('visible', sy > 300);
+                }, { passive: true });
+            });
+
+            if (currentLang !== 'en') {
+                switchLang(currentLang);
+            }
         })();
     </script>
 </body>
