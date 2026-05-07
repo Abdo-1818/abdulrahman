@@ -50,111 +50,35 @@
 
         *,
         *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-            -webkit-text-size-adjust: 100%;
-            scroll-padding-top: 100px;
-            font-display: swap;
-        }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 100px; font-display: swap; }
 
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            min-height: 100vh;
+            background: var(--bg); color: var(--text); line-height: 1.7;
+            overflow-x: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; min-height: 100vh;
         }
+        body.rtl { font-family: 'Cairo', system-ui, sans-serif; direction: rtl; text-align: right; }
 
-        body.rtl {
-            font-family: 'Cairo', system-ui, sans-serif;
-            direction: rtl;
-            text-align: right;
-        }
-
-        /* ===== LOADER ===== */
         .loader-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 10000;
-            background: var(--bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: fixed; inset: 0; z-index: 10000; background: var(--bg);
+            display: flex; align-items: center; justify-content: center;
             transition: opacity 0.6s var(--ease-out-expo), visibility 0.6s var(--ease-out-expo);
         }
-        .loader-overlay.fade-out {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
+        .loader-overlay.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
         .loader-spinner {
-            width: 48px;
-            height: 48px;
-            border: 4px solid var(--border-light);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
+            width: 48px; height: 48px; border: 4px solid var(--border-light);
+            border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* ===== BACKGROUND AMBIANCE ===== */
-        .bg-ambiance {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-        #particlesCanvas {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.4;
-        }
-        .bg-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(140px);
-            opacity: 0.18;
-            will-change: transform;
-            animation: orbDrift 20s ease-in-out infinite;
-        }
-        .bg-orb.orb-1 {
-            width: 600px;
-            height: 600px;
-            background: var(--accent);
-            top: -15%;
-            right: -10%;
-        }
-        .bg-orb.orb-2 {
-            width: 400px;
-            height: 400px;
-            background: #7c5bef;
-            bottom: -12%;
-            left: -8%;
-            animation-delay: -7s;
-            animation-duration: 24s;
-        }
-        .bg-orb.orb-3 {
-            width: 300px;
-            height: 300px;
-            background: var(--accent-bright);
-            top: 50%;
-            left: 50%;
-            animation-delay: -14s;
-            animation-duration: 18s;
-            opacity: 0.10;
-        }
+        .bg-ambiance { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+        #particlesCanvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.4; }
+        .bg-orb { position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.18; will-change: transform; animation: orbDrift 20s ease-in-out infinite; }
+        .bg-orb.orb-1 { width: 600px; height: 600px; background: var(--accent); top: -15%; right: -10%; }
+        .bg-orb.orb-2 { width: 400px; height: 400px; background: #7c5bef; bottom: -12%; left: -8%; animation-delay: -7s; animation-duration: 24s; }
+        .bg-orb.orb-3 { width: 300px; height: 300px; background: var(--accent-bright); top: 50%; left: 50%; animation-delay: -14s; animation-duration: 18s; opacity: 0.10; }
         @keyframes orbDrift {
             0%, 100% { transform: translate(0, 0) scale(1); }
             25% { transform: translate(50px, -60px) scale(1.12); }
@@ -162,12 +86,7 @@
             75% { transform: translate(-40px, -20px) scale(1.06); }
         }
 
-        /* ===== REVEAL ANIMATIONS ===== */
-        .reveal {
-            opacity: 0;
-            transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo), filter 0.7s var(--ease-out-expo);
-            will-change: transform, opacity;
-        }
+        .reveal { opacity: 0; transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo), filter 0.7s var(--ease-out-expo); will-change: transform, opacity; }
         .reveal.visible { opacity: 1; }
         .from-bottom { transform: translateY(40px); filter: blur(1px); }
         .from-bottom.visible { transform: translateY(0); filter: blur(0); }
@@ -178,12 +97,7 @@
         .from-scale { transform: scale(0.9); filter: blur(2px); }
         .from-scale.visible { transform: scale(1); filter: blur(0); }
 
-        .stagger-container .stagger-item {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.55s var(--ease-out-expo), transform 0.55s var(--ease-out-expo);
-            will-change: transform, opacity;
-        }
+        .stagger-container .stagger-item { opacity: 0; transform: translateY(30px); transition: opacity 0.55s var(--ease-out-expo), transform 0.55s var(--ease-out-expo); will-change: transform, opacity; }
         .stagger-container.visible .stagger-item:nth-child(1) { transition-delay: 0.03s; opacity: 1; transform: translateY(0); }
         .stagger-container.visible .stagger-item:nth-child(2) { transition-delay: 0.08s; opacity: 1; transform: translateY(0); }
         .stagger-container.visible .stagger-item:nth-child(3) { transition-delay: 0.13s; opacity: 1; transform: translateY(0); }
@@ -193,90 +107,41 @@
         .stagger-container.visible .stagger-item:nth-child(7) { transition-delay: 0.33s; opacity: 1; transform: translateY(0); }
         .stagger-container.visible .stagger-item:nth-child(8) { transition-delay: 0.38s; opacity: 1; transform: translateY(0); }
 
-        /* ===== HEADER ===== */
         .header {
-            position: fixed;
-            top: 14px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            width: calc(100% - 28px);
-            max-width: 1100px;
-            border-radius: 50px;
-            padding: 7px 20px;
-            transition: all 0.45s var(--ease-out-expo);
-            background: rgba(12, 14, 20, 0.75);
-            backdrop-filter: blur(24px) saturate(150%);
-            -webkit-backdrop-filter: blur(24px) saturate(150%);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+            position: fixed; top: 14px; left: 50%; transform: translateX(-50%); z-index: 1000;
+            width: calc(100% - 28px); max-width: 1100px; border-radius: 50px; padding: 7px 20px;
+            transition: all 0.45s var(--ease-out-expo); background: rgba(12, 14, 20, 0.75);
+            backdrop-filter: blur(24px) saturate(150%); -webkit-backdrop-filter: blur(24px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
             will-change: transform, width, border-radius;
         }
         .header.scrolled {
-            top: 0;
-            width: 100%;
-            max-width: 100%;
-            border-radius: 0;
-            background: rgba(8, 9, 13, 0.92);
-            border-left: none;
-            border-right: none;
-            border-top: none;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            top: 0; width: 100%; max-width: 100%; border-radius: 0; background: rgba(8, 9, 13, 0.92);
+            border-left: none; border-right: none; border-top: none; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
         .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
         .logo-link { display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
-        .logo-img {
-            width: 38px; height: 38px; border-radius: 50%; object-fit: cover;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            transition: all 0.4s var(--ease-out-back); will-change: transform;
-        }
+        .logo-img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255, 255, 255, 0.5); transition: all 0.4s var(--ease-out-back); will-change: transform; }
         .logo-img:hover { transform: scale(1.08) rotate(-4deg); box-shadow: 0 0 22px rgba(255, 255, 255, 0.4); }
-        .logo-text {
-            font-family: 'Great Vibes', cursive; font-weight: 400; font-size: 1.9rem;
-            letter-spacing: 2px; color: #ffffff; line-height: 1; padding-top: 3px;
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.7), 0 0 35px rgba(180, 200, 255, 0.4);
-            animation: logoGlow 3.5s ease-in-out infinite;
-        }
+        .logo-text { font-family: 'Great Vibes', cursive; font-weight: 400; font-size: 1.9rem; letter-spacing: 2px; color: #ffffff; line-height: 1; padding-top: 3px; text-shadow: 0 0 12px rgba(255, 255, 255, 0.7), 0 0 35px rgba(180, 200, 255, 0.4); animation: logoGlow 3.5s ease-in-out infinite; }
         @keyframes logoGlow {
             0%, 100% { text-shadow: 0 0 12px rgba(255, 255, 255, 0.7), 0 0 35px rgba(180, 200, 255, 0.4); }
             50% { text-shadow: 0 0 22px rgba(255, 255, 255, 1), 0 0 55px rgba(180, 200, 255, 0.65), 0 0 90px rgba(140, 170, 240, 0.3); }
         }
         .nav-desktop { display: flex; list-style: none; gap: 1px; align-items: center; flex-wrap: wrap; justify-content: center; }
-        .nav-desktop li a {
-            color: rgba(255, 255, 255, 0.72); text-decoration: none; padding: 7px 13px;
-            border-radius: 40px; font-size: 0.76rem; font-weight: 500; transition: all 0.35s var(--ease-out-back); white-space: nowrap;
-            position: relative;
-        }
-        .nav-desktop li a::after {
-            content: ''; position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%) scaleX(0);
-            width: 14px; height: 2px; background: var(--accent-bright); border-radius: 2px;
-            transition: transform 0.35s var(--ease-out-back);
-        }
-        .nav-desktop li a:hover::after,
-        .nav-desktop li a.active::after { transform: translateX(-50%) scaleX(1); }
-        .nav-desktop li a:hover,
-        .nav-desktop li a.active { color: #ffffff; background: rgba(255, 255, 255, 0.07); }
-
+        .nav-desktop li a { color: rgba(255, 255, 255, 0.72); text-decoration: none; padding: 7px 13px; border-radius: 40px; font-size: 0.76rem; font-weight: 500; transition: all 0.35s var(--ease-out-back); white-space: nowrap; position: relative; }
+        .nav-desktop li a::after { content: ''; position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%) scaleX(0); width: 14px; height: 2px; background: var(--accent-bright); border-radius: 2px; transition: transform 0.35s var(--ease-out-back); }
+        .nav-desktop li a:hover::after, .nav-desktop li a.active::after { transform: translateX(-50%) scaleX(1); }
+        .nav-desktop li a:hover, .nav-desktop li a.active { color: #ffffff; background: rgba(255, 255, 255, 0.07); }
         .header-actions { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
         .lang-switch { display: flex; gap: 2px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 40px; padding: 2px; }
-        .lang-btn {
-            padding: 6px 10px; border-radius: 40px; border: none; background: transparent;
-            color: rgba(255, 255, 255, 0.65); cursor: pointer; font-weight: 500; font-size: 0.68rem; font-family: inherit;
-            white-space: nowrap; transition: all 0.35s var(--ease-out-back);
-        }
+        .lang-btn { padding: 6px 10px; border-radius: 40px; border: none; background: transparent; color: rgba(255, 255, 255, 0.65); cursor: pointer; font-weight: 500; font-size: 0.68rem; font-family: inherit; white-space: nowrap; transition: all 0.35s var(--ease-out-back); }
         .lang-btn.active { color: #fff; background: var(--accent); font-weight: 600; box-shadow: 0 0 16px var(--accent-glow); }
         .hamburger-btn { display: none; }
 
-        .mobile-overlay {
-            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.65); z-index: 1100;
-            opacity: 0; pointer-events: none; transition: opacity 0.4s var(--ease-smooth);
-        }
+        .mobile-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.65); z-index: 1100; opacity: 0; pointer-events: none; transition: opacity 0.4s var(--ease-smooth); }
         .mobile-overlay.open { opacity: 1; pointer-events: auto; }
-        .mobile-menu {
-            position: fixed; top: 0; right: -290px; width: 270px; height: 100vh; background: #0c0e14;
-            z-index: 1200; padding: 24px; transition: right 0.45s var(--ease-out-expo);
-            overflow-y: auto; border-left: 1px solid rgba(255, 255, 255, 0.06);
-        }
+        .mobile-menu { position: fixed; top: 0; right: -290px; width: 270px; height: 100vh; background: #0c0e14; z-index: 1200; padding: 24px; transition: right 0.45s var(--ease-out-expo); overflow-y: auto; border-left: 1px solid rgba(255, 255, 255, 0.06); }
         body.rtl .mobile-menu { right: auto; left: -290px; border-left: none; border-right: 1px solid rgba(255, 255, 255, 0.06); transition: left 0.45s var(--ease-out-expo); }
         .mobile-menu.open { right: 0; } body.rtl .mobile-menu.open { left: 0; }
         .mobile-menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 26px; }
@@ -286,7 +151,6 @@
         .mobile-nav li a { color: rgba(255, 255, 255, 0.7); text-decoration: none; font-size: 0.9rem; display: block; padding: 10px 14px; border-radius: 12px; transition: all 0.35s ease; }
         .mobile-nav li a:hover { color: #ffffff; background: rgba(255, 255, 255, 0.06); padding-left: 20px; }
 
-        /* ===== HERO ===== */
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 140px 0 80px; position: relative; overflow: hidden; }
         .hero .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: center; position: relative; z-index: 2; }
         .hero-greeting { display: inline-flex; align-items: center; gap: 8px; padding: 7px 17px; background: var(--accent-soft); border: 1px solid var(--border); border-radius: 40px; font-size: 0.82rem; font-weight: 600; margin-bottom: 16px; color: var(--accent-bright); }
@@ -321,7 +185,6 @@
         .avatar-img:hover { box-shadow: 0 0 100px var(--accent-glow-strong); transform: scale(1.04); }
         @keyframes floatAvatar { 0%,100%{transform:translateY(0)} 30%{transform:translateY(-10px)} 60%{transform:translateY(-4px)} }
 
-        /* ===== SECTIONS ===== */
         .section { padding: 80px 0; position: relative; z-index: 1; }
         .section-alt { background: var(--bg-alt); }
         .section .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
@@ -332,7 +195,6 @@
         .section-title::after { content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%) scaleX(0); width: 28px; height: 3px; background: var(--accent-bright); border-radius: 3px; transition: transform 0.5s var(--ease-out-back); }
         .section-wrapper.active-border .section-title::after { transform: translateX(-50%) scaleX(1); }
 
-        /* ===== CARDS ===== */
         .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: all 0.4s var(--ease-out-expo); position: relative; overflow: hidden; }
         .card:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-5px); box-shadow: var(--shadow-hover); background: var(--surface-alt); }
         .card-glow { position: absolute; top: -40%; right: -40%; width: 160px; height: 160px; background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%); transition: all 0.8s ease; pointer-events: none; border-radius: 50%; }
@@ -340,7 +202,6 @@
         .card-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--accent-bright); margin-bottom: 14px; transition: all 0.4s var(--ease-out-back); position: relative; z-index: 1; }
         .card:hover .card-icon { background: var(--accent-soft-hover); box-shadow: 0 0 22px var(--accent-glow); transform: scale(1.05) rotate(-3deg); }
         .card-text { color: var(--text-soft); font-size: 0.92rem; line-height: 1.8; position: relative; z-index: 1; }
-        .card-text strong { color: var(--text); font-weight: 600; }
 
         .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
         .info-cell { background: var(--accent-soft); padding: 13px 15px; border-radius: var(--radius-sm); border: 1px solid var(--border); transition: all 0.35s var(--ease-out-back); position: relative; overflow: hidden; }
@@ -352,7 +213,7 @@
         .info-label { font-size: 0.58rem; color: var(--accent-bright); font-weight: 600; letter-spacing: 0.06em; margin-bottom: 2px; text-transform: uppercase; }
         .info-value { color: var(--text); font-weight: 600; font-size: 0.8rem; }
 
-        /* ===== 3D BOOK SKILLS ===== */
+        /* 3D BOOK (skills & strengths) */
         .skills-book { position: relative; max-width: 850px; margin: 0 auto; perspective: 1600px; padding: 20px 0; }
         .skills-book::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, transparent 0%, var(--book-spine) 10%, var(--accent) 30%, var(--accent) 70%, var(--book-spine) 90%, transparent 100%); opacity: 0.5; transform: translateX(-50%); border-radius: 2px; z-index: 0; }
         .book-row { display: flex; align-items: center; position: relative; margin-bottom: 32px; min-height: 130px; z-index: 1; }
@@ -376,7 +237,6 @@
         .book-info p { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
         .book-glow-line { position: absolute; bottom: 0; left: 20px; right: 20px; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-glow), transparent); opacity: 0; transition: opacity 0.5s ease; z-index: 1; }
         .book-card:hover .book-glow-line { opacity: 1; }
-        /* RTL book */
         body.rtl .skills-book::before { left: 50%; }
         body.rtl .book-row.left { justify-content: flex-end; padding-right: 0; padding-left: 53%; }
         body.rtl .book-row.right { justify-content: flex-start; padding-left: 0; padding-right: 53%; }
@@ -386,7 +246,6 @@
         body.rtl .book-row.left .book-card:hover { transform: rotateY(6deg); }
         body.rtl .book-row.right .book-card:hover { transform: rotateY(-6deg); }
 
-        /* ===== PROJECTS ===== */
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
         .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: all 0.45s var(--ease-out-expo); max-width: 520px; margin: 0 auto; position: relative; }
         .project-card::before { content: ''; position: absolute; inset: -1px; border-radius: var(--radius); background: linear-gradient(135deg, var(--accent-glow), transparent 50%); opacity: 0; transition: opacity 0.5s; z-index: 0; pointer-events: none; }
@@ -406,7 +265,6 @@
         .project-tag { padding: 4px 11px; background: var(--accent-soft); color: var(--accent-bright); border-radius: 40px; font-size: 0.68rem; font-weight: 500; border: 1px solid transparent; transition: 0.3s; }
         .project-tag:hover { border-color: var(--accent); background: var(--accent-soft-hover); }
 
-        /* ===== TIMELINE ===== */
         .timeline { position: relative; padding-left: 24px; }
         body.rtl .timeline { padding-left: 0; padding-right: 24px; }
         .timeline::before { content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg, var(--accent), transparent); opacity: 0.35; border-radius: 2px; }
@@ -423,7 +281,6 @@
         .status-badge .live-dot { width: 5px; height: 5px; background: var(--accent-bright); border-radius: 50%; animation: dotPulse 1.2s ease-in-out infinite; }
         @keyframes dotPulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
 
-        /* ===== SOFT SKILLS ===== */
         .softskills-vertical { display: flex; flex-direction: column; gap: 18px; max-width: 680px; margin: 0 auto; }
         .softskill-card { background: var(--surface); border-radius: var(--radius); padding: 22px 26px; display: flex; align-items: flex-start; gap: 16px; transition: all 0.45s var(--ease-out-expo); border: 1px solid var(--border); }
         .softskill-card:hover { transform: translateX(6px); box-shadow: var(--shadow-hover); background: var(--surface-alt); border-color: rgba(255,255,255,0.1); }
@@ -433,14 +290,12 @@
         .softskill-content h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.92rem; font-weight: 700; margin-bottom: 3px; }
         .softskill-content p { font-size: 0.78rem; color: var(--text-soft); }
 
-        /* ===== PLATFORMS ===== */
         .platforms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; max-width: 580px; margin: 0 auto; }
         .platform-card { display: flex; align-items: center; gap: 11px; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; transition: all 0.4s var(--ease-out-back); }
         .platform-card:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-4px); box-shadow: 0 8px 22px var(--accent-glow); }
         .platform-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
         .platform-info h4 { font-size: 0.82rem; font-weight: 700; } .platform-info p { font-size: 0.68rem; color: var(--text-muted); }
 
-        /* ===== CONTACT FORM INLINE ===== */
         .contact-form-inline { max-width: 520px; margin: 0 auto 30px; }
         .contact-form-group { margin-bottom: 12px; }
         .contact-form-input { width: 100%; padding: 11px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 0.82rem; font-family: inherit; transition: all 0.35s ease; resize: vertical; }
@@ -451,17 +306,13 @@
         .contact-form-status { text-align: center; margin-top: 8px; font-size: 0.78rem; font-weight: 500; min-height: 18px; }
         .contact-form-status.success { color: #00c853; } .contact-form-status.error { color: #ff1744; }
 
-        /* ===== FOOTER ===== */
         .footer { text-align: center; padding: 28px 0; border-top: 1px solid var(--border); }
-        .footer-text { color: var(--text-muted); font-size: 0.76rem; }
-        .footer-text span { color: var(--accent-bright); font-weight: 700; }
+        .footer-text { color: var(--text-muted); font-size: 0.76rem; } .footer-text span { color: var(--accent-bright); font-weight: 700; }
 
-        /* ===== SCROLL TOP ===== */
         .scroll-top { position: fixed; bottom: 22px; right: 22px; width: 42px; height: 42px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 99; opacity: 0; transform: translateY(14px); pointer-events: none; transition: all 0.4s var(--ease-out-back); box-shadow: 0 6px 20px var(--accent-glow); border: none; font-size: 0.95rem; }
         .scroll-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
         .scroll-top:hover { background: var(--accent-bright); box-shadow: 0 12px 30px var(--accent-glow-strong); transform: translateY(-4px) scale(1.06); }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 940px) {
             .nav-desktop { display: none; } .hamburger-btn { display: flex; }
             .hero .container { grid-template-columns: 1fr; text-align: center; gap: 28px; }
@@ -490,8 +341,7 @@
             .book-card { padding: 14px 16px; } .book-info h4 { font-size: 0.95rem; }
         }
         @media (max-width: 400px) {
-            .info-grid { grid-template-columns: 1fr; } .hero-buttons { flex-direction: column; }
-            .platforms-grid { grid-template-columns: 1fr; }
+            .info-grid { grid-template-columns: 1fr; } .hero-buttons { flex-direction: column; } .platforms-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -503,9 +353,7 @@
     <!-- BACKGROUND AMBIANCE -->
     <div class="bg-ambiance">
         <canvas id="particlesCanvas"></canvas>
-        <div class="bg-orb orb-1"></div>
-        <div class="bg-orb orb-2"></div>
-        <div class="bg-orb orb-3"></div>
+        <div class="bg-orb orb-1"></div><div class="bg-orb orb-2"></div><div class="bg-orb orb-3"></div>
     </div>
 
     <!-- HEADER -->
@@ -543,7 +391,7 @@
     <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header"><span class="logo-text" style="font-size:1.6rem;">Abdulrahman</span><button class="mobile-menu-close" onclick="toggleMobileMenu()"><i class="fas fa-times"></i></button></div>
-        <ul class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav">
             <li><a href="#home" onclick="toggleMobileMenu()" data-i18n-nav="home">Home</a></li>
             <li><a href="#personal" onclick="toggleMobileMenu()" data-i18n-nav="personal">Personal Info</a></li>
             <li><a href="#skills" onclick="toggleMobileMenu()" data-i18n-nav="skills">Skills</a></li>
@@ -633,12 +481,12 @@
         </div>
     </section>
 
-    <!-- STRENGTHS -->
+    <!-- STRENGTHS (NOW BOOK STYLE) -->
     <section class="section" id="strengths">
         <div class="container">
             <div class="section-wrapper" id="wrapper-strengths">
                 <div class="section-header from-bottom reveal"><h2 class="section-title" data-i18n="strengths.title">My Strengths</h2></div>
-                <div class="card from-bottom reveal" style="max-width:760px;margin:0 auto;"><div class="card-icon"><i class="fas fa-star"></i></div><div class="card-glow"></div><p class="card-text" data-i18n="strengths.desc" style="font-size:0.92rem;line-height:1.9;"></p></div>
+                <div class="skills-book stagger-container" id="strengthsBook"></div>
             </div>
         </div>
     </section>
@@ -671,7 +519,6 @@
                     <h2 class="section-title" data-i18n="contact.title">Contact Me</h2>
                     <p style="color:var(--text-soft);margin-top:10px;font-size:0.83rem;" data-i18n="contact.subtitle">Reach out to me on any of these platforms</p>
                 </div>
-                <!-- Inline Contact Form -->
                 <div class="contact-form-inline from-bottom reveal">
                     <div class="contact-form-group"><input type="text" id="formName" class="contact-form-input" data-i18n-placeholder="contact_form.name" placeholder="Your Name" required></div>
                     <div class="contact-form-group"><input type="email" id="formEmail" class="contact-form-input" data-i18n-placeholder="contact_form.email" placeholder="Your Email" required></div>
@@ -691,9 +538,8 @@
         (function() {
             function ready(fn) { if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
 
-            var API_URL = 'https://YOUR-API-LINK/api/messages'; // replace with your real API endpoint
+            var API_URL = 'https://YOUR-API-LINK/api/messages';
 
-            // Contact form submission
             window.sendFormMessage = function() {
                 var btn = document.getElementById('formSubmitBtn'),
                     status = document.getElementById('formStatus'),
@@ -701,38 +547,26 @@
                     e = document.getElementById('formEmail'),
                     m = document.getElementById('formMessage');
                 if (!btn || !status || !n || !e || !m) return;
-                var name = n.value.trim(),
-                    email = e.value.trim(),
-                    msg = m.value.trim();
+                var name = n.value.trim(), email = e.value.trim(), msg = m.value.trim();
                 var t = window.translations && window.translations[window.currentLang] ? window.translations[window.currentLang] : {};
                 if (!name || !email || !msg) {
                     status.textContent = t['contact_form.fill_fields'] || 'Please fill all fields';
-                    status.className = 'contact-form-status error';
-                    return;
+                    status.className = 'contact-form-status error'; return;
                 }
-                btn.disabled = true;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                status.textContent = '';
-                status.className = 'contact-form-status';
-                fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ Name: name, Email: email, MessageText: msg })
-                }).then(function(r) {
-                    if (!r.ok) throw new Error('err');
-                    return r.text();
-                }).then(function() {
+                btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                status.textContent = ''; status.className = 'contact-form-status';
+                fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ Name: name, Email: email, MessageText: msg }) })
+                .then(function(r) { if (!r.ok) throw new Error('err'); return r.text(); })
+                .then(function() {
                     status.textContent = t['contact_form.success'] || 'Sent ✔';
                     status.className = 'contact-form-status success';
                     n.value = ''; e.value = ''; m.value = '';
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-i18n="contact_form.send">Send</span>';
+                    btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-i18n="contact_form.send">Send</span>';
                     setTimeout(function() { status.textContent = ''; status.className = 'contact-form-status'; }, 5000);
                 }).catch(function() {
                     status.textContent = t['contact_form.error'] || 'Error ❌';
                     status.className = 'contact-form-status error';
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-i18n="contact_form.send">Send</span>';
+                    btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-i18n="contact_form.send">Send</span>';
                 });
             };
 
@@ -744,12 +578,14 @@
                     'personal.title': 'About Me', 'personal.desc': "I'm a self-learning developer focused on web development and problem solving.",
                     'skills.title': 'Programming Languages I Master', 'projects.title': 'My Projects',
                     'projects.item1.title': 'Abdulrahman TEC', 'projects.item1.desc': 'A modern technology website showcasing services and solutions with a sleek, responsive design.',
-                    'education.title': 'Education', 'strengths.title': 'My Strengths',
-                    'strengths.desc': 'I aspire to prove myself as an enthusiastic and energetic person. I am a positive thinker, fast learner, skilled problem solver, effective team member, and capable of working under pressure.',
+                    'education.title': 'Education',
+                    'strengths.title': 'My Strengths',
                     'different.title': 'What Sets Me Apart',
                     'different.desc': 'I am a <strong>UI/UX designer and low-code developer</strong> with extensive experience, passionate about crafting exceptional digital experiences.',
-                    'softskills.title': 'Personal Qualities', 'contact.title': 'Contact Me', 'contact.subtitle': 'Reach out to me on any of these platforms',
-                    'footer.rights': 'All rights reserved', 'contact_form.title': 'Contact Me',
+                    'softskills.title': 'Personal Qualities',
+                    'contact.title': 'Contact Me', 'contact.subtitle': 'Reach out to me on any of these platforms',
+                    'footer.rights': 'All rights reserved',
+                    'contact_form.title': 'Contact Me',
                     'contact_form.name': 'Your Name', 'contact_form.email': 'Your Email', 'contact_form.message': 'Your Message',
                     'contact_form.send': 'Send', 'contact_form.success': 'Message sent successfully ✔', 'contact_form.error': 'Error sending message ❌',
                     'contact_form.fill_fields': 'Please fill all fields',
@@ -763,11 +599,14 @@
                     'personal.title': 'Über mich', 'personal.desc': 'Ich bin ein selbstlernender Entwickler mit Fokus auf Webentwicklung und Problemlösung.',
                     'skills.title': 'Programmiersprachen', 'projects.title': 'Meine Projekte',
                     'projects.item1.title': 'Abdulrahman TEC', 'projects.item1.desc': 'Eine moderne Technologie-Website mit einem eleganten, responsiven Design.',
-                    'education.title': 'Bildung', 'strengths.title': 'Meine Stärken',
-                    'strengths.desc': 'Ich möchte mich als begeisterte und energiegeladene Person beweisen. Ich bin positiv denkend, lerne schnell, löse Probleme geschickt, bin ein effektives Teammitglied und kann unter Druck arbeiten.',
-                    'different.title': 'Was mich auszeichnet', 'different.desc': 'Ich bin ein <strong>UI/UX-Designer und Low-Code-Entwickler</strong> mit umfassender Erfahrung.',
-                    'softskills.title': 'Persönliche Qualitäten', 'contact.title': 'Kontaktiere mich über', 'contact.subtitle': 'Erreiche mich auf einer dieser Plattformen',
-                    'footer.rights': 'Alle Rechte vorbehalten', 'contact_form.title': 'Kontaktiere mich',
+                    'education.title': 'Bildung',
+                    'strengths.title': 'Meine Stärken',
+                    'different.title': 'Was mich auszeichnet',
+                    'different.desc': 'Ich bin ein <strong>UI/UX-Designer und Low-Code-Entwickler</strong> mit umfassender Erfahrung.',
+                    'softskills.title': 'Persönliche Qualitäten',
+                    'contact.title': 'Kontaktiere mich über', 'contact.subtitle': 'Erreiche mich auf einer dieser Plattformen',
+                    'footer.rights': 'Alle Rechte vorbehalten',
+                    'contact_form.title': 'Kontaktiere mich',
                     'contact_form.name': 'Dein Name', 'contact_form.email': 'Deine E-Mail', 'contact_form.message': 'Deine Nachricht',
                     'contact_form.send': 'Senden', 'contact_form.success': 'Nachricht erfolgreich gesendet ✔', 'contact_form.error': 'Fehler beim Senden ❌',
                     'contact_form.fill_fields': 'Bitte alle Felder ausfüllen',
@@ -781,11 +620,14 @@
                     'personal.title': 'عنّي', 'personal.desc': 'أنا مطور أتعلم ذاتياً وأركز على تطوير الويب وحل المشكلات.',
                     'skills.title': 'لغات البرمجة التي أجيدها', 'projects.title': 'مشاريعي',
                     'projects.item1.title': 'عبدالرحمن تك', 'projects.item1.desc': 'موقع تقني حديث يعرض الخدمات والحلول بتصميم أنيق ومتجاوب.',
-                    'education.title': 'التعليم', 'strengths.title': 'نقاط قوتي',
-                    'strengths.desc': 'أرغب في إثبات نفسي كشخصٍ متحمسٍ ومفعمٍ بالحيوية. أنا شخصٌ إيجابي التفكير، سريع التعلم، بارعٌ في حل المشكلات، عضوٌ فاعلٌ في الفريق، وقادرٌ على العمل تحت الضغط.',
-                    'different.title': 'ما يميزني', 'different.desc': 'أنا <strong>مصمم واجهات مستخدم وتجربة مستخدم، ومطور برامج منخفض البرمجة</strong> ذو خبرة واسعة.',
-                    'softskills.title': 'صفاتي الشخصية', 'contact.title': 'تواصل معي عبر', 'contact.subtitle': 'تواصل معي على أي من هذه المنصات',
-                    'footer.rights': 'جميع الحقوق محفوظة', 'contact_form.title': 'تواصل معي',
+                    'education.title': 'التعليم',
+                    'strengths.title': 'نقاط قوتي',
+                    'different.title': 'ما يميزني',
+                    'different.desc': 'أنا <strong>مصمم واجهات مستخدم وتجربة مستخدم، ومطور برامج منخفض البرمجة</strong> ذو خبرة واسعة.',
+                    'softskills.title': 'صفاتي الشخصية',
+                    'contact.title': 'تواصل معي عبر', 'contact.subtitle': 'تواصل معي على أي من هذه المنصات',
+                    'footer.rights': 'جميع الحقوق محفوظة',
+                    'contact_form.title': 'تواصل معي',
                     'contact_form.name': 'الاسم', 'contact_form.email': 'الإيميل', 'contact_form.message': 'اكتب رسالتك',
                     'contact_form.send': 'إرسال', 'contact_form.success': 'تم إرسال الرسالة بنجاح ✔', 'contact_form.error': 'حصل خطأ في الإرسال ❌',
                     'contact_form.fill_fields': 'الرجاء ملء جميع الحقول',
@@ -793,6 +635,40 @@
                     'nav.education': 'التعليم', 'nav.strengths': 'نقاط القوة', 'nav.different': 'ما يميزني', 'nav.softskills': 'المهارات الشخصية', 'nav.contact': 'تواصل'
                 }
             };
+
+            // Strengths statements (8 lines)
+            var strengthItems = [
+                { i: 'fas fa-star', ar: 'أنا شخص طموح أؤمن إن النجاح محتاج تعب واستمرار يومي.', en: 'I am an ambitious person who believes that success requires daily effort and persistence.', de: 'Ich bin eine ehrgeizige Person und glaube, dass Erfolg tägliche Anstrengung und Ausdauer erfordert.' },
+                { i: 'fas fa-star', ar: 'بحب أطور نفسي باستمرار وأتعلم من كل تجربة بمر بيها.', en: 'I love continuously improving myself and learning from every experience I go through.', de: 'Ich entwickle mich ständig weiter und lerne aus jeder Erfahrung.' },
+                { i: 'fas fa-star', ar: 'بشوف التحديات فرص مهمة تساعدني أكون أقوى وأحسن في حياتي.', en: 'I see challenges as important opportunities to become stronger and better in my life.', de: 'Ich betrachte Herausforderungen als wichtige Chancen, um stärker und besser zu werden.' },
+                { i: 'fas fa-star', ar: 'بشتغل بجد وبنظم وقتي علشان أوصل لكل أهدافي خطوة خطوة.', en: 'I work hard and organize my time to reach all my goals step by step.', de: 'Ich arbeite hart und organisiere meine Zeit, um alle meine Ziele Schritt für Schritt zu erreichen.' },
+                { i: 'fas fa-star', ar: 'ما بحبش أستسلم وبكمل مهما كانت الصعوبات اللي بتقابلني في الطريق.', en: 'I never give up and keep going no matter the difficulties I face.', de: 'Ich gebe niemals auf und mache weiter, egal welche Schwierigkeiten auf mich zukommen.' },
+                { i: 'fas fa-star', ar: 'بؤمن إن الإرادة القوية هي سر النجاح الحقيقي في أي مجال.', en: 'I believe that strong will is the secret to real success in any field.', de: 'Ich glaube, dass ein starker Wille das Geheimnis echten Erfolgs in jedem Bereich ist.' },
+                { i: 'fas fa-star', ar: 'بحاول أكون شخص مؤثر وإيجابي في أي مكان بروحه أو أكون فيه.', en: 'I strive to be an influential and positive person wherever I go.', de: 'Ich bemühe mich, eine einflussreiche und positive Person zu sein, wo immer ich bin.' },
+                { i: 'fas fa-star', ar: 'هدفي إني أحقق ذاتي وأوصل لمستوى يليق بطموحي وتفكيري.', en: 'My goal is to achieve self‑fulfillment and reach a level worthy of my ambition and mindset.', de: 'Mein Ziel ist es, mich selbst zu verwirklichen und ein Niveau zu erreichen, das meinem Ehrgeiz und Denken entspricht.' }
+            ];
+
+            function buildStrengthsBook() {
+                var container = document.getElementById('strengthsBook');
+                if (!container) return;
+                var html = '';
+                for (var i = 0; i < strengthItems.length; i++) {
+                    var s = strengthItems[i];
+                    var side = (i % 2 === 0) ? 'left' : 'right';
+                    var text = s[cl] || s.en;
+                    html += '<div class="book-row ' + side + ' stagger-item">' +
+                                '<div class="book-card">' +
+                                    '<div class="book-inner">' +
+                                        '<div class="book-icon"><i class="' + s.i + '"></i></div>' +
+                                        '<div class="book-info"><p style="font-size:0.82rem;color:var(--text);">' + text + '</p></div>' +
+                                    '</div>' +
+                                    '<div class="book-glow-line"></div>' +
+                                '</div>' +
+                                '<div class="book-dot"></div>' +
+                            '</div>';
+                }
+                container.innerHTML = html;
+            }
 
             var pi = [
                 { lk: 'Full Name', vk: 'fullname' }, { lk: 'Age', vk: 'age' }, { lk: 'Date of Birth', vk: 'dob' },
@@ -827,7 +703,7 @@
                 { i: 'fas fa-hashtag', n: 'C#', dk: '.NET & desktop apps' },
                 { i: 'fab fa-php', n: 'PHP', dk: 'Server-side web' }
             ];
-            var ldi = { en: {}, de: {}, ar: {} };
+            var ldi = { en:{}, de:{}, ar:{} };
             ['Semantic markup','Responsive layouts','Dynamic interactivity','Backend & automation','High-performance software','.NET & desktop apps','Server-side web'].forEach(function(k){ ldi.en[k]=k; ldi.de[k]=k; ldi.ar[k]=k; });
             var sd = [
                 { i: 'fas fa-puzzle-piece', n: 'Problem Solving', dk: 'Complex issues' },
@@ -837,7 +713,7 @@
                 { i: 'fas fa-book-open', n: 'Self-Learning', dk: 'Fast tool adoption' },
                 { i: 'fas fa-rotate', n: 'Adaptability', dk: 'Quick environment shifts' }
             ];
-            var si = { en: {}, de: {}, ar: {} };
+            var si = { en:{}, de:{}, ar:{} };
             ['Problem Solving','Complex issues','Analytical Thinking','Data-driven logic','Team Collaboration','Effective teamwork','Time Management','Task prioritization','Self-Learning','Fast tool adoption','Adaptability','Quick environment shifts'].forEach(function(k){
                 si.en[k]=k;
                 si.de[k]={ 'Problem Solving':'Problemlösung','Complex issues':'Komplexe Probleme','Analytical Thinking':'Analytisches Denken','Data-driven logic':'Datengestützte Logik','Team Collaboration':'Teamarbeit','Effective teamwork':'Effektive Teamarbeit','Time Management':'Zeitmanagement','Task prioritization':'Aufgabenpriorisierung','Self-Learning':'Selbstlernen','Fast tool adoption':'Schnelle Werkzeugübernahme','Adaptability':'Anpassungsfähigkeit','Quick environment shifts':'Schnelle Umgebungswechsel' }[k] || k;
@@ -848,9 +724,9 @@
                 { i: 'fab fa-linkedin-in', c: '#0077b5', n: 'LinkedIn', u: 'https://www.linkedin.com/in/ab-do-097783272', dk: 'Connect' },
                 { i: 'fab fa-instagram', c: '#e4405f', n: 'Instagram', u: 'https://www.instagram.com/bboda_7', dk: 'Follow' }
             ];
-            var pdi = { en: { 'Repos':'Repos','Connect':'Connect','Follow':'Follow' }, de: { 'Repos':'Repos','Connect':'Verbinden','Follow':'Folgen' }, ar: { 'Repos':'مستودعات','Connect':'تواصل','Follow':'متابعة' } };
+            var pdi = { en:{ 'Repos':'Repos','Connect':'Connect','Follow':'Follow' }, de:{ 'Repos':'Repos','Connect':'Verbinden','Follow':'Folgen' }, ar:{ 'Repos':'مستودعات','Connect':'تواصل','Follow':'متابعة' } };
 
-            var cl = localStorage.getItem('abd_lang_v28') || 'en';
+            var cl = localStorage.getItem('abd_lang_v30') || 'en';
             window.currentLang = cl;
             var tsa = { en: ['Web Developer','Frontend Developer','Programmer'], de: ['Webentwickler','Frontend-Entwickler','Programmierer'], ar: ['مطور ويب','مطور واجهات','مبرمج'] };
             var ts = tsa[cl], ti = 0, ci = 0, id = false, tt;
@@ -917,12 +793,12 @@
                 g.innerHTML = h;
             }
 
-            function ra() { bpi(); bsk(); be(); bs(); bc(); }
+            function ra() { bpi(); bsk(); be(); bs(); bc(); buildStrengthsBook(); }
 
             window.switchLang = function(l) {
                 cl = l;
                 window.currentLang = l;
-                localStorage.setItem('abd_lang_v28', l);
+                localStorage.setItem('abd_lang_v30', l);
                 document.documentElement.lang = l;
                 document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
                 document.body.classList.toggle('rtl', l === 'ar');
@@ -966,6 +842,7 @@
                 for (var i=0; i<revs.length; i++) mainObs.observe(revs[i]);
                 var wrappers = document.querySelectorAll('.section-wrapper');
                 for (var i=0; i<wrappers.length; i++) mainObs.observe(wrappers[i]);
+
                 bookObs = new IntersectionObserver(function(entries) {
                     for (var i=0; i<entries.length; i++) { if (entries[i].isIntersecting) entries[i].target.classList.add('visible'); }
                 }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
@@ -999,62 +876,43 @@
                 }
             }
 
-            // Particles
             function initParticles() {
                 var canvas = document.getElementById('particlesCanvas');
                 if (!canvas) return;
                 var ctx = canvas.getContext('2d');
-                var particles = [];
-                var animId;
+                var particles = [], animId;
                 function resize() {
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
+                    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
                     particles = [];
                     var count = Math.floor(window.innerWidth * 0.04);
-                    for (var i=0; i<count; i++) {
-                        particles.push({
-                            x: Math.random() * canvas.width,
-                            y: Math.random() * canvas.height,
-                            vx: (Math.random() - 0.5) * 0.3,
-                            vy: (Math.random() - 0.5) * 0.3,
-                            size: Math.random() * 1.5 + 0.5
-                        });
-                    }
+                    for (var i=0; i<count; i++) particles.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3, size: Math.random()*1.5+0.5 });
                 }
                 function draw() {
                     ctx.clearRect(0,0,canvas.width,canvas.height);
                     var accent = getComputedStyle(document.body).getPropertyValue('--accent-bright').trim() || '#7ba9ff';
                     for (var i=0; i<particles.length; i++) {
-                        var p = particles[i];
-                        p.x += p.vx; p.y += p.vy;
-                        if (p.x<0 || p.x>canvas.width) p.vx *= -1;
-                        if (p.y<0 || p.y>canvas.height) p.vy *= -1;
-                        ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
-                        ctx.fillStyle = accent; ctx.globalAlpha = 0.3; ctx.fill();
+                        var p = particles[i]; p.x += p.vx; p.y += p.vy;
+                        if (p.x<0||p.x>canvas.width) p.vx*=-1; if (p.y<0||p.y>canvas.height) p.vy*=-1;
+                        ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fillStyle=accent; ctx.globalAlpha=0.3; ctx.fill();
                         for (var j=i+1; j<particles.length; j++) {
-                            var p2 = particles[j], dx = p.x-p2.x, dy = p.y-p2.y, dist = Math.sqrt(dx*dx+dy*dy);
-                            if (dist < 120) {
-                                ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(p2.x,p2.y);
-                                ctx.strokeStyle = accent; ctx.globalAlpha = 0.08*(1-dist/120); ctx.lineWidth = 0.5; ctx.stroke();
-                            }
+                            var p2=particles[j], dx=p.x-p2.x, dy=p.y-p2.y, dist=Math.sqrt(dx*dx+dy*dy);
+                            if (dist < 120) { ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(p2.x,p2.y); ctx.strokeStyle=accent; ctx.globalAlpha=0.08*(1-dist/120); ctx.lineWidth=0.5; ctx.stroke(); }
                         }
                     }
                     animId = requestAnimationFrame(draw);
                 }
-                resize();
-                draw();
-                window.addEventListener('resize', function() { cancelAnimationFrame(animId); resize(); draw(); });
+                resize(); draw();
+                window.addEventListener('resize', function(){ cancelAnimationFrame(animId); resize(); draw(); });
             }
 
             function init() {
-                // Loading screen
-                window.addEventListener('load', function() {
+                window.addEventListener('load', function(){
                     var loader = document.getElementById('loader');
                     if (loader) { loader.classList.add('fade-out'); setTimeout(function(){ if (loader.parentNode) loader.parentNode.removeChild(loader); }, 600); }
                     initParticles();
                 });
 
-                var sl = localStorage.getItem('abd_lang_v28') || 'en';
+                var sl = localStorage.getItem('abd_lang_v30') || 'en';
                 document.getElementById(sl==='de'?'btnDe':sl==='ar'?'btnAr':'btnEn').classList.add('active');
                 ra();
                 if (sl !== 'en') { var tmp=sl; cl='en'; switchLang(tmp); } else switchLang('en');
