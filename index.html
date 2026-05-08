@@ -445,10 +445,11 @@
             color: var(--accent-bright);
             box-shadow: 0 10px 36px rgba(14, 165, 233, 0.3);
         }
+        /* الصورة الرمزية المُكبرة بمرتين */
         .avatar-ring {
             position: relative;
-            width: clamp(180px, 28vw, 320px);
-            height: clamp(180px, 28vw, 320px);
+            width: clamp(360px, 56vw, 640px);   /* كان 180~320px  --> أصبح 360~640px */
+            height: clamp(360px, 56vw, 640px);
             margin: 0 auto;
         }
         .avatar-ring::before,
@@ -914,8 +915,8 @@
                 order: -1;
             }
             .avatar-ring {
-                width: 150px;
-                height: 150px;
+                width: 300px;   /* كان 150px */
+                height: 300px;
             }
             .hero-name {
                 font-size: 2rem;
@@ -972,8 +973,8 @@
                 font-size: 1rem;
             }
             .avatar-ring {
-                width: 120px;
-                height: 120px;
+                width: 240px;   /* كان 120px */
+                height: 240px;
             }
         }
     </style>
@@ -1229,10 +1230,10 @@
             const projectsData = [
                 { titleKey: 'project1.title', descKey: 'project1.desc',
                     img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600',
-                    tags: ['', '', ''], url: 'https://abdo-1818.github.io/abdulrahman_tec/' },
+                    tags: ['HTML5', 'CSS3', 'JavaScript'], url: 'https://abdo-1818.github.io/abdulrahman_tec/' },
                 { titleKey: 'project2.title', descKey: 'project2.desc',
                     img: 'https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=600',
-                    tags: ['', '', ''], url: 'https://abdo-1818.github.io/bboda_7/' }
+                    tags: ['HTML5', 'CSS3', 'JavaScript'], url: 'https://abdo-1818.github.io/bboda_7/' }
             ];
 
             const strengthItems = [
