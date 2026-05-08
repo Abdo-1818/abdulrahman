@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=yes">
     <meta name="description" content="Abdulrahman Mamdouh — UI/UX Designer & Low-Code Developer crafting cinematic digital experiences.">
     <meta name="author" content="Abdulrahman Mamdouh">
     <meta name="theme-color" content="#0B0B0F">
@@ -53,13 +53,6 @@
             --glass-bg: rgba(17, 24, 39, 0.55);
             --glass-blur: blur(24px);
             --max-width: 1280px;
-            --html-color: #E34F26;
-            --css-color: #1572B6;
-            --js-color: #F7DF1E;
-            --python-color: #3776AB;
-            --cpp-color: #00599C;
-            --csharp-color: #9B4F96;
-            --php-color: #777BB4;
         }
 
         * {
@@ -72,6 +65,7 @@
             scroll-padding-top: 100px;
             font-size: 16px;
             overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
         }
         body {
             font-family: 'Inter', system-ui, sans-serif;
@@ -85,6 +79,7 @@
             position: relative;
             letter-spacing: -0.01em;
             cursor: default;
+            background-attachment: fixed;
         }
         body.rtl {
             font-family: 'Cairo', system-ui, sans-serif;
@@ -93,18 +88,13 @@
             letter-spacing: 0;
         }
 
-        @media (hover: none) and (pointer: coarse) {
-            #cursorDotCustom {
-                display: none !important;
-            }
-        }
-
         #particleCanvas {
             position: fixed;
             inset: 0;
             z-index: 0;
             pointer-events: none;
             opacity: 0.9;
+            will-change: transform;
         }
 
         #cursorDotCustom {
@@ -117,7 +107,7 @@
             z-index: 10001;
             transform: translate(-50%, -50%);
             box-shadow: 0 0 18px #ffffff, 0 0 36px rgba(255, 255, 255, 0.9), 0 0 60px rgba(59, 130, 246, 0.8), 0 0 90px rgba(14, 165, 233, 0.6);
-            will-change: transform;
+            will-change: transform, width, height;
             transition: width 0.2s, height 0.2s;
         }
         #cursorDotCustom.hovering {
@@ -142,15 +132,18 @@
             -webkit-backdrop-filter: blur(28px);
             border: 1px solid rgba(255, 255, 255, 0.07);
             box-shadow: 0 8px 48px rgba(0, 0, 0, 0.55);
+            will-change: transform, backdrop-filter;
         }
         .header.scrolled {
             top: 0;
             width: 100%;
             max-width: 100%;
             border-radius: 0;
-            background: rgba(11, 11, 15, 0.9);
+            background: rgba(11, 11, 15, 0.92);
             border-left: none;
             border-right: none;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
         }
         .header-inner {
             display: flex;
@@ -171,7 +164,8 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.55);
-            transition: 0.45s;
+            transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
+            will-change: transform;
         }
         .logo-img:hover {
             transform: scale(1.12) rotate(-5deg);
@@ -202,7 +196,7 @@
             border-radius: 40px;
             font-size: 0.7rem;
             font-weight: 500;
-            transition: 0.35s;
+            transition: 0.3s;
             white-space: nowrap;
             position: relative;
         }
@@ -216,7 +210,7 @@
             height: 2px;
             background: var(--accent-bright);
             border-radius: 2px;
-            transition: 0.35s;
+            transition: transform 0.3s;
         }
         .nav-desktop li a:hover::after,
         .nav-desktop li a.active::after {
@@ -279,7 +273,7 @@
             z-index: 1100;
             opacity: 0;
             pointer-events: none;
-            transition: 0.4s;
+            transition: opacity 0.35s;
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
         }
@@ -298,11 +292,12 @@
             -webkit-backdrop-filter: blur(32px);
             z-index: 1200;
             padding: 28px 20px;
-            transition: right 0.5s var(--ease-out-expo);
+            transition: right 0.45s var(--ease-out-expo);
             overflow-y: auto;
             border-left: 1px solid rgba(255, 255, 255, 0.06);
             box-shadow: -8px 0 40px rgba(0, 0, 0, 0.6);
             border-radius: 24px 0 0 24px;
+            will-change: right;
         }
         body.rtl .mobile-menu {
             right: auto;
@@ -310,7 +305,7 @@
             border-radius: 0 24px 24px 0;
             border-left: none;
             border-right: 1px solid rgba(255, 255, 255, 0.06);
-            transition: left 0.5s var(--ease-out-expo);
+            transition: left 0.45s var(--ease-out-expo);
         }
         .mobile-menu.open {
             right: 0;
@@ -385,25 +380,16 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: shimmerName 4s ease-in-out infinite;
+            animation: shimmerName 12s ease-in-out infinite;
             filter: drop-shadow(0 0 35px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 70px rgba(14, 165, 233, 0.5)) drop-shadow(0 0 100px rgba(59, 130, 246, 0.3));
             letter-spacing: -0.01em;
             text-shadow: none;
         }
         @keyframes shimmerName {
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-            25% {
-                background-position: 100% 30%;
-            }
-            50% {
-                background-position: 100% 70%;
-            }
-            75% {
-                background-position: 0% 70%;
-            }
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 100% 30%; }
+            50% { background-position: 100% 70%; }
+            75% { background-position: 0% 70%; }
         }
         .hero-title-role {
             font-size: 1.15rem;
@@ -448,7 +434,7 @@
             color: var(--text-primary);
             font-size: 0.75rem;
             font-weight: 500;
-            transition: 0.4s var(--ease-spring);
+            transition: all 0.4s var(--ease-spring);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
@@ -471,7 +457,7 @@
             font-size: 0.82rem;
             text-decoration: none;
             cursor: pointer;
-            transition: 0.45s var(--ease-spring);
+            transition: all 0.45s var(--ease-spring);
             border: none;
             font-family: inherit;
         }
@@ -506,6 +492,7 @@
             position: absolute;
             border-radius: 50%;
             opacity: 0.85;
+            pointer-events: none;
         }
         .avatar-ring::before {
             inset: -10px;
@@ -514,6 +501,7 @@
             mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
             -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
             filter: blur(1px);
+            will-change: transform;
         }
         .avatar-ring::after {
             inset: -22px;
@@ -522,12 +510,9 @@
             mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
             -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
             filter: blur(2px);
+            will-change: transform;
         }
-        @keyframes rotateRing {
-            to {
-                transform: rotate(360deg);
-            }
-        }
+        @keyframes rotateRing { to { transform: rotate(360deg); } }
         .avatar-img {
             width: 100%;
             height: 100%;
@@ -537,7 +522,8 @@
             z-index: 1;
             box-shadow: 0 0 80px rgba(59, 130, 246, 0.55), 0 0 140px rgba(14, 165, 233, 0.35), 0 0 200px rgba(30, 58, 138, 0.25);
             border: 4px solid rgba(255, 255, 255, 0.2);
-            transition: 0.6s;
+            transition: box-shadow 0.5s, border-color 0.5s;
+            will-change: box-shadow;
         }
         .avatar-img:hover {
             box-shadow: 0 0 110px rgba(59, 130, 246, 0.75), 0 0 180px rgba(14, 165, 233, 0.55), 0 0 240px rgba(30, 58, 138, 0.4);
@@ -553,7 +539,7 @@
             border-radius: var(--radius-xl);
             padding: 44px 28px;
             position: relative;
-            transition: 0.7s var(--ease-out-expo);
+            transition: opacity 0.6s ease, transform 0.6s ease;
             max-width: var(--max-width);
             margin: 0 auto;
             border: 2px solid transparent;
@@ -562,7 +548,6 @@
             opacity: 0;
             transform: perspective(1200px) rotateY(8deg) translateY(40px);
             will-change: transform, opacity;
-            z-index: 1;
             overflow: visible;
         }
         .section-wrapper.revealed {
@@ -631,582 +616,242 @@
             -webkit-backdrop-filter: var(--glass-blur);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: var(--radius);
-            transition: 0.45s var(--ease-spring);
+            transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
             box-shadow: var(--shadow-card);
             text-align: left;
             position: relative;
-            overflow: visible;
+            will-change: transform;
         }
-        body.rtl .skill-row {
-            text-align: right;
-            flex-direction: row-reverse;
-        }
+        body.rtl .skill-row { text-align: right; flex-direction: row-reverse; }
         .skill-row:hover {
             transform: translateX(6px);
             border-color: rgba(14, 165, 233, 0.5);
             box-shadow: var(--shadow-hover), 0 0 40px rgba(14, 165, 233, 0.2);
         }
-        body.rtl .skill-row:hover {
-            transform: translateX(-6px);
-        }
+        body.rtl .skill-row:hover { transform: translateX(-6px); }
         .skill-icon-circle {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            flex-shrink: 0;
+            width: 50px; height: 50px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; flex-shrink: 0;
             box-shadow: 0 0 20px currentColor;
             border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: 0.4s;
+            transition: box-shadow 0.3s, border-color 0.3s;
         }
         .skill-row:hover .skill-icon-circle {
             box-shadow: 0 0 35px currentColor;
             border-color: rgba(255, 255, 255, 0.5);
         }
-        .skill-info h4 {
-            font-weight: 700;
-            color: #fff;
-            font-size: 0.9rem;
-            margin-bottom: 2px;
-        }
-        .skill-info p {
-            font-size: 0.75rem;
-            color: #e0e0e0;
-            line-height: 1.4;
-        }
+        .skill-info h4 { font-weight: 700; color: #fff; font-size: 0.9rem; margin-bottom: 2px; }
+        .skill-info p { font-size: 0.75rem; color: #e0e0e0; line-height: 1.4; }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 8px;
-        }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; }
         .info-cell {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 15px 16px;
-            border-radius: var(--radius-sm);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            transition: 0.35s;
-            position: relative;
+            background: rgba(255, 255, 255, 0.02); padding: 15px 16px;
+            border-radius: var(--radius-sm); border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
         }
         .info-cell:hover {
             border-color: rgba(59, 130, 246, 0.5);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 28px rgba(59, 130, 246, 0.15);
             background: rgba(59, 130, 246, 0.05);
         }
-        .info-label {
-            font-size: 0.6rem;
-            color: var(--accent-bright);
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-        }
-        .info-value {
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 0.8rem;
-        }
+        .info-label { font-size: 0.6rem; color: var(--accent-bright); font-weight: 600; letter-spacing: 0.06em; margin-bottom: 5px; text-transform: uppercase; }
+        .info-value { color: #ffffff; font-weight: 600; font-size: 0.8rem; }
 
         .highlight-box {
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: var(--radius);
-            padding: 28px 24px;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: right;
-            line-height: 2;
-            color: #ffffff;
-            font-size: 0.88rem;
-            box-shadow: var(--shadow-card);
-            transition: 0.5s;
-            position: relative;
+            background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius);
+            padding: 28px 24px; max-width: 800px; margin: 0 auto;
+            text-align: right; line-height: 2; color: #ffffff; font-size: 0.88rem;
+            box-shadow: var(--shadow-card); transition: border-color 0.4s, box-shadow 0.4s;
         }
         .highlight-box:hover {
             border-color: rgba(59, 130, 246, 0.4);
             box-shadow: var(--shadow-hover), 0 0 45px rgba(59, 130, 246, 0.15);
         }
-        .highlight-box strong {
-            color: #fff;
-            font-weight: 700;
-        }
+        .highlight-box strong { color: #fff; font-weight: 700; }
 
         .services-staggered {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            max-width: 750px;
-            margin: 0 auto;
-            position: relative;
+            display: flex; flex-direction: column; gap: 24px; max-width: 750px; margin: 0 auto;
         }
         .service-book-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 18px;
-            padding: 24px 28px;
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-card);
-            transition: all 0.55s var(--ease-out-expo);
-            max-width: 600px;
-            opacity: 0;
-            transform: perspective(900px) rotateY(18deg) translateY(30px);
-            will-change: transform, opacity;
+            display: flex; align-items: flex-start; gap: 18px;
+            padding: 24px 28px; background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius);
+            box-shadow: var(--shadow-card); transition: all 0.5s var(--ease-out-expo);
+            max-width: 600px; opacity: 0; will-change: transform, opacity;
             position: relative;
-            overflow: visible;
         }
-        .service-book-card.revealed {
-            opacity: 1;
-            transform: perspective(900px) rotateY(0deg) translateY(0);
-        }
-        .service-book-card:nth-child(odd) {
-            align-self: flex-end;
-            transform: perspective(900px) rotateY(-18deg) translateY(30px);
-        }
-        .service-book-card:nth-child(odd).revealed {
-            transform: perspective(900px) rotateY(0deg) translateY(0);
-        }
-        .service-book-card:nth-child(even) {
-            align-self: flex-start;
-        }
-        body.rtl .service-book-card:nth-child(odd) {
-            align-self: flex-start;
-            transform: perspective(900px) rotateY(18deg) translateY(30px);
-        }
-        body.rtl .service-book-card:nth-child(odd).revealed {
-            transform: perspective(900px) rotateY(0deg) translateY(0);
-        }
-        body.rtl .service-book-card:nth-child(even) {
-            align-self: flex-end;
-            transform: perspective(900px) rotateY(-18deg) translateY(30px);
-        }
-        body.rtl .service-book-card:nth-child(even).revealed {
-            transform: perspective(900px) rotateY(0deg) translateY(0);
-        }
+        .service-book-card.revealed { opacity: 1; transform: perspective(900px) rotateY(0deg) translateY(0); }
+        .service-book-card:nth-child(odd) { align-self: flex-end; transform: perspective(900px) rotateY(-18deg) translateY(30px); }
+        .service-book-card:nth-child(odd).revealed { transform: perspective(900px) rotateY(0deg) translateY(0); }
+        .service-book-card:nth-child(even) { align-self: flex-start; transform: perspective(900px) rotateY(18deg) translateY(30px); }
+        .service-book-card:nth-child(even).revealed { transform: perspective(900px) rotateY(0deg) translateY(0); }
+        body.rtl .service-book-card:nth-child(odd) { align-self: flex-start; transform: perspective(900px) rotateY(18deg) translateY(30px); }
+        body.rtl .service-book-card:nth-child(odd).revealed { transform: perspective(900px) rotateY(0deg) translateY(0); }
+        body.rtl .service-book-card:nth-child(even) { align-self: flex-end; transform: perspective(900px) rotateY(-18deg) translateY(30px); }
+        body.rtl .service-book-card:nth-child(even).revealed { transform: perspective(900px) rotateY(0deg) translateY(0); }
         .service-book-card:hover {
             border-color: rgba(14, 165, 233, 0.55);
             box-shadow: var(--shadow-hover), 0 0 50px rgba(14, 165, 233, 0.25);
             transform: perspective(900px) rotateY(0deg) translateY(-6px) !important;
         }
         .service-book-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-            background: rgba(14, 165, 233, 0.12);
-            color: var(--accent-bright);
-            box-shadow: 0 0 22px rgba(14, 165, 233, 0.3);
-            border: 2px solid rgba(14, 165, 233, 0.25);
-            transition: 0.4s;
+            width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; flex-shrink: 0; background: rgba(14, 165, 233, 0.12); color: var(--accent-bright);
+            box-shadow: 0 0 22px rgba(14, 165, 233, 0.3); border: 2px solid rgba(14, 165, 233, 0.25);
+            transition: box-shadow 0.3s, border-color 0.3s;
         }
-        .service-book-card:hover .service-book-icon {
-            box-shadow: 0 0 40px rgba(14, 165, 233, 0.6);
-            border-color: var(--accent-bright);
-        }
-        .service-book-content h4 {
-            color: #fff;
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin-bottom: 8px;
-            letter-spacing: -0.01em;
-        }
-        .service-book-content ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        .service-book-content ul li {
-            color: #ffffff;
-            font-size: 0.78rem;
-            line-height: 1.6;
-            padding-right: 16px;
-            position: relative;
-        }
+        .service-book-card:hover .service-book-icon { box-shadow: 0 0 40px rgba(14, 165, 233, 0.6); border-color: var(--accent-bright); }
+        .service-book-content h4 { color: #fff; font-weight: 700; font-size: 0.95rem; margin-bottom: 8px; }
+        .service-book-content ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+        .service-book-content ul li { color: #ffffff; font-size: 0.78rem; line-height: 1.6; padding-right: 16px; position: relative; }
         .service-book-content ul li::before {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 10px;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--accent-bright);
-            box-shadow: 0 0 8px var(--accent-glow-strong);
+            content: ''; position: absolute; right: 0; top: 10px; width: 6px; height: 6px;
+            border-radius: 50%; background: var(--accent-bright); box-shadow: 0 0 8px var(--accent-glow-strong);
         }
-        body.rtl .service-book-content ul li {
-            padding-right: 0;
-            padding-left: 16px;
-        }
-        body.rtl .service-book-content ul li::before {
-            right: auto;
-            left: 0;
-        }
+        body.rtl .service-book-content ul li { padding-right: 0; padding-left: 16px; }
+        body.rtl .service-book-content ul li::before { right: auto; left: 0; }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
-        }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
         .project-card {
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: var(--radius);
-            overflow: hidden;
-            transition: 0.5s var(--ease-spring);
-            box-shadow: var(--shadow-card);
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            position: relative;
+            background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius); overflow: hidden;
+            transition: transform 0.4s var(--ease-spring), border-color 0.4s, box-shadow 0.4s;
+            box-shadow: var(--shadow-card); cursor: pointer; text-decoration: none; color: inherit; display: block;
+            will-change: transform;
         }
         .project-card:hover {
-            border-color: rgba(14, 165, 233, 0.5);
-            transform: translateY(-10px);
+            border-color: rgba(14, 165, 233, 0.5); transform: translateY(-10px);
             box-shadow: var(--shadow-hover), 0 0 50px rgba(14, 165, 233, 0.2);
         }
-        .project-img-wrapper {
-            height: 200px;
-            overflow: hidden;
-        }
-        .project-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.65s;
-        }
-        .project-card:hover .project-img {
-            transform: scale(1.08);
-        }
-        .project-body {
-            padding: 18px 20px;
-        }
-        .project-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: #fff;
-        }
-        .project-desc {
-            color: #e0e0e0;
-            font-size: 0.76rem;
-            line-height: 1.5;
-            margin-bottom: 10px;
-        }
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-        }
-        .project-tag {
-            padding: 4px 10px;
-            background: rgba(59, 130, 246, 0.12);
-            color: var(--accent-bright);
-            border-radius: 50px;
-            font-size: 0.65rem;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-        }
+        .project-img-wrapper { height: 200px; overflow: hidden; }
+        .project-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s; will-change: transform; }
+        .project-card:hover .project-img { transform: scale(1.08); }
+        .project-body { padding: 18px 20px; }
+        .project-title { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 6px; color: #fff; }
+        .project-desc { color: #e0e0e0; font-size: 0.76rem; line-height: 1.5; margin-bottom: 10px; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+        .project-tag { padding: 4px 10px; background: rgba(59, 130, 246, 0.12); color: var(--accent-bright); border-radius: 50px; font-size: 0.65rem; border: 1px solid rgba(59, 130, 246, 0.2); }
 
-        .softskills-vertical {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            max-width: 680px;
-            margin: 0 auto;
-        }
+        .softskills-vertical { display: flex; flex-direction: column; gap: 12px; max-width: 680px; margin: 0 auto; }
         .softskill-card {
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            border-radius: var(--radius);
-            padding: 20px 24px;
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            transition: 0.5s;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: var(--shadow-card);
-            position: relative;
+            background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+            border-radius: var(--radius); padding: 20px 24px; display: flex; align-items: flex-start; gap: 16px;
+            transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
+            border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: var(--shadow-card);
+            will-change: transform;
         }
         .softskill-card:hover {
-            transform: translateX(8px);
-            box-shadow: var(--shadow-hover), 0 0 35px rgba(14, 165, 233, 0.18);
+            transform: translateX(8px); box-shadow: var(--shadow-hover), 0 0 35px rgba(14, 165, 233, 0.18);
             border-color: rgba(14, 165, 233, 0.45);
         }
-        body.rtl .softskill-card:hover {
-            transform: translateX(-8px);
-        }
+        body.rtl .softskill-card:hover { transform: translateX(-8px); }
 
-        .timeline {
-            padding-left: 22px;
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        body.rtl .timeline {
-            padding-left: 0;
-            padding-right: 22px;
-        }
+        .timeline { padding-left: 22px; position: relative; max-width: 600px; margin: 0 auto; }
+        body.rtl .timeline { padding-left: 0; padding-right: 22px; }
         .timeline::before {
-            content: '';
-            position: absolute;
-            left: 6px;
-            top: 12px;
-            bottom: 12px;
-            width: 2px;
-            background: linear-gradient(180deg, var(--accent-dark), var(--accent-bright));
-            opacity: 0.4;
-            border-radius: 2px;
+            content: ''; position: absolute; left: 6px; top: 12px; bottom: 12px; width: 2px;
+            background: linear-gradient(180deg, var(--accent-dark), var(--accent-bright)); opacity: 0.4; border-radius: 2px;
         }
-        body.rtl .timeline::before {
-            left: auto;
-            right: 6px;
-        }
-        .tl-item {
-            padding: 10px 0 10px 18px;
-            position: relative;
-        }
+        body.rtl .timeline::before { left: auto; right: 6px; }
+        .tl-item { padding: 10px 0 10px 18px; position: relative; }
         .tl-item::before {
-            content: '';
-            position: absolute;
-            left: -20px;
-            top: 16px;
-            width: 8px;
-            height: 8px;
-            background: var(--accent-bright);
-            border-radius: 50%;
-            box-shadow: 0 0 14px var(--accent-glow-strong);
+            content: ''; position: absolute; left: -20px; top: 16px; width: 8px; height: 8px;
+            background: var(--accent-bright); border-radius: 50%; box-shadow: 0 0 14px var(--accent-glow-strong);
         }
-        .tl-date {
-            font-size: 0.7rem;
-            color: var(--accent-bright);
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-        .tl-title {
-            font-weight: 700;
-            color: #fff;
-            font-size: 0.9rem;
-        }
-        .tl-desc {
-            font-size: 0.78rem;
-            color: #e0e0e0;
-        }
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.7rem;
-            color: #4ade80;
-            margin-top: 4px;
-        }
-        .live-dot {
-            width: 7px;
-            height: 7px;
-            background: #4ade80;
-            border-radius: 50%;
-            animation: pulseDot 1.6s infinite;
-        }
-        @keyframes pulseDot {
-            0%,
-            100% {
-                box-shadow: 0 0 4px #4ade80;
-            }
-            50% {
-                box-shadow: 0 0 16px #4ade80, 0 0 28px #22c55e;
-            }
-        }
+        .tl-date { font-size: 0.7rem; color: var(--accent-bright); font-weight: 600; margin-bottom: 2px; }
+        .tl-title { font-weight: 700; color: #fff; font-size: 0.9rem; }
+        .tl-desc { font-size: 0.78rem; color: #e0e0e0; }
+        .status-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.7rem; color: #4ade80; margin-top: 4px; }
+        .live-dot { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; animation: pulseDot 1.6s infinite; }
+        @keyframes pulseDot { 0%,100%{ box-shadow: 0 0 4px #4ade80; } 50%{ box-shadow: 0 0 16px #4ade80, 0 0 28px #22c55e; } }
 
-        .platforms-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-            justify-content: center;
-        }
+        .platforms-grid { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
         .platform-card {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 24px;
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 50px;
-            text-decoration: none;
-            color: var(--text-primary);
-            transition: 0.4s var(--ease-spring);
-            box-shadow: var(--shadow-card);
-            font-weight: 500;
-            font-size: 0.85rem;
-            position: relative;
+            display: flex; align-items: center; gap: 10px; padding: 14px 24px;
+            background: var(--glass-bg); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 50px;
+            text-decoration: none; color: var(--text-primary);
+            transition: transform 0.35s var(--ease-spring), border-color 0.35s, box-shadow 0.35s;
+            box-shadow: var(--shadow-card); font-weight: 500; font-size: 0.85rem;
+            will-change: transform;
         }
         .platform-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(14, 165, 233, 0.5);
+            transform: translateY(-4px); border-color: rgba(14, 165, 233, 0.5);
             box-shadow: var(--shadow-hover), 0 0 40px rgba(14, 165, 233, 0.2);
         }
-        .platform-card i {
-            font-size: 1.2rem;
-        }
+        .platform-card i { font-size: 1.2rem; }
 
         .footer {
-            padding: 28px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            color: var(--text-muted);
-            font-size: 0.78rem;
+            padding: 28px 0; border-top: 1px solid rgba(255, 255, 255, 0.04);
+            text-align: center; position: relative; z-index: 1; color: var(--text-muted); font-size: 0.78rem;
         }
 
         .scroll-top {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            z-index: 999;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: var(--accent);
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            font-size: 1rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: 0.4s;
+            position: fixed; bottom: 28px; right: 28px; z-index: 999;
+            width: 44px; height: 44px; border-radius: 50%; background: var(--accent);
+            border: none; color: #fff; cursor: pointer; font-size: 1rem;
+            opacity: 0; pointer-events: none; transition: opacity 0.35s, transform 0.35s;
             box-shadow: 0 8px 28px rgba(59, 130, 246, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
         }
-        .scroll-top.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        .scroll-top.visible { opacity: 1; pointer-events: auto; }
 
         @media (max-width: 960px) {
-            .nav-desktop {
-                display: none;
-            }
-            .hamburger-btn {
-                display: flex;
-            }
-            .hero .container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 24px;
-            }
-            .hero-visual {
-                order: -1;
-            }
-            .avatar-ring {
-                width: 280px;
-                height: 280px;
-            }
-            .hero-name {
-                font-size: 2rem;
-            }
-            .hero-tagline {
-                max-width: 100%;
-                margin: 0 auto 20px;
-            }
-            .hero-buttons {
-                justify-content: center;
-            }
-            .hero-platforms-row {
-                justify-content: center;
-            }
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            .section-title {
-                font-size: 1.5rem;
-            }
-            .section-wrapper {
-                padding: 28px 14px;
-                border-radius: 20px;
-            }
-            .logo-text {
-                font-size: 1.2rem;
-            }
-            .skill-row {
-                flex-direction: column;
-                text-align: center;
-            }
-            body.rtl .skill-row {
-                flex-direction: column;
-                text-align: center;
-            }
-            .highlight-box {
-                font-size: 0.8rem;
-                padding: 20px 16px;
-            }
-            .service-book-card {
-                max-width: 100%;
-                align-self: stretch !important;
-            }
+            .nav-desktop { display: none; }
+            .hamburger-btn { display: flex; }
+            .hero .container { grid-template-columns: 1fr; text-align: center; gap: 24px; }
+            .hero-visual { order: -1; }
+            .avatar-ring { width: 280px; height: 280px; }
+            .hero-name { font-size: 2rem; }
+            .hero-tagline { max-width: 100%; margin: 0 auto 20px; }
+            .hero-buttons { justify-content: center; }
+            .hero-platforms-row { justify-content: center; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.5rem; }
+            .section-wrapper { padding: 28px 14px; border-radius: 20px; }
+            .logo-text { font-size: 1.2rem; }
+            .skill-row { flex-direction: column; text-align: center; }
+            body.rtl .skill-row { flex-direction: column; text-align: center; }
+            .highlight-box { font-size: 0.8rem; padding: 20px 16px; }
+            .service-book-card { max-width: 100%; align-self: stretch !important; }
             .service-book-card:nth-child(odd),
             .service-book-card:nth-child(even) {
                 align-self: stretch !important;
                 transform: perspective(900px) rotateY(0deg) translateY(20px) !important;
             }
-            .service-book-card.revealed {
-                transform: perspective(900px) rotateY(0deg) translateY(0) !important;
-            }
+            .service-book-card.revealed { transform: perspective(900px) rotateY(0deg) translateY(0) !important; }
             body.rtl .service-book-card:nth-child(odd),
             body.rtl .service-book-card:nth-child(even) {
                 align-self: stretch !important;
                 transform: perspective(900px) rotateY(0deg) translateY(20px) !important;
             }
-            body.rtl .service-book-card.revealed {
-                transform: perspective(900px) rotateY(0deg) translateY(0) !important;
+            body.rtl .service-book-card.revealed { transform: perspective(900px) rotateY(0deg) translateY(0) !important; }
+            
+            /* تحسينات أداء الموبايل */
+            .header {
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                background: rgba(11, 11, 15, 0.85);
+            }
+            .skill-row, .softskill-card, .project-card, .platform-card, .service-book-card, .highlight-box {
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+            }
+            #particleCanvas {
+                opacity: 0.6;
             }
         }
         @media (max-width: 600px) {
-            .hero-name {
-                font-size: 1.7rem;
-            }
-            .section-title {
-                font-size: 1.3rem;
-            }
-            .section-wrapper {
-                padding: 22px 10px;
-            }
-            .header {
-                padding: 6px 12px;
-                width: calc(100% - 16px);
-            }
-            .lang-btn {
-                padding: 4px 7px;
-                font-size: 0.6rem;
-            }
-            .logo-text {
-                font-size: 1rem;
-            }
-            .avatar-ring {
-                width: 220px;
-                height: 220px;
-            }
+            .header { padding: 6px 12px; width: calc(100% - 16px); }
+            .avatar-ring { width: 220px; height: 220px; }
+            .hero-name { font-size: 1.7rem; }
+            .section-title { font-size: 1.3rem; }
+            .section-wrapper { padding: 22px 10px; }
+            .lang-btn { padding: 4px 7px; font-size: 0.6rem; }
+            .logo-text { font-size: 1rem; }
         }
     </style>
 </head>
@@ -1218,7 +863,7 @@
     <header class="header" id="header">
         <div class="header-inner">
             <a href="#home" class="logo-link">
-                <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="Abdulrahman" class="logo-img" loading="lazy">
+                <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="Abdulrahman" class="logo-img" width="36" height="36" loading="lazy">
                 <span class="logo-text">AbdulRahman</span>
             </a>
             <ul class="nav-desktop" id="navDesktop"></ul>
@@ -1256,7 +901,7 @@
             </div>
             <div class="hero-visual">
                 <div class="avatar-ring">
-                    <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="Abdulrahman" class="avatar-img" loading="lazy">
+                    <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="Abdulrahman" class="avatar-img" loading="lazy" width="620" height="620">
                 </div>
             </div>
         </div>
@@ -1363,6 +1008,8 @@
                     'project1.desc': 'A modern technology website showcasing services and solutions with a clean, professional design.',
                     'project2.title': 'Smart Calculator',
                     'project2.desc': 'An interactive web-based calculator with a sleek interface and smooth functionality.',
+                    'project3.title': 'Weather Forecast',
+                    'project3.desc': 'Know the weather anytime, anywhere in the world with a simple and beautiful interface.'
                 },
                 de: {
                     'hero.role.prefix': 'Ich bin',
@@ -1394,6 +1041,8 @@
                     'project1.desc': 'Eine moderne Technologie-Website mit sauberem, professionellem Design.',
                     'project2.title': 'Intelligenter Rechner',
                     'project2.desc': 'Ein interaktiver webbasierter Rechner mit eleganter Oberfläche und reibungsloser Funktionalität.',
+                    'project3.title': 'Wettervorhersage',
+                    'project3.desc': 'Erfahre das Wetter jederzeit und überall auf der Welt mit einer einfachen und schönen Oberfläche.'
                 },
                 ar: {
                     'hero.role.prefix': 'أنا',
@@ -1425,6 +1074,8 @@
                     'project1.desc': 'موقع تقني عصري يعرض الخدمات والحلول بتصميم نظيف واحترافي.',
                     'project2.title': 'الآلة الحاسبة الذكية',
                     'project2.desc': 'آلة حاسبة تفاعلية بواجهة أنيقة ووظائف سلسة على الويب.',
+                    'project3.title': 'معرفة الطقس',
+                    'project3.desc': 'معرفة حالة الطقس في أي وقت وفي أي مكان في العالم بواجهة بسيطة وجميلة.'
                 }
             };
 
@@ -1465,136 +1116,55 @@
                     tags: ['HTML5', 'CSS3', 'JavaScript'], url: 'https://abdo-1818.github.io/abdulrahman_tec/' },
                 { titleKey: 'project2.title', descKey: 'project2.desc',
                     img: 'https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=600',
-                    tags: ['HTML5', 'CSS3', 'JavaScript'], url: 'https://abdo-1818.github.io/bboda_7/' }
+                    tags: ['HTML5', 'CSS3', 'JavaScript'], url: 'https://abdo-1818.github.io/bboda_7/' },
+                { titleKey: 'project3.title', descKey: 'project3.desc',
+                    img: 'https://images.unsplash.com/photo-1592210454359-9043f067919b?w=600',
+                    tags: ['HTML5', 'CSS3', 'JavaScript', 'API'], url: 'https://abdo-1818.github.io/bboda/' }
             ];
 
             const strengthItems = [
-                { i: 'fas fa-star',
-                    ar: 'تطوير واجهات ومواقع ويب حديثة.',
-                    en: 'Developing modern web interfaces and websites.',
-                    de: 'Entwicklung moderner Web-Oberflächen und Websites.' },
-                { i: 'fas fa-star',
-                    ar: 'فهم أساسيات الشبكات والأنظمة.',
-                    en: 'Understanding the basics of networks and systems.',
-                    de: 'Verständnis der Grundlagen von Netzwerken und Systemen.' },
-                { i: 'fas fa-star',
-                    ar: 'القدرة على التعلم والعمل تحت الضغط.',
-                    en: 'Ability to learn and work under pressure.',
-                    de: 'Fähigkeit, unter Druck zu lernen und zu arbeiten.' },
-                { i: 'fas fa-star',
-                    ar: 'مهارات جيدة في التحليل وحل المشكلات.',
-                    en: 'Good skills in analysis and problem-solving.',
-                    de: 'Gute Fähigkeiten in Analyse und Problemlösung.' },
-                { i: 'fas fa-star',
-                    ar: 'خلفية جيدة في نظم المعلومات وإدارة الأعمال.',
-                    en: 'Good background in information systems and business management.',
-                    de: 'Guter Hintergrund in Informationssystemen und Geschäftsführung.' }
+                { i: 'fas fa-star', ar: 'تطوير واجهات ومواقع ويب حديثة.', en: 'Developing modern web interfaces and websites.', de: 'Entwicklung moderner Web-Oberflächen und Websites.' },
+                { i: 'fas fa-star', ar: 'فهم أساسيات الشبكات والأنظمة.', en: 'Understanding the basics of networks and systems.', de: 'Verständnis der Grundlagen von Netzwerken und Systemen.' },
+                { i: 'fas fa-star', ar: 'القدرة على التعلم والعمل تحت الضغط.', en: 'Ability to learn and work under pressure.', de: 'Fähigkeit, unter Druck zu lernen und zu arbeiten.' },
+                { i: 'fas fa-star', ar: 'مهارات جيدة في التحليل وحل المشكلات.', en: 'Good skills in analysis and problem-solving.', de: 'Gute Fähigkeiten in Analyse und Problemlösung.' },
+                { i: 'fas fa-star', ar: 'خلفية جيدة في نظم المعلومات وإدارة الأعمال.', en: 'Good background in information systems and business management.', de: 'Guter Hintergrund in Informationssystemen und Geschäftsführung.' }
             ];
 
             const softSkillData = [
-                { i: 'fas fa-puzzle-piece', nameEn: 'Problem Solving', nameDe: 'Problemlösung', nameAr: 'حل المشكلات',
-                    descEn: 'I analyze complex issues and find effective solutions quickly.',
-                    descDe: 'Ich analysiere komplexe Probleme und finde schnelle Lösungen.', descAr: 'أحلل القضايا المعقدة وأجد حلولًا فعالة بسرعة.' },
-                { i: 'fas fa-chart-line', nameEn: 'Analytical Thinking', nameDe: 'Analytisches Denken',
-                    nameAr: 'التفكير التحليلي',
-                    descEn: 'I use data-driven logic to make informed decisions.',
-                    descDe: 'Ich nutze datengestützte Logik für fundierte Entscheidungen.', descAr: 'أستخدم المنطق القائم على البيانات لاتخاذ قرارات مدروسة.' },
-                { i: 'fas fa-users', nameEn: 'Team Collaboration', nameDe: 'Teamarbeit', nameAr: 'التعاون الجماعي',
-                    descEn: 'I work effectively within teams, contributing positively to group success.',
-                    descDe: 'Ich arbeite effektiv im Team und trage zum Erfolg bei.', descAr: 'أعمل بفعالية ضمن الفرق وأساهم بإيجابية في نجاح المجموعة.' },
-                { i: 'fas fa-clock', nameEn: 'Time Management', nameDe: 'Zeitmanagement', nameAr: 'إدارة الوقت',
-                    descEn: 'I prioritize tasks smartly to meet deadlines efficiently.',
-                    descDe: 'Ich priorisiere Aufgaben intelligent, um Fristen einzuhalten.', descAr: 'أحدد أولويات المهام بذكاء للوفاء بالمواعيد النهائية بكفاءة.' },
-                { i: 'fas fa-book-open', nameEn: 'Self-Learning', nameDe: 'Selbstlernen', nameAr: 'التعلم الذاتي',
-                    descEn: 'I quickly adopt new tools and technologies on my own.',
-                    descDe: 'Ich eigne mir schnell neue Werkzeuge und Technologien an.', descAr: 'أتبنى الأدوات والتقنيات الجديدة بسرعة وذاتيًا.' },
-                { i: 'fas fa-rotate', nameEn: 'Adaptability', nameDe: 'Anpassungsfähigkeit',
-                    nameAr: 'القدرة على التكيف',
-                    descEn: 'I adapt quickly to changing environments and new challenges.',
-                    descDe: 'Ich passe mich schnell an veränderte Umgebungen an.', descAr: 'أتأقلم بسرعة مع البيئات المتغيرة والتحديات الجديدة.' }
+                { i: 'fas fa-puzzle-piece', nameEn: 'Problem Solving', nameDe: 'Problemlösung', nameAr: 'حل المشكلات', descEn: 'I analyze complex issues and find effective solutions quickly.', descDe: 'Ich analysiere komplexe Probleme und finde schnelle Lösungen.', descAr: 'أحلل القضايا المعقدة وأجد حلولًا فعالة بسرعة.' },
+                { i: 'fas fa-chart-line', nameEn: 'Analytical Thinking', nameDe: 'Analytisches Denken', nameAr: 'التفكير التحليلي', descEn: 'I use data-driven logic to make informed decisions.', descDe: 'Ich nutze datengestützte Logik für fundierte Entscheidungen.', descAr: 'أستخدم المنطق القائم على البيانات لاتخاذ قرارات مدروسة.' },
+                { i: 'fas fa-users', nameEn: 'Team Collaboration', nameDe: 'Teamarbeit', nameAr: 'التعاون الجماعي', descEn: 'I work effectively within teams, contributing positively to group success.', descDe: 'Ich arbeite effektiv im Team und trage zum Erfolg bei.', descAr: 'أعمل بفعالية ضمن الفرق وأساهم بإيجابية في نجاح المجموعة.' },
+                { i: 'fas fa-clock', nameEn: 'Time Management', nameDe: 'Zeitmanagement', nameAr: 'إدارة الوقت', descEn: 'I prioritize tasks smartly to meet deadlines efficiently.', descDe: 'Ich priorisiere Aufgaben intelligent, um Fristen einzuhalten.', descAr: 'أحدد أولويات المهام بذكاء للوفاء بالمواعيد النهائية بكفاءة.' },
+                { i: 'fas fa-book-open', nameEn: 'Self-Learning', nameDe: 'Selbstlernen', nameAr: 'التعلم الذاتي', descEn: 'I quickly adopt new tools and technologies on my own.', descDe: 'Ich eigne mir schnell neue Werkzeuge und Technologien an.', descAr: 'أتبنى الأدوات والتقنيات الجديدة بسرعة وذاتيًا.' },
+                { i: 'fas fa-rotate', nameEn: 'Adaptability', nameDe: 'Anpassungsfähigkeit', nameAr: 'القدرة على التكيف', descEn: 'I adapt quickly to changing environments and new challenges.', descDe: 'Ich passe mich schnell an veränderte Umgebungen an.', descAr: 'أتأقلم بسرعة مع البيئات المتغيرة والتحديات الجديدة.' }
             ];
 
             const serviceData = [
-                {
-                    i: 'fas fa-globe',
-                    titleAr: 'تطوير وبرمجة المواقع',
-                    titleEn: 'Website Development & Programming',
-                    titleDe: 'Webentwicklung & Programmierung',
-                    itemsAr: ['تصميم وتطوير مواقع ويب متجاوبة', 'إنشاء واجهات باستخدام HTML / CSS / JavaScript', 'تطوير أنظمة ويب باستخدام PHP',
-                        'تحسين تجربة المستخدم وأداء المواقع'
-                    ],
-                    itemsEn: ['Designing and developing responsive websites',
-                        'Creating interfaces using HTML / CSS / JavaScript', 'Developing web systems using PHP',
-                        'Improving user experience and website performance'
-                    ],
-                    itemsDe: ['Entwicklung responsiver Websites', 'Erstellung von Oberflächen mit HTML / CSS / JavaScript',
-                        'Entwicklung von Websystemen mit PHP', 'Verbesserung der Benutzererfahrung und Leistung'
-                    ]
-                },
-                {
-                    i: 'fas fa-code',
-                    titleAr: 'برمجة وتطوير التطبيقات',
-                    titleEn: 'Application Programming & Development',
-                    titleDe: 'Anwendungsprogrammierung & Entwicklung',
-                    itemsAr: ['تطوير برامج باستخدام Python و C++', 'بناء تطبيقات سطح مكتب بسيطة', 'كتابة أكواد منظمة وقابلة للتطوير',
-                        'حل المشكلات البرمجية والخوارزميات'
-                    ],
-                    itemsEn: ['Developing programs using Python and C++', 'Building simple desktop applications',
-                        'Writing organized and scalable code', 'Solving programming problems and algorithms'
-                    ],
-                    itemsDe: ['Entwicklung von Programmen mit Python und C++', 'Erstellung einfacher Desktop-Anwendungen',
-                        'Schreiben von organisiertem Code', 'Lösung von Programmierproblemen'
-                    ]
-                },
-                {
-                    i: 'fas fa-sitemap',
-                    titleAr: 'نظم المعلومات وتحليل الأنظمة',
-                    titleEn: 'Information Systems & Systems Analysis',
-                    titleDe: 'Informationssysteme & Systemanalyse',
-                    itemsAr: ['تحليل وتصميم نظم المعلومات', 'فهم دورة تطوير الأنظمة', 'توثيق وتحليل متطلبات المشاريع', 'ربط الجانب الإداري بالتقني'],
-                    itemsEn: ['Analyzing and designing information systems', 'Understanding the system development lifecycle',
-                        'Documenting and analyzing project requirements',
-                        'Linking the administrative side with the technical'
-                    ],
-                    itemsDe: ['Analyse und Design von Informationssystemen', 'Verständnis des Systementwicklungszyklus',
-                        'Dokumentation und Analyse von Projektanforderungen', 'Verbindung von Verwaltung und Technik'
-                    ]
-                },
-                {
-                    i: 'fas fa-briefcase',
-                    titleAr: 'الأعمال والإدارة',
-                    titleEn: 'Business & Management',
-                    titleDe: 'Business & Management',
-                    itemsAr: ['مبادئ المحاسبة وإدارة الأعمال', 'إدارة الأزمات واتخاذ القرار', 'التسويق والاقتصاد والاستثمار',
-                        'الموارد البشرية والجودة الشاملة', 'فهم القوانين التجارية وبيئة الأعمال'
-                    ],
-                    itemsEn: ['Principles of accounting and business management', 'Crisis management and decision-making',
-                        'Marketing, economics, and investment', 'Human resources and total quality',
-                        'Understanding commercial laws and business environment'
-                    ],
-                    itemsDe: ['Grundsätze der Buchhaltung und Unternehmensführung', 'Krisenmanagement und Entscheidungsfindung',
-                        'Marketing, Wirtschaft und Investition', 'Personalwesen und umfassende Qualität',
-                        'Verständnis von Handelsrecht'
-                    ]
-                },
-                {
-                    i: 'fas fa-file-alt',
-                    titleAr: 'مايكروسوفت أوفيس',
-                    titleEn: 'Microsoft Office',
-                    titleDe: 'Microsoft Office',
-                    itemsAr: ['مايكروسوفت إكسيل', 'مايكروسوفت وورد', 'مايكروسوفت باوربوينت'],
-                    itemsEn: ['Microsoft Excel', 'Microsoft Word', 'Microsoft PowerPoint'],
-                    itemsDe: ['Microsoft Excel', 'Microsoft Word', 'Microsoft PowerPoint']
-                }
+                { i: 'fas fa-globe', titleAr: 'تطوير وبرمجة المواقع', titleEn: 'Website Development & Programming', titleDe: 'Webentwicklung & Programmierung',
+                    itemsAr: ['تصميم وتطوير مواقع ويب متجاوبة','إنشاء واجهات باستخدام HTML / CSS / JavaScript','تطوير أنظمة ويب باستخدام PHP','تحسين تجربة المستخدم وأداء المواقع'],
+                    itemsEn: ['Designing and developing responsive websites','Creating interfaces using HTML / CSS / JavaScript','Developing web systems using PHP','Improving user experience and website performance'],
+                    itemsDe: ['Entwicklung responsiver Websites','Erstellung von Oberflächen mit HTML / CSS / JavaScript','Entwicklung von Websystemen mit PHP','Verbesserung der Benutzererfahrung und Leistung'] },
+                { i: 'fas fa-code', titleAr: 'برمجة وتطوير التطبيقات', titleEn: 'Application Programming & Development', titleDe: 'Anwendungsprogrammierung & Entwicklung',
+                    itemsAr: ['تطوير برامج باستخدام Python و C++','بناء تطبيقات سطح مكتب بسيطة','كتابة أكواد منظمة وقابلة للتطوير','حل المشكلات البرمجية والخوارزميات'],
+                    itemsEn: ['Developing programs using Python and C++','Building simple desktop applications','Writing organized and scalable code','Solving programming problems and algorithms'],
+                    itemsDe: ['Entwicklung von Programmen mit Python und C++','Erstellung einfacher Desktop-Anwendungen','Schreiben von organisiertem Code','Lösung von Programmierproblemen'] },
+                { i: 'fas fa-sitemap', titleAr: 'نظم المعلومات وتحليل الأنظمة', titleEn: 'Information Systems & Systems Analysis', titleDe: 'Informationssysteme & Systemanalyse',
+                    itemsAr: ['تحليل وتصميم نظم المعلومات','فهم دورة تطوير الأنظمة','توثيق وتحليل متطلبات المشاريع','ربط الجانب الإداري بالتقني'],
+                    itemsEn: ['Analyzing and designing information systems','Understanding the system development lifecycle','Documenting and analyzing project requirements','Linking the administrative side with the technical'],
+                    itemsDe: ['Analyse und Design von Informationssystemen','Verständnis des Systementwicklungszyklus','Dokumentation und Analyse von Projektanforderungen','Verbindung von Verwaltung und Technik'] },
+                { i: 'fas fa-briefcase', titleAr: 'الأعمال والإدارة', titleEn: 'Business & Management', titleDe: 'Business & Management',
+                    itemsAr: ['مبادئ المحاسبة وإدارة الأعمال','إدارة الأزمات واتخاذ القرار','التسويق والاقتصاد والاستثمار','الموارد البشرية والجودة الشاملة','فهم القوانين التجارية وبيئة الأعمال'],
+                    itemsEn: ['Principles of accounting and business management','Crisis management and decision-making','Marketing, economics, and investment','Human resources and total quality','Understanding commercial laws and business environment'],
+                    itemsDe: ['Grundsätze der Buchhaltung und Unternehmensführung','Krisenmanagement und Entscheidungsfindung','Marketing, Wirtschaft und Investition','Personalwesen und umfassende Qualität','Verständnis von Handelsrecht'] },
+                { i: 'fas fa-file-alt', titleAr: 'مايكروسوفت أوفيس', titleEn: 'Microsoft Office', titleDe: 'Microsoft Office',
+                    itemsAr: ['مايكروسوفت إكسيل','مايكروسوفت وورد','مايكروسوفت باوربوينت'],
+                    itemsEn: ['Microsoft Excel','Microsoft Word','Microsoft PowerPoint'],
+                    itemsDe: ['Microsoft Excel','Microsoft Word','Microsoft PowerPoint'] }
             ];
 
             const eduData = [
-                { date: '2023 - Present', schoolEn: 'New Cairo Academy', schoolDe: 'New Cairo Academy',
-                    schoolAr: 'أكاديمية القاهرة الجديدة', descEn: 'BSc Computer Science', descDe: 'BSc Informatik',
-                    descAr: 'بكالوريوس علوم الحاسب', active: true },
-                { date: '2020 - 2023', schoolEn: 'General Secondary School', schoolDe: 'Allgemeine Sekundarschule',
-                    schoolAr: 'ثانوية عامة', descEn: 'Technology Foundation', descDe: 'Technologiegrundlage',
-                    descAr: 'أساسيات التكنولوجيا', active: false }
+                { date: '2023 - Present', schoolEn: 'New Cairo Academy', schoolDe: 'New Cairo Academy', schoolAr: 'أكاديمية القاهرة الجديدة', descEn: 'BSc Computer Science', descDe: 'BSc Informatik', descAr: 'بكالوريوس علوم الحاسب', active: true },
+                { date: '2020 - 2023', schoolEn: 'General Secondary School', schoolDe: 'Allgemeine Sekundarschule', schoolAr: 'ثانوية عامة', descEn: 'Technology Foundation', descDe: 'Technologiegrundlage', descAr: 'أساسيات التكنولوجيا', active: false }
             ];
 
             const platformData = [
@@ -1611,24 +1181,15 @@
 
             let currentLang = 'en';
             window.currentLang = currentLang;
-            let roleIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
-            let typedTimeout;
+            let roleIndex = 0, charIndex = 0, isDeleting = false, typedTimeout;
 
-            function getT(key) {
-                const t = translations[currentLang];
-                return t[key] || translations['en'][key] || key;
-            }
+            function getT(key) { return translations[currentLang]?.[key] || translations['en'][key] || key; }
 
             function buildNav() {
-                const items = ['home', 'about', 'unique', 'services', 'skills', 'projects', 'education', 'strengths',
-                    'softskills', 'contact'
-                ];
+                const items = ['home','about','unique','services','skills','projects','education','strengths','softskills','contact'];
                 const navDesktop = document.getElementById('navDesktop');
                 const mobileNav = document.getElementById('mobileNav');
-                const html = items.map(k =>
-                    `<li><a href="#${k}" data-i18n-nav="${k}">${getT('nav.' + k)}</a></li>`).join('');
+                const html = items.map(k => `<li><a href="#${k}" data-i18n-nav="${k}">${getT('nav.' + k)}</a></li>`).join('');
                 if (navDesktop) navDesktop.innerHTML = html;
                 if (mobileNav) mobileNav.innerHTML = html;
             }
@@ -1638,89 +1199,38 @@
                 if (!container) return;
                 container.innerHTML = skillsData.map(s => {
                     const desc = s['desc' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s.descEn;
-                    return `
-                    <div class="skill-row">
-                        <div class="skill-icon-circle" style="background:${s.color}20; color:${s.color}; box-shadow: 0 0 24px ${s.color}40;">
-                            <i class="${s.i}"></i>
-                        </div>
-                        <div class="skill-info">
-                            <h4>${s.n}</h4>
-                            <p>${desc}</p>
-                        </div>
-                    </div>`;
+                    return `<div class="skill-row"><div class="skill-icon-circle" style="background:${s.color}20; color:${s.color}; box-shadow: 0 0 24px ${s.color}40;"><i class="${s.i}"></i></div><div class="skill-info"><h4>${s.n}</h4><p>${desc}</p></div></div>`;
                 }).join('');
             }
 
             function buildInfo() {
-                const data = {
-                    en: { fullname: 'Abdulrahman Mamdouh', age: '20 Years', dob: 'August 1, 2005',
-                        nat: 'Egyptian', spec: 'Information Systems', dept: 'Computer Science',
-                        status: 'Currently Studying' },
-                    de: { fullname: 'Abdulrahman Mamdouh', age: '20 Jahre', dob: '1. August 2005', nat: 'Ägypter',
-                        spec: 'Informationssysteme', dept: 'Informatik', status: 'Studierend' },
-                    ar: { fullname: 'عبدالرحمن ممدوح', age: '20 سنة', dob: '1 أغسطس 2005', nat: 'مصري',
-                        spec: 'نظم المعلومات', dept: 'علوم الحاسب', status: 'قيد الدراسة' }
-                };
-                const labels = {
-                    en: { fullname: 'Full Name', age: 'Age', dob: 'Date of Birth', nat: 'Nationality',
-                        spec: 'Specialization', dept: 'Department', status: 'Status' },
-                    de: { fullname: 'Name', age: 'Alter', dob: 'Geburtsdatum', nat: 'Nationalität',
-                        spec: 'Spezialisierung', dept: 'Fachbereich', status: 'Status' },
-                    ar: { fullname: 'الاسم', age: 'العمر', dob: 'تاريخ الميلاد', nat: 'الجنسية', spec: 'التخصص',
-                        dept: 'القسم', status: 'الحالة' }
-                };
-                const v = data[currentLang],
-                    l = labels[currentLang];
-                const grid = document.getElementById('infoGrid');
-                if (!grid) return;
-                grid.innerHTML = Object.keys(v).map(k =>
-                    `<div class="info-cell"><div class="info-label">${l[k]}</div><div class="info-value">${v[k]}</div></div>`
-                ).join('');
+                const data = { en: { fullname:'Abdulrahman Mamdouh', age:'20 Years', dob:'August 1, 2005', nat:'Egyptian', spec:'Information Systems', dept:'Computer Science', status:'Currently Studying' }, de: { fullname:'Abdulrahman Mamdouh', age:'20 Jahre', dob:'1. August 2005', nat:'Ägypter', spec:'Informationssysteme', dept:'Informatik', status:'Studierend' }, ar: { fullname:'عبدالرحمن ممدوح', age:'20 سنة', dob:'1 أغسطس 2005', nat:'مصري', spec:'نظم المعلومات', dept:'علوم الحاسب', status:'قيد الدراسة' } };
+                const labels = { en: { fullname:'Full Name', age:'Age', dob:'Date of Birth', nat:'Nationality', spec:'Specialization', dept:'Department', status:'Status' }, de: { fullname:'Name', age:'Alter', dob:'Geburtsdatum', nat:'Nationalität', spec:'Spezialisierung', dept:'Fachbereich', status:'Status' }, ar: { fullname:'الاسم', age:'العمر', dob:'تاريخ الميلاد', nat:'الجنسية', spec:'التخصص', dept:'القسم', status:'الحالة' } };
+                const v = data[currentLang], l = labels[currentLang];
+                document.getElementById('infoGrid').innerHTML = Object.keys(v).map(k => `<div class="info-cell"><div class="info-label">${l[k]}</div><div class="info-value">${v[k]}</div></div>`).join('');
             }
 
             function buildProjects() {
                 const grid = document.getElementById('projectsGrid');
                 if (!grid) return;
-                grid.innerHTML = projectsData.map(p => `
-                    <a href="${p.url}" target="_blank" rel="noopener" class="project-card">
-                        <div class="project-img-wrapper"><img src="${p.img}" alt="${getT(p.titleKey)}" class="project-img" loading="lazy"></div>
-                        <div class="project-body">
-                            <h3 class="project-title">${getT(p.titleKey)}</h3>
-                            <p class="project-desc">${getT(p.descKey)}</p>
-                            <div class="project-tags">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>
-                        </div>
-                    </a>
-                `).join('');
+                grid.innerHTML = projectsData.map(p => `<a href="${p.url}" target="_blank" rel="noopener" class="project-card"><div class="project-img-wrapper"><img src="${p.img}" alt="${getT(p.titleKey)}" class="project-img" loading="lazy" width="600" height="200"></div><div class="project-body"><h3 class="project-title">${getT(p.titleKey)}</h3><p class="project-desc">${getT(p.descKey)}</p><div class="project-tags">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div></div></a>`).join('');
             }
 
             function buildEducation() {
                 const container = document.getElementById('educationTimeline');
                 if (!container) return;
                 container.innerHTML = eduData.map(e => {
-                    const school = e['school' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || e
-                        .schoolEn;
+                    const school = e['school' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || e.schoolEn;
                     const desc = e['desc' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || e.descEn;
-                    const statusText = currentLang === 'en' ? 'Currently Studying' : currentLang === 'de' ?
-                        'Studierend' : 'قيد الدراسة';
-                    return `<div class="tl-item">
-                        <div class="tl-date">${e.date}</div>
-                        <div class="tl-title">${school}</div>
-                        <div class="tl-desc">${desc}</div>
-                        ${e.active ? `<span class="status-badge"><span class="live-dot"></span> ${statusText}</span>` : ''}
-                    </div>`;
+                    const statusText = currentLang==='en'?'Currently Studying':currentLang==='de'?'Studierend':'قيد الدراسة';
+                    return `<div class="tl-item"><div class="tl-date">${e.date}</div><div class="tl-title">${school}</div><div class="tl-desc">${desc}</div>${e.active?`<span class="status-badge"><span class="live-dot"></span> ${statusText}</span>`:''}</div>`;
                 }).join('');
             }
 
             function buildStrengths() {
                 const container = document.getElementById('strengthsList');
                 if (!container) return;
-                container.innerHTML = strengthItems.map(s => {
-                    const text = s[currentLang] || s.en;
-                    return `<div class="softskill-card">
-                        <i class="${s.i}" style="color:var(--accent-bright);font-size:1.4rem;flex-shrink:0;"></i>
-                        <p style="font-size:0.8rem;color:#ffffff;">${text}</p>
-                    </div>`;
-                }).join('');
+                container.innerHTML = strengthItems.map(s => `<div class="softskill-card"><i class="${s.i}" style="color:var(--accent-bright);font-size:1.4rem;flex-shrink:0;"></i><p style="font-size:0.8rem;color:#ffffff;">${s[currentLang] || s.en}</p></div>`).join('');
             }
 
             function buildSoftSkills() {
@@ -1729,82 +1239,47 @@
                 container.innerHTML = softSkillData.map(s => {
                     const name = s['name' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s.nameEn;
                     const desc = s['desc' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s.descEn;
-                    return `<div class="softskill-card">
-                        <i class="${s.i}" style="color:var(--accent-bright);font-size:1.4rem;flex-shrink:0;"></i>
-                        <div><h4 style="color:#fff;font-size:0.9rem;">${name}</h4><p style="color:#e8e8e8;font-size:0.78rem;">${desc}</p></div>
-                    </div>`;
+                    return `<div class="softskill-card"><i class="${s.i}" style="color:var(--accent-bright);font-size:1.4rem;flex-shrink:0;"></i><div><h4 style="color:#fff;font-size:0.9rem;">${name}</h4><p style="color:#e8e8e8;font-size:0.78rem;">${desc}</p></div></div>`;
                 }).join('');
             }
 
             function buildServices() {
                 const container = document.getElementById('servicesList');
                 if (!container) return;
-                container.innerHTML = serviceData.map((s, index) => {
-                    const title = s['title' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s
-                        .titleEn;
+                container.innerHTML = serviceData.map(s => {
+                    const title = s['title' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s.titleEn;
                     const items = s['items' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s.itemsEn;
-                    const itemsList = items.map(item => `<li>${item}</li>`).join('');
-                    return `
-                    <div class="service-book-card">
-                        <div class="service-book-icon">
-                            <i class="${s.i}"></i>
-                        </div>
-                        <div class="service-book-content">
-                            <h4>${title}</h4>
-                            <ul>${itemsList}</ul>
-                        </div>
-                    </div>`;
+                    return `<div class="service-book-card"><div class="service-book-icon"><i class="${s.i}"></i></div><div class="service-book-content"><h4>${title}</h4><ul>${items.map(item => `<li>${item}</li>`).join('')}</ul></div></div>`;
                 }).join('');
-
                 setTimeout(() => {
                     const cards = container.querySelectorAll('.service-book-card');
-                    const serviceObserver = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                entry.target.classList.add('revealed');
-                            }
-                        });
-                    }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
-                    cards.forEach(card => serviceObserver.observe(card));
+                    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); }); }, { threshold: 0.1 });
+                    cards.forEach(card => observer.observe(card));
                 }, 100);
             }
 
             function buildPlatforms() {
                 const container = document.getElementById('contactPlatforms');
                 if (!container) return;
-                container.innerHTML = platformData.map(p => `
-                    <a href="${p.u}" target="_blank" rel="noopener" class="platform-card">
-                        <i class="${p.i}" style="color:${p.c};font-size:1.2rem;"></i>
-                        <span>${p.n}</span>
-                    </a>
-                `).join('');
+                container.innerHTML = platformData.map(p => `<a href="${p.u}" target="_blank" rel="noopener" class="platform-card"><i class="${p.i}" style="color:${p.c};font-size:1.2rem;"></i><span>${p.n}</span></a>`).join('');
             }
 
             function buildHeroPlatforms() {
                 const container = document.getElementById('heroPlatforms');
                 if (!container) return;
-                container.innerHTML = platformData.map(p => `
-                    <a href="${p.u}" target="_blank" rel="noopener" class="hero-platform-mini">
-                        <i class="${p.i}" style="color:${p.c};"></i>
-                        <span>${p.n}</span>
-                    </a>
-                `).join('');
+                container.innerHTML = platformData.map(p => `<a href="${p.u}" target="_blank" rel="noopener" class="hero-platform-mini"><i class="${p.i}" style="color:${p.c};"></i><span>${p.n}</span></a>`).join('');
             }
 
             function applyTranslations() {
                 const t = translations[currentLang];
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     const key = el.getAttribute('data-i18n');
-                    if (key === 'unique.text') {
-                        el.innerHTML = t[key] || translations['en'][key] || '';
-                    } else if (t[key]) {
-                        el.textContent = t[key];
-                    }
+                    if (key === 'unique.text') el.innerHTML = t[key] || translations['en'][key] || '';
+                    else if (t[key]) el.textContent = t[key];
                 });
                 document.querySelectorAll('[data-i18n-nav]').forEach(el => {
                     const key = el.getAttribute('data-i18n-nav');
-                    const navKey = 'nav.' + key;
-                    if (t[navKey]) el.textContent = t[navKey];
+                    if (t['nav.' + key]) el.textContent = t['nav.' + key];
                 });
             }
 
@@ -1812,65 +1287,34 @@
                 const roles = roleTexts[currentLang] || roleTexts['en'];
                 const currentRole = roles[roleIndex];
                 const typedEl = document.getElementById('typedText');
-
                 if (!typedEl) return;
-
-                if (isDeleting) {
-                    typedEl.textContent = currentRole.substring(0, charIndex - 1);
-                    charIndex--;
-                } else {
-                    typedEl.textContent = currentRole.substring(0, charIndex + 1);
-                    charIndex++;
-                }
-
+                if (isDeleting) { typedEl.textContent = currentRole.substring(0, charIndex - 1); charIndex--; }
+                else { typedEl.textContent = currentRole.substring(0, charIndex + 1); charIndex++; }
                 let speed = isDeleting ? 40 : 80;
-
-                if (!isDeleting && charIndex === currentRole.length) {
-                    speed = 2000;
-                    isDeleting = true;
-                } else if (isDeleting && charIndex === 0) {
-                    isDeleting = false;
-                    roleIndex = (roleIndex + 1) % roles.length;
-                    speed = 400;
-                }
-
+                if (!isDeleting && charIndex === currentRole.length) { speed = 2000; isDeleting = true; }
+                else if (isDeleting && charIndex === 0) { isDeleting = false; roleIndex = (roleIndex + 1) % roles.length; speed = 400; }
                 typedTimeout = setTimeout(typeRole, speed);
             }
 
             function refreshAll() {
-                buildNav();
-                buildInfo();
-                buildSkillsBook();
-                buildProjects();
-                buildEducation();
-                buildStrengths();
-                buildSoftSkills();
-                buildServices();
-                buildPlatforms();
-                buildHeroPlatforms();
+                buildNav(); buildInfo(); buildSkillsBook(); buildProjects();
+                buildEducation(); buildStrengths(); buildSoftSkills();
+                buildServices(); buildPlatforms(); buildHeroPlatforms();
                 applyTranslations();
                 document.getElementById('currentYear').textContent = new Date().getFullYear();
                 clearTimeout(typedTimeout);
-                roleIndex = 0;
-                charIndex = 0;
-                isDeleting = false;
+                roleIndex = 0; charIndex = 0; isDeleting = false;
                 typeRole();
             }
 
             window.switchLang = function(lang) {
-                currentLang = lang;
-                window.currentLang = lang;
+                currentLang = lang; window.currentLang = lang;
                 document.documentElement.lang = lang === 'ar' ? 'ar' : lang === 'de' ? 'de' : 'en';
                 document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
                 document.body.classList.toggle('rtl', lang === 'ar');
                 document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-                const activeBtn = document.getElementById(lang === 'en' ? 'btnEn' : lang === 'de' ? 'btnDe' : 'btnAr');
-                if (activeBtn) activeBtn.classList.add('active');
-                document.title = {
-                    en: 'Abdulrahman | Frontend Developer',
-                    de: 'Abdulrahman | Frontend-Entwickler',
-                    ar: 'عبدالرحمن | مطور واجهات'
-                } [lang] || 'Abdulrahman | Frontend Developer';
+                document.getElementById(lang==='en'?'btnEn':lang==='de'?'btnDe':'btnAr').classList.add('active');
+                document.title = { en:'Abdulrahman | Frontend Developer', de:'Abdulrahman | Frontend-Entwickler', ar:'عبدالرحمن | مطور واجهات' }[lang] || 'Abdulrahman | Frontend Developer';
                 refreshAll();
             };
 
@@ -1883,194 +1327,113 @@
                 const canvas = document.getElementById('particleCanvas');
                 if (!canvas) return;
                 const ctx = canvas.getContext('2d');
-                let particles = [],
-                    w, h, animId;
-
-                function resize() {
-                    w = canvas.width = window.innerWidth;
-                    h = canvas.height = window.innerHeight;
-                }
-                resize();
-                window.addEventListener('resize', resize);
-                const count = Math.min(70, Math.floor((w * h) / 15000));
+                let particles = [], w, h, animId;
+                function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+                resize(); window.addEventListener('resize', resize);
+                const count = Math.min(45, Math.floor((w * h) / 22000));
                 particles = [];
                 for (let i = 0; i < count; i++) {
-                    particles.push({
-                        x: Math.random() * w,
-                        y: Math.random() * h,
-                        vx: (Math.random() - 0.5) * 0.8,
-                        vy: (Math.random() - 0.5) * 0.8,
-                        r: Math.random() * 1.8 + 0.6
-                    });
+                    particles.push({ x: Math.random()*w, y: Math.random()*h, vx: (Math.random()-0.5)*0.6, vy: (Math.random()-0.5)*0.6, r: Math.random()*1.6+0.5 });
                 }
-
                 function draw() {
                     ctx.clearRect(0, 0, w, h);
-                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.18)';
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-                    ctx.shadowColor = 'rgba(255, 255, 255, 0.7)';
-                    ctx.shadowBlur = 8;
-
+                    ctx.strokeStyle = 'rgba(255,255,255,0.16)';
+                    ctx.fillStyle = 'rgba(255,255,255,0.75)';
                     for (let i = 0; i < particles.length; i++) {
                         const p = particles[i];
-                        p.x += p.vx;
-                        p.y += p.vy;
-                        if (p.x < -20) p.x = w + 20;
-                        if (p.x > w + 20) p.x = -20;
-                        if (p.y < -20) p.y = h + 20;
-                        if (p.y > h + 20) p.y = -20;
-
-                        ctx.beginPath();
-                        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                        ctx.fill();
-
-                        for (let j = i + 1; j < particles.length; j++) {
-                            const q = particles[j];
-                            const dx = p.x - q.x,
-                                dy = p.y - q.y,
-                                dist = Math.sqrt(dx * dx + dy * dy);
-                            if (dist < 130) {
-                                ctx.beginPath();
-                                ctx.moveTo(p.x, p.y);
-                                ctx.lineTo(q.x, q.y);
-                                ctx.stroke();
-                            }
+                        p.x += p.vx; p.y += p.vy;
+                        if (p.x<-20) p.x=w+20; if(p.x>w+20) p.x=-20;
+                        if (p.y<-20) p.y=h+20; if(p.y>h+20) p.y=-20;
+                        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
+                        for (let j=i+1; j<particles.length; j++) {
+                            const q=particles[j], dx=p.x-q.x, dy=p.y-q.y, dist=Math.sqrt(dx*dx+dy*dy);
+                            if(dist<120) { ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke(); }
                         }
                     }
-                    ctx.shadowBlur = 0;
-                    ctx.shadowColor = 'transparent';
                     animId = requestAnimationFrame(draw);
                 }
                 draw();
-
                 window.addEventListener('beforeunload', () => cancelAnimationFrame(animId));
             })();
 
             (function cursor() {
                 const dot = document.getElementById('cursorDotCustom');
-                if (!dot) return;
-                if ('ontouchstart' in window || window.matchMedia('(hover:none)').matches) {
-                    dot.style.display = 'none';
+                if (!dot || 'ontouchstart' in window || window.matchMedia('(hover:none)').matches) {
+                    if(dot) dot.style.display = 'none';
                     document.body.style.cursor = 'auto';
                     return;
                 }
-                let mx = window.innerWidth / 2,
-                    my = window.innerHeight / 2;
-                let cx = mx,
-                    cy = my;
-
-                document.addEventListener('mousemove', e => {
-                    mx = e.clientX;
-                    my = e.clientY;
-                }, { passive: true });
-
+                let mx = window.innerWidth/2, my = window.innerHeight/2, cx = mx, cy = my;
+                document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; }, {passive:true});
                 function anim() {
-                    cx += (mx - cx) * 0.2;
-                    cy += (my - cy) * 0.2;
-                    dot.style.transform = `translate(${cx - 5}px, ${cy - 5}px)`;
+                    cx += (mx-cx)*0.22; cy += (my-cy)*0.22;
+                    dot.style.transform = `translate(${cx-5}px, ${cy-5}px)`;
                     requestAnimationFrame(anim);
                 }
                 anim();
-
-                const hoverTargets = document.querySelectorAll(
-                    'a,button,.btn,.project-card,.softskill-card,.info-cell,.platform-card,.skill-row,.service-book-card,.hero-platform-mini');
-                hoverTargets.forEach(el => {
-                    el.addEventListener('mouseenter', () => dot.classList.add('hovering'));
-                    el.addEventListener('mouseleave', () => dot.classList.remove('hovering'));
-                });
-
-                const observer = new MutationObserver(() => {
-                    const newTargets = document.querySelectorAll(
-                        'a,button,.btn,.project-card,.softskill-card,.info-cell,.platform-card,.skill-row,.service-book-card,.hero-platform-mini');
-                    newTargets.forEach(el => {
-                        el.removeEventListener('mouseenter', () => dot.classList.add('hovering'));
-                        el.removeEventListener('mouseleave', () => dot.classList.remove('hovering'));
-                        el.addEventListener('mouseenter', () => dot.classList.add('hovering'));
-                        el.addEventListener('mouseleave', () => dot.classList.remove('hovering'));
+                const hoverTargets = document.querySelectorAll('a,button,.btn,.project-card,.softskill-card,.info-cell,.platform-card,.skill-row,.service-book-card,.hero-platform-mini');
+                hoverTargets.forEach(el => { el.addEventListener('mouseenter',()=>dot.classList.add('hovering')); el.addEventListener('mouseleave',()=>dot.classList.remove('hovering')); });
+                new MutationObserver(() => {
+                    document.querySelectorAll('a,button,.btn,.project-card,.softskill-card,.info-cell,.platform-card,.skill-row,.service-book-card,.hero-platform-mini').forEach(el => {
+                        el.removeEventListener('mouseenter',()=>dot.classList.add('hovering'));
+                        el.removeEventListener('mouseleave',()=>dot.classList.remove('hovering'));
+                        el.addEventListener('mouseenter',()=>dot.classList.add('hovering'));
+                        el.addEventListener('mouseleave',()=>dot.classList.remove('hovering'));
                     });
-                });
-                observer.observe(document.body, { childList: true, subtree: true });
+                }).observe(document.body, {childList:true, subtree:true});
             })();
 
             (function revealOnScroll() {
                 const sections = document.querySelectorAll('.section-wrapper');
-
-                function reveal() {
-                    sections.forEach(wrapper => {
-                        const rect = wrapper.getBoundingClientRect();
-                        const windowHeight = window.innerHeight;
-                        if (rect.top < windowHeight - 80 && rect.bottom > 40) {
-                            wrapper.classList.add('revealed');
-                        }
-                    });
-                }
-
                 const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('revealed');
-                        }
-                    });
-                }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-                sections.forEach(wrapper => observer.observe(wrapper));
-                reveal();
-                window.addEventListener('scroll', reveal, { passive: true });
+                    entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('revealed'); });
+                }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+                sections.forEach(w => observer.observe(w));
+                function revealCheck() {
+                    sections.forEach(w => { const r = w.getBoundingClientRect(); if(r.top < window.innerHeight-70 && r.bottom > 30) w.classList.add('revealed'); });
+                }
+                revealCheck();
+                window.addEventListener('scroll', revealCheck, {passive:true});
             })();
 
             (function smoothScrollLinks() {
                 document.addEventListener('click', function(e) {
                     const link = e.target.closest('a[href^="#"]');
-                    if (!link) return;
-                    const targetId = link.getAttribute('href');
-                    if (targetId === '#') return;
-                    const target = document.querySelector(targetId);
+                    if (!link || link.getAttribute('href')==='#') return;
+                    const target = document.querySelector(link.getAttribute('href'));
                     if (!target) return;
                     e.preventDefault();
-                    const headerOffset = 90;
-                    const elementPosition = target.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-
-                    if (document.getElementById('mobileMenu').classList.contains('open')) {
-                        window.toggleMobileMenu();
-                    }
+                    window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - 90, behavior: 'smooth' });
+                    if (document.getElementById('mobileMenu').classList.contains('open')) window.toggleMobileMenu();
                 });
             })();
 
             refreshAll();
             typeRole();
 
+            let ticking = false;
             window.addEventListener('scroll', () => {
-                const header = document.getElementById('header');
-                const scrollTopBtn = document.getElementById('scrollTop');
-                if (header) header.classList.toggle('scrolled', window.scrollY > 70);
-                if (scrollTopBtn) scrollTopBtn.classList.toggle('visible', window.scrollY > 450);
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        const header = document.getElementById('header');
+                        const scrollTopBtn = document.getElementById('scrollTop');
+                        if (header) header.classList.toggle('scrolled', window.scrollY > 70);
+                        if (scrollTopBtn) scrollTopBtn.classList.toggle('visible', window.scrollY > 450);
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
             }, { passive: true });
 
             window.addEventListener('scroll', () => {
                 const sections = document.querySelectorAll('section[id]');
                 const navLinks = document.querySelectorAll('.nav-desktop li a, .mobile-nav li a');
-                let currentSection = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 140;
-                    if (window.scrollY >= sectionTop) {
-                        currentSection = section.getAttribute('id');
-                    }
-                });
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + currentSection) {
-                        link.classList.add('active');
-                    }
-                });
+                let current = '';
+                sections.forEach(s => { if(window.scrollY >= s.offsetTop - 140) current = s.getAttribute('id'); });
+                navLinks.forEach(a => { a.classList.remove('active'); if(a.getAttribute('href')==='#'+current) a.classList.add('active'); });
             }, { passive: true });
 
-            console.log('✅ Abdulrahman Portfolio — Ready. All systems operational.');
+            console.log('✅ Abdulrahman Portfolio — Ultra Smooth Performance Ready.');
         })();
     </script>
 </body>
