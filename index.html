@@ -36,6 +36,7 @@
             --text-primary: #FFFFFF;
             --text-secondary: #A1A1AA;
             --text-muted: #6B7280;
+            --text-bright: #F0F0F0;
             --accent-dark: #1E3A8A;
             --accent: #3B82F6;
             --accent-bright: #0EA5E9;
@@ -103,7 +104,7 @@
             inset: 0;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.9; /* slightly more visible for white particles */
+            opacity: 0.9;
         }
 
         #cursorDotCustom {
@@ -407,20 +408,21 @@
         .hero-title-role {
             font-size: 1.15rem;
             font-weight: 600;
-            color: var(--text-secondary);
+            color: #ffffff;
             margin-bottom: 10px;
         }
         .hero-title-role .typed-text {
-            color: var(--accent-bright);
+            color: #ffffff;
             font-weight: 700;
-            text-shadow: 0 0 18px rgba(14, 165, 233, 0.6);
+            text-shadow: 0 0 18px rgba(255, 255, 255, 0.7), 0 0 36px rgba(255, 255, 255, 0.4);
         }
         .hero-tagline {
-            color: var(--text-muted);
+            color: #ffffff;
             font-size: 0.9rem;
             line-height: 1.6;
             margin-bottom: 28px;
             max-width: 460px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
         }
         .hero-buttons {
             display: flex;
@@ -571,7 +573,6 @@
             border-color: rgba(59, 130, 246, 0.25);
             box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.12), 0 0 60px rgba(59, 130, 246, 0.08), 0 20px 60px rgba(0, 0, 0, 0.5);
         }
-        /* STATIC GLOWING BORDER (NO ROTATION) */
         .section-wrapper.glowing-border::after {
             content: '';
             position: absolute;
@@ -673,7 +674,7 @@
         }
         .skill-info p {
             font-size: 0.75rem;
-            color: var(--text-secondary);
+            color: #e0e0e0;
             line-height: 1.4;
         }
 
@@ -704,7 +705,7 @@
             text-transform: uppercase;
         }
         .info-value {
-            color: var(--text-primary);
+            color: #ffffff;
             font-weight: 600;
             font-size: 0.8rem;
         }
@@ -720,7 +721,7 @@
             margin: 0 auto;
             text-align: right;
             line-height: 2;
-            color: var(--text-secondary);
+            color: #ffffff;
             font-size: 0.88rem;
             box-shadow: var(--shadow-card);
             transition: 0.5s;
@@ -830,7 +831,7 @@
             gap: 5px;
         }
         .service-book-content ul li {
-            color: var(--text-secondary);
+            color: #ffffff;
             font-size: 0.78rem;
             line-height: 1.6;
             padding-right: 16px;
@@ -905,7 +906,7 @@
             color: #fff;
         }
         .project-desc {
-            color: var(--text-secondary);
+            color: #e0e0e0;
             font-size: 0.76rem;
             line-height: 1.5;
             margin-bottom: 10px;
@@ -1007,7 +1008,7 @@
         }
         .tl-desc {
             font-size: 0.78rem;
-            color: var(--text-secondary);
+            color: #e0e0e0;
         }
         .status-badge {
             display: inline-flex;
@@ -1291,21 +1292,21 @@
 
     <section class="section" id="projects">
         <div class="section-wrapper glowing-border">
-            <div class="section-header"><h2 class="section-title" data-i18n="projects.title">مشاريعي</h2></div>
+            <div class="section-header"><h2 class="section-title" data-i18n="projects.title">My Projects</h2></div>
             <div class="projects-grid" id="projectsGrid"></div>
         </div>
     </section>
 
     <section class="section" id="education">
         <div class="section-wrapper glowing-border">
-            <div class="section-header"><h2 class="section-title" data-i18n="education.title">دراستي</h2></div>
+            <div class="section-header"><h2 class="section-title" data-i18n="education.title">My Education</h2></div>
             <div class="timeline" id="educationTimeline"></div>
         </div>
     </section>
 
     <section class="section" id="strengths">
         <div class="section-wrapper glowing-border">
-            <div class="section-header"><h2 class="section-title" data-i18n="strengths.title">نقاط قوتي</h2></div>
+            <div class="section-header"><h2 class="section-title" data-i18n="strengths.title">My Strengths</h2></div>
             <div class="softskills-vertical" id="strengthsList"></div>
         </div>
     </section>
@@ -1319,7 +1320,7 @@
 
     <section class="section" id="contact">
         <div class="section-wrapper glowing-border">
-            <div class="section-header"><h2 class="section-title" data-i18n="contact.title">تواصل معي عبر</h2></div>
+            <div class="section-header"><h2 class="section-title" data-i18n="contact.title">Contact Me</h2></div>
             <div class="platforms-grid" id="contactPlatforms"></div>
         </div>
     </section>
@@ -1342,11 +1343,11 @@
                     'unique.text': '<strong>I am Abdulrahman</strong>, a web developer and website designer specializing in creating modern websites that combine attractive design, strong performance, and professional user experience. I work on transforming ideas into real websites that help business owners and companies build a strong and professional online presence. I always pay attention to the small details before the big ones because I believe the real difference appears in the quality of execution, design precision, and ease of use.<br><br>I have: the ability to combine technology and business management<br>Fast learning and continuous skill development<br>The ability to analyze problems and find practical solutions<br>Working with team spirit and good communication<br>Attention to detail and quality of work<br>The ability to develop responsive and modern websites<br>Understanding the relationship between technical systems and business needs<br>Flexibility in learning new technologies and tools<br>Good skills in analysis and organization.',
                     'services.title': 'What I Offer You',
                     'skills.title': 'Programming Languages I Master',
-                    'projects.title': 'مشاريعي',
-                    'education.title': 'دراستي',
-                    'strengths.title': 'نقاط قوتي',
+                    'projects.title': 'My Projects',
+                    'education.title': 'My Education',
+                    'strengths.title': 'My Strengths',
                     'softskills.title': 'Personal Qualities',
-                    'contact.title': 'تواصل معي عبر',
+                    'contact.title': 'Contact Me',
                     'footer.tagline': 'Crafted with passion & precision',
                     'nav.home': 'Home',
                     'nav.about': 'About',
@@ -1461,10 +1462,10 @@
             const projectsData = [
                 { titleKey: 'project1.title', descKey: 'project1.desc',
                     img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600',
-                    tags: ['', '', ''], url: 'https://abdo-1818.github.io/abdulrahman_tec/' },
+                    tags: ['HTML5', 'CSS3', 'JavaScript'], url: 'https://abdo-1818.github.io/abdulrahman_tec/' },
                 { titleKey: 'project2.title', descKey: 'project2.desc',
                     img: 'https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=600',
-                    tags: ['', '', ''], url: 'https://abdo-1818.github.io/bboda_7/' }
+                    tags: ['HTML5', 'CSS3', 'JavaScript'], url: 'https://abdo-1818.github.io/bboda_7/' }
             ];
 
             const strengthItems = [
@@ -1717,7 +1718,7 @@
                     const text = s[currentLang] || s.en;
                     return `<div class="softskill-card">
                         <i class="${s.i}" style="color:var(--accent-bright);font-size:1.4rem;flex-shrink:0;"></i>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);">${text}</p>
+                        <p style="font-size:0.8rem;color:#ffffff;">${text}</p>
                     </div>`;
                 }).join('');
             }
@@ -1730,7 +1731,7 @@
                     const desc = s['desc' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s.descEn;
                     return `<div class="softskill-card">
                         <i class="${s.i}" style="color:var(--accent-bright);font-size:1.4rem;flex-shrink:0;"></i>
-                        <div><h4 style="color:#fff;font-size:0.9rem;">${name}</h4><p style="color:var(--text-secondary);font-size:0.78rem;">${desc}</p></div>
+                        <div><h4 style="color:#fff;font-size:0.9rem;">${name}</h4><p style="color:#e8e8e8;font-size:0.78rem;">${desc}</p></div>
                     </div>`;
                 }).join('');
             }
@@ -1878,7 +1879,6 @@
                 document.getElementById('mobileOverlay').classList.toggle('open');
             };
 
-            // ✅ Updated particles: white dots & lines, faster speed
             (function initParticles() {
                 const canvas = document.getElementById('particleCanvas');
                 if (!canvas) return;
@@ -1898,7 +1898,7 @@
                     particles.push({
                         x: Math.random() * w,
                         y: Math.random() * h,
-                        vx: (Math.random() - 0.5) * 0.8,   // faster speed
+                        vx: (Math.random() - 0.5) * 0.8,
                         vy: (Math.random() - 0.5) * 0.8,
                         r: Math.random() * 1.8 + 0.6
                     });
@@ -1906,9 +1906,7 @@
 
                 function draw() {
                     ctx.clearRect(0, 0, w, h);
-                    // white lines
                     ctx.strokeStyle = 'rgba(255, 255, 255, 0.18)';
-                    // white dots with a subtle glow
                     ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
                     ctx.shadowColor = 'rgba(255, 255, 255, 0.7)';
                     ctx.shadowBlur = 8;
@@ -1939,7 +1937,6 @@
                             }
                         }
                     }
-                    // reset shadow after drawing lines so it doesn't affect next frame
                     ctx.shadowBlur = 0;
                     ctx.shadowColor = 'transparent';
                     animId = requestAnimationFrame(draw);
