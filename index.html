@@ -1,1015 +1,1769 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Abdulrahman Mamdouh — UI/UX Designer & Low-Code Developer crafting cinematic digital experiences.">
-  <meta name="author" content="Abdulrahman Mamdouh">
-  <meta name="theme-color" content="#0B0B0F">
-  <meta property="og:title" content="Abdulrahman | Frontend Developer">
-  <meta property="og:description" content="Premium portfolio — UI/UX & Low-Code Developer.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://abdo-1818.github.io/">
-  <meta property="og:image" content="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg">
-  <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg">
-  <title>Abdulrahman | Frontend Developer</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Abdulrahman Mamdouh — UI/UX Designer & Low-Code Developer crafting cinematic digital experiences.">
+    <meta name="author" content="Abdulrahman Mamdouh">
+    <meta name="theme-color" content="#0B0B0F">
+    <meta property="og:title" content="Abdulrahman | Frontend Developer">
+    <meta property="og:description" content="Premium portfolio — UI/UX & Low-Code Developer.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abdo-1818.github.io/">
+    <meta property="og:image" content="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg">
+    <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg">
+    <title>Abdulrahman | Frontend Developer</title>
 
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --bg-primary: #0B0B0F;
-      --bg-secondary: #111827;
-      --surface: rgba(255,255,255,0.04);
-      --border: rgba(255,255,255,0.08);
-      --border-hover: rgba(255,255,255,0.16);
-      --text-primary: #FFFFFF;
-      --text-secondary: #A1A1AA;
-      --text-muted: #6B7280;
-      --accent-dark: #1E3A8A;
-      --accent: #3B82F6;
-      --accent-bright: #0EA5E9;
-      --accent-cyan: #38BDF8;
-      --accent-glow: rgba(59,130,246,0.45);
-      --accent-glow-strong: rgba(14,165,233,0.65);
-      --radius-sm: 12px;
-      --radius: 18px;
-      --radius-xl: 32px;
-      --shadow-card: 0 1px 0 rgba(255,255,255,0.04), 0 4px 32px rgba(0,0,0,0.55);
-      --shadow-hover: 0 1px 0 rgba(255,255,255,0.08), 0 8px 56px rgba(0,0,0,0.65), 0 0 48px rgba(59,130,246,0.25);
-      --ease-smooth: cubic-bezier(0.25, 0.8, 0.25, 1);
-      --ease-spring: cubic-bezier(0.22, 1.3, 0.36, 1);
-      --glass-bg: rgba(17,24,39,0.55);
-      --glass-blur: blur(24px);
-      --max-width: 1280px;
-    }
+    <style>
+        :root {
+            --bg-primary: #0B0B0F;
+            --bg-secondary: #111827;
+            --surface: rgba(255, 255, 255, 0.04);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.16);
+            --text-primary: #FFFFFF;
+            --text-secondary: #A1A1AA;
+            --text-muted: #6B7280;
+            --accent-dark: #1E3A8A;
+            --accent: #3B82F6;
+            --accent-bright: #0EA5E9;
+            --accent-cyan: #38BDF8;
+            --accent-glow: rgba(59, 130, 246, 0.45);
+            --accent-glow-strong: rgba(14, 165, 233, 0.65);
+            --radius-sm: 12px;
+            --radius: 18px;
+            --radius-xl: 32px;
+            --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04), 0 4px 32px rgba(0, 0, 0, 0.55);
+            --shadow-hover: 0 1px 0 rgba(255, 255, 255, 0.08), 0 8px 56px rgba(0, 0, 0, 0.65), 0 0 48px rgba(59, 130, 246, 0.25);
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.22, 1.3, 0.36, 1);
+            --glass-bg: rgba(17, 24, 39, 0.55);
+            --glass-blur: blur(24px);
+            --max-width: 1280px;
+            --html-color: #E34F26;
+            --css-color: #1572B6;
+            --js-color: #F7DF1E;
+            --python-color: #3776AB;
+            --cpp-color: #00599C;
+            --csharp-color: #9B4F96;
+            --php-color: #777BB4;
+        }
 
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 100px;
-      font-size: 16px;
-      scroll-snap-type: y proximity;
-    }
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-      font-size: 0.95rem;
-      cursor: default;
-      position: relative;
-      letter-spacing: -0.01em;
-      transform: translateZ(0);
-      backface-visibility: hidden;
-    }
-    body.rtl {
-      font-family: 'Cairo', system-ui, sans-serif;
-      direction: rtl;
-      text-align: right;
-      letter-spacing: 0;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            font-size: 0.95rem;
+            position: relative;
+            letter-spacing: -0.01em;
+        }
+        body.rtl {
+            font-family: 'Cairo', system-ui, sans-serif;
+            direction: rtl;
+            text-align: right;
+            letter-spacing: 0;
+        }
 
-    #particleCanvas {
-      position: fixed; inset:0; z-index:0; pointer-events:none; opacity:0.65;
-    }
+        @media (hover: none) and (pointer: coarse) {
+            #cursorDotCustom {
+                display: none !important;
+            }
+        }
 
-    #customCursor {
-      position: fixed; width:26px; height:26px; border-radius:50%; background:#1E3A8A;
-      pointer-events:none; z-index:10000; transform:translate(-50%,-50%);
-      will-change:transform; opacity:1; visibility:visible;
-      border:2px solid rgba(255,255,255,0.9);
-      box-shadow:0 0 22px #3B82F6,0 0 48px rgba(59,130,246,0.8),0 0 80px rgba(14,165,233,0.55),0 6px 26px rgba(0,0,0,0.85);
-      transition: width 0.3s, height 0.3s, background 0.3s, box-shadow 0.3s;
-    }
-    #customCursor.hover {
-      width:54px; height:54px; background:rgba(30,58,138,0.45);
-      box-shadow:0 0 32px #3B82F6,0 0 85px rgba(14,165,233,0.85),0 14px 36px rgba(0,0,0,0.75);
-    }
-    #cursorDot {
-      position: fixed; width:6px; height:6px; border-radius:50%; background:#fff;
-      pointer-events:none; z-index:10001; transform:translate(-50%,-50%); will-change:transform;
-      box-shadow:0 0 10px #fff,0 0 22px rgba(255,255,255,0.85),0 0 38px #3B82F6;
-      opacity:1; visibility:visible;
-    }
+        #particleCanvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.7;
+        }
 
-    body.cursor-hidden #customCursor,
-    body.cursor-hidden #cursorDot { opacity:0; visibility:hidden; transition:opacity 0.2s, visibility 0.2s; }
+        #cursorDotCustom {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ffffff;
+            pointer-events: none;
+            z-index: 10001;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 14px #ffffff, 0 0 28px rgba(255, 255, 255, 0.8), 0 0 50px rgba(59, 130, 246, 0.7);
+            will-change: transform;
+            transition: width 0.2s, height 0.2s;
+        }
+        #cursorDotCustom.hovering {
+            width: 16px;
+            height: 16px;
+            box-shadow: 0 0 22px #ffffff, 0 0 44px rgba(255, 255, 255, 0.9), 0 0 70px rgba(14, 165, 233, 0.8);
+        }
 
-    .header {
-      position:fixed; top:12px; left:50%; transform:translateX(-50%); z-index:1000;
-      width:calc(100% - 40px); max-width:var(--max-width); border-radius:60px;
-      padding:6px 24px; transition:all 0.5s var(--ease-smooth);
-      background:rgba(11,11,15,0.7); backdrop-filter:blur(28px);
-      border:1px solid rgba(255,255,255,0.07); box-shadow:0 8px 48px rgba(0,0,0,0.55);
-    }
-    .header.scrolled {
-      top:0; width:100%; max-width:100%; border-radius:0; background:rgba(11,11,15,0.9);
-      border-left:none; border-right:none;
-    }
-    .header-inner {
-      display:flex; align-items:center; justify-content:space-between; gap:14px;
-    }
-    .logo-link {
-      display:flex; align-items:center; gap:10px; text-decoration:none;
-    }
-    .logo-img {
-      width:40px; height:40px; border-radius:50%; object-fit:cover;
-      border:2px solid rgba(255,255,255,0.55); transition:0.45s var(--ease-spring);
-    }
-    .logo-img:hover { transform:scale(1.12) rotate(-5deg); box-shadow:0 0 30px rgba(255,255,255,0.5); border-color:#fff; }
-    .logo-text {
-      font-family:'Great Vibes', cursive;
-      font-size:1.8rem;
-      font-weight:700;
-      letter-spacing:2px;
-      color:#fff;
-      text-shadow:0 0 25px rgba(59,130,246,0.9),0 0 50px rgba(14,165,233,0.6),0 0 80px rgba(56,189,248,0.5);
-      animation: logoGlow 3s ease-in-out infinite alternate;
-      line-height:1;
-      will-change:text-shadow;
-    }
-    @keyframes logoGlow {
-      0%   { text-shadow:0 0 20px rgba(59,130,246,0.7),0 0 44px rgba(14,165,233,0.4),0 0 75px rgba(56,189,248,0.3); }
-      100% { text-shadow:0 0 32px rgba(59,130,246,1),0 0 65px rgba(14,165,233,0.85),0 0 105px rgba(56,189,248,0.65); }
-    }
+        .header {
+            position: fixed;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: calc(100% - 40px);
+            max-width: var(--max-width);
+            border-radius: 60px;
+            padding: 6px 20px;
+            transition: all 0.55s var(--ease-out-expo);
+            background: rgba(11, 11, 15, 0.7);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: 0 8px 48px rgba(0, 0, 0, 0.55);
+        }
+        .header.scrolled {
+            top: 0;
+            width: 100%;
+            max-width: 100%;
+            border-radius: 0;
+            background: rgba(11, 11, 15, 0.9);
+            border-left: none;
+            border-right: none;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        .logo-img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.55);
+            transition: 0.45s;
+        }
+        .logo-img:hover {
+            transform: scale(1.12) rotate(-5deg);
+            box-shadow: 0 0 28px rgba(255, 255, 255, 0.4);
+            border-color: #fff;
+        }
+        .logo-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: #fff;
+            text-shadow: 0 0 18px rgba(255, 255, 255, 0.5), 0 0 40px rgba(59, 130, 246, 0.5);
+            font-weight: 400;
+            line-height: 1;
+            white-space: nowrap;
+        }
+        .nav-desktop {
+            display: flex;
+            list-style: none;
+            gap: 2px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-desktop li a {
+            color: rgba(255, 255, 255, 0.65);
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            transition: 0.35s;
+            white-space: nowrap;
+            position: relative;
+        }
+        .nav-desktop li a::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 16px;
+            height: 2px;
+            background: var(--accent-bright);
+            border-radius: 2px;
+            transition: 0.35s;
+        }
+        .nav-desktop li a:hover::after,
+        .nav-desktop li a.active::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+        .nav-desktop li a:hover,
+        .nav-desktop li a.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .lang-switch {
+            display: flex;
+            gap: 2px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            padding: 3px;
+        }
+        .lang-btn {
+            padding: 5px 10px;
+            border-radius: 40px;
+            border: none;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.55);
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.66rem;
+            font-family: inherit;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+        .lang-btn.active {
+            color: #fff;
+            background: var(--accent);
+            box-shadow: 0 0 18px var(--accent-glow);
+        }
+        .hamburger-btn {
+            display: none;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.95rem;
+            align-items: center;
+            justify-content: center;
+        }
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1100;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.4s;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+        .mobile-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 280px;
+            height: 100vh;
+            background: rgba(15, 15, 20, 0.97);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            z-index: 1200;
+            padding: 28px 20px;
+            transition: right 0.5s var(--ease-out-expo);
+            overflow-y: auto;
+            border-left: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: -8px 0 40px rgba(0, 0, 0, 0.6);
+            border-radius: 24px 0 0 24px;
+        }
+        body.rtl .mobile-menu {
+            right: auto;
+            left: -320px;
+            border-radius: 0 24px 24px 0;
+            border-left: none;
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            transition: left 0.5s var(--ease-out-expo);
+        }
+        .mobile-menu.open {
+            right: 0;
+        }
+        body.rtl .mobile-menu.open {
+            left: 0;
+        }
+        .mobile-menu-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .mobile-menu-close:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .mobile-nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .mobile-nav li a {
+            display: block;
+            padding: 13px 16px;
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            border-radius: 14px;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+        .mobile-nav li a:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+        }
 
-    .nav-desktop {
-      display:flex; list-style:none; gap:2px; align-items:center; flex-wrap:wrap;
-    }
-    .nav-desktop li a {
-      color:rgba(255,255,255,0.65); text-decoration:none; padding:8px 15px; border-radius:40px;
-      font-size:0.72rem; font-weight:500; transition:0.35s; white-space:nowrap; position:relative;
-    }
-    .nav-desktop li a::after {
-      content:''; position:absolute; bottom:2px; left:50%; transform:translateX(-50%) scaleX(0);
-      width:18px; height:2px; background:var(--accent-bright); border-radius:2px; transition:0.35s;
-    }
-    .nav-desktop li a:hover::after,
-    .nav-desktop li a.active::after { transform:translateX(-50%) scaleX(1); }
-    .nav-desktop li a:hover,
-    .nav-desktop li a.active { color:#fff; background:rgba(255,255,255,0.05); }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0 60px;
+            position: relative;
+            z-index: 2;
+        }
+        .hero .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 32px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .hero-name {
+            font-family: 'Playfair Display', 'Space Grotesk', serif;
+            font-size: clamp(2.6rem, 6.5vw, 5rem);
+            font-weight: 900;
+            line-height: 1.04;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 25%, #0EA5E9 50%, #3B82F6 75%, #1E3A8A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 7s ease-in-out infinite;
+            background-size: 200% 200%;
+            filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.7)) drop-shadow(0 0 60px rgba(14, 165, 233, 0.4));
+            letter-spacing: -0.02em;
+        }
+        @keyframes shimmer {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+        .hero-title-role {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+        .hero-title-role .typed-text {
+            color: var(--accent-bright);
+            font-weight: 700;
+        }
+        .hero-tagline {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 28px;
+            max-width: 460px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.82rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.45s var(--ease-spring);
+            border: none;
+            font-family: inherit;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+            color: #fff;
+            box-shadow: 0 6px 28px rgba(30, 58, 138, 0.5);
+        }
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 48px rgba(59, 130, 246, 0.6);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid rgba(255, 255, 255, 0.14);
+        }
+        .btn-outline:hover {
+            border-color: var(--accent-bright);
+            color: var(--accent-bright);
+            box-shadow: 0 10px 36px rgba(14, 165, 233, 0.3);
+        }
+        .avatar-ring {
+            position: relative;
+            width: clamp(180px, 28vw, 320px);
+            height: clamp(180px, 28vw, 320px);
+            margin: 0 auto;
+        }
+        .avatar-ring::before,
+        .avatar-ring::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.75;
+        }
+        .avatar-ring::before {
+            inset: -8px;
+            background: conic-gradient(from 0deg, transparent, #0EA5E9, #3B82F6, #1E3A8A, transparent);
+            animation: rotateRing 6s linear infinite;
+            mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+            -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+        }
+        .avatar-ring::after {
+            inset: -20px;
+            background: conic-gradient(from 180deg, transparent, #38BDF8, #1E3A8A, transparent);
+            animation: rotateRing 10s linear infinite reverse;
+            mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+            -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+        }
+        @keyframes rotateRing {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 70px rgba(59, 130, 246, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.18);
+        }
 
-    .lang-switch {
-      display:flex; gap:2px; background:rgba(255,255,255,0.03);
-      border:1px solid rgba(255,255,255,0.1); border-radius:40px; padding:3px;
-    }
-    .lang-btn {
-      padding:5px 10px; border-radius:40px; border:none; background:transparent;
-      color:rgba(255,255,255,0.55); cursor:pointer; font-weight:500; font-size:0.66rem;
-      font-family:inherit; transition:0.3s;
-    }
-    .lang-btn.active { color:#fff; background:var(--accent); box-shadow:0 0 18px var(--accent-glow); }
+        .section {
+            padding: 50px 0;
+            position: relative;
+            z-index: 1;
+        }
+        .section-wrapper {
+            border-radius: var(--radius-xl);
+            padding: 44px 28px;
+            position: relative;
+            transition: 0.7s var(--ease-out-expo);
+            max-width: var(--max-width);
+            margin: 0 auto;
+            border: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.015);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 20px 60px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: perspective(1200px) rotateY(8deg) translateY(40px);
+            will-change: transform, opacity;
+        }
+        .section-wrapper.revealed {
+            opacity: 1;
+            transform: perspective(1200px) rotateY(0deg) translateY(0);
+        }
+        .section-wrapper.glowing-border {
+            border-color: rgba(59, 130, 246, 0.25);
+            box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.12), 0 0 60px rgba(59, 130, 246, 0.08), 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: inline-block;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--accent-bright);
+            border-radius: 3px;
+            box-shadow: 0 0 16px var(--accent-glow-strong);
+        }
 
-    .hamburger-btn {
-      display:none; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1);
-      color:#fff; width:38px; height:38px; border-radius:50%; cursor:pointer; font-size:1rem;
-      align-items:center; justify-content:center; transition:0.3s;
-    }
-    .hamburger-btn:hover { background:rgba(255,255,255,0.1); box-shadow:0 0 20px rgba(59,130,246,0.4); }
+        .skills-book-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .skill-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 16px 20px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius);
+            transition: 0.45s var(--ease-spring);
+            box-shadow: var(--shadow-card);
+            text-align: left;
+        }
+        body.rtl .skill-row {
+            text-align: right;
+            flex-direction: row-reverse;
+        }
+        .skill-row:hover {
+            transform: translateX(6px);
+            border-color: rgba(255, 255, 255, 0.14);
+            box-shadow: var(--shadow-hover);
+        }
+        body.rtl .skill-row:hover {
+            transform: translateX(-6px);
+        }
+        .skill-icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px currentColor;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .skill-info h4 {
+            font-weight: 700;
+            color: #fff;
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+        .skill-info p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
 
-    .header-actions {
-      display:flex; align-items:center; gap:8px;
-    }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 8px;
+        }
+        .info-cell {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 15px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: 0.35s;
+        }
+        .info-cell:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            background: rgba(59, 130, 246, 0.05);
+        }
+        .info-label {
+            font-size: 0.6rem;
+            color: var(--accent-bright);
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        .info-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
 
-    .mobile-overlay {
-      position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:1100; opacity:0; pointer-events:none;
-      transition:0.4s; backdrop-filter:blur(6px);
-    }
-    .mobile-overlay.open { opacity:1; pointer-events:auto; }
-    .mobile-menu {
-      position:fixed; top:0; right:-320px; width:290px; height:100vh; background:rgba(15,15,20,0.97);
-      backdrop-filter:blur(32px); z-index:1200; padding:28px 20px;
-      transition:right 0.5s cubic-bezier(0.22,1,0.36,1); overflow-y:auto;
-      border-left:1px solid rgba(255,255,255,0.06); box-shadow:-8px 0 40px rgba(0,0,0,0.7);
-      border-radius:20px 0 0 20px;
-    }
-    body.rtl .mobile-menu {
-      right:auto; left:-320px; transition:left 0.5s cubic-bezier(0.22,1,0.36,1);
-      border-left:none; border-right:1px solid rgba(255,255,255,0.06);
-      border-radius:0 20px 20px 0; box-shadow:8px 0 40px rgba(0,0,0,0.7);
-    }
-    .mobile-menu.open { right:0; }
-    body.rtl .mobile-menu.open { left:0; }
-    .mobile-menu-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
-    .mobile-menu-close { background:none; border:none; color:#fff; font-size:1.4rem; cursor:pointer; padding:8px; border-radius:50%; transition:0.3s; }
-    .mobile-menu-close:hover { background:rgba(255,255,255,0.1); }
-    .mobile-nav { list-style:none; display:flex; flex-direction:column; gap:4px; }
-    .mobile-nav li a {
-      display:block; padding:13px 18px; color:rgba(255,255,255,0.7); text-decoration:none;
-      border-radius:14px; font-size:0.9rem; transition:0.3s;
-    }
-    .mobile-nav li a:hover { color:#fff; background:rgba(255,255,255,0.06); }
+        .highlight-box {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            box-shadow: var(--shadow-card);
+            transition: 0.5s;
+        }
+        .highlight-box:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: var(--shadow-hover);
+        }
+        .highlight-box strong {
+            color: #fff;
+            font-weight: 700;
+        }
 
-    .hero {
-      min-height:100vh; display:flex; align-items:center; padding:100px 0 60px;
-      position:relative; z-index:2; scroll-snap-align:start;
-      will-change:transform; transform:translateZ(0);
-    }
-    .hero .container {
-      max-width:var(--max-width); margin:0 auto; padding:0 32px;
-      display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;
-    }
-    .hero-name {
-      font-family:'Space Grotesk', sans-serif;
-      font-size:clamp(2.8rem, 7vw, 5.5rem);
-      font-weight:900;
-      line-height:1.04;
-      margin-bottom:12px;
-      background:linear-gradient(135deg,#ffffff 0%,#bae6fd 28%,#0EA5E9 52%,#3B82F6 80%,#1E3A8A 100%);
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-      animation:shimmer 7s ease-in-out infinite;
-      background-size:200% 200%;
-      filter:drop-shadow(0 0 35px rgba(59,130,246,0.8));
-      will-change:background-position;
-    }
-    @keyframes shimmer {
-      0%,100%{ background-position:0% 50%; }
-      50%   { background-position:100% 50%; }
-    }
-    .hero-title-role { font-size:1.2rem; font-weight:600; color:var(--text-secondary); margin-bottom:10px; }
-    .hero-title-role .typed-text { color:var(--accent-bright); font-weight:700; }
-    .hero-tagline { color:var(--text-muted); font-size:0.9rem; line-height:1.6; margin-bottom:28px; max-width:460px; }
-    .btn {
-      display:inline-flex; align-items:center; gap:8px; padding:13px 28px; border-radius:50px;
-      font-weight:600; font-size:0.82rem; text-decoration:none; cursor:pointer;
-      transition:0.45s var(--ease-spring); border:none; font-family:inherit;
-    }
-    .btn-primary { background:linear-gradient(135deg,#1E3A8A,#3B82F6); color:#fff; box-shadow:0 6px 28px rgba(30,58,138,0.5); }
-    .btn-primary:hover { transform:translateY(-5px); box-shadow:0 16px 48px rgba(59,130,246,0.6); }
-    .btn-outline { background:transparent; color:var(--text-primary); border:2px solid rgba(255,255,255,0.14); }
-    .btn-outline:hover { border-color:var(--accent-bright); color:var(--accent-bright); box-shadow:0 10px 36px rgba(14,165,233,0.3); }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+        .project-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: 0.5s var(--ease-spring);
+            box-shadow: var(--shadow-card);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .project-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        .project-img-wrapper {
+            height: 200px;
+            overflow: hidden;
+        }
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.65s;
+        }
+        .project-card:hover .project-img {
+            transform: scale(1.08);
+        }
+        .project-body {
+            padding: 18px 20px;
+        }
+        .project-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.76rem;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .project-tag {
+            padding: 4px 10px;
+            background: rgba(59, 130, 246, 0.12);
+            color: var(--accent-bright);
+            border-radius: 50px;
+            font-size: 0.65rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
 
-    .avatar-ring {
-      position:relative; width:clamp(200px,30vw,350px); height:clamp(200px,30vw,350px);
-      will-change:transform;
-    }
-    .avatar-ring::before,
-    .avatar-ring::after {
-      content:''; position:absolute; inset:-10px; border-radius:50%; opacity:0.8;
-    }
-    .avatar-ring::before {
-      background:conic-gradient(from 0deg,transparent,#0EA5E9,#3B82F6,#1E3A8A,transparent);
-      animation:rotateRing 6s linear infinite;
-      mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3px));
-      -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3px));
-    }
-    .avatar-ring::after {
-      inset:-22px;
-      background:conic-gradient(from 180deg,transparent,#38BDF8,#1E3A8A,transparent);
-      animation:rotateRing 10s linear infinite reverse;
-      mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));
-      -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));
-    }
-    @keyframes rotateRing { to { transform:rotate(360deg); } }
-    .avatar-img {
-      width:100%; height:100%; border-radius:50%; object-fit:cover; position:relative; z-index:1;
-      box-shadow:0 0 80px rgba(59,130,246,0.5); border:3px solid rgba(255,255,255,0.18);
-    }
+        .softskills-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .softskill-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: 0.5s;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow-card);
+        }
+        .softskill-card:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        body.rtl .softskill-card:hover {
+            transform: translateX(-8px);
+        }
 
-    .section {
-      padding:70px 0; position:relative; z-index:1; scroll-snap-align:start;
-      opacity:0; transform:translateY(50px) scale(0.97);
-      transition:opacity 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth);
-      will-change:opacity,transform;
-    }
-    .section.revealed { opacity:1; transform:translateY(0) scale(1); }
-    .section-wrapper {
-      border-radius:var(--radius-xl); padding:48px 32px; position:relative; transition:0.6s;
-      max-width:var(--max-width); margin:0 auto; border:2px solid transparent;
-      background:rgba(11,11,15,0.4);
-    }
-    .section-wrapper.glowing-border {
-      border-image:linear-gradient(135deg,rgba(14,165,233,0.5),rgba(59,130,246,0.3),rgba(30,58,138,0.5),rgba(56,189,248,0.35)) 1;
-      box-shadow:0 0 30px rgba(59,130,246,0.1),0 0 60px rgba(14,165,233,0.05);
-    }
-    .section-header { text-align:center; margin-bottom:40px; }
-    .section-title {
-      font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:700; color:var(--text-primary);
-      display:inline-block; letter-spacing:-0.02em; position:relative;
-    }
-    .section-title::after {
-      content:''; position:absolute; bottom:-8px; left:50%; transform:translateX(-50%);
-      width:50px; height:3px; background:var(--accent-bright); border-radius:2px;
-    }
+        .timeline {
+            padding-left: 22px;
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        body.rtl .timeline {
+            padding-left: 0;
+            padding-right: 22px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 12px;
+            bottom: 12px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-dark), var(--accent-bright));
+            opacity: 0.4;
+            border-radius: 2px;
+        }
+        body.rtl .timeline::before {
+            left: auto;
+            right: 6px;
+        }
+        .tl-item {
+            padding: 10px 0 10px 18px;
+            position: relative;
+        }
+        .tl-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 16px;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-bright);
+            border-radius: 50%;
+            box-shadow: 0 0 14px var(--accent-glow-strong);
+        }
+        .tl-date {
+            font-size: 0.7rem;
+            color: var(--accent-bright);
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .tl-title {
+            font-weight: 700;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+        .tl-desc {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.7rem;
+            color: #4ade80;
+            margin-top: 4px;
+        }
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulseDot 1.6s infinite;
+        }
+        @keyframes pulseDot {
+            0%,
+            100% {
+                box-shadow: 0 0 4px #4ade80;
+            }
+            50% {
+                box-shadow: 0 0 16px #4ade80, 0 0 28px #22c55e;
+            }
+        }
 
-    .skills-book { display:flex; flex-direction:column; gap:20px; max-width:750px; margin:0 auto; }
-    .book-row { display:flex; align-items:center; gap:20px; }
-    .book-row.left { justify-content:flex-start; }
-    body.rtl .book-row.left { justify-content:flex-end; flex-direction:row-reverse; }
-    .book-row.right { justify-content:flex-end; }
-    body.rtl .book-row.right { justify-content:flex-start; flex-direction:row-reverse; }
-    .book-card {
-      background:var(--glass-bg); backdrop-filter:var(--glass-blur); border:1px solid rgba(255,255,255,0.08);
-      border-radius:var(--radius); padding:22px 26px; max-width:340px;
-      transition:0.5s var(--ease-smooth); box-shadow:var(--shadow-card); text-align:left;
-      will-change:transform;
-    }
-    body.rtl .book-card { text-align:right; }
-    .book-card:hover { transform:translateY(-6px); border-color:rgba(255,255,255,0.15); box-shadow:var(--shadow-hover); }
-    .book-icon { font-size:2.5rem; margin-bottom:8px; }
-    .skill-name { font-weight:700; font-size:1.05rem; color:#fff; margin-bottom:4px; }
-    .skill-desc { font-size:0.78rem; color:var(--text-secondary); line-height:1.5; }
+        .platforms-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+        }
+        .platform-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: 0.4s var(--ease-spring);
+            box-shadow: var(--shadow-card);
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        .platform-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-hover);
+        }
+        .platform-card i {
+            font-size: 1.2rem;
+        }
 
-    .info-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:8px; }
-    .info-cell {
-      background:rgba(255,255,255,0.02); padding:16px 18px; border-radius:var(--radius-sm);
-      border:1px solid rgba(255,255,255,0.04); transition:0.35s; will-change:transform;
-    }
-    .info-cell:hover { border-color:rgba(59,130,246,0.4); box-shadow:0 8px 25px rgba(0,0,0,0.4); background:rgba(59,130,246,0.05); }
-    .info-label { font-size:0.6rem; color:var(--accent-bright); font-weight:600; letter-spacing:0.06em; margin-bottom:5px; text-transform:uppercase; }
-    .info-value { color:var(--text-primary); font-weight:600; font-size:0.82rem; }
+        .footer {
+            padding: 28px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+        }
 
-    .distinguish-text { max-width:750px; margin:0 auto; color:var(--text-secondary); font-size:0.88rem; line-height:1.9; text-align:center; padding:0 10px; }
-    .distinguish-text strong { color:#fff; }
+        .scroll-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 999;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.4s;
+            box-shadow: 0 8px 28px rgba(59, 130, 246, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-    .projects-grid { display:grid; grid-template-columns:1fr; gap:20px; max-width:600px; margin:0 auto; }
-    .project-card {
-      background:var(--glass-bg); backdrop-filter:var(--glass-blur); border:1px solid rgba(255,255,255,0.08);
-      border-radius:var(--radius); overflow:hidden; transition:0.5s var(--ease-smooth);
-      box-shadow:var(--shadow-card); will-change:transform;
-    }
-    .project-card:hover { border-color:var(--border-hover); transform:translateY(-10px); box-shadow:var(--shadow-hover); }
-    .project-img-wrapper { height:260px; overflow:hidden; }
-    .project-img { width:100%; height:100%; object-fit:cover; transition:0.65s var(--ease-smooth); }
-    .project-card:hover .project-img { transform:scale(1.08); }
-    .project-body { padding:22px 26px; }
-    .project-title { font-family:'Space Grotesk',sans-serif; font-size:1.15rem; font-weight:700; margin-bottom:8px; color:#fff; }
-    .project-desc { color:var(--text-secondary); font-size:0.82rem; line-height:1.6; margin-bottom:14px; }
-    .project-tags { display:flex; flex-wrap:wrap; gap:6px; }
-    .project-tag {
-      padding:5px 12px; background:rgba(59,130,246,0.12); color:var(--accent-bright);
-      border-radius:50px; font-size:0.7rem; border:1px solid rgba(59,130,246,0.2); font-weight:500;
-    }
-
-    .softskills-vertical { display:flex; flex-direction:column; gap:12px; max-width:680px; margin:0 auto; }
-    .softskill-card {
-      background:var(--glass-bg); backdrop-filter:var(--glass-blur); border-radius:var(--radius);
-      padding:22px 26px; display:flex; align-items:flex-start; gap:18px;
-      transition:0.5s var(--ease-smooth); border:1px solid rgba(255,255,255,0.08);
-      box-shadow:var(--shadow-card); will-change:transform;
-    }
-    .softskill-card:hover { transform:translateX(8px); box-shadow:var(--shadow-hover); border-color:rgba(255,255,255,0.15); }
-    body.rtl .softskill-card:hover { transform:translateX(-8px); }
-
-    .timeline { padding-left:22px; position:relative; max-width:600px; margin:0 auto; }
-    body.rtl .timeline { padding-left:0; padding-right:22px; }
-    .timeline::before {
-      content:''; position:absolute; left:6px; top:12px; bottom:12px; width:2px;
-      background:linear-gradient(180deg,var(--accent-dark),var(--accent-bright)); opacity:0.35; border-radius:2px;
-    }
-    body.rtl .timeline::before { left:auto; right:6px; }
-    .tl-item { padding:10px 0 10px 18px; position:relative; }
-    .tl-item::before {
-      content:''; position:absolute; left:-20px; top:16px; width:8px; height:8px;
-      background:var(--accent-bright); border-radius:50%; box-shadow:0 0 14px var(--accent-glow-strong);
-    }
-    body.rtl .tl-item::before { left:auto; right:-20px; }
-    .tl-date { font-size:0.7rem; color:var(--accent-bright); font-weight:600; margin-bottom:2px; }
-    .tl-title { font-weight:700; color:#fff; font-size:0.9rem; }
-    .tl-desc { color:var(--text-secondary); font-size:0.78rem; }
-    .status-badge { display:inline-flex; align-items:center; gap:6px; font-size:0.7rem; color:#38BDF8; margin-top:4px; }
-    .live-dot { width:7px; height:7px; background:#38BDF8; border-radius:50%; animation:pulse 1.5s infinite; }
-    @keyframes pulse { 0%,100%{ box-shadow:0 0 4px #38BDF8; } 50%{ box-shadow:0 0 16px #38BDF8,0 0 28px #0EA5E9; } }
-
-    .platforms-grid { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
-    .platform-card {
-      display:flex; align-items:center; gap:10px; padding:13px 22px; background:var(--glass-bg);
-      backdrop-filter:var(--glass-blur); border:1px solid rgba(255,255,255,0.08); border-radius:50px;
-      text-decoration:none; color:var(--text-primary); transition:0.4s var(--ease-spring);
-      box-shadow:var(--shadow-card); font-weight:500; font-size:0.85rem; will-change:transform;
-    }
-    .platform-card:hover { transform:translateY(-4px); border-color:var(--border-hover); box-shadow:var(--shadow-hover); }
-
-    .scroll-top {
-      position:fixed; bottom:28px; right:28px; z-index:999; width:44px; height:44px; border-radius:50%;
-      background:var(--accent); color:#fff; border:2px solid rgba(255,255,255,0.2); cursor:pointer;
-      font-size:1rem; display:flex; align-items:center; justify-content:center;
-      opacity:0; pointer-events:none; transition:0.4s var(--ease-smooth);
-      box-shadow:0 6px 24px rgba(59,130,246,0.5);
-    }
-    .scroll-top.visible { opacity:1; pointer-events:auto; }
-    .scroll-top:hover { transform:translateY(-4px); box-shadow:0 12px 36px rgba(59,130,246,0.7); }
-    body.rtl .scroll-top { right:auto; left:28px; }
-
-    .footer { padding:30px 0; border-top:1px solid rgba(255,255,255,0.04); text-align:center; position:relative; z-index:1; scroll-snap-align:end; }
-
-    @media (max-width: 960px) {
-      .header-inner { flex-wrap:nowrap; justify-content:space-between; }
-      .nav-desktop { display: none; }
-      .hamburger-btn { display: flex; }
-      .header-actions { order:2; margin-left:auto; }
-      body.rtl .header-actions { order:0; margin-right:auto; margin-left:0; }
-      .logo-link { order:1; margin:0 auto; }
-      .logo-link .logo-img { display: none; }
-      .logo-text { font-size:1.6rem; letter-spacing:1px; }
-      .hero .container { grid-template-columns:1fr; text-align:center; gap:30px; }
-      .avatar-ring { width:200px; height:200px; margin:0 auto; }
-      .hero-tagline { max-width:100%; }
-      .book-row.left, .book-row.right { justify-content:center; }
-      .projects-grid { max-width:100%; }
-      .section-title { font-size:1.6rem; }
-      .section-wrapper { padding:32px 16px; }
-      .project-img-wrapper { height:200px; }
-    }
-    @media (max-width: 600px) {
-      .hero-name { font-size:2rem; }
-      .section-title { font-size:1.4rem; }
-      .section-wrapper { padding:24px 10px; }
-      .book-card { max-width:100%; padding:16px 18px; }
-      .softskill-card { padding:16px 18px; }
-      .distinguish-text { font-size:0.8rem; }
-      .project-img-wrapper { height:170px; }
-      .project-body { padding:16px 18px; }
-    }
-  </style>
+        @media (max-width: 960px) {
+            .nav-desktop {
+                display: none;
+            }
+            .hamburger-btn {
+                display: flex;
+            }
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 24px;
+            }
+            .hero-visual {
+                order: -1;
+            }
+            .avatar-ring {
+                width: 150px;
+                height: 150px;
+            }
+            .hero-name {
+                font-size: 2rem;
+            }
+            .hero-tagline {
+                max-width: 100%;
+                margin: 0 auto 20px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .section-wrapper {
+                padding: 28px 14px;
+                border-radius: 20px;
+            }
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            .skill-row {
+                flex-direction: column;
+                text-align: center;
+            }
+            body.rtl .skill-row {
+                flex-direction: column;
+                text-align: center;
+            }
+            .highlight-box {
+                font-size: 0.8rem;
+                padding: 20px 16px;
+            }
+        }
+        @media (max-width: 600px) {
+            .hero-name {
+                font-size: 1.7rem;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+            .section-wrapper {
+                padding: 22px 10px;
+            }
+            .header {
+                padding: 6px 12px;
+                width: calc(100% - 16px);
+            }
+            .lang-btn {
+                padding: 4px 7px;
+                font-size: 0.6rem;
+            }
+            .logo-text {
+                font-size: 1rem;
+            }
+            .avatar-ring {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
 </head>
 <body class="dark">
 
-  <canvas id="particleCanvas"></canvas>
-  <div id="customCursor"></div>
-  <div id="cursorDot"></div>
+    <canvas id="particleCanvas"></canvas>
+    <div id="cursorDotCustom"></div>
 
-  <header class="header" id="header">
-    <div class="header-inner">
-      <div class="header-actions">
-        <div class="lang-switch">
-          <button class="lang-btn active" id="btnEn" onclick="switchLang('en')">EN</button>
-          <button class="lang-btn" id="btnDe" onclick="switchLang('de')">DE</button>
-          <button class="lang-btn" id="btnAr" onclick="switchLang('ar')">عربي</button>
-        </div>
-        <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Menu">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
-      <a href="#home" class="logo-link">
-        <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="Abdulrahman" class="logo-img" loading="lazy">
-        <span class="logo-text">Abdulrahman</span>
-      </a>
-      <ul class="nav-desktop" id="navDesktop"></ul>
-    </div>
-  </header>
-
-  <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-header">
-      <span class="logo-text">Abdulrahman</span>
-      <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close"><i class="fas fa-times"></i></button>
-    </div>
-    <ul class="mobile-nav" id="mobileNav"></ul>
-  </div>
-
-  <section class="hero" id="home">
-    <div class="container">
-      <div class="hero-content">
-        <h1 class="hero-name">Abdulrahman Mamdouh</h1>
-        <div class="hero-title-role">
-          <span data-i18n="hero.role.prefix">I'm a</span>
-          <span class="typed-text" id="typedText"></span>
-        </div>
-        <p class="hero-tagline" data-i18n="hero.desc">I build modern, responsive websites and constantly learn through real projects.</p>
-        <div class="hero-buttons">
-          <a href="#projects" class="btn btn-primary" data-i18n="hero.cta1">View My Work</a>
-          <a href="#contact" class="btn btn-outline" data-i18n="hero.cta2">Get In Touch</a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="avatar-ring">
-          <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="Abdulrahman" class="avatar-img" loading="lazy">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="about">
-    <div class="section-wrapper glowing-border">
-      <div class="section-header"><h2 class="section-title" data-i18n="about.title">About Me</h2></div>
-      <div class="info-grid" id="infoGrid"></div>
-    </div>
-  </section>
-
-  <section class="section" id="distinguish">
-    <div class="section-wrapper glowing-border">
-      <div class="section-header"><h2 class="section-title" data-i18n="distinguish.title">What Distinguishes Me</h2></div>
-      <div class="distinguish-text" data-i18n="distinguish.text"></div>
-    </div>
-  </section>
-
-  <section class="section" id="services">
-    <div class="section-wrapper glowing-border">
-      <div class="section-header"><h2 class="section-title" data-i18n="services.title">What I Offer You</h2></div>
-      <div class="softskills-vertical" id="servicesList"></div>
-    </div>
-  </section>
-
-  <section class="section" id="skills">
-    <div class="section-wrapper glowing-border">
-      <div class="section-header"><h2 class="section-title" data-i18n="skills.title">Programming Languages I Master</h2></div>
-      <div class="skills-book" id="skillsBook"></div>
-    </div>
-  </section>
-
-  <section class="section" id="projects">
-    <div class="section-wrapper glowing-border">
-      <div class="section-header"><h2 class="section-title" data-i18n="projects.title">مشاريعي</h2></div>
-      <div class="projects-grid" id="projectsGrid"></div>
-    </div>
-  </section>
-
-  <section class="section" id="education">
-    <div class="section-wrapper glowing-border">
-      <div class="section-header"><h2 class="section-title" data-i18n="education.title">دراستي</h2></div>
-      <div class="timeline" id="educationTimeline"></div>
-    </div>
-  </section>
-
-  <section class="section" id="strengths">
-    <div class="section-wrapper glowing-border">
-      <div class="section-header"><h2 class="section-title" data-i18n="strengths.title">نقاط قوتي</h2></div>
-      <div class="softskills-vertical" id="strengthsList"></div>
-    </div>
-  </section>
-
-  <section class="section" id="softskills">
-    <div class="section-wrapper glowing-border">
-      <div class="section-header"><h2 class="section-title" data-i18n="softskills.title">Personal Qualities</h2></div>
-      <div class="softskills-vertical" id="softSkillsVertical"></div>
-    </div>
-  </section>
-
-  <section class="section" id="contact">
-    <div class="section-wrapper glowing-border">
-      <div class="section-header"><h2 class="section-title" data-i18n="contact.title">تواصل معي عبر</h2></div>
-      <div class="platforms-grid" id="contactPlatforms"></div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <p>© <span id="currentYear"></span> Abdulrahman Mamdouh</p>
-  </footer>
-
-  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
-  <script>
-    (function() {
-      const translations = {
-        en: {
-          'hero.role.prefix': "I'm a",
-          'hero.desc': 'I build modern, responsive websites and constantly learn through real projects.',
-          'hero.cta1': 'View My Work',
-          'hero.cta2': 'Get In Touch',
-          'about.title': 'About Me',
-          'distinguish.title': 'What Distinguishes Me',
-          'distinguish.text': 'I am Abdulrahman, a web developer and website designer specializing in creating modern websites that combine attractive design, powerful performance, and professional user experience. I work on transforming ideas into real websites that help business owners and companies build a strong and professional online presence. I always pay attention to small details before the big ones because I believe the real difference shows in execution quality, design precision, and ease of use. I have a great passion for web development and design, and I always strive to provide modern and innovative solutions that suit each client\'s needs specifically. For me, each project has its own character, so I make sure to design unique, non-traditional websites that express the brand identity and help attract customers while leaving a professional impression from the first visit.',
-          'services.title': 'What I Offer You',
-          'skills.title': 'Programming Languages I Master',
-          'projects.title': 'My Projects',
-          'education.title': 'My Education',
-          'strengths.title': 'My Strengths',
-          'softskills.title': 'Personal Qualities',
-          'contact.title': 'Contact Me Via',
-          'nav.home': 'Home',
-          'nav.about': 'About',
-          'nav.distinguish': 'Distinguish',
-          'nav.services': 'Services',
-          'nav.skills': 'Skills',
-          'nav.projects': 'Projects',
-          'nav.education': 'Education',
-          'nav.strengths': 'Strengths',
-          'nav.softskills': 'Soft Skills',
-          'nav.contact': 'Contact'
-        },
-        de: {
-          'hero.role.prefix': 'Ich bin',
-          'hero.desc': 'Ich entwickle moderne, responsive Websites und lerne ständig durch echte Projekte.',
-          'hero.cta1': 'Meine Arbeit',
-          'hero.cta2': 'Kontakt',
-          'about.title': 'Über mich',
-          'distinguish.title': 'Was mich auszeichnet',
-          'distinguish.text': 'Ich bin Abdulrahman, ein Webentwickler und Website-Designer, spezialisiert auf die Erstellung moderner Websites, die attraktives Design, leistungsstarke Performance und professionelle Benutzererfahrung vereinen. Ich arbeite daran, Ideen in echte Websites zu verwandeln, die Geschäftsinhabern und Unternehmen helfen, eine starke und professionelle Online-Präsenz aufzubauen. Ich achte immer zuerst auf die kleinen Details, denn ich glaube, dass der wahre Unterschied in der Ausführungsqualität, der Designpräzision und der Benutzerfreundlichkeit liegt. Ich habe eine große Leidenschaft für Webentwicklung und Design und bin stets bestrebt, moderne und innovative Lösungen anzubieten, die speziell auf die Bedürfnisse jedes Kunden zugeschnitten sind. Für mich hat jedes Projekt seinen eigenen Charakter, deshalb gestalte ich einzigartige, nicht-traditionelle Websites, die die Markenidentität ausdrücken und helfen, Kunden zu gewinnen und einen professionellen Eindruck vom ersten Besuch an zu hinterlassen.',
-          'services.title': 'Was ich Ihnen biete',
-          'skills.title': 'Programmiersprachen, die ich beherrsche',
-          'projects.title': 'Meine Projekte',
-          'education.title': 'Meine Ausbildung',
-          'strengths.title': 'Meine Stärken',
-          'softskills.title': 'Persönliche Qualitäten',
-          'contact.title': 'Kontaktieren Sie mich via',
-          'nav.home': 'Start',
-          'nav.about': 'Über',
-          'nav.distinguish': 'Auszeichnung',
-          'nav.services': 'Leistungen',
-          'nav.skills': 'Fähigkeiten',
-          'nav.projects': 'Projekte',
-          'nav.education': 'Bildung',
-          'nav.strengths': 'Stärken',
-          'nav.softskills': 'Soft Skills',
-          'nav.contact': 'Kontakt'
-        },
-        ar: {
-          'hero.role.prefix': 'أنا',
-          'hero.desc': 'أبني مواقع ويب حديثة ومتجاوبة وأتعلم باستمرار من خلال المشاريع الحقيقية.',
-          'hero.cta1': 'أعمالي',
-          'hero.cta2': 'تواصل معي',
-          'about.title': 'عنّي',
-          'distinguish.title': 'ما يميزني',
-          'distinguish.text': 'أنا عبدالرحمن مطور ويب ومصمم مواقع متخصص في إنشاء مواقع عصرية تجمع بين التصميم الجذاب والأداء القوي وتجربة المستخدم الاحترافية. أعمل على تحويل الأفكار إلى مواقع حقيقية تساعد أصحاب المشاريع والشركات على بناء حضور قوي واحترافي على الإنترنت. أهتم دائمًا بالتفاصيل الصغيرة قبل الكبيرة لأنني أؤمن أن الفرق الحقيقي يظهر في جودة التنفيذ ودقة التصميم وسهولة الاستخدام. أمتلك شغف كبير بمجال تطوير الويب والتصميم، وأسعى دائمًا لتقديم حلول حديثة ومبتكرة تناسب احتياجات كل عميل بشكل خاص. بالنسبة لي كل مشروع له طابعه الخاص، لذلك أحرص على تصميم مواقع مميزة غير تقليدية تعبر عن هوية البراند وتساعد في جذب العملاء وترك انطباع احترافي من أول زيارة.',
-          'services.title': 'ما أقدمه لك',
-          'skills.title': 'لغات البرمجة التي أجيدها',
-          'projects.title': 'مشاريعي',
-          'education.title': 'دراستي',
-          'strengths.title': 'نقاط قوتي',
-          'softskills.title': 'صفاتي الشخصية',
-          'contact.title': 'تواصل معي عبر',
-          'nav.home': 'الرئيسية',
-          'nav.about': 'عنّي',
-          'nav.distinguish': 'ما يميزني',
-          'nav.services': 'الخدمات',
-          'nav.skills': 'المهارات',
-          'nav.projects': 'المشاريع',
-          'nav.education': 'التعليم',
-          'nav.strengths': 'نقاط القوة',
-          'nav.softskills': 'المهارات الشخصية',
-          'nav.contact': 'تواصل'
-        }
-      };
-
-      const skillsData = [
-        { i:'fab fa-html5', color:'#E34F26', n:'HTML5',
-          descEn:'I have complete mastery of HTML5, crafting semantic structures with precision. Every tag I write follows best practices for accessibility and SEO.',
-          descDe:'Ich beherrsche HTML5 vollständig und erstelle semantische Strukturen mit Präzision.',
-          descAr:'لدي إتقان تام للغة HTML5، أصوغ الهياكل الدلالية بدقة.' },
-        { i:'fab fa-css3-alt', color:'#1572B6', n:'CSS3',
-          descEn:'My CSS3 skills are exceptional — I create stunning, responsive layouts with flawless animations.',
-          descDe:'Meine CSS3-Kenntnisse sind außergewöhnlich.',
-          descAr:'مهاراتي في CSS3 استثنائية.' },
-        { i:'fab fa-js', color:'#F7DF1E', n:'JavaScript',
-          descEn:'JavaScript is my powerhouse — I build dynamic, interactive applications with clean ES6+ syntax.',
-          descDe:'JavaScript ist meine Stärke.',
-          descAr:'JavaScript هي قوتي الدافعة.' },
-        { i:'fab fa-python', color:'#3776AB', n:'Python',
-          descEn:'I leverage Python\'s versatility for backend automation, data processing, and scripting.',
-          descDe:'Ich nutze die Vielseitigkeit von Python.',
-          descAr:'أستفيد من تعدد استخدامات Python.' },
-        { i:'fas fa-code', color:'#00599C', n:'C++',
-          descEn:'My C++ expertise enables me to write high-performance, memory-efficient code.',
-          descDe:'Meine C++-Expertise ermöglicht leistungsstarken Code.',
-          descAr:'خبرتي في C++ تمكنني من كتابة كود عالي الأداء.' },
-        { i:'fas fa-hashtag', color:'#9B4F96', n:'C#',
-          descEn:'I develop robust .NET applications and desktop software with C#.',
-          descDe:'Ich entwickle robuste .NET-Anwendungen mit C#.',
-          descAr:'أطور تطبيقات .NET قوية باستخدام C#.' },
-        { i:'fab fa-php', color:'#777BB4', n:'PHP',
-          descEn:'I create dynamic server-side solutions with PHP, handling databases and APIs.',
-          descDe:'Ich erstelle dynamische serverseitige Lösungen mit PHP.',
-          descAr:'أصنع حلولًا خادمية ديناميكية باستخدام PHP.' }
-      ];
-
-      const projectsData = [{
-        title:'Abdulrahman TEC',
-        descEn:'A modern technology website showcasing services and solutions with an elegant, professional design. Built with clean code and optimized for performance, accessibility, and SEO.',
-        descDe:'Eine moderne Technologie-Website mit elegantem, professionellem Design.',
-        descAr:'موقع تكنولوجي عصري يعرض الخدمات والحلول بتصميم أنيق واحترافي.',
-        img:'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600',
-        tags:['HTML5','CSS3','JavaScript','Responsive','SEO']
-      }];
-
-      const strengthItems = [
-        { i:'fas fa-star', ar:'أنا شخص طموح أؤمن إن النجاح محتاج تعب واستمرار يومي.', en:'I am ambitious and believe success requires daily effort.', de:'Ich bin ehrgeizig und glaube, dass Erfolg tägliche Anstrengung erfordert.' },
-        { i:'fas fa-star', ar:'بحب أطور نفسي باستمرار وأتعلم من كل تجربة.', en:'I love continuously improving myself.', de:'Ich entwickle mich ständig weiter.' },
-        { i:'fas fa-star', ar:'بشوف التحديات فرص مهمة تساعدني أكون أقوى.', en:'I see challenges as opportunities to grow stronger.', de:'Herausforderungen sind Chancen, stärker zu werden.' },
-        { i:'fas fa-star', ar:'بشتغل بجد وبنظم وقتي علشان أوصل لأهدافي.', en:'I work hard and manage my time effectively.', de:'Ich arbeite hart und organisiere meine Zeit.' },
-        { i:'fas fa-star', ar:'ما بحبش أستسلم وبكمل مهما كانت الصعوبات.', en:'I never give up, no matter the difficulties.', de:'Ich gebe niemals auf.' },
-        { i:'fas fa-star', ar:'بؤمن إن الإرادة القوية هي سر النجاح الحقيقي.', en:'Strong will is the secret to real success.', de:'Ein starker Wille ist das Geheimnis des Erfolgs.' },
-        { i:'fas fa-star', ar:'بحاول أكون شخص مؤثر وإيجابي في أي مكان.', en:'I strive to be a positive influence.', de:'Ich bemühe mich, eine positive Person zu sein.' },
-        { i:'fas fa-star', ar:'هدفي تحقيق ذاتي والوصول لمستوى طموحي.', en:'My goal is self-fulfillment.', de:'Mein Ziel ist Selbstverwirklichung.' }
-      ];
-
-      const softSkillData = [
-        { i:'fas fa-puzzle-piece', nameEn:'Problem Solving', nameDe:'Problemlösung', nameAr:'حل المشكلات', descEn:'Creative solutions', descDe:'Kreative Lösungen', descAr:'حلول إبداعية' },
-        { i:'fas fa-chart-line', nameEn:'Analytical Thinking', nameDe:'Analytisches Denken', nameAr:'التفكير التحليلي', descEn:'Data-driven logic', descDe:'Datengestützte Logik', descAr:'منطق قائم على البيانات' },
-        { i:'fas fa-users', nameEn:'Team Collaboration', nameDe:'Teamarbeit', nameAr:'التعاون الجماعي', descEn:'Clear communication', descDe:'Klare Kommunikation', descAr:'تواصل واضح' },
-        { i:'fas fa-clock', nameEn:'Time Management', nameDe:'Zeitmanagement', nameAr:'إدارة الوقت', descEn:'Task prioritization', descDe:'Aufgabenpriorisierung', descAr:'تحديد الأولويات' },
-        { i:'fas fa-book-open', nameEn:'Self-Learning', nameDe:'Selbstlernen', nameAr:'التعلم الذاتي', descEn:'Rapid tool adoption', descDe:'Schnelle Werkzeugübernahme', descAr:'سرعة تبني الأدوات' },
-        { i:'fas fa-rotate', nameEn:'Adaptability', nameDe:'Anpassungsfähigkeit', nameAr:'القدرة على التكيف', descEn:'Thriving in change', descDe:'Erfolgreich im Wandel', descAr:'الازدهار في التغير' }
-      ];
-
-      const serviceData = [
-        { i:'fas fa-pencil-ruler', titleEn:'UI/UX Design', titleDe:'UI/UX-Design', titleAr:'تصميم واجهة المستخدم', descEn:'Detail and creativity.', descDe:'Details und Kreativität.', descAr:'التفاصيل والإبداع.' },
-        { i:'fas fa-code', titleEn:'Web Development', titleDe:'Webentwicklung', titleAr:'تطوير المواقع', descEn:'Clean code, performance.', descDe:'Sauberer Code, Leistung.', descAr:'كود نظيف وأداء.' },
-        { i:'fas fa-briefcase', titleEn:'Business Solutions', titleDe:'Geschäftslösungen', titleAr:'حلول الأعمال', descEn:'Innovation and success.', descDe:'Innovation und Erfolg.', descAr:'ابتكار ونجاح.' }
-      ];
-
-      const eduData = [
-        { date:'2023 - Present', schoolEn:'New Cairo Academy', schoolDe:'New Cairo Academy', schoolAr:'أكاديمية القاهرة الجديدة', descEn:'BSc Computer Science', descDe:'BSc Informatik', descAr:'بكالوريوس علوم حاسب', active:true },
-        { date:'2020 - 2023', schoolEn:'General Secondary School', schoolDe:'Allgemeine Sekundarschule', schoolAr:'ثانوية عامة', descEn:'Technology foundation', descDe:'Technologiegrundlage', descAr:'أساسيات التكنولوجيا', active:false }
-      ];
-
-      const platformData = [
-        { i:'fab fa-github', c:'#6e5494', n:'GitHub', u:'https://github.com/Abdo-1818' },
-        { i:'fab fa-linkedin-in', c:'#0077b5', n:'LinkedIn', u:'https://www.linkedin.com/in/ab-do-097783272' },
-        { i:'fab fa-instagram', c:'#e4405f', n:'Instagram', u:'https://www.instagram.com/bboda_7' }
-      ];
-
-      const typedRoles = {
-        en: ['UI/UX Designer','Low-Code Developer','Frontend Developer','Web Designer'],
-        de: ['UI/UX-Designer','Low-Code-Entwickler','Frontend-Entwickler','Webdesigner'],
-        ar: ['مصمم واجهات المستخدم','مطور Low-Code','مطور واجهات أمامية','مصمم مواقع']
-      };
-
-      let currentLang = 'en';
-      window.currentLang = currentLang;
-      let typedIndex = 0, charIndex = 0, typedTimeout;
-
-      function typeEffect() {
-        const roles = typedRoles[currentLang] || typedRoles['en'];
-        const text = roles[typedIndex];
-        const el = document.getElementById('typedText');
-        if(!el) return;
-        el.textContent = text.substring(0, charIndex);
-        if(charIndex < text.length) {
-          charIndex++;
-          typedTimeout = setTimeout(typeEffect, 75);
-        } else {
-          typedTimeout = setTimeout(() => {
-            charIndex = 0;
-            typedIndex = (typedIndex + 1) % roles.length;
-            typeEffect();
-          }, 2600);
-        }
-      }
-
-      function buildNav() {
-        const items = ['home','about','distinguish','services','skills','projects','education','strengths','softskills','contact'];
-        const t = translations[currentLang];
-        const html = items.map(k => `<li><a href="#${k}" data-i18n-nav="${k}">${t['nav.'+k]||k}</a></li>`).join('');
-        document.getElementById('navDesktop').innerHTML = html;
-        document.getElementById('mobileNav').innerHTML = html;
-      }
-
-      function buildSkillsBook() {
-        const container = document.getElementById('skillsBook');
-        if(!container) return;
-        const langCap = currentLang.charAt(0).toUpperCase()+currentLang.slice(1);
-        container.innerHTML = skillsData.map((s,i) => {
-          const side = i%2===0 ? 'left' : 'right';
-          const desc = s['desc'+langCap] || s.descEn;
-          return `<div class="book-row ${side}"><div class="book-card">
-            <div class="book-icon" style="color:${s.color};"><i class="${s.i}"></i></div>
-            <div class="skill-name">${s.n}</div>
-            <div class="skill-desc">${desc}</div>
-          </div></div>`;
-        }).join('');
-      }
-
-      function buildInfo() {
-        const data = {
-          en:{ fullname:'Abdulrahman Mamdouh', age:'20 Years', dob:'August 1, 2005', nat:'Egyptian', spec:'Information Systems', dept:'Computer Science', status:'Currently Studying' },
-          de:{ fullname:'Abdulrahman Mamdouh', age:'20 Jahre', dob:'1. August 2005', nat:'Ägypter', spec:'Informationssysteme', dept:'Informatik', status:'Studierend' },
-          ar:{ fullname:'عبدالرحمن ممدوح', age:'20 سنة', dob:'1 أغسطس 2005', nat:'مصري', spec:'نظم المعلومات', dept:'علوم الحاسب', status:'قيد الدراسة' }
-        };
-        const labels = {
-          en:{ fullname:'Full Name', age:'Age', dob:'Date of Birth', nat:'Nationality', spec:'Specialization', dept:'Department', status:'Status' },
-          de:{ fullname:'Name', age:'Alter', dob:'Geburtsdatum', nat:'Nationalität', spec:'Spezialisierung', dept:'Fachbereich', status:'Status' },
-          ar:{ fullname:'الاسم', age:'العمر', dob:'تاريخ الميلاد', nat:'الجنسية', spec:'التخصص', dept:'القسم', status:'الحالة' }
-        };
-        const v = data[currentLang], l = labels[currentLang];
-        document.getElementById('infoGrid').innerHTML = Object.keys(v).map(k =>
-          `<div class="info-cell"><div class="info-label">${l[k]}</div><div class="info-value">${v[k]}</div></div>`
-        ).join('');
-      }
-
-      function buildProjects() {
-        const grid = document.getElementById('projectsGrid');
-        if(!grid) return;
-        const langCap = currentLang.charAt(0).toUpperCase()+currentLang.slice(1);
-        grid.innerHTML = projectsData.map(p => {
-          const desc = p['desc'+langCap] || p.descEn;
-          return `<div class="project-card">
-            <div class="project-img-wrapper"><img src="${p.img}" alt="${p.title}" class="project-img" loading="lazy"></div>
-            <div class="project-body">
-              <h3 class="project-title">${p.title}</h3>
-              <p class="project-desc">${desc}</p>
-              <div class="project-tags">${p.tags.map(t=>`<span class="project-tag">${t}</span>`).join('')}</div>
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="#home" class="logo-link">
+                <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="Abdulrahman" class="logo-img" loading="lazy">
+                <span class="logo-text">AbdulRahman</span>
+            </a>
+            <ul class="nav-desktop" id="navDesktop"></ul>
+            <div class="header-actions">
+                <div class="lang-switch">
+                    <button class="lang-btn active" id="btnEn" onclick="switchLang('en')">EN</button>
+                    <button class="lang-btn" id="btnDe" onclick="switchLang('de')">DE</button>
+                    <button class="lang-btn" id="btnAr" onclick="switchLang('ar')">عربي</button>
+                </div>
+                <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Menu"><i class="fas fa-bars"></i></button>
             </div>
-          </div>`;
-        }).join('');
-      }
+        </div>
+    </header>
 
-      function buildEducation() {
-        const container = document.getElementById('educationTimeline');
-        if(!container) return;
-        const langCap = currentLang.charAt(0).toUpperCase()+currentLang.slice(1);
-        const statusTexts = { en:'Currently Studying', de:'Studierend', ar:'قيد الدراسة' };
-        container.innerHTML = eduData.map(e => {
-          const school = e['school'+langCap] || e.schoolEn;
-          const desc = e['desc'+langCap] || e.descEn;
-          return `<div class="tl-item">
-            <div class="tl-date">${e.date}</div>
-            <div class="tl-title">${school}</div>
-            <div class="tl-desc">${desc}</div>
-            ${e.active ? `<span class="status-badge"><span class="live-dot"></span> ${statusTexts[currentLang]||statusTexts['en']}</span>` : ''}
-          </div>`;
-        }).join('');
-      }
+    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <span class="logo-text">AbdulRahman</span>
+            <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="mobile-nav" id="mobileNav"></ul>
+    </div>
 
-      function buildStrengths() {
-        document.getElementById('strengthsList').innerHTML = strengthItems.map(s => {
-          const text = s[currentLang] || s.en;
-          return `<div class="softskill-card"><i class="${s.i}" style="color:var(--accent-bright);font-size:1.5rem;"></i><p style="font-size:0.82rem;color:var(--text-secondary);">${text}</p></div>`;
-        }).join('');
-      }
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-name">Abdulrahman Mamdouh</h1>
+                <div class="hero-title-role"><span data-i18n="hero.role.prefix">I'm a</span> <span class="typed-text" id="typedText"></span></div>
+                <p class="hero-tagline" data-i18n="hero.desc">I build modern, responsive websites and constantly learn through real projects.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary" data-i18n="hero.cta1">View My Work</a>
+                    <a href="#contact" class="btn btn-outline" data-i18n="hero.cta2">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="avatar-ring">
+                    <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="Abdulrahman" class="avatar-img" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
 
-      function buildSoftSkills() {
-        const langCap = currentLang.charAt(0).toUpperCase()+currentLang.slice(1);
-        document.getElementById('softSkillsVertical').innerHTML = softSkillData.map(s => {
-          const name = s['name'+langCap] || s.nameEn;
-          const desc = s['desc'+langCap] || s.descEn;
-          return `<div class="softskill-card"><i class="${s.i}" style="color:var(--accent-bright);font-size:1.5rem;"></i><div><h4 style="color:#fff;margin-bottom:3px;">${name}</h4><p style="color:var(--text-secondary);font-size:0.78rem;">${desc}</p></div></div>`;
-        }).join('');
-      }
+    <section class="section" id="about">
+        <div class="section-wrapper glowing-border">
+            <div class="section-header"><h2 class="section-title" data-i18n="about.title">About Me</h2></div>
+            <div class="info-grid" id="infoGrid"></div>
+        </div>
+    </section>
 
-      function buildServices() {
-        const langCap = currentLang.charAt(0).toUpperCase()+currentLang.slice(1);
-        document.getElementById('servicesList').innerHTML = serviceData.map(s => {
-          const title = s['title'+langCap] || s.titleEn;
-          const desc = s['desc'+langCap] || s.descEn;
-          return `<div class="softskill-card"><i class="${s.i}" style="color:var(--accent-bright);font-size:1.5rem;"></i><div><h4 style="color:#fff;margin-bottom:3px;">${title}</h4><p style="color:var(--text-secondary);font-size:0.78rem;">${desc}</p></div></div>`;
-        }).join('');
-      }
+    <section class="section" id="unique">
+        <div class="section-wrapper glowing-border">
+            <div class="section-header"><h2 class="section-title" data-i18n="unique.title">What Distinguishes Me</h2></div>
+            <div class="highlight-box" data-i18n="unique.text"></div>
+        </div>
+    </section>
 
-      function buildPlatforms() {
-        document.getElementById('contactPlatforms').innerHTML = platformData.map(p =>
-          `<a href="${p.u}" target="_blank" rel="noopener" class="platform-card"><i class="${p.i}" style="color:${p.c};font-size:1.2rem;"></i><span>${p.n}</span></a>`
-        ).join('');
-      }
+    <section class="section" id="services">
+        <div class="section-wrapper glowing-border">
+            <div class="section-header"><h2 class="section-title" data-i18n="services.title">What I Offer You</h2></div>
+            <div class="softskills-vertical" id="servicesList"></div>
+        </div>
+    </section>
 
-      function applyTranslations() {
-        const t = translations[currentLang];
-        document.querySelectorAll('[data-i18n]').forEach(el => { if(t[el.dataset.i18n]) el.textContent = t[el.dataset.i18n]; });
-        document.querySelectorAll('[data-i18n-nav]').forEach(el => { if(t['nav.'+el.dataset.i18nNav]) el.textContent = t['nav.'+el.dataset.i18nNav]; });
-      }
+    <section class="section" id="skills">
+        <div class="section-wrapper glowing-border">
+            <div class="section-header"><h2 class="section-title" data-i18n="skills.title">Programming Languages I Master</h2></div>
+            <div class="skills-book-vertical" id="skillsBook"></div>
+        </div>
+    </section>
 
-      function refreshAll() {
-        buildNav(); buildInfo(); buildSkillsBook(); buildProjects(); buildEducation();
-        buildStrengths(); buildSoftSkills(); buildServices(); buildPlatforms();
-        applyTranslations();
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-        if(typedTimeout) clearTimeout(typedTimeout);
-        charIndex = 0; typedIndex = 0;
-        typeEffect();
-      }
+    <section class="section" id="projects">
+        <div class="section-wrapper glowing-border">
+            <div class="section-header"><h2 class="section-title" data-i18n="projects.title">مشاريعي</h2></div>
+            <div class="projects-grid" id="projectsGrid"></div>
+        </div>
+    </section>
 
-      window.switchLang = function(lang) {
-        currentLang = lang;
-        window.currentLang = lang;
-        document.documentElement.lang = lang;
-        document.documentElement.dir = lang==='ar'?'rtl':'ltr';
-        document.body.classList.toggle('rtl', lang==='ar');
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(lang==='en'?'btnEn':lang==='de'?'btnDe':'btnAr').classList.add('active');
-        document.title = { en:'Abdulrahman | Frontend Developer', de:'Abdulrahman | Frontend-Entwickler', ar:'عبدالرحمن | مطور واجهات' }[lang];
-        refreshAll();
-      };
+    <section class="section" id="education">
+        <div class="section-wrapper glowing-border">
+            <div class="section-header"><h2 class="section-title" data-i18n="education.title">دراستي</h2></div>
+            <div class="timeline" id="educationTimeline"></div>
+        </div>
+    </section>
 
-      window.toggleMobileMenu = function() {
-        document.getElementById('mobileMenu').classList.toggle('open');
-        document.getElementById('mobileOverlay').classList.toggle('open');
-      };
+    <section class="section" id="strengths">
+        <div class="section-wrapper glowing-border">
+            <div class="section-header"><h2 class="section-title" data-i18n="strengths.title">نقاط قوتي</h2></div>
+            <div class="softskills-vertical" id="strengthsList"></div>
+        </div>
+    </section>
 
-      document.addEventListener('click', function(e) {
-        if(e.target.closest('.mobile-nav a') && document.getElementById('mobileMenu').classList.contains('open')) {
-          toggleMobileMenu();
-        }
-      });
+    <section class="section" id="softskills">
+        <div class="section-wrapper glowing-border">
+            <div class="section-header"><h2 class="section-title" data-i18n="softskills.title">Personal Qualities</h2></div>
+            <div class="softskills-vertical" id="softSkillsVertical"></div>
+        </div>
+    </section>
 
-      // ==================================================
-      // CURSOR: Always visible on desktop, smooth movement
-      // ==================================================
-      (function() {
-        const cursor = document.getElementById('customCursor');
-        const dot = document.getElementById('cursorDot');
-        if (!cursor || !dot) return;
+    <section class="section" id="contact">
+        <div class="section-wrapper glowing-border">
+            <div class="section-header"><h2 class="section-title" data-i18n="contact.title">تواصل معي عبر</h2></div>
+            <div class="platforms-grid" id="contactPlatforms"></div>
+        </div>
+    </section>
 
-        // Show custom cursor only on devices with a fine pointer (desktop/laptop)
-        const isDesktop = window.matchMedia('(pointer: fine)').matches;
-        if (!isDesktop) {
-          document.body.classList.add('cursor-hidden');
-          document.body.style.cursor = 'auto';
-          return;
-        }
+    <footer class="footer">
+        <p>© <span id="currentYear"></span> Abdulrahman Mamdouh — <span data-i18n="footer.tagline">Crafted with passion & precision</span></p>
+    </footer>
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
 
-        // Hide default cursor, show custom one
-        document.body.style.cursor = 'none';
-        cursor.style.opacity = '1';
-        dot.style.opacity = '1';
+    <script>
+        (function() {
+            const translations = {
+                en: {
+                    'hero.role.prefix': "I'm a",
+                    'hero.desc': 'I build modern, responsive websites and constantly learn through real projects.',
+                    'hero.cta1': 'View My Work',
+                    'hero.cta2': 'Get In Touch',
+                    'about.title': 'About Me',
+                    'unique.title': 'What Distinguishes Me',
+                    'unique.text': '<strong>I am Abdulrahman</strong>, a web developer and website designer specializing in creating modern websites that combine attractive design, strong performance, and professional user experience. I work on transforming ideas into real websites that help business owners and companies build a strong and professional online presence. I always pay attention to the small details before the big ones because I believe the real difference appears in the quality of execution, design precision, and ease of use.<br><br>I have a great passion for web development and design, and I always strive to provide modern and innovative solutions that suit each client\'s specific needs. For me, every project has its own character, so I make sure to design distinctive, unconventional websites that express the brand identity and help attract customers while leaving a professional impression from the very first visit.',
+                    'services.title': 'What I Offer You',
+                    'skills.title': 'Programming Languages I Master',
+                    'projects.title': 'مشاريعي',
+                    'education.title': 'دراستي',
+                    'strengths.title': 'نقاط قوتي',
+                    'softskills.title': 'Personal Qualities',
+                    'contact.title': 'تواصل معي عبر',
+                    'footer.tagline': 'Crafted with passion & precision',
+                    'nav.home': 'Home',
+                    'nav.about': 'About',
+                    'nav.unique': 'What Distinguishes Me',
+                    'nav.services': 'Services',
+                    'nav.skills': 'Skills',
+                    'nav.projects': 'Projects',
+                    'nav.education': 'Education',
+                    'nav.strengths': 'Strengths',
+                    'nav.softskills': 'Soft Skills',
+                    'nav.contact': 'Contact',
+                    'project1.title': 'Abdulrahman TEC',
+                    'project1.desc': 'A modern technology website showcasing services and solutions with a clean, professional design.',
+                    'project2.title': 'Smart Calculator',
+                    'project2.desc': 'An interactive web-based calculator with a sleek interface and smooth functionality.',
+                },
+                de: {
+                    'hero.role.prefix': 'Ich bin',
+                    'hero.desc': 'Ich entwickle moderne, responsive Websites und lerne ständig durch echte Projekte.',
+                    'hero.cta1': 'Meine Arbeit',
+                    'hero.cta2': 'Kontakt',
+                    'about.title': 'Über mich',
+                    'unique.title': 'Was mich auszeichnet',
+                    'unique.text': '<strong>Ich bin Abdulrahman</strong>, ein Webentwickler und Website-Designer, spezialisiert auf die Erstellung moderner Websites, die attraktives Design, starke Leistung und professionelle Benutzererfahrung vereinen. Ich arbeite daran, Ideen in echte Websites umzuwandeln, die Geschäftsinhabern und Unternehmen helfen, eine starke und professionelle Online-Präsenz aufzubauen. Ich achte immer auf die kleinen Details vor den großen, weil ich glaube, dass der wahre Unterschied in der Qualität der Ausführung, der Designpräzision und der Benutzerfreundlichkeit liegt.<br><br>Ich habe eine große Leidenschaft für Webentwicklung und Design und bemühe mich stets, moderne und innovative Lösungen anzubieten, die den spezifischen Bedürfnissen jedes Kunden entsprechen. Für mich hat jedes Projekt seinen eigenen Charakter, daher gestalte ich unverwechselbare, unkonventionelle Websites, die die Markenidentität ausdrücken und Kunden anziehen, während sie vom ersten Besuch an einen professionellen Eindruck hinterlassen.',
+                    'services.title': 'Was ich Ihnen biete',
+                    'skills.title': 'Programmiersprachen, die ich beherrsche',
+                    'projects.title': 'Meine Projekte',
+                    'education.title': 'Bildung',
+                    'strengths.title': 'Meine Stärken',
+                    'softskills.title': 'Persönliche Qualitäten',
+                    'contact.title': 'Kontaktieren Sie mich über',
+                    'footer.tagline': 'Mit Leidenschaft & Präzision gefertigt',
+                    'nav.home': 'Start',
+                    'nav.about': 'Über',
+                    'nav.unique': 'Was mich auszeichnet',
+                    'nav.services': 'Leistungen',
+                    'nav.skills': 'Fähigkeiten',
+                    'nav.projects': 'Projekte',
+                    'nav.education': 'Bildung',
+                    'nav.strengths': 'Stärken',
+                    'nav.softskills': 'Soft Skills',
+                    'nav.contact': 'Kontakt',
+                    'project1.title': 'Abdulrahman TEC',
+                    'project1.desc': 'Eine moderne Technologie-Website mit sauberem, professionellem Design.',
+                    'project2.title': 'Intelligenter Rechner',
+                    'project2.desc': 'Ein interaktiver webbasierter Rechner mit eleganter Oberfläche und reibungsloser Funktionalität.',
+                },
+                ar: {
+                    'hero.role.prefix': 'أنا',
+                    'hero.desc': 'أبني مواقع ويب حديثة ومتجاوبة وأتعلم باستمرار من خلال المشاريع الحقيقية.',
+                    'hero.cta1': 'أعمالي',
+                    'hero.cta2': 'تواصل معي',
+                    'about.title': 'عنّي',
+                    'unique.title': 'ما يميزني',
+                    'unique.text': '<strong>أنا عبدالرحمن</strong>، مطور ويب ومصمم مواقع متخصص في إنشاء مواقع عصرية تجمع بين التصميم الجذاب والأداء القوي وتجربة المستخدم الاحترافية. أعمل على تحويل الأفكار إلى مواقع حقيقية تساعد أصحاب المشاريع والشركات على بناء حضور قوي واحترافي على الإنترنت. أهتم دائمًا بالتفاصيل الصغيرة قبل الكبيرة لأنني أؤمن أن الفرق الحقيقي يظهر في جودة التنفيذ ودقة التصميم وسهولة الاستخدام.<br><br>أمتلك شغف كبير بمجال تطوير الويب والتصميم، وأسعى دائمًا لتقديم حلول حديثة ومبتكرة تناسب احتياجات كل عميل بشكل خاص. بالنسبة لي كل مشروع له طابعه الخاص، لذلك أحرص على تصميم مواقع مميزة غير تقليدية تعبر عن هوية البراند وتساعد في جذب العملاء وترك انطباع احترافي من أول زيارة.',
+                    'services.title': 'ما أقدمه لك',
+                    'skills.title': 'لغات البرمجة التي أجيدها',
+                    'projects.title': 'مشاريعي',
+                    'education.title': 'دراستي',
+                    'strengths.title': 'نقاط قوتي',
+                    'softskills.title': 'صفاتي الشخصية',
+                    'contact.title': 'تواصل معي عبر',
+                    'footer.tagline': 'صُنع بشغف وإتقان',
+                    'nav.home': 'الرئيسية',
+                    'nav.about': 'عنّي',
+                    'nav.unique': 'ما يميزني',
+                    'nav.services': 'الخدمات',
+                    'nav.skills': 'المهارات',
+                    'nav.projects': 'المشاريع',
+                    'nav.education': 'التعليم',
+                    'nav.strengths': 'نقاط القوة',
+                    'nav.softskills': 'المهارات الشخصية',
+                    'nav.contact': 'تواصل',
+                    'project1.title': 'عبدالرحمن تيك',
+                    'project1.desc': 'موقع تقني عصري يعرض الخدمات والحلول بتصميم نظيف واحترافي.',
+                    'project2.title': 'الآلة الحاسبة الذكية',
+                    'project2.desc': 'آلة حاسبة تفاعلية بواجهة أنيقة ووظائف سلسة على الويب.',
+                }
+            };
 
-        let mx = window.innerWidth / 2;
-        let my = window.innerHeight / 2;
-        let cx = mx;
-        let cy = my;
+            const skillsData = [
+                { i: 'fab fa-html5', color: '#E34F26', n: 'HTML5',
+                    descEn: 'I master HTML5 with deep semantic understanding, building clean accessible structures that form the solid foundation of every project I create.',
+                    descDe: 'Ich beherrsche HTML5 mit tiefem semantischem Verständnis und baue saubere, zugängliche Strukturen.',
+                    descAr: 'أتقن HTML5 بفهم عميق للمعاني الدلالية، وأبني هياكل نظيفة قابلة للوصول تشكل أساسًا متينًا لكل مشروع أصممه.' },
+                { i: 'fab fa-css3-alt', color: '#1572B6', n: 'CSS3',
+                    descEn: 'I craft stunning responsive layouts with CSS3, using animations and modern techniques to bring designs to life with pixel-perfect precision.',
+                    descDe: 'Ich gestalte beeindruckende responsive Layouts mit CSS3 und modernen Animationstechniken.',
+                    descAr: 'أبدع في تصميم تخطيطات متجاوبة مذهلة باستخدام CSS3، مع حركات وتقنيات حديثة تجعل التصاميم تنبض بالحياة بدقة متناهية.' },
+                { i: 'fab fa-js', color: '#F7DF1E', n: 'JavaScript',
+                    descEn: 'I build dynamic interactive experiences with clean ES6+ code, handling complex logic and creating smooth user interactions effortlessly.',
+                    descDe: 'Ich entwickle dynamische interaktive Erlebnisse mit sauberem ES6+ Code.',
+                    descAr: 'أبني تجارب تفاعلية ديناميكية باستخدام أكواد ES6+ نظيفة، وأتعامل مع المنطق المعقد وأنشئ تفاعلات مستخدم سلسة بكل سهولة.' },
+                { i: 'fab fa-python', color: '#3776AB', n: 'Python',
+                    descEn: 'I leverage Python professionally for backend automation and data processing, writing efficient clean code for powerful solutions.',
+                    descDe: 'Ich nutze Python professionell für Backend-Automatisierung und Datenverarbeitung.',
+                    descAr: 'أستخدم بايثون باحتراف في الأتمتة الخلفية ومعالجة البيانات، وأكتب أكوادًا فعالة ونظيفة لحلول قوية ومتكاملة.' },
+                { i: 'fas fa-code', color: '#00599C', n: 'C++',
+                    descEn: 'I write high-performance C++ code for resource-intensive applications, mastering memory management and optimization techniques.',
+                    descDe: 'Ich schreibe Hochleistungs-C++-Code für ressourcenintensive Anwendungen.',
+                    descAr: 'أكتب أكواد C++ عالية الأداء للتطبيقات كثيفة الموارد، وأتقن إدارة الذاكرة وتقنيات التحسين بمهارة عالية.' },
+                { i: 'fas fa-hashtag', color: '#9B4F96', n: 'C#',
+                    descEn: 'I develop robust .NET applications with C#, creating reliable desktop software and integrated business solutions.',
+                    descDe: 'Ich entwickle robuste .NET-Anwendungen mit C#.',
+                    descAr: 'أطور تطبيقات .NET قوية باستخدام C#، وأصنع برامج سطح مكتب موثوقة وحلول أعمال متكاملة بجودة عالية.' },
+                { i: 'fab fa-php', color: '#777BB4', n: 'PHP',
+                    descEn: 'I create dynamic server-side web solutions with PHP, handling databases and backend logic with expertise and clean architecture.',
+                    descDe: 'Ich erstelle dynamische serverseitige Web-Lösungen mit PHP.',
+                    descAr: 'أصنع حلول ويب ديناميكية خادمية باستخدام PHP بمهارة، وأتعامل مع قواعد البيانات والمنطق الخلفي بمعمارية نظيفة واحترافية.' }
+            ];
 
-        document.addEventListener('mousemove', (e) => {
-          mx = e.clientX;
-          my = e.clientY;
-          dot.style.transform = `translate(${mx - 3}px, ${my - 3}px)`;
-        });
+            const projectsData = [
+                { titleKey: 'project1.title', descKey: 'project1.desc',
+                    img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600',
+                    tags: ['HTML5', 'CSS3', 'JavaScript'], url: 'https://abdo-1818.github.io/abdulrahman_tec/' },
+                { titleKey: 'project2.title', descKey: 'project2.desc',
+                    img: 'https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=600',
+                    tags: ['HTML5', 'CSS3', 'JavaScript'], url: 'https://abdo-1818.github.io/bboda_7/' }
+            ];
 
-        document.addEventListener('mouseleave', () => {
-          cursor.style.opacity = '0';
-          dot.style.opacity = '0';
-        });
+            const strengthItems = [
+                { i: 'fas fa-star',
+                    ar: 'أنا شخص طموح أؤمن إن النجاح محتاج تعب واستمرار يومي.',
+                    en: 'I am ambitious and believe success requires daily effort and persistence.',
+                    de: 'Ich bin ehrgeizig und glaube, dass Erfolg tägliche Anstrengung erfordert.' },
+                { i: 'fas fa-star',
+                    ar: 'بحب أطور نفسي باستمرار وأتعلم من كل تجربة أمر بيها.',
+                    en: 'I love continuously improving myself and learning from every experience.',
+                    de: 'Ich entwickle mich ständig weiter und lerne aus jeder Erfahrung.' },
+                { i: 'fas fa-star',
+                    ar: 'بشوف التحديات فرص مهمة تساعدني أكون أقوى وأفضل.',
+                    en: 'I see challenges as important opportunities to grow stronger and better.',
+                    de: 'Ich sehe Herausforderungen als wichtige Chancen, stärker zu werden.' },
+                { i: 'fas fa-star',
+                    ar: 'بشتغل بجد وبنظم وقتي علشان أوصل لأهدافي بسرعة.',
+                    en: 'I work hard and manage my time effectively to reach my goals quickly.',
+                    de: 'Ich arbeite hart und organisiere meine Zeit, um meine Ziele zu erreichen.' },
+                { i: 'fas fa-star',
+                    ar: 'ما بحبش أستسلم وبكمل مهما كانت الصعوبات كبيرة.',
+                    en: 'I never give up and keep going no matter how big the difficulties are.',
+                    de: 'Ich gebe niemals auf, egal wie groß die Schwierigkeiten sind.' },
+                { i: 'fas fa-star',
+                    ar: 'بؤمن إن الإرادة القوية هي السر الحقيقي للنجاح.',
+                    en: 'I believe that strong willpower is the true secret to success.',
+                    de: 'Ich glaube, dass ein starker Wille das wahre Geheimnis des Erfolgs ist.' },
+                { i: 'fas fa-star',
+                    ar: 'بحاول أكون شخص مؤثر وإيجابي في أي مكان أتواجد فيه.',
+                    en: 'I strive to be a positive influence wherever I am present.',
+                    de: 'Ich bemühe mich, überall, wo ich bin, einen positiven Einfluss zu haben.' },
+                { i: 'fas fa-star',
+                    ar: 'هدفي تحقيق ذاتي والوصول لأعلى مستوى يليق بطموحي.',
+                    en: 'My goal is self-fulfillment and reaching the highest level worthy of my ambition.',
+                    de: 'Mein Ziel ist Selbstverwirklichung und das Erreichen des höchsten Niveaus.' }
+            ];
 
-        document.addEventListener('mouseenter', () => {
-          cursor.style.opacity = '1';
-          dot.style.opacity = '1';
-        });
+            const softSkillData = [
+                { i: 'fas fa-puzzle-piece', nameEn: 'Problem Solving', nameDe: 'Problemlösung', nameAr: 'حل المشكلات',
+                    descEn: 'I analyze complex issues and find effective solutions quickly.',
+                    descDe: 'Ich analysiere komplexe Probleme und finde schnelle Lösungen.', descAr: 'أحلل القضايا المعقدة وأجد حلولًا فعالة بسرعة.' },
+                { i: 'fas fa-chart-line', nameEn: 'Analytical Thinking', nameDe: 'Analytisches Denken',
+                    nameAr: 'التفكير التحليلي',
+                    descEn: 'I use data-driven logic to make informed decisions.',
+                    descDe: 'Ich nutze datengestützte Logik für fundierte Entscheidungen.', descAr: 'أستخدم المنطق القائم على البيانات لاتخاذ قرارات مدروسة.' },
+                { i: 'fas fa-users', nameEn: 'Team Collaboration', nameDe: 'Teamarbeit', nameAr: 'التعاون الجماعي',
+                    descEn: 'I work effectively within teams, contributing positively to group success.',
+                    descDe: 'Ich arbeite effektiv im Team und trage zum Erfolg bei.', descAr: 'أعمل بفعالية ضمن الفرق وأساهم بإيجابية في نجاح المجموعة.' },
+                { i: 'fas fa-clock', nameEn: 'Time Management', nameDe: 'Zeitmanagement', nameAr: 'إدارة الوقت',
+                    descEn: 'I prioritize tasks smartly to meet deadlines efficiently.',
+                    descDe: 'Ich priorisiere Aufgaben intelligent, um Fristen einzuhalten.', descAr: 'أحدد أولويات المهام بذكاء للوفاء بالمواعيد النهائية بكفاءة.' },
+                { i: 'fas fa-book-open', nameEn: 'Self-Learning', nameDe: 'Selbstlernen', nameAr: 'التعلم الذاتي',
+                    descEn: 'I quickly adopt new tools and technologies on my own.',
+                    descDe: 'Ich eigne mir schnell neue Werkzeuge und Technologien an.', descAr: 'أتبنى الأدوات والتقنيات الجديدة بسرعة وذاتيًا.' },
+                { i: 'fas fa-rotate', nameEn: 'Adaptability', nameDe: 'Anpassungsfähigkeit',
+                    nameAr: 'القدرة على التكيف',
+                    descEn: 'I adapt quickly to changing environments and new challenges.',
+                    descDe: 'Ich passe mich schnell an veränderte Umgebungen an.', descAr: 'أتأقلم بسرعة مع البيئات المتغيرة والتحديات الجديدة.' }
+            ];
 
-        function animateCursor() {
-          cx += (mx - cx) * 0.15;   // smooth interpolation
-          cy += (my - cy) * 0.15;
-          cursor.style.transform = `translate(${cx - 13}px, ${cy - 13}px)`;
-          requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
+            const serviceData = [
+                { i: 'fas fa-pencil-ruler', titleEn: 'UI/UX Design', titleDe: 'UI/UX-Design',
+                    titleAr: 'تصميم واجهة المستخدم',
+                    descEn: 'Each design reflects my methodology and dedication to detail and creativity, ensuring a unique visual identity.',
+                    descDe: 'Jedes Design spiegelt meine Methodik und mein Engagement für Details und Kreativität wider.',
+                    descAr: 'كل تصميم يعكس منهجي وتفاني في التفاصيل والإبداع، مما يضمن هوية بصرية فريدة.' },
+                { i: 'fas fa-code', titleEn: 'Web Development', titleDe: 'Webentwicklung', titleAr: 'تطوير مواقع الويب',
+                    descEn: 'Each project reflects my methodology and dedication to detail and creativity with clean, efficient code.',
+                    descDe: 'Jedes Projekt spiegelt meine Methodik und mein Engagement für Details wider.',
+                    descAr: 'كل مشروع يعكس منهجي وتفاني في التفاصيل والإبداع بأكواد نظيفة وفعالة.' },
+                { i: 'fas fa-briefcase', titleEn: 'Business Solutions', titleDe: 'Geschäftslösungen',
+                    titleAr: 'حلول الأعمال',
+                    descEn: 'Each solution reflects my methodology and dedication to detail, tailored specifically for your business needs.',
+                    descDe: 'Jede Lösung spiegelt meine Methodik wider, maßgeschneidert für Ihre Geschäftsanforderungen.',
+                    descAr: 'كل حل يعكس منهجي وتفاني في التفاصيل، مخصص خصيصًا لاحتياجات عملك.' }
+            ];
 
-        // Cursor hover effect on interactive elements
-        function attachHoverListeners() {
-          document.querySelectorAll('a, button, .btn, .project-card, .book-card, .softskill-card, .info-cell, .platform-card, .hamburger-btn')
-            .forEach(el => {
-              if (!el.dataset.cursorBound) {
-                el.dataset.cursorBound = 'true';
-                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-              }
-            });
-        }
-        attachHoverListeners();
-        // Re-attach after DOM updates (language switch rebuilds the DOM)
-        new MutationObserver(attachHoverListeners).observe(document.body, { childList: true, subtree: true });
-      })();
+            const eduData = [
+                { date: '2023 - Present', schoolEn: 'New Cairo Academy', schoolDe: 'New Cairo Academy',
+                    schoolAr: 'أكاديمية القاهرة الجديدة', descEn: 'BSc Computer Science', descDe: 'BSc Informatik',
+                    descAr: 'بكالوريوس علوم الحاسب', active: true },
+                { date: '2020 - 2023', schoolEn: 'General Secondary School', schoolDe: 'Allgemeine Sekundarschule',
+                    schoolAr: 'ثانوية عامة', descEn: 'Technology Foundation', descDe: 'Technologiegrundlage',
+                    descAr: 'أساسيات التكنولوجيا', active: false }
+            ];
 
-      // Particles & scroll effects (unchanged)
-      (function() {
-        const canvas = document.getElementById('particleCanvas');
-        if(!canvas) return;
-        const ctx = canvas.getContext('2d');
-        let w,h, particles=[];
-        function resize() { w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; }
-        function create() {
-          particles = Array.from({length:75}, () => ({
-            x:Math.random()*w, y:Math.random()*h,
-            vx:(Math.random()-0.5)*0.45, vy:(Math.random()-0.5)*0.45,
-            r:Math.random()*1.4+0.7
-          }));
-        }
-        resize(); create();
-        window.addEventListener('resize', () => { resize(); create(); });
-        function draw() {
-          ctx.clearRect(0,0,w,h);
-          particles.forEach((p,i) => {
-            p.x+=p.vx; p.y+=p.vy;
-            if(p.x<0||p.x>w) p.vx*=-1;
-            if(p.y<0||p.y>h) p.vy*=-1;
-            ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-            ctx.fillStyle='rgba(59,130,246,0.5)'; ctx.fill();
-            for(let j=i+1;j<particles.length;j++) {
-              const q=particles[j], dx=p.x-q.x, dy=p.y-q.y, dist=Math.sqrt(dx*dx+dy*dy);
-              if(dist<135) {
-                ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y);
-                ctx.strokeStyle=`rgba(14,165,233,${0.16*(1-dist/135)})`; ctx.lineWidth=0.55; ctx.stroke();
-              }
+            const platformData = [
+                { i: 'fab fa-github', c: '#6e5494', n: 'GitHub', u: 'https://github.com/Abdo-1818' },
+                { i: 'fab fa-linkedin-in', c: '#0077b5', n: 'LinkedIn', u: 'https://www.linkedin.com/in/ab-do-097783272' },
+                { i: 'fab fa-instagram', c: '#e4405f', n: 'Instagram', u: 'https://www.instagram.com/bboda_7' }
+            ];
+
+            const roleTexts = {
+                en: ['UI/UX Designer', 'Low-Code Developer', 'Web Developer', 'Creative Coder'],
+                de: ['UI/UX-Designer', 'Low-Code-Entwickler', 'Webentwickler', 'Kreativer Coder'],
+                ar: ['مصمم واجهات المستخدم', 'مطور منخفض الكود', 'مطور ويب', 'مبرمج مبدع']
+            };
+
+            let currentLang = 'en';
+            window.currentLang = currentLang;
+            let roleIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typedTimeout;
+
+            function getT(key) {
+                const t = translations[currentLang];
+                return t[key] || translations['en'][key] || key;
             }
-          });
-          requestAnimationFrame(draw);
-        }
-        draw();
-      })();
 
-      const revealObserver = new IntersectionObserver(entries => {
-        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); });
-      }, { threshold:0.18, rootMargin:'0px 0px -50px 0px' });
-      document.querySelectorAll('.section').forEach(s => revealObserver.observe(s));
+            function buildNav() {
+                const items = ['home', 'about', 'unique', 'services', 'skills', 'projects', 'education', 'strengths',
+                    'softskills', 'contact'
+                ];
+                const navDesktop = document.getElementById('navDesktop');
+                const mobileNav = document.getElementById('mobileNav');
+                const html = items.map(k =>
+                    `<li><a href="#${k}" data-i18n-nav="${k}">${getT('nav.' + k)}</a></li>`).join('');
+                if (navDesktop) navDesktop.innerHTML = html;
+                if (mobileNav) mobileNav.innerHTML = html;
+            }
 
-      window.addEventListener('scroll', () => {
-        document.getElementById('header').classList.toggle('scrolled', window.scrollY > 70);
-        document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 450);
-      }, { passive:true });
+            function buildSkillsBook() {
+                const container = document.getElementById('skillsBook');
+                if (!container) return;
+                container.innerHTML = skillsData.map(s => {
+                    const desc = s['desc' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s
+                        .descEn;
+                    return `
+                    <div class="skill-row">
+                        <div class="skill-icon-circle" style="background:${s.color}20; color:${s.color}; box-shadow: 0 0 24px ${s.color}40;">
+                            <i class="${s.i}"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h4>${s.n}</h4>
+                            <p>${desc}</p>
+                        </div>
+                    </div>`;
+                }).join('');
+            }
 
-      refreshAll();
-    })();
-  </script>
+            function buildInfo() {
+                const data = {
+                    en: { fullname: 'Abdulrahman Mamdouh', age: '20 Years', dob: 'August 1, 2005',
+                        nat: 'Egyptian', spec: 'Information Systems', dept: 'Computer Science',
+                        status: 'Currently Studying' },
+                    de: { fullname: 'Abdulrahman Mamdouh', age: '20 Jahre', dob: '1. August 2005', nat: 'Ägypter',
+                        spec: 'Informationssysteme', dept: 'Informatik', status: 'Studierend' },
+                    ar: { fullname: 'عبدالرحمن ممدوح', age: '20 سنة', dob: '1 أغسطس 2005', nat: 'مصري',
+                        spec: 'نظم المعلومات', dept: 'علوم الحاسب', status: 'قيد الدراسة' }
+                };
+                const labels = {
+                    en: { fullname: 'Full Name', age: 'Age', dob: 'Date of Birth', nat: 'Nationality',
+                        spec: 'Specialization', dept: 'Department', status: 'Status' },
+                    de: { fullname: 'Name', age: 'Alter', dob: 'Geburtsdatum', nat: 'Nationalität',
+                        spec: 'Spezialisierung', dept: 'Fachbereich', status: 'Status' },
+                    ar: { fullname: 'الاسم', age: 'العمر', dob: 'تاريخ الميلاد', nat: 'الجنسية', spec: 'التخصص',
+                        dept: 'القسم', status: 'الحالة' }
+                };
+                const v = data[currentLang],
+                    l = labels[currentLang];
+                const grid = document.getElementById('infoGrid');
+                if (!grid) return;
+                grid.innerHTML = Object.keys(v).map(k =>
+                    `<div class="info-cell"><div class="info-label">${l[k]}</div><div class="info-value">${v[k]}</div></div>`
+                    ).join('');
+            }
+
+            function buildProjects() {
+                const grid = document.getElementById('projectsGrid');
+                if (!grid) return;
+                grid.innerHTML = projectsData.map(p => `
+                    <a href="${p.url}" target="_blank" rel="noopener" class="project-card">
+                        <div class="project-img-wrapper"><img src="${p.img}" alt="${getT(p.titleKey)}" class="project-img" loading="lazy"></div>
+                        <div class="project-body">
+                            <h3 class="project-title">${getT(p.titleKey)}</h3>
+                            <p class="project-desc">${getT(p.descKey)}</p>
+                            <div class="project-tags">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>
+                        </div>
+                    </a>
+                `).join('');
+            }
+
+            function buildEducation() {
+                const container = document.getElementById('educationTimeline');
+                if (!container) return;
+                container.innerHTML = eduData.map(e => {
+                    const school = e['school' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || e
+                        .schoolEn;
+                    const desc = e['desc' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || e.descEn;
+                    const statusText = currentLang === 'en' ? 'Currently Studying' : currentLang === 'de' ?
+                        'Studierend' : 'قيد الدراسة';
+                    return `<div class="tl-item">
+                        <div class="tl-date">${e.date}</div>
+                        <div class="tl-title">${school}</div>
+                        <div class="tl-desc">${desc}</div>
+                        ${e.active ? `<span class="status-badge"><span class="live-dot"></span> ${statusText}</span>` : ''}
+                    </div>`;
+                }).join('');
+            }
+
+            function buildStrengths() {
+                const container = document.getElementById('strengthsList');
+                if (!container) return;
+                container.innerHTML = strengthItems.map(s => {
+                    const text = s[currentLang] || s.en;
+                    return `<div class="softskill-card">
+                        <i class="${s.i}" style="color:var(--accent-bright);font-size:1.4rem;flex-shrink:0;"></i>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);">${text}</p>
+                    </div>`;
+                }).join('');
+            }
+
+            function buildSoftSkills() {
+                const container = document.getElementById('softSkillsVertical');
+                if (!container) return;
+                container.innerHTML = softSkillData.map(s => {
+                    const name = s['name' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s.nameEn;
+                    const desc = s['desc' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s.descEn;
+                    return `<div class="softskill-card">
+                        <i class="${s.i}" style="color:var(--accent-bright);font-size:1.4rem;flex-shrink:0;"></i>
+                        <div><h4 style="color:#fff;font-size:0.9rem;">${name}</h4><p style="color:var(--text-secondary);font-size:0.78rem;">${desc}</p></div>
+                    </div>`;
+                }).join('');
+            }
+
+            function buildServices() {
+                const container = document.getElementById('servicesList');
+                if (!container) return;
+                container.innerHTML = serviceData.map(s => {
+                    const title = s['title' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s
+                    .titleEn;
+                    const desc = s['desc' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s.descEn;
+                    return `<div class="softskill-card">
+                        <i class="${s.i}" style="color:var(--accent-bright);font-size:1.4rem;flex-shrink:0;"></i>
+                        <div><h4 style="color:#fff;font-size:0.9rem;">${title}</h4><p style="color:var(--text-secondary);font-size:0.78rem;">${desc}</p></div>
+                    </div>`;
+                }).join('');
+            }
+
+            function buildPlatforms() {
+                const container = document.getElementById('contactPlatforms');
+                if (!container) return;
+                container.innerHTML = platformData.map(p => `
+                    <a href="${p.u}" target="_blank" rel="noopener" class="platform-card">
+                        <i class="${p.i}" style="color:${p.c};font-size:1.2rem;"></i>
+                        <span>${p.n}</span>
+                    </a>
+                `).join('');
+            }
+
+            function applyTranslations() {
+                const t = translations[currentLang];
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (key === 'unique.text') {
+                        el.innerHTML = t[key] || translations['en'][key] || '';
+                    } else if (t[key]) {
+                        el.textContent = t[key];
+                    }
+                });
+                document.querySelectorAll('[data-i18n-nav]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-nav');
+                    const navKey = 'nav.' + key;
+                    if (t[navKey]) el.textContent = t[navKey];
+                });
+            }
+
+            function typeRole() {
+                const roles = roleTexts[currentLang] || roleTexts['en'];
+                const currentRole = roles[roleIndex];
+                const typedEl = document.getElementById('typedText');
+
+                if (!typedEl) return;
+
+                if (isDeleting) {
+                    typedEl.textContent = currentRole.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typedEl.textContent = currentRole.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                let speed = isDeleting ? 40 : 80;
+
+                if (!isDeleting && charIndex === currentRole.length) {
+                    speed = 2000;
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    speed = 400;
+                }
+
+                typedTimeout = setTimeout(typeRole, speed);
+            }
+
+            function refreshAll() {
+                buildNav();
+                buildInfo();
+                buildSkillsBook();
+                buildProjects();
+                buildEducation();
+                buildStrengths();
+                buildSoftSkills();
+                buildServices();
+                buildPlatforms();
+                applyTranslations();
+                document.getElementById('currentYear').textContent = new Date().getFullYear();
+                clearTimeout(typedTimeout);
+                roleIndex = 0;
+                charIndex = 0;
+                isDeleting = false;
+                typeRole();
+            }
+
+            window.switchLang = function(lang) {
+                currentLang = lang;
+                window.currentLang = lang;
+                document.documentElement.lang = lang === 'ar' ? 'ar' : lang === 'de' ? 'de' : 'en';
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                document.body.classList.toggle('rtl', lang === 'ar');
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                const activeBtn = document.getElementById(lang === 'en' ? 'btnEn' : lang === 'de' ? 'btnDe' :
+                'btnAr');
+                if (activeBtn) activeBtn.classList.add('active');
+                document.title = {
+                    en: 'Abdulrahman | Frontend Developer',
+                    de: 'Abdulrahman | Frontend-Entwickler',
+                    ar: 'عبدالرحمن | مطور واجهات'
+                } [lang] || 'Abdulrahman | Frontend Developer';
+                refreshAll();
+            };
+
+            window.toggleMobileMenu = function() {
+                document.getElementById('mobileMenu').classList.toggle('open');
+                document.getElementById('mobileOverlay').classList.toggle('open');
+            };
+
+            // Particle network
+            (function initParticles() {
+                const canvas = document.getElementById('particleCanvas');
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                let particles = [],
+                    w, h, animId;
+
+                function resize() {
+                    w = canvas.width = window.innerWidth;
+                    h = canvas.height = window.innerHeight;
+                }
+                resize();
+                window.addEventListener('resize', resize);
+                const count = Math.min(70, Math.floor((w * h) / 15000));
+                particles = [];
+                for (let i = 0; i < count; i++) {
+                    particles.push({
+                        x: Math.random() * w,
+                        y: Math.random() * h,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        r: Math.random() * 1.5 + 0.5
+                    });
+                }
+
+                function draw() {
+                    ctx.clearRect(0, 0, w, h);
+                    ctx.strokeStyle = 'rgba(14,165,233,0.1)';
+                    ctx.fillStyle = 'rgba(59,130,246,0.45)';
+                    for (let i = 0; i < particles.length; i++) {
+                        const p = particles[i];
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        if (p.x < -20) p.x = w + 20;
+                        if (p.x > w + 20) p.x = -20;
+                        if (p.y < -20) p.y = h + 20;
+                        if (p.y > h + 20) p.y = -20;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                        ctx.fill();
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const q = particles[j];
+                            const dx = p.x - q.x,
+                                dy = p.y - q.y,
+                                dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < 130) {
+                                ctx.beginPath();
+                                ctx.moveTo(p.x, p.y);
+                                ctx.lineTo(q.x, q.y);
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                    animId = requestAnimationFrame(draw);
+                }
+                draw();
+
+                window.addEventListener('beforeunload', () => cancelAnimationFrame(animId));
+            })();
+
+            // Custom white dot cursor
+            (function cursor() {
+                const dot = document.getElementById('cursorDotCustom');
+                if (!dot || 'ontouchstart' in window || window.matchMedia('(hover:none)').matches) {
+                    if (dot) dot.style.display = 'none';
+                    document.body.style.cursor = 'auto';
+                    return;
+                }
+                document.body.style.cursor = 'none';
+                let mx = window.innerWidth / 2,
+                    my = window.innerHeight / 2;
+                let cx = mx,
+                    cy = my;
+
+                document.addEventListener('mousemove', e => {
+                    mx = e.clientX;
+                    my = e.clientY;
+                }, { passive: true });
+
+                function anim() {
+                    cx += (mx - cx) * 0.2;
+                    cy += (my - cy) * 0.2;
+                    dot.style.transform = `translate(${cx - 4}px, ${cy - 4}px)`;
+                    requestAnimationFrame(anim);
+                }
+                anim();
+
+                const hoverTargets = document.querySelectorAll(
+                    'a,button,.btn,.project-card,.book-card,.softskill-card,.info-cell,.platform-card,.skill-row');
+                hoverTargets.forEach(el => {
+                    el.addEventListener('mouseenter', () => dot.classList.add('hovering'));
+                    el.addEventListener('mouseleave', () => dot.classList.remove('hovering'));
+                });
+
+                const observer = new MutationObserver(() => {
+                    const newTargets = document.querySelectorAll(
+                        'a,button,.btn,.project-card,.book-card,.softskill-card,.info-cell,.platform-card,.skill-row');
+                    newTargets.forEach(el => {
+                        el.removeEventListener('mouseenter', () => dot.classList.add('hovering'));
+                        el.removeEventListener('mouseleave', () => dot.classList.remove('hovering'));
+                        el.addEventListener('mouseenter', () => dot.classList.add('hovering'));
+                        el.addEventListener('mouseleave', () => dot.classList.remove('hovering'));
+                    });
+                });
+                observer.observe(document.body, { childList: true, subtree: true });
+            })();
+
+            // Book page reveal on scroll
+            (function revealOnScroll() {
+                const sections = document.querySelectorAll('.section-wrapper');
+
+                function reveal() {
+                    sections.forEach(wrapper => {
+                        const rect = wrapper.getBoundingClientRect();
+                        const windowHeight = window.innerHeight;
+                        if (rect.top < windowHeight - 80 && rect.bottom > 40) {
+                            wrapper.classList.add('revealed');
+                        }
+                    });
+                }
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('revealed');
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+                sections.forEach(wrapper => observer.observe(wrapper));
+                reveal();
+                window.addEventListener('scroll', reveal, { passive: true });
+            })();
+
+            // Smooth scroll for anchor links
+            (function smoothScrollLinks() {
+                document.addEventListener('click', function(e) {
+                    const link = e.target.closest('a[href^="#"]');
+                    if (!link) return;
+                    const targetId = link.getAttribute('href');
+                    if (targetId === '#') return;
+                    const target = document.querySelector(targetId);
+                    if (!target) return;
+                    e.preventDefault();
+                    const headerOffset = 90;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    if (document.getElementById('mobileMenu').classList.contains('open')) {
+                        window.toggleMobileMenu();
+                    }
+                });
+            })();
+
+            // Initialize
+            refreshAll();
+            typeRole();
+
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('header');
+                const scrollTopBtn = document.getElementById('scrollTop');
+                if (header) header.classList.toggle('scrolled', window.scrollY > 70);
+                if (scrollTopBtn) scrollTopBtn.classList.toggle('visible', window.scrollY > 450);
+            }, { passive: true });
+
+            // Active nav link on scroll
+            window.addEventListener('scroll', () => {
+                const sections = document.querySelectorAll('section[id]');
+                const navLinks = document.querySelectorAll('.nav-desktop li a, .mobile-nav li a');
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 140;
+                    if (window.scrollY >= sectionTop) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            }, { passive: true });
+
+            console.log('✅ Abdulrahman Portfolio — Ready. All systems operational.');
+        })();
+    </script>
 </body>
 </html>
