@@ -103,7 +103,7 @@
             inset: 0;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.7;
+            opacity: 0.9; /* slightly more visible for white particles */
         }
 
         #cursorDotCustom {
@@ -1461,10 +1461,10 @@
             const projectsData = [
                 { titleKey: 'project1.title', descKey: 'project1.desc',
                     img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600',
-                    tags: ['HTML5', 'CSS3', 'JavaScript'], url: 'https://abdo-1818.github.io/abdulrahman_tec/' },
+                    tags: ['', '', ''], url: 'https://abdo-1818.github.io/abdulrahman_tec/' },
                 { titleKey: 'project2.title', descKey: 'project2.desc',
                     img: 'https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=600',
-                    tags: ['HTML5', 'CSS3', 'JavaScript'], url: 'https://abdo-1818.github.io/bboda_7/' }
+                    tags: ['', '', ''], url: 'https://abdo-1818.github.io/bboda_7/' }
             ];
 
             const strengthItems = [
@@ -1878,6 +1878,7 @@
                 document.getElementById('mobileOverlay').classList.toggle('open');
             };
 
+            // ✅ Updated particles: white dots & lines, faster speed
             (function initParticles() {
                 const canvas = document.getElementById('particleCanvas');
                 if (!canvas) return;
@@ -1897,16 +1898,21 @@
                     particles.push({
                         x: Math.random() * w,
                         y: Math.random() * h,
-                        vx: (Math.random() - 0.5) * 0.5,
-                        vy: (Math.random() - 0.5) * 0.5,
-                        r: Math.random() * 1.5 + 0.5
+                        vx: (Math.random() - 0.5) * 0.8,   // faster speed
+                        vy: (Math.random() - 0.5) * 0.8,
+                        r: Math.random() * 1.8 + 0.6
                     });
                 }
 
                 function draw() {
                     ctx.clearRect(0, 0, w, h);
-                    ctx.strokeStyle = 'rgba(14,165,233,0.1)';
-                    ctx.fillStyle = 'rgba(59,130,246,0.45)';
+                    // white lines
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.18)';
+                    // white dots with a subtle glow
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                    ctx.shadowColor = 'rgba(255, 255, 255, 0.7)';
+                    ctx.shadowBlur = 8;
+
                     for (let i = 0; i < particles.length; i++) {
                         const p = particles[i];
                         p.x += p.vx;
@@ -1915,9 +1921,11 @@
                         if (p.x > w + 20) p.x = -20;
                         if (p.y < -20) p.y = h + 20;
                         if (p.y > h + 20) p.y = -20;
+
                         ctx.beginPath();
                         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                         ctx.fill();
+
                         for (let j = i + 1; j < particles.length; j++) {
                             const q = particles[j];
                             const dx = p.x - q.x,
@@ -1931,6 +1939,9 @@
                             }
                         }
                     }
+                    // reset shadow after drawing lines so it doesn't affect next frame
+                    ctx.shadowBlur = 0;
+                    ctx.shadowColor = 'transparent';
                     animId = requestAnimationFrame(draw);
                 }
                 draw();
