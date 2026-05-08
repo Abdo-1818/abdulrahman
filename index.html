@@ -88,9 +88,10 @@
     #customCursor {
       position: fixed; width:26px; height:26px; border-radius:50%; background:#1E3A8A;
       pointer-events:none; z-index:10000; transform:translate(-50%,-50%);
-      transition: width 0.3s, height 0.3s, background 0.3s, box-shadow 0.3s;
+      will-change:transform; opacity:1; visibility:visible;
+      border:2px solid rgba(255,255,255,0.9);
       box-shadow:0 0 22px #3B82F6,0 0 48px rgba(59,130,246,0.8),0 0 80px rgba(14,165,233,0.55),0 6px 26px rgba(0,0,0,0.85);
-      border:2px solid rgba(255,255,255,0.9); will-change:transform; opacity:1; visibility:visible;
+      transition: width 0.3s, height 0.3s, background 0.3s, box-shadow 0.3s;
     }
     #customCursor.hover {
       width:54px; height:54px; background:rgba(30,58,138,0.45);
@@ -98,10 +99,11 @@
     }
     #cursorDot {
       position: fixed; width:6px; height:6px; border-radius:50%; background:#fff;
-      pointer-events:none; z-index:10001; transform:translate(-50%,-50%);
+      pointer-events:none; z-index:10001; transform:translate(-50%,-50%); will-change:transform;
       box-shadow:0 0 10px #fff,0 0 22px rgba(255,255,255,0.85),0 0 38px #3B82F6;
-      will-change:transform; opacity:1; visibility:visible;
+      opacity:1; visibility:visible;
     }
+
     body.cursor-hidden #customCursor,
     body.cursor-hidden #cursorDot { opacity:0; visibility:hidden; transition:opacity 0.2s, visibility 0.2s; }
 
@@ -119,7 +121,6 @@
     .header-inner {
       display:flex; align-items:center; justify-content:space-between; gap:14px;
     }
-    /* Logo area */
     .logo-link {
       display:flex; align-items:center; gap:10px; text-decoration:none;
     }
@@ -144,7 +145,6 @@
       100% { text-shadow:0 0 32px rgba(59,130,246,1),0 0 65px rgba(14,165,233,0.85),0 0 105px rgba(56,189,248,0.65); }
     }
 
-    /* Desktop navigation */
     .nav-desktop {
       display:flex; list-style:none; gap:2px; align-items:center; flex-wrap:wrap;
     }
@@ -183,7 +183,6 @@
       display:flex; align-items:center; gap:8px;
     }
 
-    /* Mobile menu */
     .mobile-overlay {
       position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:1100; opacity:0; pointer-events:none;
       transition:0.4s; backdrop-filter:blur(6px);
@@ -213,7 +212,6 @@
     }
     .mobile-nav li a:hover { color:#fff; background:rgba(255,255,255,0.06); }
 
-    /* Hero */
     .hero {
       min-height:100vh; display:flex; align-items:center; padding:100px 0 60px;
       position:relative; z-index:2; scroll-snap-align:start;
@@ -280,7 +278,6 @@
       box-shadow:0 0 80px rgba(59,130,246,0.5); border:3px solid rgba(255,255,255,0.18);
     }
 
-    /* Sections */
     .section {
       padding:70px 0; position:relative; z-index:1; scroll-snap-align:start;
       opacity:0; transform:translateY(50px) scale(0.97);
@@ -307,7 +304,6 @@
       width:50px; height:3px; background:var(--accent-bright); border-radius:2px;
     }
 
-    /* Skills */
     .skills-book { display:flex; flex-direction:column; gap:20px; max-width:750px; margin:0 auto; }
     .book-row { display:flex; align-items:center; gap:20px; }
     .book-row.left { justify-content:flex-start; }
@@ -409,60 +405,33 @@
 
     .footer { padding:30px 0; border-top:1px solid rgba(255,255,255,0.04); text-align:center; position:relative; z-index:1; scroll-snap-align:end; }
 
-    /* Mobile header adjustments */
     @media (max-width: 960px) {
-      .header-inner {
-        flex-wrap: nowrap;
-        justify-content: space-between;
-      }
+      .header-inner { flex-wrap:nowrap; justify-content:space-between; }
       .nav-desktop { display: none; }
       .hamburger-btn { display: flex; }
-      .header-actions {
-        order: 2;
-        margin-left: auto;
-      }
-      body.rtl .header-actions {
-        order: 0;
-        margin-right: auto;
-        margin-left: 0;
-      }
-      .logo-link {
-        order: 1;
-        margin: 0 auto;
-      }
-      /* On mobile, show only the cursive name (no image) */
+      .header-actions { order:2; margin-left:auto; }
+      body.rtl .header-actions { order:0; margin-right:auto; margin-left:0; }
+      .logo-link { order:1; margin:0 auto; }
       .logo-link .logo-img { display: none; }
-      .logo-text {
-        font-size: 1.6rem;
-        letter-spacing: 1px;
-      }
-      .hero .container {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 30px;
-      }
-      .avatar-ring {
-        width: 200px;
-        height: 200px;
-        margin: 0 auto;
-      }
-      .hero-tagline { max-width: 100%; }
-      .book-row.left,
-      .book-row.right { justify-content: center; }
-      .projects-grid { max-width: 100%; }
-      .section-title { font-size: 1.6rem; }
-      .section-wrapper { padding: 32px 16px; }
-      .project-img-wrapper { height: 200px; }
+      .logo-text { font-size:1.6rem; letter-spacing:1px; }
+      .hero .container { grid-template-columns:1fr; text-align:center; gap:30px; }
+      .avatar-ring { width:200px; height:200px; margin:0 auto; }
+      .hero-tagline { max-width:100%; }
+      .book-row.left, .book-row.right { justify-content:center; }
+      .projects-grid { max-width:100%; }
+      .section-title { font-size:1.6rem; }
+      .section-wrapper { padding:32px 16px; }
+      .project-img-wrapper { height:200px; }
     }
     @media (max-width: 600px) {
-      .hero-name { font-size: 2rem; }
-      .section-title { font-size: 1.4rem; }
-      .section-wrapper { padding: 24px 10px; }
-      .book-card { max-width: 100%; padding: 16px 18px; }
-      .softskill-card { padding: 16px 18px; }
-      .distinguish-text { font-size: 0.8rem; }
-      .project-img-wrapper { height: 170px; }
-      .project-body { padding: 16px 18px; }
+      .hero-name { font-size:2rem; }
+      .section-title { font-size:1.4rem; }
+      .section-wrapper { padding:24px 10px; }
+      .book-card { max-width:100%; padding:16px 18px; }
+      .softskill-card { padding:16px 18px; }
+      .distinguish-text { font-size:0.8rem; }
+      .project-img-wrapper { height:170px; }
+      .project-body { padding:16px 18px; }
     }
   </style>
 </head>
@@ -474,7 +443,6 @@
 
   <header class="header" id="header">
     <div class="header-inner">
-      <!-- Left group: language switch + hamburger (mobile) -->
       <div class="header-actions">
         <div class="lang-switch">
           <button class="lang-btn active" id="btnEn" onclick="switchLang('en')">EN</button>
@@ -485,14 +453,10 @@
           <i class="fas fa-bars"></i>
         </button>
       </div>
-
-      <!-- Center/Right: Handwriting name logo -->
       <a href="#home" class="logo-link">
         <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="Abdulrahman" class="logo-img" loading="lazy">
         <span class="logo-text">Abdulrahman</span>
       </a>
-
-      <!-- Desktop navigation (hidden on mobile) -->
       <ul class="nav-desktop" id="navDesktop"></ul>
     </div>
   </header>
@@ -684,7 +648,7 @@
 
       const skillsData = [
         { i:'fab fa-html5', color:'#E34F26', n:'HTML5',
-          descEn:'I have complete mastery of HTML5, crafting semantic structures with precision. Every tag I write follows best practices for accessibility and SEO, ensuring flawless rendering across all browsers.',
+          descEn:'I have complete mastery of HTML5, crafting semantic structures with precision. Every tag I write follows best practices for accessibility and SEO.',
           descDe:'Ich beherrsche HTML5 vollständig und erstelle semantische Strukturen mit Präzision.',
           descAr:'لدي إتقان تام للغة HTML5، أصوغ الهياكل الدلالية بدقة.' },
         { i:'fab fa-css3-alt', color:'#1572B6', n:'CSS3',
@@ -931,7 +895,73 @@
         }
       });
 
-      // Particles
+      // ==================================================
+      // CURSOR: Always visible on desktop, smooth movement
+      // ==================================================
+      (function() {
+        const cursor = document.getElementById('customCursor');
+        const dot = document.getElementById('cursorDot');
+        if (!cursor || !dot) return;
+
+        // Show custom cursor only on devices with a fine pointer (desktop/laptop)
+        const isDesktop = window.matchMedia('(pointer: fine)').matches;
+        if (!isDesktop) {
+          document.body.classList.add('cursor-hidden');
+          document.body.style.cursor = 'auto';
+          return;
+        }
+
+        // Hide default cursor, show custom one
+        document.body.style.cursor = 'none';
+        cursor.style.opacity = '1';
+        dot.style.opacity = '1';
+
+        let mx = window.innerWidth / 2;
+        let my = window.innerHeight / 2;
+        let cx = mx;
+        let cy = my;
+
+        document.addEventListener('mousemove', (e) => {
+          mx = e.clientX;
+          my = e.clientY;
+          dot.style.transform = `translate(${mx - 3}px, ${my - 3}px)`;
+        });
+
+        document.addEventListener('mouseleave', () => {
+          cursor.style.opacity = '0';
+          dot.style.opacity = '0';
+        });
+
+        document.addEventListener('mouseenter', () => {
+          cursor.style.opacity = '1';
+          dot.style.opacity = '1';
+        });
+
+        function animateCursor() {
+          cx += (mx - cx) * 0.15;   // smooth interpolation
+          cy += (my - cy) * 0.15;
+          cursor.style.transform = `translate(${cx - 13}px, ${cy - 13}px)`;
+          requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Cursor hover effect on interactive elements
+        function attachHoverListeners() {
+          document.querySelectorAll('a, button, .btn, .project-card, .book-card, .softskill-card, .info-cell, .platform-card, .hamburger-btn')
+            .forEach(el => {
+              if (!el.dataset.cursorBound) {
+                el.dataset.cursorBound = 'true';
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+              }
+            });
+        }
+        attachHoverListeners();
+        // Re-attach after DOM updates (language switch rebuilds the DOM)
+        new MutationObserver(attachHoverListeners).observe(document.body, { childList: true, subtree: true });
+      })();
+
+      // Particles & scroll effects (unchanged)
       (function() {
         const canvas = document.getElementById('particleCanvas');
         if(!canvas) return;
@@ -968,36 +998,11 @@
         draw();
       })();
 
-      // Cursor
-      (function() {
-        const cursor = document.getElementById('customCursor'), dot = document.getElementById('cursorDot');
-        if(!cursor||!dot) return;
-        const isTouch = window.matchMedia('(pointer:coarse) and (hover:none)').matches || window.matchMedia('(max-width:1024px) and (pointer:coarse)').matches;
-        if(isTouch) { document.body.classList.add('cursor-hidden'); document.body.style.cursor='auto'; return; }
-        document.body.style.cursor='none';
-        let mx=window.innerWidth/2, my=window.innerHeight/2, cx=mx, cy=my;
-        document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; dot.style.transform=`translate(${mx-3}px,${my-3}px)`; });
-        document.addEventListener('mouseleave',()=>{ cursor.style.opacity='0'; dot.style.opacity='0'; });
-        document.addEventListener('mouseenter',()=>{ cursor.style.opacity='1'; dot.style.opacity='1'; });
-        function anim() {
-          cx+=(mx-cx)*0.13; cy+=(my-cy)*0.13;
-          cursor.style.transform=`translate(${cx-13}px,${cy-13}px)`;
-          requestAnimationFrame(anim);
-        }
-        anim();
-        document.querySelectorAll('a,button,.btn,.project-card,.book-card,.softskill-card,.info-cell,.platform-card,.hamburger-btn').forEach(el => {
-          el.addEventListener('mouseenter',()=>cursor.classList.add('hover'));
-          el.addEventListener('mouseleave',()=>cursor.classList.remove('hover'));
-        });
-      })();
-
-      // Scroll reveal
       const revealObserver = new IntersectionObserver(entries => {
         entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); });
       }, { threshold:0.18, rootMargin:'0px 0px -50px 0px' });
       document.querySelectorAll('.section').forEach(s => revealObserver.observe(s));
 
-      // Scroll effects
       window.addEventListener('scroll', () => {
         document.getElementById('header').classList.toggle('scrolled', window.scrollY > 70);
         document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 450);
