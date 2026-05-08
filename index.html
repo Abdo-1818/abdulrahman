@@ -445,10 +445,9 @@
             color: var(--accent-bright);
             box-shadow: 0 10px 36px rgba(14, 165, 233, 0.3);
         }
-        /* الصورة الرمزية المُكبرة بمرتين */
         .avatar-ring {
             position: relative;
-            width: clamp(360px, 56vw, 640px);   /* كان 180~320px  --> أصبح 360~640px */
+            width: clamp(360px, 56vw, 640px);
             height: clamp(360px, 56vw, 640px);
             margin: 0 auto;
         }
@@ -639,8 +638,8 @@
             padding: 28px 24px;
             max-width: 800px;
             margin: 0 auto;
-            text-align: center;
-            line-height: 1.8;
+            text-align: right;
+            line-height: 2;
             color: var(--text-secondary);
             font-size: 0.88rem;
             box-shadow: var(--shadow-card);
@@ -653,6 +652,129 @@
         .highlight-box strong {
             color: #fff;
             font-weight: 700;
+        }
+
+        /* ============ خدمات - تصميم صفحات الكتاب المتناوبة ============ */
+        .services-staggered {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            max-width: 750px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .service-book-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 24px 28px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-card);
+            transition: all 0.55s var(--ease-out-expo);
+            max-width: 600px;
+            opacity: 0;
+            transform: perspective(900px) rotateY(18deg) translateY(30px);
+            will-change: transform, opacity;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-book-card.revealed {
+            opacity: 1;
+            transform: perspective(900px) rotateY(0deg) translateY(0);
+        }
+        /* الصفوف الفردية تميل لليمين، الزوجية تميل لليسار */
+        .service-book-card:nth-child(odd) {
+            align-self: flex-end;
+            transform: perspective(900px) rotateY(-18deg) translateY(30px);
+        }
+        .service-book-card:nth-child(odd).revealed {
+            transform: perspective(900px) rotateY(0deg) translateY(0);
+        }
+        .service-book-card:nth-child(even) {
+            align-self: flex-start;
+        }
+        body.rtl .service-book-card:nth-child(odd) {
+            align-self: flex-start;
+            transform: perspective(900px) rotateY(18deg) translateY(30px);
+        }
+        body.rtl .service-book-card:nth-child(odd).revealed {
+            transform: perspective(900px) rotateY(0deg) translateY(0);
+        }
+        body.rtl .service-book-card:nth-child(even) {
+            align-self: flex-end;
+            transform: perspective(900px) rotateY(-18deg) translateY(30px);
+        }
+        body.rtl .service-book-card:nth-child(even).revealed {
+            transform: perspective(900px) rotateY(0deg) translateY(0);
+        }
+        .service-book-card:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-hover);
+            transform: perspective(900px) rotateY(0deg) translateY(-6px) !important;
+        }
+        .service-book-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            background: rgba(14, 165, 233, 0.12);
+            color: var(--accent-bright);
+            box-shadow: 0 0 22px rgba(14, 165, 233, 0.3);
+            border: 2px solid rgba(14, 165, 233, 0.25);
+            transition: 0.4s;
+        }
+        .service-book-card:hover .service-book-icon {
+            box-shadow: 0 0 36px rgba(14, 165, 233, 0.55);
+            border-color: var(--accent-bright);
+        }
+        .service-book-content h4 {
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+        .service-book-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .service-book-content ul li {
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            line-height: 1.6;
+            padding-right: 16px;
+            position: relative;
+        }
+        .service-book-content ul li::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-bright);
+            box-shadow: 0 0 8px var(--accent-glow-strong);
+        }
+        body.rtl .service-book-content ul li {
+            padding-right: 0;
+            padding-left: 16px;
+        }
+        body.rtl .service-book-content ul li::before {
+            right: auto;
+            left: 0;
         }
 
         .projects-grid {
@@ -915,7 +1037,7 @@
                 order: -1;
             }
             .avatar-ring {
-                width: 300px;   /* كان 150px */
+                width: 300px;
                 height: 300px;
             }
             .hero-name {
@@ -950,6 +1072,26 @@
                 font-size: 0.8rem;
                 padding: 20px 16px;
             }
+            .service-book-card {
+                max-width: 100%;
+                align-self: stretch !important;
+            }
+            .service-book-card:nth-child(odd),
+            .service-book-card:nth-child(even) {
+                align-self: stretch !important;
+                transform: perspective(900px) rotateY(0deg) translateY(20px) !important;
+            }
+            .service-book-card.revealed {
+                transform: perspective(900px) rotateY(0deg) translateY(0) !important;
+            }
+            body.rtl .service-book-card:nth-child(odd),
+            body.rtl .service-book-card:nth-child(even) {
+                align-self: stretch !important;
+                transform: perspective(900px) rotateY(0deg) translateY(20px) !important;
+            }
+            body.rtl .service-book-card.revealed {
+                transform: perspective(900px) rotateY(0deg) translateY(0) !important;
+            }
         }
         @media (max-width: 600px) {
             .hero-name {
@@ -973,7 +1115,7 @@
                 font-size: 1rem;
             }
             .avatar-ring {
-                width: 240px;   /* كان 120px */
+                width: 240px;
                 height: 240px;
             }
         }
@@ -1047,7 +1189,7 @@
     <section class="section" id="services">
         <div class="section-wrapper glowing-border">
             <div class="section-header"><h2 class="section-title" data-i18n="services.title">What I Offer You</h2></div>
-            <div class="softskills-vertical" id="servicesList"></div>
+            <div class="services-staggered" id="servicesList"></div>
         </div>
     </section>
 
@@ -1108,7 +1250,7 @@
                     'hero.cta2': 'Get In Touch',
                     'about.title': 'About Me',
                     'unique.title': 'What Distinguishes Me',
-                    'unique.text': '<strong>I am Abdulrahman</strong>, a web developer and website designer specializing in creating modern websites that combine attractive design, strong performance, and professional user experience. I work on transforming ideas into real websites that help business owners and companies build a strong and professional online presence. I always pay attention to the small details before the big ones because I believe the real difference appears in the quality of execution, design precision, and ease of use.<br><br>I have a great passion for web development and design, and I always strive to provide modern and innovative solutions that suit each client\'s specific needs. For me, every project has its own character, so I make sure to design distinctive, unconventional websites that express the brand identity and help attract customers while leaving a professional impression from the very first visit.',
+                    'unique.text': '<strong>I am Abdulrahman</strong>, a web developer and website designer specializing in creating modern websites that combine attractive design, strong performance, and professional user experience. I work on transforming ideas into real websites that help business owners and companies build a strong and professional online presence. I always pay attention to the small details before the big ones because I believe the real difference appears in the quality of execution, design precision, and ease of use.<br><br>I have: the ability to combine technology and business management<br>Fast learning and continuous skill development<br>The ability to analyze problems and find practical solutions<br>Working with team spirit and good communication<br>Attention to detail and quality of work<br>The ability to develop responsive and modern websites<br>Understanding the relationship between technical systems and business needs<br>Flexibility in learning new technologies and tools<br>Good skills in analysis and organization.',
                     'services.title': 'What I Offer You',
                     'skills.title': 'Programming Languages I Master',
                     'projects.title': 'مشاريعي',
@@ -1139,7 +1281,7 @@
                     'hero.cta2': 'Kontakt',
                     'about.title': 'Über mich',
                     'unique.title': 'Was mich auszeichnet',
-                    'unique.text': '<strong>Ich bin Abdulrahman</strong>, ein Webentwickler und Website-Designer, spezialisiert auf die Erstellung moderner Websites, die attraktives Design, starke Leistung und professionelle Benutzererfahrung vereinen. Ich arbeite daran, Ideen in echte Websites umzuwandeln, die Geschäftsinhabern und Unternehmen helfen, eine starke und professionelle Online-Präsenz aufzubauen. Ich achte immer auf die kleinen Details vor den großen, weil ich glaube, dass der wahre Unterschied in der Qualität der Ausführung, der Designpräzision und der Benutzerfreundlichkeit liegt.<br><br>Ich habe eine große Leidenschaft für Webentwicklung und Design und bemühe mich stets, moderne und innovative Lösungen anzubieten, die den spezifischen Bedürfnissen jedes Kunden entsprechen. Für mich hat jedes Projekt seinen eigenen Charakter, daher gestalte ich unverwechselbare, unkonventionelle Websites, die die Markenidentität ausdrücken und Kunden anziehen, während sie vom ersten Besuch an einen professionellen Eindruck hinterlassen.',
+                    'unique.text': '<strong>Ich bin Abdulrahman</strong>, ein Webentwickler und Website-Designer, spezialisiert auf die Erstellung moderner Websites, die attraktives Design, starke Leistung und professionelle Benutzererfahrung vereinen. Ich arbeite daran, Ideen in echte Websites umzuwandeln, die Geschäftsinhabern und Unternehmen helfen, eine starke und professionelle Online-Präsenz aufzubauen. Ich achte immer auf die kleinen Details vor den großen, weil ich glaube, dass der wahre Unterschied in der Qualität der Ausführung, der Designpräzision und der Benutzerfreundlichkeit liegt.<br><br>Ich habe: die Fähigkeit, Technologie und Geschäftsführung zu verbinden<br>Schnelles Lernen und kontinuierliche Kompetenzentwicklung<br>Problemanalyse und praktische Lösungsfindung<br>Teamarbeit und gute Kommunikation<br>Liebe zum Detail und Arbeitsqualität<br>Entwicklung moderner responsiver Websites<br>Verständnis der Beziehung zwischen technischen Systemen und Geschäftsanforderungen<br>Flexibilität beim Erlernen neuer Technologien<br>Gute Analyse- und Organisationsfähigkeiten.',
                     'services.title': 'Was ich Ihnen biete',
                     'skills.title': 'Programmiersprachen, die ich beherrsche',
                     'projects.title': 'Meine Projekte',
@@ -1170,7 +1312,7 @@
                     'hero.cta2': 'تواصل معي',
                     'about.title': 'عنّي',
                     'unique.title': 'ما يميزني',
-                    'unique.text': '<strong>أنا عبدالرحمن</strong>، مطور ويب ومصمم مواقع متخصص في إنشاء مواقع عصرية تجمع بين التصميم الجذاب والأداء القوي وتجربة المستخدم الاحترافية. أعمل على تحويل الأفكار إلى مواقع حقيقية تساعد أصحاب المشاريع والشركات على بناء حضور قوي واحترافي على الإنترنت. أهتم دائمًا بالتفاصيل الصغيرة قبل الكبيرة لأنني أؤمن أن الفرق الحقيقي يظهر في جودة التنفيذ ودقة التصميم وسهولة الاستخدام.<br><br>أمتلك شغف كبير بمجال تطوير الويب والتصميم، وأسعى دائمًا لتقديم حلول حديثة ومبتكرة تناسب احتياجات كل عميل بشكل خاص. بالنسبة لي كل مشروع له طابعه الخاص، لذلك أحرص على تصميم مواقع مميزة غير تقليدية تعبر عن هوية البراند وتساعد في جذب العملاء وترك انطباع احترافي من أول زيارة.',
+                    'unique.text': 'أنا عبدالرحمن، مطور ويب ومصمم مواقع متخصص في إنشاء مواقع عصرية تجمع بين التصميم الجذاب والأداء القوي وتجربة المستخدم الاحترافية. أعمل على تحويل الأفكار إلى مواقع حقيقية تساعد أصحاب المشاريع والشركات على بناء حضور قوي واحترافي على الإنترنت. أهتم دائمًا بالتفاصيل الصغيرة قبل الكبيرة لأنني أؤمن أن الفرق الحقيقي يظهر في جودة التنفيذ ودقة التصميم وسهولة الاستخدام.<br><br>عندي : القدرة على الجمع بين التقنية وإدارة الأعمال<br>التعلم السريع والتطوير المستمر للمهارات<br>القدرة على تحليل المشكلات وإيجاد حلول عملية<br>العمل بروح الفريق والتواصل الجيد<br>الاهتمام بالتفاصيل وجودة العمل<br>القدرة على تطوير مواقع ويب متجاوبة وحديثة<br>فهم العلاقة بين الأنظمة التقنية واحتياجات الأعمال<br>المرونة في تعلم التقنيات والأدوات الجديدة<br>مهارات جيدة في التحليل والتنظيم',
                     'services.title': 'ما أقدمه لك',
                     'skills.title': 'لغات البرمجة التي أجيدها',
                     'projects.title': 'مشاريعي',
@@ -1236,39 +1378,28 @@
                     tags: ['HTML5', 'CSS3', 'JavaScript'], url: 'https://abdo-1818.github.io/bboda_7/' }
             ];
 
+            // نقاط القوة الجديدة
             const strengthItems = [
                 { i: 'fas fa-star',
-                    ar: 'أنا شخص طموح أؤمن إن النجاح محتاج تعب واستمرار يومي.',
-                    en: 'I am ambitious and believe success requires daily effort and persistence.',
-                    de: 'Ich bin ehrgeizig und glaube, dass Erfolg tägliche Anstrengung erfordert.' },
+                    ar: 'تطوير واجهات ومواقع ويب حديثة.',
+                    en: 'Developing modern web interfaces and websites.',
+                    de: 'Entwicklung moderner Web-Oberflächen und Websites.' },
                 { i: 'fas fa-star',
-                    ar: 'بحب أطور نفسي باستمرار وأتعلم من كل تجربة أمر بيها.',
-                    en: 'I love continuously improving myself and learning from every experience.',
-                    de: 'Ich entwickle mich ständig weiter und lerne aus jeder Erfahrung.' },
+                    ar: 'فهم أساسيات الشبكات والأنظمة.',
+                    en: 'Understanding the basics of networks and systems.',
+                    de: 'Verständnis der Grundlagen von Netzwerken und Systemen.' },
                 { i: 'fas fa-star',
-                    ar: 'بشوف التحديات فرص مهمة تساعدني أكون أقوى وأفضل.',
-                    en: 'I see challenges as important opportunities to grow stronger and better.',
-                    de: 'Ich sehe Herausforderungen als wichtige Chancen, stärker zu werden.' },
+                    ar: 'القدرة على التعلم والعمل تحت الضغط.',
+                    en: 'Ability to learn and work under pressure.',
+                    de: 'Fähigkeit, unter Druck zu lernen und zu arbeiten.' },
                 { i: 'fas fa-star',
-                    ar: 'بشتغل بجد وبنظم وقتي علشان أوصل لأهدافي بسرعة.',
-                    en: 'I work hard and manage my time effectively to reach my goals quickly.',
-                    de: 'Ich arbeite hart und organisiere meine Zeit, um meine Ziele zu erreichen.' },
+                    ar: 'مهارات جيدة في التحليل وحل المشكلات.',
+                    en: 'Good skills in analysis and problem-solving.',
+                    de: 'Gute Fähigkeiten in Analyse und Problemlösung.' },
                 { i: 'fas fa-star',
-                    ar: 'ما بحبش أستسلم وبكمل مهما كانت الصعوبات كبيرة.',
-                    en: 'I never give up and keep going no matter how big the difficulties are.',
-                    de: 'Ich gebe niemals auf, egal wie groß die Schwierigkeiten sind.' },
-                { i: 'fas fa-star',
-                    ar: 'بؤمن إن الإرادة القوية هي السر الحقيقي للنجاح.',
-                    en: 'I believe that strong willpower is the true secret to success.',
-                    de: 'Ich glaube, dass ein starker Wille das wahre Geheimnis des Erfolgs ist.' },
-                { i: 'fas fa-star',
-                    ar: 'بحاول أكون شخص مؤثر وإيجابي في أي مكان أتواجد فيه.',
-                    en: 'I strive to be a positive influence wherever I am present.',
-                    de: 'Ich bemühe mich, überall, wo ich bin, einen positiven Einfluss zu haben.' },
-                { i: 'fas fa-star',
-                    ar: 'هدفي تحقيق ذاتي والوصول لأعلى مستوى يليق بطموحي.',
-                    en: 'My goal is self-fulfillment and reaching the highest level worthy of my ambition.',
-                    de: 'Mein Ziel ist Selbstverwirklichung und das Erreichen des höchsten Niveaus.' }
+                    ar: 'خلفية جيدة في نظم المعلومات وإدارة الأعمال.',
+                    en: 'Good background in information systems and business management.',
+                    de: 'Guter Hintergrund in Informationssystemen und Geschäftsführung.' }
             ];
 
             const softSkillData = [
@@ -1294,21 +1425,53 @@
                     descDe: 'Ich passe mich schnell an veränderte Umgebungen an.', descAr: 'أتأقلم بسرعة مع البيئات المتغيرة والتحديات الجديدة.' }
             ];
 
+            // خدمات - المحتوى الجديد لخمس مربعات
             const serviceData = [
-                { i: 'fas fa-pencil-ruler', titleEn: 'UI/UX Design', titleDe: 'UI/UX-Design',
-                    titleAr: 'تصميم واجهة المستخدم',
-                    descEn: 'Each design reflects my methodology and dedication to detail and creativity, ensuring a unique visual identity.',
-                    descDe: 'Jedes Design spiegelt meine Methodik und mein Engagement für Details und Kreativität wider.',
-                    descAr: 'كل تصميم يعكس منهجي وتفاني في التفاصيل والإبداع، مما يضمن هوية بصرية فريدة.' },
-                { i: 'fas fa-code', titleEn: 'Web Development', titleDe: 'Webentwicklung', titleAr: 'تطوير مواقع الويب',
-                    descEn: 'Each project reflects my methodology and dedication to detail and creativity with clean, efficient code.',
-                    descDe: 'Jedes Projekt spiegelt meine Methodik und mein Engagement für Details wider.',
-                    descAr: 'كل مشروع يعكس منهجي وتفاني في التفاصيل والإبداع بأكواد نظيفة وفعالة.' },
-                { i: 'fas fa-briefcase', titleEn: 'Business Solutions', titleDe: 'Geschäftslösungen',
-                    titleAr: 'حلول الأعمال',
-                    descEn: 'Each solution reflects my methodology and dedication to detail, tailored specifically for your business needs.',
-                    descDe: 'Jede Lösung spiegelt meine Methodik wider, maßgeschneidert für Ihre Geschäftsanforderungen.',
-                    descAr: 'كل حل يعكس منهجي وتفاني في التفاصيل، مخصص خصيصًا لاحتياجات عملك.' }
+                {
+                    i: 'fas fa-globe',
+                    titleAr: 'تطوير وبرمجة المواقع',
+                    titleEn: 'Website Development & Programming',
+                    titleDe: 'Webentwicklung & Programmierung',
+                    itemsAr: ['تصميم وتطوير مواقع ويب متجاوبة', 'إنشاء واجهات باستخدام HTML / CSS / JavaScript', 'تطوير أنظمة ويب باستخدام PHP', 'تحسين تجربة المستخدم وأداء المواقع'],
+                    itemsEn: ['Designing and developing responsive websites', 'Creating interfaces using HTML / CSS / JavaScript', 'Developing web systems using PHP', 'Improving user experience and website performance'],
+                    itemsDe: ['Entwicklung responsiver Websites', 'Erstellung von Oberflächen mit HTML / CSS / JavaScript', 'Entwicklung von Websystemen mit PHP', 'Verbesserung der Benutzererfahrung und Leistung']
+                },
+                {
+                    i: 'fas fa-code',
+                    titleAr: 'برمجة وتطوير التطبيقات',
+                    titleEn: 'Application Programming & Development',
+                    titleDe: 'Anwendungsprogrammierung & Entwicklung',
+                    itemsAr: ['تطوير برامج باستخدام Python و C++', 'بناء تطبيقات سطح مكتب بسيطة', 'كتابة أكواد منظمة وقابلة للتطوير', 'حل المشكلات البرمجية والخوارزميات'],
+                    itemsEn: ['Developing programs using Python and C++', 'Building simple desktop applications', 'Writing organized and scalable code', 'Solving programming problems and algorithms'],
+                    itemsDe: ['Entwicklung von Programmen mit Python und C++', 'Erstellung einfacher Desktop-Anwendungen', 'Schreiben von organisiertem Code', 'Lösung von Programmierproblemen']
+                },
+                {
+                    i: 'fas fa-sitemap',
+                    titleAr: 'نظم المعلومات وتحليل الأنظمة',
+                    titleEn: 'Information Systems & Systems Analysis',
+                    titleDe: 'Informationssysteme & Systemanalyse',
+                    itemsAr: ['تحليل وتصميم نظم المعلومات', 'فهم دورة تطوير الأنظمة', 'توثيق وتحليل متطلبات المشاريع', 'ربط الجانب الإداري بالتقني'],
+                    itemsEn: ['Analyzing and designing information systems', 'Understanding the system development lifecycle', 'Documenting and analyzing project requirements', 'Linking the administrative side with the technical'],
+                    itemsDe: ['Analyse und Design von Informationssystemen', 'Verständnis des Systementwicklungszyklus', 'Dokumentation und Analyse von Projektanforderungen', 'Verbindung von Verwaltung und Technik']
+                },
+                {
+                    i: 'fas fa-briefcase',
+                    titleAr: 'الأعمال والإدارة',
+                    titleEn: 'Business & Management',
+                    titleDe: 'Business & Management',
+                    itemsAr: ['مبادئ المحاسبة وإدارة الأعمال', 'إدارة الأزمات واتخاذ القرار', 'التسويق والاقتصاد والاستثمار', 'الموارد البشرية والجودة الشاملة', 'فهم القوانين التجارية وبيئة الأعمال'],
+                    itemsEn: ['Principles of accounting and business management', 'Crisis management and decision-making', 'Marketing, economics, and investment', 'Human resources and total quality', 'Understanding commercial laws and business environment'],
+                    itemsDe: ['Grundsätze der Buchhaltung und Unternehmensführung', 'Krisenmanagement und Entscheidungsfindung', 'Marketing, Wirtschaft und Investition', 'Personalwesen und umfassende Qualität', 'Verständnis von Handelsrecht']
+                },
+                {
+                    i: 'fas fa-tools',
+                    titleAr: 'أدوات العمل والإنتاجية',
+                    titleEn: 'Productivity Tools',
+                    titleDe: 'Produktivitätswerkzeuge',
+                    itemsAr: ['Microsoft Word', 'Microsoft Excel', 'Microsoft PowerPoint', 'إعداد التقارير وتنظيم البيانات'],
+                    itemsEn: ['Microsoft Word', 'Microsoft Excel', 'Microsoft PowerPoint', 'Report preparation and data organization'],
+                    itemsDe: ['Microsoft Word', 'Microsoft Excel', 'Microsoft PowerPoint', 'Berichtserstellung und Datenorganisation']
+                }
             ];
 
             const eduData = [
@@ -1360,8 +1523,7 @@
                 const container = document.getElementById('skillsBook');
                 if (!container) return;
                 container.innerHTML = skillsData.map(s => {
-                    const desc = s['desc' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s
-                        .descEn;
+                    const desc = s['desc' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s.descEn;
                     return `
                     <div class="skill-row">
                         <div class="skill-icon-circle" style="background:${s.color}20; color:${s.color}; box-shadow: 0 0 24px ${s.color}40;">
@@ -1421,8 +1583,7 @@
                 const container = document.getElementById('educationTimeline');
                 if (!container) return;
                 container.innerHTML = eduData.map(e => {
-                    const school = e['school' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || e
-                        .schoolEn;
+                    const school = e['school' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || e.schoolEn;
                     const desc = e['desc' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || e.descEn;
                     const statusText = currentLang === 'en' ? 'Currently Studying' : currentLang === 'de' ?
                         'Studierend' : 'قيد الدراسة';
@@ -1463,15 +1624,34 @@
             function buildServices() {
                 const container = document.getElementById('servicesList');
                 if (!container) return;
-                container.innerHTML = serviceData.map(s => {
-                    const title = s['title' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s
-                    .titleEn;
-                    const desc = s['desc' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s.descEn;
-                    return `<div class="softskill-card">
-                        <i class="${s.i}" style="color:var(--accent-bright);font-size:1.4rem;flex-shrink:0;"></i>
-                        <div><h4 style="color:#fff;font-size:0.9rem;">${title}</h4><p style="color:var(--text-secondary);font-size:0.78rem;">${desc}</p></div>
+                container.innerHTML = serviceData.map((s, index) => {
+                    const title = s['title' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s.titleEn;
+                    const items = s['items' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s.itemsEn;
+                    const itemsList = items.map(item => `<li>${item}</li>`).join('');
+                    return `
+                    <div class="service-book-card">
+                        <div class="service-book-icon">
+                            <i class="${s.i}"></i>
+                        </div>
+                        <div class="service-book-content">
+                            <h4>${title}</h4>
+                            <ul>${itemsList}</ul>
+                        </div>
                     </div>`;
                 }).join('');
+
+                // مراقب ظهور بطاقات الخدمات (تأثير فتح صفحة الكتاب)
+                setTimeout(() => {
+                    const cards = container.querySelectorAll('.service-book-card');
+                    const serviceObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('revealed');
+                            }
+                        });
+                    }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+                    cards.forEach(card => serviceObserver.observe(card));
+                }, 100);
             }
 
             function buildPlatforms() {
@@ -1557,8 +1737,7 @@
                 document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
                 document.body.classList.toggle('rtl', lang === 'ar');
                 document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-                const activeBtn = document.getElementById(lang === 'en' ? 'btnEn' : lang === 'de' ? 'btnDe' :
-                'btnAr');
+                const activeBtn = document.getElementById(lang === 'en' ? 'btnEn' : lang === 'de' ? 'btnDe' : 'btnAr');
                 if (activeBtn) activeBtn.classList.add('active');
                 document.title = {
                     en: 'Abdulrahman | Frontend Developer',
@@ -1662,7 +1841,7 @@
                 anim();
 
                 const hoverTargets = document.querySelectorAll(
-                    'a,button,.btn,.project-card,.book-card,.softskill-card,.info-cell,.platform-card,.skill-row');
+                    'a,button,.btn,.project-card,.book-card,.softskill-card,.info-cell,.platform-card,.skill-row,.service-book-card');
                 hoverTargets.forEach(el => {
                     el.addEventListener('mouseenter', () => dot.classList.add('hovering'));
                     el.addEventListener('mouseleave', () => dot.classList.remove('hovering'));
@@ -1670,7 +1849,7 @@
 
                 const observer = new MutationObserver(() => {
                     const newTargets = document.querySelectorAll(
-                        'a,button,.btn,.project-card,.book-card,.softskill-card,.info-cell,.platform-card,.skill-row');
+                        'a,button,.btn,.project-card,.book-card,.softskill-card,.info-cell,.platform-card,.skill-row,.service-book-card');
                     newTargets.forEach(el => {
                         el.removeEventListener('mouseenter', () => dot.classList.add('hovering'));
                         el.removeEventListener('mouseleave', () => dot.classList.remove('hovering'));
