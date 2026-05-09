@@ -546,11 +546,15 @@
             z-index: 1;
             box-shadow: 0 0 80px rgba(59, 130, 246, 0.55), 0 0 140px rgba(14, 165, 233, 0.35), 0 0 200px rgba(30, 58, 138, 0.25);
             border: 4px solid rgba(255, 255, 255, 0.2);
-            transition: box-shadow 0.5s, border-color 0.5s;
+            transition: box-shadow 0.5s, border-color 0.5s, transform 0.5s var(--ease-spring);
         }
         .avatar-img:hover {
             box-shadow: 0 0 110px rgba(59, 130, 246, 0.75), 0 0 180px rgba(14, 165, 233, 0.55), 0 0 240px rgba(30, 58, 138, 0.4);
             border-color: rgba(255, 255, 255, 0.45);
+            transform: scale(1.05) translateX(12px);
+        }
+        body.rtl .avatar-img:hover {
+            transform: scale(1.05) translateX(-12px);
         }
 
         .section {
@@ -1110,7 +1114,6 @@
             }
         }
 
-        /* ============ MOBILE OPTIMIZATIONS ============ */
         @media (max-width: 960px) {
             .nav-desktop {
                 display: none;
@@ -1198,7 +1201,6 @@
                 will-change: auto;
             }
 
-            /* تقليل تأثيرات الـ blur والشفافية على الموبايل لتحسين الأداء */
             .skill-row,
             .softskill-card,
             .project-card,
@@ -1376,7 +1378,7 @@
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary" data-i18n="hero.cta1">View My Work</a>
                     <a href="#contact" class="btn btn-outline" data-i18n="hero.cta2">Get In Touch</a>
-                    <!-- 🔽 زر تحميل السيرة الذاتية CV 🔽 -->
+                    <!--  زر تحميل السيرة الذاتية CV  -->
                     <a href="https://docs.google.com/document/d/1OKKEO9n1DGCluzZINzwwQesj7izy89EO/edit?usp=drive_link&ouid=110794745378532365862&rtpof=true&sd=true" class="btn btn-cv" target="_blank" rel="noopener" id="cvDownloadBtn" title="تحميل السيرة الذاتية">
                         <i class="fas fa-file-pdf"></i> <span data-i18n="hero.cv">تحميل السيرة الذاتية</span>
                     </a>
@@ -1461,7 +1463,6 @@
 
     <script>
         (function() {
-            // ==================== TRANSLATIONS ====================
             const translations = {
                 en: {
                     'hero.role.prefix': "I'm a",
@@ -1567,7 +1568,6 @@
                 }
             };
 
-            // ==================== DATA ====================
             const skillsData = [
                 { i: 'fab fa-html5', color: '#E34F26', n: 'HTML5',
                     descEn: 'I master HTML5 with deep semantic understanding, building clean accessible structures that form the solid foundation of every project I create.',
@@ -1602,13 +1602,13 @@
             const projectsData = [
                 { titleKey: 'project1.title', descKey: 'project1.desc',
                     img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600',
-                    tags: ['HTML', 'CSS', 'JavaScript'], url: 'https://abdo-1818.github.io/abdulrahman_tec/' },
+                    tags: ['', '', ''], url: 'https://abdo-1818.github.io/abdulrahman_tec/' },
                 { titleKey: 'project2.title', descKey: 'project2.desc',
                     img: 'https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=600',
-                    tags: ['HTML', 'CSS', 'JS'], url: 'https://abdo-1818.github.io/bboda_7/' },
+                    tags: ['', '', ''], url: 'https://abdo-1818.github.io/bboda_7/' },
                 { titleKey: 'project3.title', descKey: 'project3.desc',
                     img: 'https://images.unsplash.com/photo-1592210454359-9043f067919b?w=600',
-                    tags: ['API', 'JS', 'CSS', 'HTML'], url: 'https://abdo-1818.github.io/bboda/' }
+                    tags: ['', '', '', ''], url: 'https://abdo-1818.github.io/bboda/' }
             ];
 
             const strengthItems = [
@@ -1690,8 +1690,8 @@
             ];
 
             const eduData = [
-                { date: '2023 - Present', schoolEn: 'New Cairo Academy', schoolDe: 'New Cairo Academy',
-                    schoolAr: 'أكاديمية القاهرة الجديدة', descEn: 'BSc Computer Science', descDe: 'BSc Informatik',
+                { date: '2023 - Present', schoolEn: 'New Cairo Academy in Fifth Settlement', schoolDe: 'New Cairo Academy in Fifth Settlement',
+                    schoolAr: '  أكاديمية القاهرة الجديدة بالتجمع الخامس', descEn: 'BSc Computer Science', descDe: 'BSc Informatik',
                     descAr: 'بكالوريوس علوم الحاسب', active: true },
                 { date: '2020 - 2023', schoolEn: 'General Secondary School', schoolDe: 'Allgemeine Sekundarschule',
                     schoolAr: 'ثانوية عامة', descEn: 'Technology Foundation', descDe: 'Technologiegrundlage',
@@ -1705,7 +1705,6 @@
                 { i: 'fab fa-instagram', c: '#e4405f', n: 'Instagram', u: 'https://www.instagram.com/bboda_7' }
             ];
 
-            // العبارات المتغيرة (Typed Text) — مع استبدال "فرونت اند ديفلبر" بـ "مصمم واجهات"
             const roleTexts = {
                 en: ['Frontend Developer', 'Programmer', 'IT Specialist', 'Accountant'],
                 de: ['Frontend-Entwickler', 'Programmierer', 'IT-Spezialist', 'Buchhalter'],
@@ -1721,7 +1720,6 @@
 
             function getT(key) { return translations[currentLang]?.[key] || translations['en'][key] || key; }
 
-            // ==================== BUILD FUNCTIONS ====================
             function buildNav() {
                 const items = ['home', 'about', 'unique', 'services', 'skills', 'projects', 'education', 'strengths',
                     'softskills', 'contact'
@@ -1848,7 +1846,6 @@
                 });
             }
 
-            // ==================== TYPED TEXT ANIMATION (تبقى ثانيتين ثم تُمسح بسلاسة) ====================
             function typeRole() {
                 const roles = roleTexts[currentLang] || roleTexts['en'];
                 const currentRole = roles[roleIndex];
@@ -1863,18 +1860,14 @@
                     charIndex++;
                 }
 
-                // سرعات الكتابة والمسح (typeSpeed: 80ms، backSpeed: 80ms)
                 let speed = 80;
                 if (!isDeleting && charIndex === currentRole.length) {
-                    // الكلمة اكتملت → تبقى ثانيتين كاملتين (2000ms) ثم تبدأ في المسح
                     speed = 2000;
                     isDeleting = true;
                 } else if (isDeleting && charIndex === 0) {
-                    // اكتمل المسح → انتظر 200ms ثم ابدأ الكلمة التالية
                     isDeleting = false;
                     roleIndex = (roleIndex + 1) % roles.length;
                     speed = 200;
-                    // ومضة خفيفة عند الانتقال لكلمة جديدة
                     typedEl.style.opacity = '0.6';
                     setTimeout(() => { typedEl.style.opacity = '1'; }, 60);
                 }
@@ -1882,7 +1875,6 @@
                 typedTimeout = setTimeout(typeRole, speed);
             }
 
-            // ==================== REFRESH ALL ====================
             function refreshAll() {
                 buildNav();
                 buildInfo();
@@ -1896,7 +1888,6 @@
                 buildHeroPlatforms();
                 applyTranslations();
                 document.getElementById('currentYear').textContent = new Date().getFullYear();
-                // إعادة ضبط الـ typed animation
                 clearTimeout(typedTimeout);
                 roleIndex = 0;
                 charIndex = 0;
@@ -1906,7 +1897,6 @@
                 typeRole();
             }
 
-            // ==================== LANGUAGE SWITCH ====================
             window.switchLang = function(lang) {
                 currentLang = lang;
                 window.currentLang = lang;
@@ -1921,13 +1911,11 @@
                 refreshAll();
             };
 
-            // ==================== MOBILE MENU ====================
             window.toggleMobileMenu = function() {
                 document.getElementById('mobileMenu').classList.toggle('open');
                 document.getElementById('mobileOverlay').classList.toggle('open');
             };
 
-            // ==================== PARTICLES (خفيف جداً على الموبايل) ====================
             (function initParticles() {
                 const canvas = document.getElementById('particleCanvas');
                 if (!canvas) return;
@@ -1941,11 +1929,10 @@
                 window.addEventListener('resize', resize);
 
                 function createParticles() {
-                    // عدد قليل جداً من الجسيمات لضمان سلاسة الموبايل
                     let count;
-                    if (window.innerWidth < 600) count = 10; // موبايل صغير: 10 فقط
-                    else if (window.innerWidth < 960) count = 16; // تابلت: 16
-                    else count = 30; // ديسكتوب: 30
+                    if (window.innerWidth < 600) count = 10;
+                    else if (window.innerWidth < 960) count = 16;
+                    else count = 30;
                     particles = [];
                     for (let i = 0; i < count; i++) {
                         particles.push({
@@ -1994,7 +1981,6 @@
                 window.addEventListener('beforeunload', () => cancelAnimationFrame(animId));
             })();
 
-            // ==================== CURSOR (للديسكتوب فقط) ====================
             (function cursor() {
                 const dot = document.getElementById('cursorDotCustom');
                 if (!dot || 'ontouchstart' in window || window.matchMedia('(hover:none)').matches) {
@@ -2033,7 +2019,6 @@
                 }).observe(document.body, { childList: true, subtree: true });
             })();
 
-            // ==================== REVEAL ON SCROLL (خفيف) ====================
             (function revealOnScroll() {
                 const sections = document.querySelectorAll('.section-wrapper');
                 const observer = new IntersectionObserver((entries) => {
@@ -2050,7 +2035,6 @@
                 window.addEventListener('scroll', revealCheck, { passive: true });
             })();
 
-            // ==================== SMOOTH SCROLL ====================
             (function smoothScrollLinks() {
                 document.addEventListener('click', function(e) {
                     const link = e.target.closest('a[href^="#"]');
@@ -2065,11 +2049,9 @@
                 });
             })();
 
-            // ==================== INIT ====================
             refreshAll();
             typeRole();
 
-            // ==================== SCROLL HANDLERS (مُحسَّنة) ====================
             let ticking = false;
             window.addEventListener('scroll', () => {
                 if (!ticking) {
@@ -2084,7 +2066,6 @@
                 }
             }, { passive: true });
 
-            // Active nav link on scroll
             let navTicking = false;
             window.addEventListener('scroll', () => {
                 if (!navTicking) {
