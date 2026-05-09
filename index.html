@@ -1377,8 +1377,7 @@
                     <a href="#projects" class="btn btn-primary" data-i18n="hero.cta1">View My Work</a>
                     <a href="#contact" class="btn btn-outline" data-i18n="hero.cta2">Get In Touch</a>
                     <!-- 🔽 زر تحميل السيرة الذاتية CV 🔽 -->
-                    <!-- ⚠️ استبدل الرابط # برابط ملف PDF الخاص بك (ارفع الملف على Google Drive أو GitHub واستخدم الرابط المباشر) -->
-                    <a href="#" class="btn btn-cv" target="_blank" download id="cvDownloadBtn" title="تحميل السيرة الذاتية">
+                    <a href="https://docs.google.com/document/d/1OKKEO9n1DGCluzZINzwwQesj7izy89EO/edit?usp=drive_link&ouid=110794745378532365862&rtpof=true&sd=true" class="btn btn-cv" target="_blank" rel="noopener" id="cvDownloadBtn" title="تحميل السيرة الذاتية">
                         <i class="fas fa-file-pdf"></i> <span data-i18n="hero.cv">تحميل السيرة الذاتية</span>
                     </a>
                 </div>
@@ -1706,11 +1705,11 @@
                 { i: 'fab fa-instagram', c: '#e4405f', n: 'Instagram', u: 'https://www.instagram.com/bboda_7' }
             ];
 
-            // العبارات المتغيرة (Typed Text) — الكلمات المطلوبة مع سلاسة ونعومة
+            // العبارات المتغيرة (Typed Text) — مع استبدال "فرونت اند ديفلبر" بـ "مصمم واجهات"
             const roleTexts = {
                 en: ['Frontend Developer', 'Programmer', 'IT Specialist', 'Accountant'],
                 de: ['Frontend-Entwickler', 'Programmierer', 'IT-Spezialist', 'Buchhalter'],
-                ar: ['فرونت اند ديفلبر', 'مبرمج', 'IT', 'محاسب']
+                ar: ['مصمم واجهات', 'مبرمج', 'IT', 'محاسب']
             };
 
             let currentLang = 'en';
@@ -1849,7 +1848,7 @@
                 });
             }
 
-            // ==================== TYPED TEXT ANIMATION (سلس وناعم) ====================
+            // ==================== TYPED TEXT ANIMATION (تبقى ثانيتين ثم تُمسح بسلاسة) ====================
             function typeRole() {
                 const roles = roleTexts[currentLang] || roleTexts['en'];
                 const currentRole = roles[roleIndex];
@@ -1864,11 +1863,11 @@
                     charIndex++;
                 }
 
-                // سرعات الكتابة والمسح (typeSpeed: 80ms, backSpeed: 80ms)
+                // سرعات الكتابة والمسح (typeSpeed: 80ms، backSpeed: 80ms)
                 let speed = 80;
                 if (!isDeleting && charIndex === currentRole.length) {
-                    // الكلمة اكتملت → تبقى ثانية واحدة (1000ms) ثم تبدأ في المسح
-                    speed = 1000;
+                    // الكلمة اكتملت → تبقى ثانيتين كاملتين (2000ms) ثم تبدأ في المسح
+                    speed = 2000;
                     isDeleting = true;
                 } else if (isDeleting && charIndex === 0) {
                     // اكتمل المسح → انتظر 200ms ثم ابدأ الكلمة التالية
