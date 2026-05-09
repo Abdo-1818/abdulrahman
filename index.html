@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -550,6 +549,7 @@
             transform: perspective(1200px) rotateY(8deg) translateY(40px);
             will-change: transform, opacity;
             overflow: visible;
+            contain: layout style paint;
         }
         .section-wrapper.revealed {
             opacity: 1;
@@ -843,6 +843,13 @@
             }
             #particleCanvas {
                 opacity: 0.6;
+            }
+            .section-wrapper {
+                will-change: auto;
+                contain: layout style paint;
+            }
+            .skill-row, .softskill-card, .project-card, .platform-card, .service-book-card {
+                will-change: auto;
             }
         }
         @media (max-width: 600px) {
@@ -1289,11 +1296,22 @@
                 const currentRole = roles[roleIndex];
                 const typedEl = document.getElementById('typedText');
                 if (!typedEl) return;
-                if (isDeleting) { typedEl.textContent = currentRole.substring(0, charIndex - 1); charIndex--; }
-                else { typedEl.textContent = currentRole.substring(0, charIndex + 1); charIndex++; }
-                let speed = isDeleting ? 40 : 80;
-                if (!isDeleting && charIndex === currentRole.length) { speed = 2000; isDeleting = true; }
-                else if (isDeleting && charIndex === 0) { isDeleting = false; roleIndex = (roleIndex + 1) % roles.length; speed = 400; }
+                if (isDeleting) {
+                    typedEl.textContent = currentRole.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typedEl.textContent = currentRole.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+                let speed = isDeleting ? 80 : 80;  // typeSpeed & backSpeed both 80ms
+                if (!isDeleting && charIndex === currentRole.length) {
+                    speed = 1000;  // backDelay 1000ms
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    speed = 200;  // tiny pause before next word
+                }
                 typedTimeout = setTimeout(typeRole, speed);
             }
 
@@ -1331,7 +1349,9 @@
                 let particles = [], w, h, animId;
                 function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
                 resize(); window.addEventListener('resize', resize);
-                const count = Math.min(45, Math.floor((w * h) / 22000));
+                let count = Math.min(45, Math.floor((w * h) / 22000));
+                if (window.innerWidth < 600) count = Math.min(18, count);
+                else if (window.innerWidth < 960) count = Math.min(28, count);
                 particles = [];
                 for (let i = 0; i < count; i++) {
                     particles.push({ x: Math.random()*w, y: Math.random()*h, vx: (Math.random()-0.5)*0.6, vy: (Math.random()-0.5)*0.6, r: Math.random()*1.6+0.5 });
