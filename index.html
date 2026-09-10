@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
     <meta name="description" content="Abdulrahman Mamdouh — UI/UX Designer & Low-Code Developer crafting cinematic digital experiences.">
     <meta name="author" content="Abdulrahman Mamdouh">
     <meta name="theme-color" content="#0B0B0F">
@@ -12,26 +12,28 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://abdo-1818.github.io/">
     <meta property="og:image" content="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg">
-    <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg">
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg">
     <title>Abdulrahman | Frontend Developer</title>
+
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://i.ibb.co" crossorigin>
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&display=swap" rel="stylesheet">
-<meta name="google-site-verification" content="MazWxvgmgLJ0r-qzqjDuq45e6ZZUIV4tT6qPWwvhnBM" />
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --bg-primary: #0B0B0F;
             --bg-secondary: #111827;
             --surface: rgba(255, 255, 255, 0.04);
             --border: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(255, 255, 255, 0.16);
             --text-primary: #FFFFFF;
             --text-secondary: #A1A1AA;
             --text-muted: #6B7280;
@@ -53,11 +55,8 @@
             --max-width: 1280px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         html {
             scroll-behavior: smooth;
             scroll-padding-top: 100px;
@@ -66,6 +65,7 @@
             -webkit-tap-highlight-color: transparent;
             -webkit-text-size-adjust: 100%;
         }
+
         body {
             font-family: 'Inter', system-ui, sans-serif;
             background: var(--bg-primary);
@@ -77,13 +77,241 @@
             font-size: 0.95rem;
             position: relative;
             letter-spacing: -0.01em;
-            background-attachment: fixed;
         }
+
         body.rtl {
             font-family: 'Cairo', system-ui, sans-serif;
             direction: rtl;
             text-align: right;
             letter-spacing: 0;
+        }
+
+        body.intro-locked {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* ============ شاشة الترحيب ============ */
+        #introScreen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 50% 45%, #14172b 0%, #0B0B0F 55%, #050508 100%);
+            transition: opacity 0.9s var(--ease-out-expo), visibility 0.9s;
+            will-change: opacity;
+            padding: 0 20px;
+            text-align: center;
+        }
+        #introScreen.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        #introScreen::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: min(700px, 90vw);
+            height: min(700px, 90vw);
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.22) 0%, rgba(14, 165, 233, 0.08) 35%, transparent 70%);
+            filter: blur(40px);
+            animation: introGlow 3s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes introGlow {
+            from { opacity: 0.6; transform: translate(-50%, -50%) scale(0.95); }
+            to   { opacity: 1;   transform: translate(-50%, -50%) scale(1.08); }
+        }
+
+        .intro-photo-wrap {
+            position: relative;
+            width: clamp(170px, 28vw, 240px);
+            height: clamp(170px, 28vw, 240px);
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0.7);
+            animation: introPhotoIn 1s var(--ease-spring) 0.15s forwards;
+        }
+        @keyframes introPhotoIn {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .intro-photo-wrap::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent 0deg, #0EA5E9 90deg, #3B82F6 180deg, #1E3A8A 250deg, transparent 360deg);
+            animation: introSpin 2.6s linear infinite;
+            filter: blur(1px);
+            z-index: 0;
+        }
+        .intro-photo-wrap::after {
+            content: '';
+            position: absolute;
+            inset: -22px;
+            border-radius: 50%;
+            background: conic-gradient(from 180deg, transparent 0deg, #38BDF8 100deg, #1E3A8A 200deg, #0EA5E9 300deg, transparent 360deg);
+            animation: introSpin 4.2s linear infinite reverse;
+            opacity: 0.7;
+            filter: blur(3px);
+            z-index: 0;
+        }
+        @keyframes introSpin { to { transform: rotate(360deg); } }
+
+        .intro-photo {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.25);
+            box-shadow:
+                0 0 60px rgba(59, 130, 246, 0.7),
+                0 0 120px rgba(14, 165, 233, 0.4),
+                0 0 200px rgba(30, 58, 138, 0.3);
+        }
+
+        /* النص اللي بيتكتب حرف حرف */
+        .intro-typed {
+            margin-top: 38px;
+            font-family: 'El Messiri', 'Playfair Display', serif;
+            font-size: clamp(1.3rem, 4.2vw, 2rem);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            line-height: 1.4;
+            min-height: 1.4em;
+            display: block;
+            background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 30%, #0EA5E9 60%, #3B82F6 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: introTextShine 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 24px rgba(59, 130, 246, 0.55));
+            opacity: 0;
+            transition: opacity 0.45s ease;
+        }
+        .intro-typed.ready { opacity: 1; }
+        @keyframes introTextShine {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* الكيرسور النابض */
+        .intro-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 0.95em;
+            background: #0EA5E9;
+            margin-left: 3px;
+            vertical-align: middle;
+            transform: translateY(-2px);
+            box-shadow: 0 0 10px #0EA5E9, 0 0 18px rgba(14, 165, 233, 0.65);
+            -webkit-text-fill-color: initial;
+            animation: introBlink 0.7s step-end infinite;
+        }
+        @keyframes introBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* السطر الفرعي */
+        .intro-subtitle {
+            margin-top: 14px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(0.68rem, 2.2vw, 0.82rem);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+        }
+        .intro-subtitle.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .intro-loader {
+            margin-top: 32px;
+            width: min(220px, 60vw);
+            height: 2px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+            opacity: 0;
+            transition: opacity 0.6s;
+        }
+        .intro-loader.show { opacity: 1; }
+        .intro-loader::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, #0EA5E9, #3B82F6, #0EA5E9, transparent);
+            transform: translateX(-100%);
+            animation: introLoad 1.4s ease-in-out infinite;
+        }
+        @keyframes introLoad {
+            to { transform: translateX(100%); }
+        }
+
+        .intro-dots {
+            margin-top: 20px;
+            display: flex;
+            gap: 8px;
+            opacity: 0;
+            transition: opacity 0.6s;
+        }
+        .intro-dots.show { opacity: 1; }
+        .intro-dots span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-bright);
+            box-shadow: 0 0 10px var(--accent-bright);
+            animation: introDot 1.2s ease-in-out infinite;
+        }
+        .intro-dots span:nth-child(2) { animation-delay: 0.15s; }
+        .intro-dots span:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes introDot {
+            0%, 100% { opacity: 0.35; transform: scale(0.85); }
+            50%      { opacity: 1;    transform: scale(1.2); }
+        }
+
+        #introScreen.hide .intro-photo-wrap {
+            animation: none;
+            transform: scale(1.15);
+            opacity: 0;
+            transition: transform 0.7s var(--ease-out-expo), opacity 0.7s;
+        }
+        #introScreen.hide .intro-typed,
+        #introScreen.hide .intro-subtitle,
+        #introScreen.hide .intro-loader,
+        #introScreen.hide .intro-dots {
+            opacity: 0;
+            transform: translateY(-14px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #introScreen::before,
+            .intro-photo-wrap::before,
+            .intro-photo-wrap::after,
+            .intro-loader::after,
+            .intro-dots span,
+            .intro-typed,
+            .intro-cursor { animation: none; }
         }
 
         #particleCanvas {
@@ -92,7 +320,7 @@
             z-index: 0;
             pointer-events: none;
             opacity: 0.85;
-            will-change: transform;
+            contain: strict;
         }
 
         #cursorDotCustom {
@@ -103,10 +331,12 @@
             background: #ffffff;
             pointer-events: none;
             z-index: 10001;
+            top: 0;
+            left: 0;
             transform: translate(-50%, -50%);
             box-shadow: 0 0 18px #ffffff, 0 0 36px rgba(255, 255, 255, 0.9), 0 0 60px rgba(59, 130, 246, 0.8), 0 0 90px rgba(14, 165, 233, 0.6);
-            will-change: transform, width, height;
             transition: width 0.2s, height 0.2s;
+            will-change: transform;
         }
         #cursorDotCustom.hovering {
             width: 18px;
@@ -124,13 +354,12 @@
             max-width: var(--max-width);
             border-radius: 60px;
             padding: 6px 20px;
-            transition: all 0.55s var(--ease-out-expo);
+            transition: top 0.4s var(--ease-out-expo), border-radius 0.4s var(--ease-out-expo), background 0.4s;
             background: rgba(11, 11, 15, 0.7);
             backdrop-filter: blur(28px);
             -webkit-backdrop-filter: blur(28px);
             border: 1px solid rgba(255, 255, 255, 0.07);
             box-shadow: 0 8px 48px rgba(0, 0, 0, 0.55);
-            will-change: transform;
         }
         .header.scrolled {
             top: 0;
@@ -140,8 +369,6 @@
             background: rgba(11, 11, 15, 0.92);
             border-left: none;
             border-right: none;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
         }
         .header-inner {
             display: flex;
@@ -149,17 +376,9 @@
             justify-content: space-between;
             gap: 10px;
         }
-        .logo-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            flex-shrink: 0;
-        }
+        .logo-link { display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
         .logo-img {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
+            width: 36px; height: 36px; border-radius: 50%;
             object-fit: cover;
             border: 2px solid rgba(255, 255, 255, 0.55);
             transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
@@ -179,13 +398,7 @@
             line-height: 1;
             white-space: nowrap;
         }
-        .nav-desktop {
-            display: flex;
-            list-style: none;
-            gap: 2px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+        .nav-desktop { display: flex; list-style: none; gap: 2px; align-items: center; flex-wrap: wrap; }
         .nav-desktop li a {
             color: rgba(255, 255, 255, 0.65);
             text-decoration: none;
@@ -193,7 +406,7 @@
             border-radius: 40px;
             font-size: 0.7rem;
             font-weight: 500;
-            transition: 0.3s;
+            transition: color 0.3s, background 0.3s;
             white-space: nowrap;
             position: relative;
         }
@@ -203,30 +416,19 @@
             bottom: 2px;
             left: 50%;
             transform: translateX(-50%) scaleX(0);
-            width: 16px;
-            height: 2px;
+            width: 16px; height: 2px;
             background: var(--accent-bright);
             border-radius: 2px;
             transition: transform 0.3s;
         }
         .nav-desktop li a:hover::after,
-        .nav-desktop li a.active::after {
-            transform: translateX(-50%) scaleX(1);
-        }
+        .nav-desktop li a.active::after { transform: translateX(-50%) scaleX(1); }
         .nav-desktop li a:hover,
-        .nav-desktop li a.active {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-shrink: 0;
-        }
+        .nav-desktop li a.active { color: #fff; background: rgba(255, 255, 255, 0.05); }
+
+        .header-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
         .lang-switch {
-            display: flex;
-            gap: 2px;
+            display: flex; gap: 2px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 40px;
@@ -242,7 +444,7 @@
             font-weight: 500;
             font-size: 0.66rem;
             font-family: inherit;
-            transition: 0.3s;
+            transition: color 0.3s, background 0.3s;
             white-space: nowrap;
         }
         .lang-btn.active {
@@ -255,17 +457,16 @@
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: #fff;
-            width: 36px;
-            height: 36px;
+            width: 36px; height: 36px;
             border-radius: 50%;
             cursor: pointer;
             font-size: 0.95rem;
             align-items: center;
             justify-content: center;
         }
+
         .mobile-overlay {
-            position: fixed;
-            inset: 0;
+            position: fixed; inset: 0;
             background: rgba(0, 0, 0, 0.7);
             z-index: 1100;
             opacity: 0;
@@ -274,10 +475,7 @@
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
         }
-        .mobile-overlay.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        .mobile-overlay.open { opacity: 1; pointer-events: auto; }
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -285,11 +483,9 @@
             width: 280px;
             height: 100vh;
             background: rgba(15, 15, 20, 0.97);
-            backdrop-filter: blur(32px);
-            -webkit-backdrop-filter: blur(32px);
             z-index: 1200;
             padding: 28px 20px;
-            transition: right 0.45s var(--ease-out-expo);
+            transition: right 0.4s var(--ease-out-expo);
             overflow-y: auto;
             border-left: 1px solid rgba(255, 255, 255, 0.06);
             box-shadow: -8px 0 40px rgba(0, 0, 0, 0.6);
@@ -301,14 +497,10 @@
             border-radius: 0 24px 24px 0;
             border-left: none;
             border-right: 1px solid rgba(255, 255, 255, 0.06);
-            transition: left 0.45s var(--ease-out-expo);
+            transition: left 0.4s var(--ease-out-expo);
         }
-        .mobile-menu.open {
-            right: 0;
-        }
-        body.rtl .mobile-menu.open {
-            left: 0;
-        }
+        .mobile-menu.open { right: 0; }
+        body.rtl .mobile-menu.open { left: 0; }
         .mobile-menu-header {
             display: flex;
             align-items: center;
@@ -323,17 +515,10 @@
             cursor: pointer;
             padding: 8px;
             border-radius: 50%;
-            transition: 0.3s;
+            transition: background 0.3s;
         }
-        .mobile-menu-close:hover {
-            background: rgba(255, 255, 255, 0.08);
-        }
-        .mobile-nav {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
+        .mobile-menu-close:hover { background: rgba(255, 255, 255, 0.08); }
+        .mobile-nav { list-style: none; display: flex; flex-direction: column; gap: 2px; }
         .mobile-nav li a {
             display: block;
             padding: 13px 16px;
@@ -341,12 +526,9 @@
             text-decoration: none;
             border-radius: 14px;
             font-size: 0.85rem;
-            transition: 0.3s;
+            transition: background 0.3s, color 0.3s;
         }
-        .mobile-nav li a:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-        }
+        .mobile-nav li a:hover { background: rgba(255, 255, 255, 0.05); color: #fff; }
 
         .hero {
             min-height: 100vh;
@@ -381,53 +563,29 @@
             letter-spacing: -0.01em;
         }
         @keyframes shimmerName {
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-            25% {
-                background-position: 100% 30%;
-            }
-            50% {
-                background-position: 100% 70%;
-            }
-            75% {
-                background-position: 0% 70%;
-            }
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 100% 30%; }
+            50% { background-position: 100% 70%; }
+            75% { background-position: 0% 70%; }
         }
-        .hero-title-role {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
+        .hero-title-role { font-size: 1.15rem; font-weight: 600; color: #fff; margin-bottom: 10px; }
         .hero-title-role .typed-text {
-            color: #ffffff;
+            color: #fff;
             font-weight: 700;
             text-shadow: 0 0 18px rgba(255, 255, 255, 0.7), 0 0 36px rgba(255, 255, 255, 0.4);
             transition: opacity 0.12s ease;
             display: inline-block;
         }
         .hero-tagline {
-            color: #ffffff;
+            color: #fff;
             font-size: 0.9rem;
             line-height: 1.6;
             margin-bottom: 28px;
             max-width: 460px;
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
         }
-        .hero-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 22px;
-        }
-        .hero-platforms-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 6px;
-        }
+        .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
+        .hero-platforms-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
         .hero-platform-mini {
             display: inline-flex;
             align-items: center;
@@ -440,7 +598,7 @@
             color: var(--text-primary);
             font-size: 0.75rem;
             font-weight: 500;
-            transition: all 0.4s var(--ease-spring);
+            transition: border-color 0.4s var(--ease-spring), box-shadow 0.4s, transform 0.4s, background 0.4s;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
@@ -450,9 +608,8 @@
             transform: translateY(-3px);
             background: rgba(14, 165, 233, 0.08);
         }
-        .hero-platform-mini i {
-            font-size: 1rem;
-        }
+        .hero-platform-mini i { font-size: 1rem; }
+
         .btn {
             display: inline-flex;
             align-items: center;
@@ -463,7 +620,7 @@
             font-size: 0.82rem;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.45s var(--ease-spring);
+            transition: transform 0.4s var(--ease-spring), box-shadow 0.4s;
             border: none;
             font-family: inherit;
         }
@@ -491,16 +648,13 @@
             color: #0B0B0F;
             font-weight: 700;
             box-shadow: 0 6px 28px rgba(14, 165, 233, 0.45);
-            border: none;
         }
         .btn-cv:hover {
             transform: translateY(-5px);
             box-shadow: 0 16px 48px rgba(14, 165, 233, 0.65);
-            color: #0B0B0F;
         }
-        .btn-cv i {
-            font-size: 0.9rem;
-        }
+        .btn-cv i { font-size: 0.9rem; }
+
         .avatar-ring {
             position: relative;
             width: clamp(340px, 54vw, 620px);
@@ -514,6 +668,7 @@
             border-radius: 50%;
             opacity: 0.85;
             pointer-events: none;
+            will-change: transform;
         }
         .avatar-ring::before {
             inset: -10px;
@@ -531,14 +686,10 @@
             -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
             filter: blur(2px);
         }
-        @keyframes rotateRing {
-            to {
-                transform: rotate(360deg);
-            }
-        }
+        @keyframes rotateRing { to { transform: rotate(360deg); } }
+
         .avatar-img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             border-radius: 50%;
             object-fit: cover;
             position: relative;
@@ -552,20 +703,14 @@
             border-color: rgba(255, 255, 255, 0.45);
             transform: scale(1.05) translateX(12px);
         }
-        body.rtl .avatar-img:hover {
-            transform: scale(1.05) translateX(-12px);
-        }
+        body.rtl .avatar-img:hover { transform: scale(1.05) translateX(-12px); }
 
-        .section {
-            padding: 40px 0;
-            position: relative;
-            z-index: 1;
-        }
+        .section { padding: 40px 0; position: relative; z-index: 1; }
         .section-wrapper {
             border-radius: var(--radius-xl);
             padding: 44px 28px;
             position: relative;
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transition: opacity 0.5s ease, transform 0.5s ease;
             max-width: var(--max-width);
             margin: 0 auto;
             border: 2px solid transparent;
@@ -573,15 +718,11 @@
             box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 20px 60px rgba(0, 0, 0, 0.5);
             opacity: 0;
             transform: translateY(40px);
-            will-change: transform, opacity;
-            overflow: visible;
+            contain: layout style;
             content-visibility: auto;
             contain-intrinsic-size: auto 400px;
         }
-        .section-wrapper.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .section-wrapper.revealed { opacity: 1; transform: translateY(0); }
         .section-wrapper.glowing-border {
             border-color: rgba(59, 130, 246, 0.25);
             box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.12), 0 0 60px rgba(59, 130, 246, 0.08), 0 20px 60px rgba(0, 0, 0, 0.5);
@@ -596,15 +737,12 @@
             mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             mask-composite: exclude;
-            -webkit-mask-composite: xor;
+            -webkit-mask-composite: destination-out;
             padding: 3px;
             opacity: 0.85;
             pointer-events: none;
         }
-        .section-header {
-            text-align: center;
-            margin-bottom: 36px;
-        }
+        .section-header { text-align: center; margin-bottom: 36px; }
         .section-title {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.8rem;
@@ -620,8 +758,7 @@
             bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
+            width: 50px; height: 3px;
             background: var(--accent-bright);
             border-radius: 3px;
             box-shadow: 0 0 16px var(--accent-glow-strong);
@@ -647,48 +784,28 @@
             transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
             box-shadow: var(--shadow-card);
             text-align: left;
-            position: relative;
         }
-        body.rtl .skill-row {
-            text-align: right;
-            flex-direction: row-reverse;
-        }
+        body.rtl .skill-row { text-align: right; flex-direction: row-reverse; }
         .skill-row:hover {
             transform: translateX(6px);
             border-color: rgba(14, 165, 233, 0.5);
             box-shadow: var(--shadow-hover), 0 0 40px rgba(14, 165, 233, 0.2);
         }
-        body.rtl .skill-row:hover {
-            transform: translateX(-6px);
-        }
+        body.rtl .skill-row:hover { transform: translateX(-6px); }
         .skill-icon-circle {
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.6rem;
             flex-shrink: 0;
-            box-shadow: 0 0 20px currentColor;
             border: 2px solid rgba(255, 255, 255, 0.2);
             transition: box-shadow 0.3s, border-color 0.3s;
         }
-        .skill-row:hover .skill-icon-circle {
-            box-shadow: 0 0 35px currentColor;
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-        .skill-info h4 {
-            font-weight: 700;
-            color: #fff;
-            font-size: 0.9rem;
-            margin-bottom: 2px;
-        }
-        .skill-info p {
-            font-size: 0.75rem;
-            color: #e0e0e0;
-            line-height: 1.4;
-        }
+        .skill-row:hover .skill-icon-circle { border-color: rgba(255, 255, 255, 0.5); }
+        .skill-info h4 { font-weight: 700; color: #fff; font-size: 0.9rem; margin-bottom: 2px; }
+        .skill-info p { font-size: 0.75rem; color: #e0e0e0; line-height: 1.4; }
 
         .info-grid {
             display: grid;
@@ -715,11 +832,7 @@
             margin-bottom: 5px;
             text-transform: uppercase;
         }
-        .info-value {
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 0.8rem;
-        }
+        .info-value { color: #fff; font-weight: 600; font-size: 0.8rem; }
 
         .highlight-box {
             background: var(--glass-bg);
@@ -731,7 +844,7 @@
             max-width: 800px;
             margin: 0 auto;
             line-height: 2;
-            color: #ffffff;
+            color: #fff;
             font-size: 0.88rem;
             box-shadow: var(--shadow-card);
             transition: border-color 0.4s, box-shadow 0.4s;
@@ -740,10 +853,7 @@
             border-color: rgba(59, 130, 246, 0.4);
             box-shadow: var(--shadow-hover), 0 0 45px rgba(59, 130, 246, 0.15);
         }
-        .highlight-box strong {
-            color: #fff;
-            font-weight: 700;
-        }
+        .highlight-box strong { color: #fff; font-weight: 700; }
 
         .services-staggered {
             display: flex;
@@ -763,38 +873,22 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: var(--radius);
             box-shadow: var(--shadow-card);
-            transition: all 0.5s var(--ease-out-expo);
+            transition: transform 0.45s var(--ease-out-expo), border-color 0.45s, box-shadow 0.45s;
             max-width: 600px;
             opacity: 0;
-            will-change: transform, opacity;
-            position: relative;
         }
-        .service-book-card.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .service-book-card:nth-child(odd) {
-            align-self: flex-end;
-            transform: translateY(30px);
-        }
-        .service-book-card:nth-child(even) {
-            align-self: flex-start;
-            transform: translateY(30px);
-        }
-        body.rtl .service-book-card:nth-child(odd) {
-            align-self: flex-start;
-        }
-        body.rtl .service-book-card:nth-child(even) {
-            align-self: flex-end;
-        }
+        .service-book-card.revealed { opacity: 1; transform: translateY(0); }
+        .service-book-card:nth-child(odd) { align-self: flex-end; transform: translateY(30px); }
+        .service-book-card:nth-child(even) { align-self: flex-start; transform: translateY(30px); }
+        body.rtl .service-book-card:nth-child(odd) { align-self: flex-start; }
+        body.rtl .service-book-card:nth-child(even) { align-self: flex-end; }
         .service-book-card:hover {
             border-color: rgba(14, 165, 233, 0.55);
             box-shadow: var(--shadow-hover), 0 0 50px rgba(14, 165, 233, 0.25);
             transform: translateY(-6px) !important;
         }
         .service-book-icon {
-            width: 48px;
-            height: 48px;
+            width: 48px; height: 48px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -803,7 +897,6 @@
             flex-shrink: 0;
             background: rgba(14, 165, 233, 0.12);
             color: var(--accent-bright);
-            box-shadow: 0 0 22px rgba(14, 165, 233, 0.3);
             border: 2px solid rgba(14, 165, 233, 0.25);
             transition: box-shadow 0.3s, border-color 0.3s;
         }
@@ -811,21 +904,10 @@
             box-shadow: 0 0 40px rgba(14, 165, 233, 0.6);
             border-color: var(--accent-bright);
         }
-        .service-book-content h4 {
-            color: #fff;
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin-bottom: 8px;
-        }
-        .service-book-content ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
+        .service-book-content h4 { color: #fff; font-weight: 700; font-size: 0.95rem; margin-bottom: 8px; }
+        .service-book-content ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 5px; }
         .service-book-content ul li {
-            color: #ffffff;
+            color: #fff;
             font-size: 0.78rem;
             line-height: 1.6;
             padding-right: 16px;
@@ -834,22 +916,13 @@
         .service-book-content ul li::before {
             content: '';
             position: absolute;
-            right: 0;
-            top: 10px;
-            width: 6px;
-            height: 6px;
+            right: 0; top: 10px;
+            width: 6px; height: 6px;
             border-radius: 50%;
             background: var(--accent-bright);
-            box-shadow: 0 0 8px var(--accent-glow-strong);
         }
-        body.rtl .service-book-content ul li {
-            padding-right: 0;
-            padding-left: 16px;
-        }
-        body.rtl .service-book-content ul li::before {
-            right: auto;
-            left: 0;
-        }
+        body.rtl .service-book-content ul li { padding-right: 0; padding-left: 16px; }
+        body.rtl .service-book-content ul li::before { right: auto; left: 0; }
 
         .projects-grid {
             display: grid;
@@ -875,22 +948,14 @@
             transform: translateY(-10px);
             box-shadow: var(--shadow-hover), 0 0 50px rgba(14, 165, 233, 0.2);
         }
-        .project-img-wrapper {
-            height: 200px;
-            overflow: hidden;
-        }
+        .project-img-wrapper { height: 200px; overflow: hidden; background: #1a1a24; }
         .project-img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: cover;
             transition: transform 0.55s;
         }
-        .project-card:hover .project-img {
-            transform: scale(1.08);
-        }
-        .project-body {
-            padding: 18px 20px;
-        }
+        .project-card:hover .project-img { transform: scale(1.08); }
+        .project-body { padding: 18px 20px; }
         .project-title {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1rem;
@@ -898,17 +963,8 @@
             margin-bottom: 6px;
             color: #fff;
         }
-        .project-desc {
-            color: #e0e0e0;
-            font-size: 0.76rem;
-            line-height: 1.5;
-            margin-bottom: 10px;
-        }
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-        }
+        .project-desc { color: #e0e0e0; font-size: 0.76rem; line-height: 1.5; margin-bottom: 10px; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 5px; }
         .project-tag {
             padding: 4px 10px;
             background: rgba(59, 130, 246, 0.12);
@@ -943,65 +999,33 @@
             box-shadow: var(--shadow-hover), 0 0 35px rgba(14, 165, 233, 0.18);
             border-color: rgba(14, 165, 233, 0.45);
         }
-        body.rtl .softskill-card:hover {
-            transform: translateX(-8px);
-        }
+        body.rtl .softskill-card:hover { transform: translateX(-8px); }
 
-        .timeline {
-            padding-left: 22px;
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        body.rtl .timeline {
-            padding-left: 0;
-            padding-right: 22px;
-        }
+        .timeline { padding-left: 22px; position: relative; max-width: 600px; margin: 0 auto; }
+        body.rtl .timeline { padding-left: 0; padding-right: 22px; }
         .timeline::before {
             content: '';
             position: absolute;
-            left: 6px;
-            top: 12px;
-            bottom: 12px;
+            left: 6px; top: 12px; bottom: 12px;
             width: 2px;
             background: linear-gradient(180deg, var(--accent-dark), var(--accent-bright));
             opacity: 0.4;
             border-radius: 2px;
         }
-        body.rtl .timeline::before {
-            left: auto;
-            right: 6px;
-        }
-        .tl-item {
-            padding: 10px 0 10px 18px;
-            position: relative;
-        }
+        body.rtl .timeline::before { left: auto; right: 6px; }
+        .tl-item { padding: 10px 0 10px 18px; position: relative; }
         .tl-item::before {
             content: '';
             position: absolute;
-            left: -20px;
-            top: 16px;
-            width: 8px;
-            height: 8px;
+            left: -20px; top: 16px;
+            width: 8px; height: 8px;
             background: var(--accent-bright);
             border-radius: 50%;
             box-shadow: 0 0 14px var(--accent-glow-strong);
         }
-        .tl-date {
-            font-size: 0.7rem;
-            color: var(--accent-bright);
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-        .tl-title {
-            font-weight: 700;
-            color: #fff;
-            font-size: 0.9rem;
-        }
-        .tl-desc {
-            font-size: 0.78rem;
-            color: #e0e0e0;
-        }
+        .tl-date { font-size: 0.7rem; color: var(--accent-bright); font-weight: 600; margin-bottom: 2px; }
+        .tl-title { font-weight: 700; color: #fff; font-size: 0.9rem; }
+        .tl-desc { font-size: 0.78rem; color: #e0e0e0; }
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -1011,28 +1035,17 @@
             margin-top: 4px;
         }
         .live-dot {
-            width: 7px;
-            height: 7px;
+            width: 7px; height: 7px;
             background: #4ade80;
             border-radius: 50%;
             animation: pulseDot 1.6s infinite;
         }
         @keyframes pulseDot {
-            0%,
-            100% {
-                box-shadow: 0 0 4px #4ade80;
-            }
-            50% {
-                box-shadow: 0 0 16px #4ade80, 0 0 28px #22c55e;
-            }
+            0%, 100% { box-shadow: 0 0 4px #4ade80; }
+            50% { box-shadow: 0 0 16px #4ade80, 0 0 28px #22c55e; }
         }
 
-        .platforms-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-            justify-content: center;
-        }
+        .platforms-grid { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
         .platform-card {
             display: flex;
             align-items: center;
@@ -1055,9 +1068,7 @@
             border-color: rgba(14, 165, 233, 0.5);
             box-shadow: var(--shadow-hover), 0 0 40px rgba(14, 165, 233, 0.2);
         }
-        .platform-card i {
-            font-size: 1.2rem;
-        }
+        .platform-card i { font-size: 1.2rem; }
 
         .footer {
             padding: 28px 0;
@@ -1068,14 +1079,11 @@
             color: var(--text-muted);
             font-size: 0.78rem;
         }
-
         .scroll-top {
             position: fixed;
-            bottom: 28px;
-            right: 28px;
+            bottom: 28px; right: 28px;
             z-index: 999;
-            width: 44px;
-            height: 44px;
+            width: 44px; height: 44px;
             border-radius: 50%;
             background: var(--accent);
             border: none;
@@ -1084,259 +1092,121 @@
             font-size: 1rem;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.35s, transform 0.35s;
+            transition: opacity 0.3s;
             box-shadow: 0 8px 28px rgba(59, 130, 246, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
-            will-change: opacity;
         }
-        .scroll-top.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        .scroll-top.visible { opacity: 1; pointer-events: auto; }
 
         @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-            .avatar-ring::before,
-            .avatar-ring::after {
-                animation: none;
-            }
-            .hero-name {
-                animation: none;
-            }
-            .live-dot {
-                animation: none;
-                box-shadow: 0 0 10px #4ade80;
-            }
+            html { scroll-behavior: auto; }
+            .avatar-ring::before, .avatar-ring::after { animation: none; }
+            .hero-name { animation: none; }
+            .live-dot { animation: none; box-shadow: 0 0 10px #4ade80; }
         }
 
         @media (max-width: 960px) {
-            .nav-desktop {
-                display: none;
-            }
-            .hamburger-btn {
-                display: flex;
-            }
-            .hero .container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 24px;
-            }
-            .hero-visual {
-                order: -1;
-            }
-            .avatar-ring {
-                width: 260px;
-                height: 260px;
-            }
-            .avatar-ring::before {
-                inset: -6px;
-                filter: blur(0.5px);
-            }
-            .avatar-ring::after {
-                inset: -14px;
-                filter: blur(1px);
-            }
+            .nav-desktop { display: none; }
+            .hamburger-btn { display: flex; }
+            .hero .container { grid-template-columns: 1fr; text-align: center; gap: 24px; }
+            .hero-visual { order: -1; }
+            .avatar-ring { width: 260px; height: 260px; }
+            .avatar-ring::before { inset: -6px; filter: blur(0.5px); }
+            .avatar-ring::after { inset: -14px; filter: blur(1px); }
             .hero-name {
                 font-size: 2rem;
                 filter: drop-shadow(0 0 18px rgba(59, 130, 246, 0.5)) drop-shadow(0 0 36px rgba(14, 165, 233, 0.3));
             }
-            .hero-tagline {
-                max-width: 100%;
-                margin: 0 auto 20px;
-            }
-            .hero-buttons {
-                justify-content: center;
-            }
-            .hero-platforms-row {
-                justify-content: center;
-            }
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            .section-title {
-                font-size: 1.5rem;
-            }
+            .hero-tagline { max-width: 100%; margin: 0 auto 20px; }
+            .hero-buttons { justify-content: center; }
+            .hero-platforms-row { justify-content: center; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.5rem; }
             .section-wrapper {
                 padding: 24px 14px;
                 border-radius: 20px;
-                content-visibility: auto;
                 contain-intrinsic-size: auto 350px;
             }
-            .logo-text {
-                font-size: 1.2rem;
-            }
-            .skill-row {
-                flex-direction: column;
-                text-align: center;
-            }
-            body.rtl .skill-row {
-                flex-direction: column;
-                text-align: center;
-            }
-            .highlight-box {
-                font-size: 0.78rem;
-                padding: 18px 14px;
-                line-height: 1.8;
-            }
+            .logo-text { font-size: 1.2rem; }
+            .skill-row { flex-direction: column; text-align: center; }
+            body.rtl .skill-row { flex-direction: column; text-align: center; }
+            .highlight-box { font-size: 0.78rem; padding: 18px 14px; line-height: 1.8; }
             .service-book-card {
                 max-width: 100%;
                 align-self: stretch !important;
                 transform: translateY(20px) !important;
             }
-            .service-book-card.revealed {
-                transform: translateY(0) !important;
-            }
-            body.rtl .service-book-card {
-                align-self: stretch !important;
-            }
+            .service-book-card.revealed { transform: translateY(0) !important; }
+            body.rtl .service-book-card { align-self: stretch !important; }
             .header {
                 backdrop-filter: blur(12px);
                 -webkit-backdrop-filter: blur(12px);
                 background: rgba(11, 11, 15, 0.85);
-                will-change: auto;
             }
-
-            .skill-row,
-            .softskill-card,
-            .project-card,
-            .platform-card,
-            .service-book-card,
-            .highlight-box,
-            .info-cell {
+            .skill-row, .softskill-card, .project-card, .platform-card,
+            .service-book-card, .highlight-box, .info-cell {
                 backdrop-filter: blur(6px);
                 -webkit-backdrop-filter: blur(6px);
-                will-change: auto;
             }
-            #particleCanvas {
-                opacity: 0.45;
-            }
-            .section-wrapper {
-                will-change: auto;
-            }
-            .avatar-img {
-                box-shadow: 0 0 40px rgba(59, 130, 246, 0.4), 0 0 80px rgba(14, 165, 233, 0.2);
-            }
-            .btn {
-                padding: 11px 22px;
-                font-size: 0.76rem;
-            }
-            .btn-cv {
-                padding: 11px 22px;
-                font-size: 0.76rem;
-            }
+            #particleCanvas { opacity: 0.45; }
+            .avatar-img { box-shadow: 0 0 40px rgba(59, 130, 246, 0.4), 0 0 80px rgba(14, 165, 233, 0.2); }
+            .btn { padding: 11px 22px; font-size: 0.76rem; }
+            .btn-cv { padding: 11px 22px; font-size: 0.76rem; }
         }
 
         @media (max-width: 600px) {
-            .header {
-                padding: 5px 10px;
-                width: calc(100% - 12px);
-                top: 6px;
-            }
-            .avatar-ring {
-                width: 200px;
-                height: 200px;
-            }
-            .avatar-ring::before {
-                inset: -4px;
-                filter: blur(0px);
-            }
-            .avatar-ring::after {
-                inset: -10px;
-                filter: blur(0.5px);
-            }
-            .hero-name {
-                font-size: 1.6rem;
-            }
-            .hero-title-role {
-                font-size: 0.95rem;
-            }
-            .hero-tagline {
-                font-size: 0.78rem;
-            }
-            .section-title {
-                font-size: 1.25rem;
-            }
+            .header { padding: 5px 10px; width: calc(100% - 12px); top: 6px; }
+            .avatar-ring { width: 200px; height: 200px; }
+            .avatar-ring::before { inset: -4px; filter: blur(0px); }
+            .avatar-ring::after { inset: -10px; filter: blur(0.5px); }
+            .hero-name { font-size: 1.6rem; }
+            .hero-title-role { font-size: 0.95rem; }
+            .hero-tagline { font-size: 0.78rem; }
+            .section-title { font-size: 1.25rem; }
             .section-wrapper {
                 padding: 18px 10px;
                 border-radius: 16px;
-                content-visibility: auto;
                 contain-intrinsic-size: auto 280px;
             }
-            .lang-btn {
-                padding: 4px 7px;
-                font-size: 0.6rem;
-            }
-            .logo-text {
-                font-size: 1rem;
-            }
-            .logo-img {
-                width: 28px;
-                height: 28px;
-            }
-            .skill-icon-circle {
-                width: 38px;
-                height: 38px;
-                font-size: 1.2rem;
-            }
-            .skill-row {
-                padding: 12px 14px;
-                gap: 10px;
-            }
-            .softskill-card {
-                padding: 14px 16px;
-                gap: 10px;
-            }
-            .project-img-wrapper {
-                height: 160px;
-            }
-            .project-body {
-                padding: 14px 16px;
-            }
-            .info-cell {
-                padding: 10px 12px;
-            }
-            .info-value {
-                font-size: 0.7rem;
-            }
-            .info-label {
-                font-size: 0.55rem;
-            }
-            .highlight-box {
-                font-size: 0.72rem;
-                padding: 14px 10px;
-                line-height: 1.7;
-            }
-            .btn {
-                padding: 10px 18px;
-                font-size: 0.7rem;
-                gap: 5px;
-            }
-            .btn-cv {
-                padding: 10px 18px;
-                font-size: 0.7rem;
-            }
-            .hero-buttons {
-                gap: 8px;
-            }
-            .hero-platform-mini {
-                padding: 8px 14px;
-                font-size: 0.68rem;
-            }
-            #particleCanvas {
-                opacity: 0.35;
-            }
-            .header.scrolled {
-                backdrop-filter: blur(8px);
-                -webkit-backdrop-filter: blur(8px);
-            }
+            .lang-btn { padding: 4px 7px; font-size: 0.6rem; }
+            .logo-text { font-size: 1rem; }
+            .logo-img { width: 28px; height: 28px; }
+            .skill-icon-circle { width: 38px; height: 38px; font-size: 1.2rem; }
+            .skill-row { padding: 12px 14px; gap: 10px; }
+            .softskill-card { padding: 14px 16px; gap: 10px; }
+            .project-img-wrapper { height: 160px; }
+            .project-body { padding: 14px 16px; }
+            .info-cell { padding: 10px 12px; }
+            .info-value { font-size: 0.7rem; }
+            .info-label { font-size: 0.55rem; }
+            .highlight-box { font-size: 0.72rem; padding: 14px 10px; line-height: 1.7; }
+            .btn { padding: 10px 18px; font-size: 0.7rem; gap: 5px; }
+            .btn-cv { padding: 10px 18px; font-size: 0.7rem; }
+            .hero-buttons { gap: 8px; }
+            .hero-platform-mini { padding: 8px 14px; font-size: 0.68rem; }
+            #particleCanvas { opacity: 0.35; }
+            .header.scrolled { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
         }
     </style>
 </head>
-<body class="dark">
+<body class="dark intro-locked">
+
+    <!-- ====== شاشة الترحيب ====== -->
+    <div id="introScreen">
+        <div class="intro-photo-wrap">
+            <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg"
+                 alt="Abdulrahman" class="intro-photo"
+                 fetchpriority="high" decoding="async" width="240" height="240">
+        </div>
+        <h1 class="intro-typed" id="introTyped">
+            <span id="introText"></span><span class="intro-cursor"></span>
+        </h1>
+        <p class="intro-subtitle" id="introSubtitle">Frontend Developer &middot; Portfolio</p>
+        <div class="intro-loader" id="introLoader"></div>
+        <div class="intro-dots" id="introDots"><span></span><span></span><span></span></div>
+    </div>
 
     <canvas id="particleCanvas"></canvas>
     <div id="cursorDotCustom"></div>
@@ -1344,7 +1214,7 @@
     <header class="header" id="header">
         <div class="header-inner">
             <a href="#home" class="logo-link">
-                <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="Abdulrahman" class="logo-img" width="36" height="36" loading="lazy">
+                <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="Abdulrahman" class="logo-img" width="36" height="36">
                 <span class="logo-text">AbdulRahman</span>
             </a>
             <ul class="nav-desktop" id="navDesktop"></ul>
@@ -1377,8 +1247,7 @@
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary" data-i18n="hero.cta1">View My Work</a>
                     <a href="#contact" class="btn btn-outline" data-i18n="hero.cta2">Get In Touch</a>
-                    <!--  زر تحميل السيرة الذاتية CV  -->
-                    <a href="https://drive.google.com/file/d/1F2llNuT8WJDH62r0_gKPxts6vNoZWvxz/view?usp=drive_link" class="btn btn-cv" target="_blank" rel="noopener" id="cvDownloadBtn" title="تحميل السيرة الذاتية">
+                    <a href="https://docs.google.com/document/d/1OKKEO9n1DGCluzZINzwwQesj7izy89EO/edit?usp=drive_link&ouid=110794745378532365862&rtpof=true&sd=true" class="btn btn-cv" target="_blank" rel="noopener" id="cvDownloadBtn" title="تحميل السيرة الذاتية">
                         <i class="fas fa-file-pdf"></i> <span data-i18n="hero.cv">تحميل السيرة الذاتية</span>
                     </a>
                 </div>
@@ -1386,7 +1255,7 @@
             </div>
             <div class="hero-visual">
                 <div class="avatar-ring">
-                    <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="Abdulrahman" class="avatar-img" loading="lazy" width="620" height="620">
+                    <img src="https://i.ibb.co/xKDpPNYf/682426296-797764139834932-7372304429932863614-n.jpg" alt="Abdulrahman" class="avatar-img" width="620" height="620">
                 </div>
             </div>
         </div>
@@ -1458,633 +1327,847 @@
     <footer class="footer">
         <p>© <span id="currentYear"></span> Abdulrahman Mamdouh — <span data-i18n="footer.tagline">Crafted with passion & precision</span></p>
     </footer>
-    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></button>
 
     <script>
-        (function() {
-            const translations = {
-                en: {
-                    'hero.role.prefix': "I'm a",
-                    'hero.desc': 'I build modern, responsive websites and constantly learn through real projects.',
-                    'hero.cta1': 'View My Work',
-                    'hero.cta2': 'Get In Touch',
-                    'hero.cv': 'Download CV',
-                    'about.title': 'About Me',
-                    'unique.title': 'What Distinguishes Me',
-                    'unique.text': '<strong>I am Abdulrahman</strong>, a web developer and website designer specializing in creating modern websites that combine attractive design, strong performance, and professional user experience. I work on transforming ideas into real websites that help business owners and companies build a strong and professional online presence. I always pay attention to the small details before the big ones because I believe the real difference appears in the quality of execution, design precision, and ease of use.<br><br>I have: the ability to combine technology and business management<br>Fast learning and continuous skill development<br>The ability to analyze problems and find practical solutions<br>Working with team spirit and good communication<br>Attention to detail and quality of work<br>The ability to develop responsive and modern websites<br>Understanding the relationship between technical systems and business needs<br>Flexibility in learning new technologies and tools<br>Good skills in analysis and organization.',
-                    'services.title': 'What I Offer You',
-                    'skills.title': 'Programming Languages I Master',
-                    'projects.title': 'My Projects',
-                    'education.title': 'My Education',
-                    'strengths.title': 'My Strengths',
-                    'softskills.title': 'Personal Qualities',
-                    'contact.title': 'Contact Me',
-                    'footer.tagline': 'Crafted with passion & precision',
-                    'nav.home': 'Home',
-                    'nav.about': 'About',
-                    'nav.unique': 'What Distinguishes Me',
-                    'nav.services': 'Services',
-                    'nav.skills': 'Skills',
-                    'nav.projects': 'Projects',
-                    'nav.education': 'Education',
-                    'nav.strengths': 'Strengths',
-                    'nav.softskills': 'Soft Skills',
-                    'nav.contact': 'Contact',
-                    'project1.title': 'Abdulrahman TEC',
-                    'project1.desc': 'A modern technology website showcasing services and solutions with a clean, professional design.',
-                    'project2.title': 'Smart Calculator',
-                    'project2.desc': 'An interactive web-based calculator with a sleek interface and smooth functionality.',
-                    'project3.title': 'Weather Forecast',
-                    'project3.desc': 'Know the weather anytime, anywhere in the world with a simple and beautiful interface.'
-                },
-                de: {
-                    'hero.role.prefix': 'Ich bin',
-                    'hero.desc': 'Ich entwickle moderne, responsive Websites und lerne ständig durch echte Projekte.',
-                    'hero.cta1': 'Meine Arbeit',
-                    'hero.cta2': 'Kontakt',
-                    'hero.cv': 'Lebenslauf',
-                    'about.title': 'Über mich',
-                    'unique.title': 'Was mich auszeichnet',
-                    'unique.text': '<strong>Ich bin Abdulrahman</strong>, ein Webentwickler und Website-Designer, spezialisiert auf die Erstellung moderner Websites, die attraktives Design, starke Leistung und professionelle Benutzererfahrung vereinen. Ich arbeite daran, Ideen in echte Websites umzuwandeln, die Geschäftsinhabern und Unternehmen helfen, eine starke und professionelle Online-Präsenz aufzubauen. Ich achte immer auf die kleinen Details vor den großen, weil ich glaube, dass der wahre Unterschied in der Qualität der Ausführung, der Designpräzision und der Benutzerfreundlichkeit liegt.<br><br>Ich habe: die Fähigkeit, Technologie und Geschäftsführung zu verbinden<br>Schnelles Lernen und kontinuierliche Kompetenzentwicklung<br>Problemanalyse und praktische Lösungsfindung<br>Teamarbeit und gute Kommunikation<br>Liebe zum Detail und Arbeitsqualität<br>Entwicklung moderner responsiver Websites<br>Verständnis der Beziehung zwischen technischen Systemen und Geschäftsanforderungen<br>Flexibilität beim Erlernen neuer Technologien<br>Gute Analyse- und Organisationsfähigkeiten.',
-                    'services.title': 'Was ich Ihnen biete',
-                    'skills.title': 'Programmiersprachen, die ich beherrsche',
-                    'projects.title': 'Meine Projekte',
-                    'education.title': 'Bildung',
-                    'strengths.title': 'Meine Stärken',
-                    'softskills.title': 'Persönliche Qualitäten',
-                    'contact.title': 'Kontaktieren Sie mich über',
-                    'footer.tagline': 'Mit Leidenschaft & Präzision gefertigt',
-                    'nav.home': 'Start',
-                    'nav.about': 'Über',
-                    'nav.unique': 'Was mich auszeichnet',
-                    'nav.services': 'Leistungen',
-                    'nav.skills': 'Fähigkeiten',
-                    'nav.projects': 'Projekte',
-                    'nav.education': 'Bildung',
-                    'nav.strengths': 'Stärken',
-                    'nav.softskills': 'Soft Skills',
-                    'nav.contact': 'Kontakt',
-                    'project1.title': 'Abdulrahman TEC',
-                    'project1.desc': 'Eine moderne Technologie-Website mit sauberem, professionellem Design.',
-                    'project2.title': 'Intelligenter Rechner',
-                    'project2.desc': 'Ein interaktiver webbasierter Rechner mit eleganter Oberfläche und reibungsloser Funktionalität.',
-                    'project3.title': 'Wettervorhersage',
-                    'project3.desc': 'Erfahre das Wetter jederzeit und überall auf der Welt mit einer einfachen und schönen Oberfläche.'
-                },
-                ar: {
-                    'hero.role.prefix': 'أنا',
-                    'hero.desc': 'أبني مواقع ويب حديثة ومتجاوبة وأتعلم باستمرار من خلال المشاريع الحقيقية.',
-                    'hero.cta1': 'أعمالي',
-                    'hero.cta2': 'تواصل معي',
-                    'hero.cv': 'تحميل السيرة الذاتية',
-                    'about.title': 'عنّي',
-                    'unique.title': 'ما يميزني',
-                    'unique.text': 'أنا عبدالرحمن، مطور ويب ومصمم مواقع متخصص في إنشاء مواقع عصرية تجمع بين التصميم الجذاب والأداء القوي وتجربة المستخدم الاحترافية. أعمل على تحويل الأفكار إلى مواقع حقيقية تساعد أصحاب المشاريع والشركات على بناء حضور قوي واحترافي على الإنترنت. أهتم دائمًا بالتفاصيل الصغيرة قبل الكبيرة لأنني أؤمن أن الفرق الحقيقي يظهر في جودة التنفيذ ودقة التصميم وسهولة الاستخدام.<br><br>عندي : القدرة على الجمع بين التقنية وإدارة الأعمال<br>التعلم السريع والتطوير المستمر للمهارات<br>القدرة على تحليل المشكلات وإيجاد حلول عملية<br>العمل بروح الفريق والتواصل الجيد<br>الاهتمام بالتفاصيل وجودة العمل<br>القدرة على تطوير مواقع ويب متجاوبة وحديثة<br>فهم العلاقة بين الأنظمة التقنية واحتياجات الأعمال<br>المرونة في تعلم التقنيات والأدوات الجديدة<br>مهارات جيدة في التحليل والتنظيم',
-                    'services.title': 'ما أقدمه لك',
-                    'skills.title': 'لغات البرمجة التي أجيدها',
-                    'projects.title': 'مشاريعي',
-                    'education.title': 'دراستي',
-                    'strengths.title': 'نقاط قوتي',
-                    'softskills.title': 'صفاتي الشخصية',
-                    'contact.title': 'تواصل معي عبر',
-                    'footer.tagline': 'صُنع بشغف وإتقان',
-                    'nav.home': 'الرئيسية',
-                    'nav.about': 'عنّي',
-                    'nav.unique': 'ما يميزني',
-                    'nav.services': 'الخدمات',
-                    'nav.skills': 'المهارات',
-                    'nav.projects': 'المشاريع',
-                    'nav.education': 'التعليم',
-                    'nav.strengths': 'نقاط القوة',
-                    'nav.softskills': 'المهارات الشخصية',
-                    'nav.contact': 'تواصل',
-                    'project1.title': 'عبدالرحمن تيك',
-                    'project1.desc': 'موقع تقني عصري يعرض الخدمات والحلول بتصميم نظيف واحترافي.',
-                    'project2.title': 'الآلة الحاسبة الذكية',
-                    'project2.desc': 'آلة حاسبة تفاعلية بواجهة أنيقة ووظائف سلسة على الويب.',
-                    'project3.title': 'معرفة الطقس',
-                    'project3.desc': 'معرفة حالة الطقس في أي وقت وفي أي مكان في العالم بواجهة بسيطة وجميلة.'
+    (function () {
+        'use strict';
+
+        /* ================= شاشة الترحيب + الكتابة حرف حرف ================= */
+        (function intro() {
+            const screen   = document.getElementById('introScreen');
+            const body     = document.body;
+            const img      = screen.querySelector('.intro-photo');
+            const typedEl  = document.getElementById('introTyped');
+            const textEl   = document.getElementById('introText');
+            const subtitle = document.getElementById('introSubtitle');
+            const loader   = document.getElementById('introLoader');
+            const dots     = document.getElementById('introDots');
+
+            const WELCOME     = "Welcome to Abdulrahman's Website";
+            const TYPE_SPEED  = 65;    // سرعة متوسطة (65ms لكل حرف)
+            const BEFORE_TYPE = 450;   // وقت الانتظار بعد ظهور الصورة قبل الكتابة
+            const AFTER_TYPE  = 850;   // وقت الانتظار بعد انتهاء الكتابة قبل الخروج
+            const MAX_WAIT    = 3000;  // أقصى وقت انتظار لتحميل الصورة
+
+            body.classList.add('intro-locked');
+
+            let typingStarted = false;
+            let finished      = false;
+            const startTime   = performance.now();
+
+            /* الكتابة حرف حرف */
+            function typeText() {
+                if (typingStarted) return;
+                typingStarted = true;
+
+                typedEl.classList.add('ready');
+
+                let i = 0;
+
+                function step() {
+                    if (i <= WELCOME.length) {
+                        textEl.textContent = WELCOME.slice(0, i);
+                        i++;
+                        setTimeout(step, TYPE_SPEED);
+                    } else {
+                        // خلصت الكتابة → نعرض الفرعي + التحميل + النقاط
+                        subtitle.classList.add('show');
+                        loader.classList.add('show');
+                        dots.classList.add('show');
+
+                        // بعد شوية نخفي الشاشة
+                        setTimeout(finishIntro, AFTER_TYPE);
+                    }
                 }
-            };
+                step();
+            }
 
-            const skillsData = [
-                { i: 'fab fa-html5', color: '#E34F26', n: 'HTML5',
-                    descEn: 'I master HTML5 with deep semantic understanding, building clean accessible structures that form the solid foundation of every project I create.',
-                    descDe: 'Ich beherrsche HTML5 mit tiefem semantischem Verständnis und baue saubere, zugängliche Strukturen.',
-                    descAr: 'أتقن HTML5 بفهم عميق للمعاني الدلالية، وأبني هياكل نظيفة قابلة للوصول تشكل أساسًا متينًا لكل مشروع أصممه.' },
-                { i: 'fab fa-css3-alt', color: '#1572B6', n: 'CSS3',
-                    descEn: 'I craft stunning responsive layouts with CSS3, using animations and modern techniques to bring designs to life with pixel-perfect precision.',
-                    descDe: 'Ich gestalte beeindruckende responsive Layouts mit CSS3 und modernen Animationstechniken.',
-                    descAr: 'أبدع في تصميم تخطيطات متجاوبة مذهلة باستخدام CSS3، مع حركات وتقنيات حديثة تجعل التصاميم تنبض بالحياة بدقة متناهية.' },
-                { i: 'fab fa-js', color: '#F7DF1E', n: 'JavaScript',
-                    descEn: 'I build dynamic interactive experiences with clean ES6+ code, handling complex logic and creating smooth user interactions effortlessly.',
-                    descDe: 'Ich entwickle dynamische interaktive Erlebnisse mit sauberem ES6+ Code.',
-                    descAr: 'أبني تجارب تفاعلية ديناميكية باستخدام أكواد ES6+ نظيفة، وأتعامل مع المنطق المعقد وأنشئ تفاعلات مستخدم سلسة بكل سهولة.' },
-                { i: 'fab fa-python', color: '#3776AB', n: 'Python',
-                    descEn: 'I leverage Python professionally for backend automation and data processing, writing efficient clean code for powerful solutions.',
-                    descDe: 'Ich nutze Python professionell für Backend-Automatisierung und Datenverarbeitung.',
-                    descAr: 'أستخدم بايثون باحتراف في الأتمتة الخلفية ومعالجة البيانات، وأكتب أكوادًا فعالة ونظيفة لحلول قوية ومتكاملة.' },
-                { i: 'fas fa-code', color: '#00599C', n: 'C++',
-                    descEn: 'I write high-performance C++ code for resource-intensive applications, mastering memory management and optimization techniques.',
-                    descDe: 'Ich schreibe Hochleistungs-C++-Code für ressourcenintensive Anwendungen.',
-                    descAr: 'أكتب أكواد C++ عالية الأداء للتطبيقات كثيفة الموارد، وأتقن إدارة الذاكرة وتقنيات التحسين بمهارة عالية.' },
-                { i: 'fas fa-hashtag', color: '#9B4F96', n: 'C#',
-                    descEn: 'I develop robust .NET applications with C#, creating reliable desktop software and integrated business solutions.',
-                    descDe: 'Ich entwickle robuste .NET-Anwendungen mit C#.',
-                    descAr: 'أطور تطبيقات .NET قوية باستخدام C#، وأصنع برامج سطح مكتب موثوقة وحلول أعمال متكاملة بجودة عالية.' },
-                { i: 'fab fa-php', color: '#777BB4', n: 'PHP',
-                    descEn: 'I create dynamic server-side web solutions with PHP, handling databases and backend logic with expertise and clean architecture.',
-                    descDe: 'Ich erstelle dynamische serverseitige Web-Lösungen mit PHP.',
-                    descAr: 'أصنع حلول ويب ديناميكية خادمية باستخدام PHP بمهارة، وأتعامل مع قواعد البيانات والمنطق الخلفي بمعمارية نظيفة واحترافية.' }
-            ];
+            /* إغلاق شاشة الترحيب */
+            function finishIntro() {
+                if (finished || screen.classList.contains('hide')) return;
+                finished = true;
 
-            const projectsData = [
-                { titleKey: 'project1.title', descKey: 'project1.desc',
-                    img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600',
-                    tags: ['', '', ''], url: 'https://abdo-1818.github.io/abdulrahman_tec/' },
-                { titleKey: 'project2.title', descKey: 'project2.desc',
-                    img: 'https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=600',
-                    tags: ['', '', ''], url: 'https://abdo-1818.github.io/bboda_7/' },
-                { titleKey: 'project3.title', descKey: 'project3.desc',
-                    img: 'https://images.unsplash.com/photo-1592210454359-9043f067919b?w=600',
-                    tags: ['', '', '', ''], url: 'https://abdo-1818.github.io/bboda/' }
-            ];
+                // نكمل كتابة النص لو المستخدم ضغط قبل ما يخلص
+                if (typingStarted && textEl.textContent !== WELCOME) {
+                    textEl.textContent = WELCOME;
+                } else if (!typingStarted) {
+                    textEl.textContent = WELCOME;
+                    typedEl.classList.add('ready');
+                }
 
-            const strengthItems = [
-                { i: 'fas fa-star', ar: 'تطوير واجهات ومواقع ويب حديثة.', en: 'Developing modern web interfaces and websites.', de: 'Entwicklung moderner Web-Oberflächen und Websites.' },
-                { i: 'fas fa-star', ar: 'فهم أساسيات الشبكات والأنظمة.', en: 'Understanding the basics of networks and systems.', de: 'Verständnis der Grundlagen von Netzwerken und Systemen.' },
-                { i: 'fas fa-star', ar: 'القدرة على التعلم والعمل تحت الضغط.', en: 'Ability to learn and work under pressure.', de: 'Fähigkeit, unter Druck zu lernen und zu arbeiten.' },
-                { i: 'fas fa-star', ar: 'مهارات جيدة في التحليل وحل المشكلات.', en: 'Good skills in analysis and problem-solving.', de: 'Gute Fähigkeiten in Analyse und Problemlösung.' },
-                { i: 'fas fa-star', ar: 'خلفية جيدة في نظم المعلومات وإدارة الأعمال.',
-                    en: 'Good background in information systems and business management.',
-                    de: 'Guter Hintergrund in Informationssystemen und Geschäftsführung.' }
-            ];
+                screen.classList.add('hide');
+                body.classList.remove('intro-locked');
 
-            const softSkillData = [
-                { i: 'fas fa-puzzle-piece', nameEn: 'Problem Solving', nameDe: 'Problemlösung', nameAr: 'حل المشكلات',
-                    descEn: 'I analyze complex issues and find effective solutions quickly.', descDe: 'Ich analysiere komplexe Probleme und finde schnelle Lösungen.',
-                    descAr: 'أحلل القضايا المعقدة وأجد حلولًا فعالة بسرعة.' },
-                { i: 'fas fa-chart-line', nameEn: 'Analytical Thinking', nameDe: 'Analytisches Denken', nameAr: 'التفكير التحليلي',
-                    descEn: 'I use data-driven logic to make informed decisions.', descDe: 'Ich nutze datengestützte Logik für fundierte Entscheidungen.',
-                    descAr: 'أستخدم المنطق القائم على البيانات لاتخاذ قرارات مدروسة.' },
-                { i: 'fas fa-users', nameEn: 'Team Collaboration', nameDe: 'Teamarbeit', nameAr: 'التعاون الجماعي',
-                    descEn: 'I work effectively within teams, contributing positively to group success.',
-                    descDe: 'Ich arbeite effektiv im Team und trage zum Erfolg bei.', descAr: 'أعمل بفعالية ضمن الفرق وأساهم بإيجابية في نجاح المجموعة.' },
-                { i: 'fas fa-clock', nameEn: 'Time Management', nameDe: 'Zeitmanagement', nameAr: 'إدارة الوقت',
-                    descEn: 'I prioritize tasks smartly to meet deadlines efficiently.', descDe: 'Ich priorisiere Aufgaben intelligent, um Fristen einzuhalten.',
-                    descAr: 'أحدد أولويات المهام بذكاء للوفاء بالمواعيد النهائية بكفاءة.' },
-                { i: 'fas fa-book-open', nameEn: 'Self-Learning', nameDe: 'Selbstlernen', nameAr: 'التعلم الذاتي',
-                    descEn: 'I quickly adopt new tools and technologies on my own.',
-                    descDe: 'Ich eigne mir schnell neue Werkzeuge und Technologien an.', descAr: 'أتبنى الأدوات والتقنيات الجديدة بسرعة وذاتيًا.' },
-                { i: 'fas fa-rotate', nameEn: 'Adaptability', nameDe: 'Anpassungsfähigkeit', nameAr: 'القدرة على التكيف',
-                    descEn: 'I adapt quickly to changing environments and new challenges.',
-                    descDe: 'Ich passe mich schnell an veränderte Umgebungen an.', descAr: 'أتأقلم بسرعة مع البيئات المتغيرة والتحديات الجديدة.' }
-            ];
+                setTimeout(function () {
+                    screen.style.display = 'none';
+                    document.dispatchEvent(new CustomEvent('intro:done'));
+                }, 1000);
+            }
 
-            const serviceData = [
-                { i: 'fas fa-globe', titleAr: 'تطوير وبرمجة المواقع', titleEn: 'Website Development & Programming',
-                    titleDe: 'Webentwicklung & Programmierung',
-                    itemsAr: ['تصميم وتطوير مواقع ويب متجاوبة', 'إنشاء واجهات باستخدام HTML / CSS / JavaScript',
-                        'تطوير أنظمة ويب باستخدام PHP', 'تحسين تجربة المستخدم وأداء المواقع'
-                    ],
-                    itemsEn: ['Designing and developing responsive websites',
+            /* نبدأ الكتابة بعد ظهور الصورة */
+            function scheduleType() {
+                const elapsed = performance.now() - startTime;
+                const wait    = Math.max(0, BEFORE_TYPE - elapsed);
+                setTimeout(typeText, wait);
+            }
+
+            function onImageReady() { scheduleType(); }
+
+            if (img) {
+                if (img.complete && img.naturalWidth > 0) {
+                    onImageReady();
+                } else {
+                    img.addEventListener('load',  onImageReady, { once: true });
+                    img.addEventListener('error', onImageReady, { once: true });
+                    setTimeout(onImageReady, MAX_WAIT);
+                }
+            } else {
+                onImageReady();
+            }
+
+            // أي كليك على الشاشة يختصر الترحيب
+            screen.addEventListener('click', finishIntro);
+        })();
+
+        /* ================= الترجمات ================= */
+        const T = {
+            en: {
+                'hero.role.prefix': "I'm a",
+                'hero.desc': 'I build modern, responsive websites and constantly learn through real projects.',
+                'hero.cta1': 'View My Work',
+                'hero.cta2': 'Get In Touch',
+                'hero.cv': 'Download CV',
+                'about.title': 'About Me',
+                'unique.title': 'What Distinguishes Me',
+                'unique.text': '<strong>I am Abdulrahman</strong>, a web developer and website designer specializing in creating modern websites that combine attractive design, strong performance, and professional user experience. I work on transforming ideas into real websites that help business owners and companies build a strong and professional online presence. I always pay attention to the small details before the big ones because I believe the real difference appears in the quality of execution, design precision, and ease of use.<br><br>I have: the ability to combine technology and business management<br>Fast learning and continuous skill development<br>The ability to analyze problems and find practical solutions<br>Working with team spirit and good communication<br>Attention to detail and quality of work<br>The ability to develop responsive and modern websites<br>Understanding the relationship between technical systems and business needs<br>Flexibility in learning new technologies and tools<br>Good skills in analysis and organization.',
+                'services.title': 'What I Offer You',
+                'skills.title': 'Programming Languages I Master',
+                'projects.title': 'My Projects',
+                'education.title': 'My Education',
+                'strengths.title': 'My Strengths',
+                'softskills.title': 'Personal Qualities',
+                'contact.title': 'Contact Me',
+                'footer.tagline': 'Crafted with passion & precision',
+                'nav.home': 'Home',
+                'nav.about': 'About',
+                'nav.unique': 'What Distinguishes Me',
+                'nav.services': 'Services',
+                'nav.skills': 'Skills',
+                'nav.projects': 'Projects',
+                'nav.education': 'Education',
+                'nav.strengths': 'Strengths',
+                'nav.softskills': 'Soft Skills',
+                'nav.contact': 'Contact',
+                'project1.title': 'Abdulrahman TEC',
+                'project1.desc': 'This site explains the basics of programming languages from scratch to professionalism.',
+                'project2.title': 'Smart Calculator',
+                'project2.desc': 'An interactive web-based calculator with a sleek interface and smooth functionality.',
+                'project3.title': 'Weather Forecast',
+                'project3.desc': 'Know the weather anytime, anywhere in the world with a simple and beautiful interface.'
+            },
+            de: {
+                'hero.role.prefix': 'Ich bin',
+                'hero.desc': 'Ich entwickle moderne, responsive Websites und lerne ständig durch echte Projekte.',
+                'hero.cta1': 'Meine Arbeit',
+                'hero.cta2': 'Kontakt',
+                'hero.cv': 'Lebenslauf',
+                'about.title': 'Über mich',
+                'unique.title': 'Was mich auszeichnet',
+                'unique.text': '<strong>Ich bin Abdulrahman</strong>, ein Webentwickler und Website-Designer, spezialisiert auf die Erstellung moderner Websites, die attraktives Design, starke Leistung und professionelle Benutzererfahrung vereinen. Ich arbeite daran, Ideen in echte Websites umzuwandeln, die Geschäftsinhabern und Unternehmen helfen, eine starke und professionelle Online-Präsenz aufzubauen. Ich achte immer auf die kleinen Details vor den großen, weil ich glaube, dass der wahre Unterschied in der Qualität der Ausführung, der Designpräzision und der Benutzerfreundlichkeit liegt.<br><br>Ich habe: die Fähigkeit, Technologie und Geschäftsführung zu verbinden<br>Schnelles Lernen und kontinuierliche Kompetenzentwicklung<br>Problemanalyse und praktische Lösungsfindung<br>Teamarbeit und gute Kommunikation<br>Liebe zum Detail und Arbeitsqualität<br>Entwicklung moderner responsiver Websites<br>Verständnis der Beziehung zwischen technischen Systemen und Geschäftsanforderungen<br>Flexibilität beim Erlernen neuer Technologien<br>Gute Analyse- und Organisationsfähigkeiten.',
+                'services.title': 'Was ich Ihnen biete',
+                'skills.title': 'Programmiersprachen, die ich beherrsche',
+                'projects.title': 'Meine Projekte',
+                'education.title': 'Bildung',
+                'strengths.title': 'Meine Stärken',
+                'softskills.title': 'Persönliche Qualitäten',
+                'contact.title': 'Kontaktieren Sie mich über',
+                'footer.tagline': 'Mit Leidenschaft & Präzision gefertigt',
+                'nav.home': 'Start',
+                'nav.about': 'Über',
+                'nav.unique': 'Was mich auszeichnet',
+                'nav.services': 'Leistungen',
+                'nav.skills': 'Fähigkeiten',
+                'nav.projects': 'Projekte',
+                'nav.education': 'Bildung',
+                'nav.strengths': 'Stärken',
+                'nav.softskills': 'Soft Skills',
+                'nav.contact': 'Kontakt',
+                'project1.title': 'Abdulrahman TEC',
+                'project1.desc': 'Diese Website erklärt die Grundlagen der Programmiersprachen von Grund auf bis zur Professionalität.',
+                'project2.title': 'Intelligenter Rechner',
+                'project2.desc': 'Ein interaktiver webbasierter Rechner mit eleganter Oberfläche und reibungsloser Funktionalität.',
+                'project3.title': 'Wettervorhersage',
+                'project3.desc': 'Erfahre das Wetter jederzeit und überall auf der Welt mit einer einfachen und schönen Oberfläche.'
+            },
+            ar: {
+                'hero.role.prefix': 'أنا',
+                'hero.desc': 'أبني مواقع ويب حديثة ومتجاوبة وأتعلم باستمرار من خلال المشاريع الحقيقية.',
+                'hero.cta1': 'أعمالي',
+                'hero.cta2': 'تواصل معي',
+                'hero.cv': 'تحميل السيرة الذاتية',
+                'about.title': 'عنّي',
+                'unique.title': 'ما يميزني',
+                'unique.text': 'أنا عبدالرحمن، مطور ويب ومصمم مواقع متخصص في إنشاء مواقع عصرية تجمع بين التصميم الجذاب والأداء القوي وتجربة المستخدم الاحترافية. أعمل على تحويل الأفكار إلى مواقع حقيقية تساعد أصحاب المشاريع والشركات على بناء حضور قوي واحترافي على الإنترنت. أهتم دائمًا بالتفاصيل الصغيرة قبل الكبيرة لأنني أؤمن أن الفرق الحقيقي يظهر في جودة التنفيذ ودقة التصميم وسهولة الاستخدام.<br><br>عندي : القدرة على الجمع بين التقنية وإدارة الأعمال<br>التعلم السريع والتطوير المستمر للمهارات<br>القدرة على تحليل المشكلات وإيجاد حلول عملية<br>العمل بروح الفريق والتواصل الجيد<br>الاهتمام بالتفاصيل وجودة العمل<br>القدرة على تطوير مواقع ويب متجاوبة وحديثة<br>فهم العلاقة بين الأنظمة التقنية واحتياجات الأعمال<br>المرونة في تعلم التقنيات والأدوات الجديدة<br>مهارات جيدة في التحليل والتنظيم',
+                'services.title': 'ما أقدمه لك',
+                'skills.title': 'لغات البرمجة التي أجيدها',
+                'projects.title': 'مشاريعي',
+                'education.title': 'دراستي',
+                'strengths.title': 'نقاط قوتي',
+                'softskills.title': 'صفاتي الشخصية',
+                'contact.title': 'تواصل معي عبر',
+                'footer.tagline': 'صُنع بشغف وإتقان',
+                'nav.home': 'الرئيسية',
+                'nav.about': 'عنّي',
+                'nav.unique': 'ما يميزني',
+                'nav.services': 'الخدمات',
+                'nav.skills': 'المهارات',
+                'nav.projects': 'المشاريع',
+                'nav.education': 'التعليم',
+                'nav.strengths': 'نقاط القوة',
+                'nav.softskills': 'المهارات الشخصية',
+                'nav.contact': 'تواصل',
+                'project1.title': 'عبدالرحمن تيك',
+                'project1.desc': 'هذا الموقع لشرح أساسيات لغات البرمجة من الصفر حتى الاحتراف.',
+                'project2.title': 'الآلة الحاسبة الذكية',
+                'project2.desc': 'آلة حاسبة تفاعلية بواجهة أنيقة ووظائف سلسة على الويب.',
+                'project3.title': 'معرفة الطقس',
+                'project3.desc': 'معرفة حالة الطقس في أي وقت وفي أي مكان في العالم بواجهة بسيطة وجميلة.'
+            }
+        };
+
+        /* ============ داتا المهارات ============ */
+        const skillsData = [
+            { i: 'fab fa-html5', color: '#E34F26', n: 'HTML5',
+              descEn: 'I master HTML5 with deep semantic understanding, building clean accessible structures that form the solid foundation of every project I create.',
+              descDe: 'Ich beherrsche HTML5 mit tiefem semantischem Verständnis und baue saubere, zugängliche Strukturen.',
+              descAr: 'أتقن HTML5 بفهم عميق للمعاني الدلالية، وأبني هياكل نظيفة قابلة للوصول تشكل أساسًا متينًا لكل مشروع أصممه.' },
+            { i: 'fab fa-css3-alt', color: '#1572B6', n: 'CSS3',
+              descEn: 'I craft stunning responsive layouts with CSS3, using animations and modern techniques to bring designs to life with pixel-perfect precision.',
+              descDe: 'Ich gestalte beeindruckende responsive Layouts mit CSS3 und modernen Animationstechniken.',
+              descAr: 'أبدع في تصميم تخطيطات متجاوبة مذهلة باستخدام CSS3، مع حركات وتقنيات حديثة تجعل التصاميم تنبض بالحياة بدقة متناهية.' },
+            { i: 'fab fa-js', color: '#F7DF1E', n: 'JavaScript',
+              descEn: 'I build dynamic interactive experiences with clean ES6+ code, handling complex logic and creating smooth user interactions effortlessly.',
+              descDe: 'Ich entwickle dynamische interaktive Erlebnisse mit sauberem ES6+ Code.',
+              descAr: 'أبني تجارب تفاعلية ديناميكية باستخدام أكواد ES6+ نظيفة، وأتعامل مع المنطق المعقد وأنشئ تفاعلات مستخدم سلسة بكل سهولة.' },
+            { i: 'fab fa-python', color: '#3776AB', n: 'Python',
+              descEn: 'I leverage Python professionally for backend automation and data processing, writing efficient clean code for powerful solutions.',
+              descDe: 'Ich nutze Python professionell für Backend-Automatisierung und Datenverarbeitung.',
+              descAr: 'أستخدم بايثون باحتراف في الأتمتة الخلفية ومعالجة البيانات، وأكتب أكوادًا فعالة ونظيفة لحلول قوية ومتكاملة.' },
+            { i: 'fas fa-code', color: '#00599C', n: 'C++',
+              descEn: 'I write high-performance C++ code for resource-intensive applications, mastering memory management and optimization techniques.',
+              descDe: 'Ich schreibe Hochleistungs-C++-Code für ressourcenintensive Anwendungen.',
+              descAr: 'أكتب أكواد C++ عالية الأداء للتطبيقات كثيفة الموارد، وأتقن إدارة الذاكرة وتقنيات التحسين بمهارة عالية.' },
+            { i: 'fas fa-hashtag', color: '#9B4F96', n: 'C#',
+              descEn: 'I develop robust .NET applications with C#, creating reliable desktop software and integrated business solutions.',
+              descDe: 'Ich entwickle robuste .NET-Anwendungen mit C#.',
+              descAr: 'أطور تطبيقات .NET قوية باستخدام C#، وأصنع برامج سطح مكتب موثوقة وحلول أعمال متكاملة بجودة عالية.' },
+            { i: 'fab fa-php', color: '#777BB4', n: 'PHP',
+              descEn: 'I create dynamic server-side web solutions with PHP, handling databases and backend logic with expertise and clean architecture.',
+              descDe: 'Ich erstelle dynamische serverseitige Web-Lösungen mit PHP.',
+              descAr: 'أصنع حلول ويب ديناميكية خادمية باستخدام PHP بمهارة، وأتعامل مع قواعد البيانات والمنطق الخلفي بمعمارية نظيفة واحترافية.' }
+        ];
+
+        const projectsData = [
+            { titleKey: 'project1.title', descKey: 'project1.desc',
+              img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&auto=format&q=70',
+              tags: [], url: 'https://abdo-1818.github.io/abdulrahman_tec/' },
+            { titleKey: 'project2.title', descKey: 'project2.desc',
+              img: 'https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=600&auto=format&q=70',
+              tags: [], url: 'https://abdo-1818.github.io/bboda_7/' },
+            { titleKey: 'project3.title', descKey: 'project3.desc',
+              img: 'https://images.unsplash.com/photo-1592210454359-9043f067919b?w=600&auto=format&q=70',
+              tags: [], url: 'https://abdo-1818.github.io/bboda/' }
+        ];
+
+        const strengthItems = [
+            { i: 'fas fa-star', ar: 'تطوير واجهات ومواقع ويب حديثة.', en: 'Developing modern web interfaces and websites.', de: 'Entwicklung moderner Web-Oberflächen und Websites.' },
+            { i: 'fas fa-star', ar: 'فهم أساسيات الشبكات والأنظمة.', en: 'Understanding the basics of networks and systems.', de: 'Verständnis der Grundlagen von Netzwerken und Systemen.' },
+            { i: 'fas fa-star', ar: 'القدرة على التعلم والعمل تحت الضغط.', en: 'Ability to learn and work under pressure.', de: 'Fähigkeit, unter Druck zu lernen und zu arbeiten.' },
+            { i: 'fas fa-star', ar: 'مهارات جيدة في التحليل وحل المشكلات.', en: 'Good skills in analysis and problem-solving.', de: 'Gute Fähigkeiten in Analyse und Problemlösung.' },
+            { i: 'fas fa-star', ar: 'خلفية جيدة في نظم المعلومات وإدارة الأعمال.',
+              en: 'Good background in information systems and business management.',
+              de: 'Guter Hintergrund in Informationssystemen und Geschäftsführung.' }
+        ];
+
+        const softSkillData = [
+            { i: 'fas fa-puzzle-piece', nameEn: 'Problem Solving', nameDe: 'Problemlösung', nameAr: 'حل المشكلات',
+              descEn: 'I analyze complex issues and find effective solutions quickly.', descDe: 'Ich analysiere komplexe Probleme und finde schnelle Lösungen.',
+              descAr: 'أحلل القضايا المعقدة وأجد حلولًا فعالة بسرعة.' },
+            { i: 'fas fa-chart-line', nameEn: 'Analytical Thinking', nameDe: 'Analytisches Denken', nameAr: 'التفكير التحليلي',
+              descEn: 'I use data-driven logic to make informed decisions.', descDe: 'Ich nutze datengestützte Logik für fundierte Entscheidungen.',
+              descAr: 'أستخدم المنطق القائم على البيانات لاتخاذ قرارات مدروسة.' },
+            { i: 'fas fa-users', nameEn: 'Team Collaboration', nameDe: 'Teamarbeit', nameAr: 'التعاون الجماعي',
+              descEn: 'I work effectively within teams, contributing positively to group success.',
+              descDe: 'Ich arbeite effektiv im Team und trage zum Erfolg bei.', descAr: 'أعمل بفعالية ضمن الفرق وأساهم بإيجابية في نجاح المجموعة.' },
+            { i: 'fas fa-clock', nameEn: 'Time Management', nameDe: 'Zeitmanagement', nameAr: 'إدارة الوقت',
+              descEn: 'I prioritize tasks smartly to meet deadlines efficiently.', descDe: 'Ich priorisiere Aufgaben intelligent, um Fristen einzuhalten.',
+              descAr: 'أحدد أولويات المهام بذكاء للوفاء بالمواعيد النهائية بكفاءة.' },
+            { i: 'fas fa-book-open', nameEn: 'Self-Learning', nameDe: 'Selbstlernen', nameAr: 'التعلم الذاتي',
+              descEn: 'I quickly adopt new tools and technologies on my own.',
+              descDe: 'Ich eigne mir schnell neue Werkzeuge und Technologien an.', descAr: 'أتبنى الأدوات والتقنيات الجديدة بسرعة وذاتيًا.' },
+            { i: 'fas fa-rotate', nameEn: 'Adaptability', nameDe: 'Anpassungsfähigkeit', nameAr: 'القدرة على التكيف',
+              descEn: 'I adapt quickly to changing environments and new challenges.',
+              descDe: 'Ich passe mich schnell an veränderte Umgebungen an.', descAr: 'أتأقلم بسرعة مع البيئات المتغيرة والتحديات الجديدة.' }
+        ];
+
+        const serviceData = [
+            { i: 'fas fa-globe', titleAr: 'تطوير وبرمجة المواقع', titleEn: 'Website Development & Programming',
+              titleDe: 'Webentwicklung & Programmierung',
+              itemsAr: ['تصميم وتطوير مواقع ويب متجاوبة', 'إنشاء واجهات باستخدام HTML / CSS / JavaScript',
+                        'تطوير أنظمة ويب باستخدام PHP', 'تحسين تجربة المستخدم وأداء المواقع'],
+              itemsEn: ['Designing and developing responsive websites',
                         'Creating interfaces using HTML / CSS / JavaScript', 'Developing web systems using PHP',
-                        'Improving user experience and website performance'
-                    ],
-                    itemsDe: ['Entwicklung responsiver Websites', 'Erstellung von Oberflächen mit HTML / CSS / JavaScript',
-                        'Entwicklung von Websystemen mit PHP', 'Verbesserung der Benutzererfahrung und Leistung'
-                    ] },
-                { i: 'fas fa-code', titleAr: 'برمجة وتطوير التطبيقات', titleEn: 'Application Programming & Development',
-                    titleDe: 'Anwendungsprogrammierung & Entwicklung',
-                    itemsAr: ['تطوير برامج باستخدام Python و C++', 'بناء تطبيقات سطح مكتب بسيطة',
+                        'Improving user experience and website performance'],
+              itemsDe: ['Entwicklung responsiver Websites', 'Erstellung von Oberflächen mit HTML / CSS / JavaScript',
+                        'Entwicklung von Websystemen mit PHP', 'Verbesserung der Benutzererfahrung und Leistung'] },
+            { i: 'fas fa-code', titleAr: 'برمجة وتطوير التطبيقات', titleEn: 'Application Programming & Development',
+              titleDe: 'Anwendungsprogrammierung & Entwicklung',
+              itemsAr: ['تطوير برامج باستخدام Python و C++', 'بناء تطبيقات سطح مكتب بسيطة',
                         'كتابة أكواد منظمة وقابلة للتطوير', 'حل المشكلات البرمجية والخوارزميات'],
-                    itemsEn: ['Developing programs using Python and C++', 'Building simple desktop applications',
+              itemsEn: ['Developing programs using Python and C++', 'Building simple desktop applications',
                         'Writing organized and scalable code', 'Solving programming problems and algorithms'],
-                    itemsDe: ['Entwicklung von Programmen mit Python und C++', 'Erstellung einfacher Desktop-Anwendungen',
+              itemsDe: ['Entwicklung von Programmen mit Python und C++', 'Erstellung einfacher Desktop-Anwendungen',
                         'Schreiben von organisiertem Code', 'Lösung von Programmierproblemen'] },
-                { i: 'fas fa-sitemap', titleAr: 'نظم المعلومات وتحليل الأنظمة',
-                    titleEn: 'Information Systems & Systems Analysis', titleDe: 'Informationssysteme & Systemanalyse',
-                    itemsAr: ['تحليل وتصميم نظم المعلومات', 'فهم دورة تطوير الأنظمة', 'توثيق وتحليل متطلبات المشاريع',
+            { i: 'fas fa-sitemap', titleAr: 'نظم المعلومات وتحليل الأنظمة',
+              titleEn: 'Information Systems & Systems Analysis', titleDe: 'Informationssysteme & Systemanalyse',
+              itemsAr: ['تحليل وتصميم نظم المعلومات', 'فهم دورة تطوير الأنظمة', 'توثيق وتحليل متطلبات المشاريع',
                         'ربط الجانب الإداري بالتقني'],
-                    itemsEn: ['Analyzing and designing information systems', 'Understanding the system development lifecycle',
-                        'Documenting and analyzing project requirements',
-                    'Linking the administrative side with the technical'],
-                    itemsDe: ['Analyse und Design von Informationssystemen', 'Verständnis des Systementwicklungszyklus',
+              itemsEn: ['Analyzing and designing information systems', 'Understanding the system development lifecycle',
+                        'Documenting and analyzing project requirements', 'Linking the administrative side with the technical'],
+              itemsDe: ['Analyse und Design von Informationssystemen', 'Verständnis des Systementwicklungszyklus',
                         'Dokumentation und Analyse von Projektanforderungen', 'Verbindung von Verwaltung und Technik'] },
-                { i: 'fas fa-briefcase', titleAr: 'الأعمال والإدارة', titleEn: 'Business & Management',
-                    titleDe: 'Business & Management',
-                    itemsAr: ['مبادئ المحاسبة وإدارة الأعمال', 'إدارة الأزمات واتخاذ القرار', 'التسويق والاقتصاد والاستثمار',
+            { i: 'fas fa-briefcase', titleAr: 'الأعمال والإدارة', titleEn: 'Business & Management',
+              titleDe: 'Business & Management',
+              itemsAr: ['مبادئ المحاسبة وإدارة الأعمال', 'إدارة الأزمات واتخاذ القرار', 'التسويق والاقتصاد والاستثمار',
                         'الموارد البشرية والجودة الشاملة', 'فهم القوانين التجارية وبيئة الأعمال'],
-                    itemsEn: ['Principles of accounting and business management', 'Crisis management and decision-making',
+              itemsEn: ['Principles of accounting and business management', 'Crisis management and decision-making',
                         'Marketing, economics, and investment', 'Human resources and total quality',
                         'Understanding commercial laws and business environment'],
-                    itemsDe: ['Grundsätze der Buchhaltung und Unternehmensführung',
-                        'Krisenmanagement und Entscheidungsfindung', 'Marketing, Wirtschaft und Investition',
-                        'Personalwesen und umfassende Qualität', 'Verständnis von Handelsrecht'] },
-                { i: 'fas fa-file-alt', titleAr: 'مايكروسوفت أوفيس', titleEn: 'Microsoft Office',
-                    titleDe: 'Microsoft Office',
-                    itemsAr: ['مايكروسوفت إكسيل', 'مايكروسوفت وورد', 'مايكروسوفت باوربوينت'],
-                    itemsEn: ['Microsoft Excel', 'Microsoft Word', 'Microsoft PowerPoint'],
-                    itemsDe: ['Microsoft Excel', 'Microsoft Word', 'Microsoft PowerPoint'] }
-            ];
+              itemsDe: ['Grundsätze der Buchhaltung und Unternehmensführung', 'Krisenmanagement und Entscheidungsfindung',
+                        'Marketing, Wirtschaft und Investition', 'Personalwesen und umfassende Qualität',
+                        'Verständnis von Handelsrecht'] },
+            { i: 'fas fa-file-alt', titleAr: 'مايكروسوفت أوفيس', titleEn: 'Microsoft Office',
+              titleDe: 'Microsoft Office',
+              itemsAr: ['مايكروسوفت إكسيل', 'مايكروسوفت وورد', 'مايكروسوفت باوربوينت'],
+              itemsEn: ['Microsoft Excel', 'Microsoft Word', 'Microsoft PowerPoint'],
+              itemsDe: ['Microsoft Excel', 'Microsoft Word', 'Microsoft PowerPoint'] }
+        ];
 
-            const eduData = [
-                { date: '2023 - Present', schoolEn: 'New Cairo Academy in Fifth Settlement', schoolDe: 'New Cairo Academy in Fifth Settlement',
-                    schoolAr: '  أكاديمية القاهرة الجديدة بالتجمع الخامس', descEn: 'BSc Computer Science', descDe: 'BSc Informatik',
-                    descAr: 'بكالوريوس علوم الحاسب', active: true },
-                { date: '2020 - 2023', schoolEn: 'General Secondary School', schoolDe: 'Allgemeine Sekundarschule',
-                    schoolAr: 'ثانوية عامة', descEn: 'Technology Foundation', descDe: 'Technologiegrundlage',
-                    descAr: 'أساسيات التكنولوجيا', active: false }
-            ];
+        const eduData = [
+            { date: '2023 - Present', schoolEn: 'New Cairo Academy in Fifth Settlement', schoolDe: 'New Cairo Academy',
+              schoolAr: 'أكاديمية القاهرة الجديدة بالتجمع الخامس', descEn: 'BSc Computer Science', descDe: 'BSc Informatik',
+              descAr: 'بكالوريوس علوم الحاسب', active: true },
+            { date: '2020 - 2023', schoolEn: 'General Secondary School', schoolDe: 'Allgemeine Sekundarschule',
+              schoolAr: 'ثانوية عامة', descEn: 'Technology Foundation', descDe: 'Technologiegrundlage',
+              descAr: 'أساسيات التكنولوجيا', active: false }
+        ];
 
-            const platformData = [
-                { i: 'fab fa-github', c: '#6e5494', n: 'GitHub', u: 'https://github.com/Abdo-1818' },
-                { i: 'fab fa-linkedin-in', c: '#0077b5', n: 'LinkedIn',
-                    u: 'https://www.linkedin.com/in/ab-do-097783272' },
-                { i: 'fab fa-instagram', c: '#e4405f', n: 'Instagram', u: 'https://www.instagram.com/bboda_7' }
-            ];
+        const platformData = [
+            { i: 'fab fa-github', c: '#6e5494', n: 'GitHub', u: 'https://github.com/Abdo-1818' },
+            { i: 'fab fa-linkedin-in', c: '#0077b5', n: 'LinkedIn', u: 'https://www.linkedin.com/in/ab-do-097783272' },
+            { i: 'fab fa-instagram', c: '#e4405f', n: 'Instagram', u: 'https://www.instagram.com/bboda_7' }
+        ];
 
-            const roleTexts = {
-                en: ['Frontend Developer', 'Programmer', 'IT Specialist', 'Accountant'],
-                de: ['Frontend-Entwickler', 'Programmierer', 'IT-Spezialist', 'Buchhalter'],
-                ar: ['مصمم واجهات', 'مبرمج', 'IT', 'محاسب']
+        const roleTexts = {
+            en: ['Frontend Developer', 'Programmer', 'IT Specialist', 'Accountant'],
+            de: ['Frontend-Entwickler', 'Programmierer', 'IT-Spezialist', 'Buchhalter'],
+            ar: ['مصمم واجهات', 'مبرمج', 'IT', 'محاسب']
+        };
+
+        let lang = 'en';
+        window.currentLang = lang;
+        let roleIdx = 0, charIdx = 0, deleting = false, typeTimer = null;
+        const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        const $ = id => document.getElementById(id);
+        const elNavDesktop   = $('navDesktop');
+        const elNavMobile    = $('mobileNav');
+        const elSkillsBook   = $('skillsBook');
+        const elInfoGrid     = $('infoGrid');
+        const elProjectsGrid = $('projectsGrid');
+        const elEduTimeline  = $('educationTimeline');
+        const elStrengths    = $('strengthsList');
+        const elSoftSkills   = $('softSkillsVertical');
+        const elServices     = $('servicesList');
+        const elPlatforms    = $('contactPlatforms');
+        const elHeroPlat     = $('heroPlatforms');
+        const elTyped        = $('typedText');
+        const elYear         = $('currentYear');
+        const elHeader       = $('header');
+        const elScrollTop    = $('scrollTop');
+        const elMobileMenu   = $('mobileMenu');
+        const elMobileOverlay= $('mobileOverlay');
+        const elCursor       = $('cursorDotCustom');
+
+        const tr = key => (T[lang] && T[lang][key]) || T.en[key] || key;
+
+        function buildNav() {
+            const items = ['home','about','unique','services','skills','projects','education','strengths','softskills','contact'];
+            let html = '';
+            for (let i = 0; i < items.length; i++) {
+                const k = items[i];
+                html += '<li><a href="#' + k + '" data-i18n-nav="' + k + '">' + tr('nav.' + k) + '</a></li>';
+            }
+            elNavDesktop.innerHTML = html;
+            elNavMobile.innerHTML = html;
+        }
+
+        function buildSkills() {
+            const suffix = lang.charAt(0).toUpperCase() + lang.slice(1);
+            let html = '';
+            for (let i = 0; i < skillsData.length; i++) {
+                const s = skillsData[i];
+                const desc = s['desc' + suffix] || s.descEn;
+                html += '<div class="skill-row">' +
+                    '<div class="skill-icon-circle" style="background:' + s.color + '20;color:' + s.color + ';box-shadow:0 0 24px ' + s.color + '40;">' +
+                        '<i class="' + s.i + '"></i>' +
+                    '</div>' +
+                    '<div class="skill-info"><h4>' + s.n + '</h4><p>' + desc + '</p></div>' +
+                '</div>';
+            }
+            elSkillsBook.innerHTML = html;
+        }
+
+        function buildInfo() {
+            const data = {
+                en: { fullname:'Abdulrahman Mamdouh', age:'20 Years', dob:'August 1, 2005', nat:'Egyptian',
+                      spec:'Information Systems', dept:'Computer Science', status:'Currently Studying' },
+                de: { fullname:'Abdulrahman Mamdouh', age:'20 Jahre', dob:'1. August 2005', nat:'Ägypter',
+                      spec:'Informationssysteme', dept:'Informatik', status:'Studierend' },
+                ar: { fullname:'عبدالرحمن ممدوح', age:'20 سنة', dob:'1 أغسطس 2005', nat:'مصري',
+                      spec:'نظم المعلومات', dept:'علوم الحاسب', status:'قيد الدراسة' }
             };
-
-            let currentLang = 'en';
-            window.currentLang = currentLang;
-            let roleIndex = 0,
-                charIndex = 0,
-                isDeleting = false,
-                typedTimeout;
-
-            function getT(key) { return translations[currentLang]?.[key] || translations['en'][key] || key; }
-
-            function buildNav() {
-                const items = ['home', 'about', 'unique', 'services', 'skills', 'projects', 'education', 'strengths',
-                    'softskills', 'contact'
-                ];
-                const navDesktop = document.getElementById('navDesktop');
-                const mobileNav = document.getElementById('mobileNav');
-                const html = items.map(k =>
-                    `<li><a href="#${k}" data-i18n-nav="${k}">${getT('nav.' + k)}</a></li>`).join('');
-                if (navDesktop) navDesktop.innerHTML = html;
-                if (mobileNav) mobileNav.innerHTML = html;
-            }
-
-            function buildSkillsBook() {
-                const container = document.getElementById('skillsBook');
-                if (!container) return;
-                container.innerHTML = skillsData.map(s => {
-                    const desc = s['desc' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s
-                        .descEn;
-                    return `<div class="skill-row"><div class="skill-icon-circle" style="background:${s.color}20; color:${s.color}; box-shadow: 0 0 24px ${s.color}40;"><i class="${s.i}"></i></div><div class="skill-info"><h4>${s.n}</h4><p>${desc}</p></div></div>`;
-                }).join('');
-            }
-
-            function buildInfo() {
-                const data = { en: { fullname: 'Abdulrahman Mamdouh', age: '20 Years', dob: 'August 1, 2005',
-                        nat: 'Egyptian', spec: 'Information Systems', dept: 'Computer Science',
-                        status: 'Currently Studying' }, de: { fullname: 'Abdulrahman Mamdouh', age: '20 Jahre',
-                        dob: '1. August 2005', nat: 'Ägypter', spec: 'Informationssysteme', dept: 'Informatik',
-                        status: 'Studierend' }, ar: { fullname: 'عبدالرحمن ممدوح', age: '20 سنة',
-                        dob: '1 أغسطس 2005', nat: 'مصري', spec: 'نظم المعلومات', dept: 'علوم الحاسب',
-                    status: 'قيد الدراسة' } };
-                const labels = { en: { fullname: 'Full Name', age: 'Age', dob: 'Date of Birth', nat: 'Nationality',
-                        spec: 'Specialization', dept: 'Department', status: 'Status' }, de: { fullname: 'Name',
-                        age: 'Alter', dob: 'Geburtsdatum', nat: 'Nationalität', spec: 'Spezialisierung',
-                        dept: 'Fachbereich', status: 'Status' }, ar: { fullname: 'الاسم', age: 'العمر',
-                        dob: 'تاريخ الميلاد', nat: 'الجنسية', spec: 'التخصص', dept: 'القسم', status: 'الحالة' } };
-                const v = data[currentLang],
-                    l = labels[currentLang];
-                document.getElementById('infoGrid').innerHTML = Object.keys(v).map(k =>
-                    `<div class="info-cell"><div class="info-label">${l[k]}</div><div class="info-value">${v[k]}</div></div>`
-                    ).join('');
-            }
-
-            function buildProjects() {
-                const grid = document.getElementById('projectsGrid');
-                if (!grid) return;
-                grid.innerHTML = projectsData.map(p =>
-                    `<a href="${p.url}" target="_blank" rel="noopener" class="project-card"><div class="project-img-wrapper"><img src="${p.img}" alt="${getT(p.titleKey)}" class="project-img" loading="lazy" width="600" height="200"></div><div class="project-body"><h3 class="project-title">${getT(p.titleKey)}</h3><p class="project-desc">${getT(p.descKey)}</p><div class="project-tags">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div></div></a>`
-                    ).join('');
-            }
-
-            function buildEducation() {
-                const container = document.getElementById('educationTimeline');
-                if (!container) return;
-                container.innerHTML = eduData.map(e => {
-                    const school = e['school' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || e
-                        .schoolEn;
-                    const desc = e['desc' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || e.descEn;
-                    const statusText = currentLang === 'en' ? 'Currently Studying' : currentLang === 'de' ?
-                        'Studierend' : 'قيد الدراسة';
-                    return `<div class="tl-item"><div class="tl-date">${e.date}</div><div class="tl-title">${school}</div><div class="tl-desc">${desc}</div>${e.active?`<span class="status-badge"><span class="live-dot"></span> ${statusText}</span>`:''}</div>`;
-                }).join('');
-            }
-
-            function buildStrengths() {
-                const container = document.getElementById('strengthsList');
-                if (!container) return;
-                container.innerHTML = strengthItems.map(s =>
-                    `<div class="softskill-card"><i class="${s.i}" style="color:var(--accent-bright);font-size:1.4rem;flex-shrink:0;"></i><p style="font-size:0.8rem;color:#ffffff;">${s[currentLang] || s.en}</p></div>`
-                    ).join('');
-            }
-
-            function buildSoftSkills() {
-                const container = document.getElementById('softSkillsVertical');
-                if (!container) return;
-                container.innerHTML = softSkillData.map(s => {
-                    const name = s['name' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s.nameEn;
-                    const desc = s['desc' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s.descEn;
-                    return `<div class="softskill-card"><i class="${s.i}" style="color:var(--accent-bright);font-size:1.4rem;flex-shrink:0;"></i><div><h4 style="color:#fff;font-size:0.9rem;">${name}</h4><p style="color:#e8e8e8;font-size:0.78rem;">${desc}</p></div></div>`;
-                }).join('');
-            }
-
-            function buildServices() {
-                const container = document.getElementById('servicesList');
-                if (!container) return;
-                container.innerHTML = serviceData.map(s => {
-                    const title = s['title' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s.titleEn;
-                    const items = s['items' + currentLang.charAt(0).toUpperCase() + currentLang.slice(1)] || s.itemsEn;
-                    return `<div class="service-book-card"><div class="service-book-icon"><i class="${s.i}"></i></div><div class="service-book-content"><h4>${title}</h4><ul>${items.map(item => `<li>${item}</li>`).join('')}</ul></div></div>`;
-                }).join('');
-                setTimeout(() => {
-                    const cards = container.querySelectorAll('.service-book-card');
-                    const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e
-                                .isIntersecting) e.target.classList.add('revealed'); }); }, { threshold: 0.1 });
-                    cards.forEach(card => observer.observe(card));
-                }, 100);
-            }
-
-            function buildPlatforms() {
-                const container = document.getElementById('contactPlatforms');
-                if (!container) return;
-                container.innerHTML = platformData.map(p =>
-                    `<a href="${p.u}" target="_blank" rel="noopener" class="platform-card"><i class="${p.i}" style="color:${p.c};font-size:1.2rem;"></i><span>${p.n}</span></a>`
-                    ).join('');
-            }
-
-            function buildHeroPlatforms() {
-                const container = document.getElementById('heroPlatforms');
-                if (!container) return;
-                container.innerHTML = platformData.map(p =>
-                    `<a href="${p.u}" target="_blank" rel="noopener" class="hero-platform-mini"><i class="${p.i}" style="color:${p.c};"></i><span>${p.n}</span></a>`
-                    ).join('');
-            }
-
-            function applyTranslations() {
-                const t = translations[currentLang];
-                document.querySelectorAll('[data-i18n]').forEach(el => {
-                    const key = el.getAttribute('data-i18n');
-                    if (key === 'unique.text') el.innerHTML = t[key] || translations['en'][key] || '';
-                    else if (t[key]) el.textContent = t[key];
-                });
-                document.querySelectorAll('[data-i18n-nav]').forEach(el => {
-                    const key = el.getAttribute('data-i18n-nav');
-                    if (t['nav.' + key]) el.textContent = t['nav.' + key];
-                });
-            }
-
-            function typeRole() {
-                const roles = roleTexts[currentLang] || roleTexts['en'];
-                const currentRole = roles[roleIndex];
-                const typedEl = document.getElementById('typedText');
-                if (!typedEl) return;
-
-                if (isDeleting) {
-                    typedEl.textContent = currentRole.substring(0, charIndex - 1);
-                    charIndex--;
-                } else {
-                    typedEl.textContent = currentRole.substring(0, charIndex + 1);
-                    charIndex++;
-                }
-
-                let speed = 80;
-                if (!isDeleting && charIndex === currentRole.length) {
-                    speed = 2000;
-                    isDeleting = true;
-                } else if (isDeleting && charIndex === 0) {
-                    isDeleting = false;
-                    roleIndex = (roleIndex + 1) % roles.length;
-                    speed = 200;
-                    typedEl.style.opacity = '0.6';
-                    setTimeout(() => { typedEl.style.opacity = '1'; }, 60);
-                }
-
-                typedTimeout = setTimeout(typeRole, speed);
-            }
-
-            function refreshAll() {
-                buildNav();
-                buildInfo();
-                buildSkillsBook();
-                buildProjects();
-                buildEducation();
-                buildStrengths();
-                buildSoftSkills();
-                buildServices();
-                buildPlatforms();
-                buildHeroPlatforms();
-                applyTranslations();
-                document.getElementById('currentYear').textContent = new Date().getFullYear();
-                clearTimeout(typedTimeout);
-                roleIndex = 0;
-                charIndex = 0;
-                isDeleting = false;
-                const typedEl = document.getElementById('typedText');
-                if (typedEl) typedEl.style.opacity = '1';
-                typeRole();
-            }
-
-            window.switchLang = function(lang) {
-                currentLang = lang;
-                window.currentLang = lang;
-                document.documentElement.lang = lang === 'ar' ? 'ar' : lang === 'de' ? 'de' : 'en';
-                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-                document.body.classList.toggle('rtl', lang === 'ar');
-                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-                document.getElementById(lang === 'en' ? 'btnEn' : lang === 'de' ? 'btnDe' : 'btnAr').classList.add(
-                    'active');
-                document.title = { en: 'Abdulrahman | Frontend Developer', de: 'Abdulrahman | Frontend-Entwickler',
-                    ar: 'عبدالرحمن | مطور واجهات' } [lang] || 'Abdulrahman | Frontend Developer';
-                refreshAll();
+            const labels = {
+                en: { fullname:'Full Name', age:'Age', dob:'Date of Birth', nat:'Nationality', spec:'Specialization', dept:'Department', status:'Status' },
+                de: { fullname:'Name', age:'Alter', dob:'Geburtsdatum', nat:'Nationalität', spec:'Spezialisierung', dept:'Fachbereich', status:'Status' },
+                ar: { fullname:'الاسم', age:'العمر', dob:'تاريخ الميلاد', nat:'الجنسية', spec:'التخصص', dept:'القسم', status:'الحالة' }
             };
+            const v = data[lang], l = labels[lang];
+            let html = '';
+            for (const k in v) {
+                html += '<div class="info-cell"><div class="info-label">' + l[k] + '</div><div class="info-value">' + v[k] + '</div></div>';
+            }
+            elInfoGrid.innerHTML = html;
+        }
 
-            window.toggleMobileMenu = function() {
-                document.getElementById('mobileMenu').classList.toggle('open');
-                document.getElementById('mobileOverlay').classList.toggle('open');
-            };
+        function buildProjects() {
+            let html = '';
+            for (let i = 0; i < projectsData.length; i++) {
+                const p = projectsData[i];
+                html += '<a href="' + p.url + '" target="_blank" rel="noopener" class="project-card">' +
+                    '<div class="project-img-wrapper"><img src="' + p.img + '" alt="' + tr(p.titleKey) + '" class="project-img" loading="lazy" decoding="async" width="600" height="200"></div>' +
+                    '<div class="project-body"><h3 class="project-title">' + tr(p.titleKey) + '</h3>' +
+                    '<p class="project-desc">' + tr(p.descKey) + '</p>' +
+                    '<div class="project-tags">' + p.tags.filter(t => t.trim()).map(t => '<span class="project-tag">' + t + '</span>').join('') + '</div></div>' +
+                '</a>';
+            }
+            elProjectsGrid.innerHTML = html;
+        }
 
-            (function initParticles() {
-                const canvas = document.getElementById('particleCanvas');
-                if (!canvas) return;
-                const ctx = canvas.getContext('2d');
-                let particles = [],
-                    w, h, animId;
+        function buildEducation() {
+            const suffix = lang.charAt(0).toUpperCase() + lang.slice(1);
+            const statusText = lang === 'en' ? 'Currently Studying' : lang === 'de' ? 'Studierend' : 'قيد الدراسة';
+            let html = '';
+            for (let i = 0; i < eduData.length; i++) {
+                const e = eduData[i];
+                const school = e['school' + suffix] || e.schoolEn;
+                const desc = e['desc' + suffix] || e.descEn;
+                html += '<div class="tl-item"><div class="tl-date">' + e.date + '</div>' +
+                    '<div class="tl-title">' + school + '</div>' +
+                    '<div class="tl-desc">' + desc + '</div>' +
+                    (e.active ? '<span class="status-badge"><span class="live-dot"></span> ' + statusText + '</span>' : '') +
+                '</div>';
+            }
+            elEduTimeline.innerHTML = html;
+        }
 
-                function resize() { w = canvas.width = window.innerWidth;
-                    h = canvas.height = window.innerHeight; }
-                resize();
-                window.addEventListener('resize', resize);
+        function buildStrengths() {
+            let html = '';
+            for (let i = 0; i < strengthItems.length; i++) {
+                const s = strengthItems[i];
+                html += '<div class="softskill-card">' +
+                    '<i class="' + s.i + '" style="color:var(--accent-bright);font-size:1.4rem;flex-shrink:0;"></i>' +
+                    '<p style="font-size:0.8rem;color:#fff;">' + (s[lang] || s.en) + '</p>' +
+                '</div>';
+            }
+            elStrengths.innerHTML = html;
+        }
 
-                function createParticles() {
-                    let count;
-                    if (window.innerWidth < 600) count = 10;
-                    else if (window.innerWidth < 960) count = 16;
-                    else count = 30;
-                    particles = [];
-                    for (let i = 0; i < count; i++) {
-                        particles.push({
-                            x: Math.random() * w,
-                            y: Math.random() * h,
-                            vx: (Math.random() - 0.5) * 0.5,
-                            vy: (Math.random() - 0.5) * 0.5,
-                            r: Math.random() * 1.4 + 0.4
-                        });
-                    }
+        function buildSoftSkills() {
+            const suffix = lang.charAt(0).toUpperCase() + lang.slice(1);
+            let html = '';
+            for (let i = 0; i < softSkillData.length; i++) {
+                const s = softSkillData[i];
+                const name = s['name' + suffix] || s.nameEn;
+                const desc = s['desc' + suffix] || s.descEn;
+                html += '<div class="softskill-card">' +
+                    '<i class="' + s.i + '" style="color:var(--accent-bright);font-size:1.4rem;flex-shrink:0;"></i>' +
+                    '<div><h4 style="color:#fff;font-size:0.9rem;">' + name + '</h4>' +
+                    '<p style="color:#e8e8e8;font-size:0.78rem;">' + desc + '</p></div>' +
+                '</div>';
+            }
+            elSoftSkills.innerHTML = html;
+        }
+
+        function buildServices() {
+            const suffix = lang.charAt(0).toUpperCase() + lang.slice(1);
+            let html = '';
+            for (let i = 0; i < serviceData.length; i++) {
+                const s = serviceData[i];
+                const title = s['title' + suffix] || s.titleEn;
+                const items = s['items' + suffix] || s.itemsEn;
+                let lis = '';
+                for (let j = 0; j < items.length; j++) lis += '<li>' + items[j] + '</li>';
+                html += '<div class="service-book-card">' +
+                    '<div class="service-book-icon"><i class="' + s.i + '"></i></div>' +
+                    '<div class="service-book-content"><h4>' + title + '</h4><ul>' + lis + '</ul></div>' +
+                '</div>';
+            }
+            elServices.innerHTML = html;
+        }
+
+        function buildPlatforms() {
+            let html = '';
+            for (let i = 0; i < platformData.length; i++) {
+                const p = platformData[i];
+                html += '<a href="' + p.u + '" target="_blank" rel="noopener" class="platform-card">' +
+                    '<i class="' + p.i + '" style="color:' + p.c + ';font-size:1.2rem;"></i><span>' + p.n + '</span></a>';
+            }
+            elPlatforms.innerHTML = html;
+
+            let heroHtml = '';
+            for (let i = 0; i < platformData.length; i++) {
+                const p = platformData[i];
+                heroHtml += '<a href="' + p.u + '" target="_blank" rel="noopener" class="hero-platform-mini">' +
+                    '<i class="' + p.i + '" style="color:' + p.c + ';"></i><span>' + p.n + '</span></a>';
+            }
+            elHeroPlat.innerHTML = heroHtml;
+        }
+
+        function applyTranslations() {
+            const t = T[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (key === 'unique.text') el.innerHTML = t[key] || T.en[key] || '';
+                else if (t[key]) el.textContent = t[key];
+            });
+            document.querySelectorAll('[data-i18n-nav]').forEach(el => {
+                const key = el.getAttribute('data-i18n-nav');
+                if (t['nav.' + key]) el.textContent = t['nav.' + key];
+            });
+        }
+
+        function typeRole() {
+            const roles = roleTexts[lang] || roleTexts.en;
+            const role = roles[roleIdx];
+
+            if (deleting) {
+                elTyped.textContent = role.substring(0, charIdx - 1);
+                charIdx--;
+            } else {
+                elTyped.textContent = role.substring(0, charIdx + 1);
+                charIdx++;
+            }
+
+            let delay = 80;
+            if (!deleting && charIdx === role.length) {
+                delay = 2000;
+                deleting = true;
+            } else if (deleting && charIdx === 0) {
+                deleting = false;
+                roleIdx = (roleIdx + 1) % roles.length;
+                delay = 200;
+                elTyped.style.opacity = '0.6';
+                setTimeout(() => { elTyped.style.opacity = '1'; }, 60);
+            }
+
+            typeTimer = setTimeout(typeRole, delay);
+        }
+
+        function rebuildAll() {
+            buildNav();
+            buildInfo();
+            buildSkills();
+            buildProjects();
+            buildEducation();
+            buildStrengths();
+            buildSoftSkills();
+            buildServices();
+            buildPlatforms();
+            applyTranslations();
+            elYear.textContent = new Date().getFullYear();
+
+            clearTimeout(typeTimer);
+            roleIdx = 0; charIdx = 0; deleting = false;
+            elTyped.style.opacity = '1';
+
+            if (!isReduced) typeRole();
+
+            requestAnimationFrame(() => {
+                const cards = elServices.querySelectorAll('.service-book-card');
+                for (let i = 0; i < cards.length; i++) cardObserver.observe(cards[i]);
+            });
+        }
+
+        const cardObserver = new IntersectionObserver(entries => {
+            for (let i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) {
+                    entries[i].target.classList.add('revealed');
+                    cardObserver.unobserve(entries[i].target);
                 }
-                createParticles();
-                window.addEventListener('resize', () => { resize();
-                    createParticles(); });
+            }
+        }, { threshold: 0.1 });
 
-                function draw() {
-                    ctx.clearRect(0, 0, w, h);
-                    ctx.strokeStyle = 'rgba(255,255,255,0.14)';
-                    ctx.fillStyle = 'rgba(255,255,255,0.7)';
-                    const maxDist = window.innerWidth < 600 ? 80 : 110;
-                    for (let i = 0; i < particles.length; i++) {
-                        const p = particles[i];
-                        p.x += p.vx;
-                        p.y += p.vy;
-                        if (p.x < -20) p.x = w + 20;
-                        if (p.x > w + 20) p.x = -20;
-                        if (p.y < -20) p.y = h + 20;
-                        if (p.y > h + 20) p.y = -20;
-                        ctx.beginPath();
-                        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                        ctx.fill();
-                        for (let j = i + 1; j < particles.length; j++) {
-                            const q = particles[j],
-                                dx = p.x - q.x,
-                                dy = p.y - q.y,
-                                dist = Math.sqrt(dx * dx + dy * dy);
-                            if (dist < maxDist) { ctx.beginPath();
-                                ctx.moveTo(p.x, p.y);
-                                ctx.lineTo(q.x, q.y);
-                                ctx.stroke(); }
+        window.switchLang = function (code) {
+            lang = code;
+            window.currentLang = code;
+            document.documentElement.lang = code === 'ar' ? 'ar' : code === 'de' ? 'de' : 'en';
+            document.documentElement.dir = code === 'ar' ? 'rtl' : 'ltr';
+            document.body.classList.toggle('rtl', code === 'ar');
+
+            const btns = document.querySelectorAll('.lang-btn');
+            for (let i = 0; i < btns.length; i++) btns[i].classList.remove('active');
+            const activeId = code === 'en' ? 'btnEn' : code === 'de' ? 'btnDe' : 'btnAr';
+            $(activeId).classList.add('active');
+
+            const titles = {
+                en: 'Abdulrahman | Frontend Developer',
+                de: 'Abdulrahman | Frontend-Entwickler',
+                ar: 'عبدالرحمن | مطور واجهات'
+            };
+            document.title = titles[code] || titles.en;
+
+            rebuildAll();
+        };
+
+        window.toggleMobileMenu = function () {
+            elMobileMenu.classList.toggle('open');
+            elMobileOverlay.classList.toggle('open');
+        };
+
+        (function initParticles() {
+            const canvas = $('particleCanvas');
+            if (!canvas || isReduced) return;
+            const ctx = canvas.getContext('2d', { alpha: true });
+
+            let w = 0, h = 0, particles = [], rafId = 0, lastFrame = 0;
+            const FRAME_GAP = 1000 / 32;
+
+            function resize() {
+                const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+                w = window.innerWidth;
+                h = window.innerHeight;
+                canvas.width = w * dpr;
+                canvas.height = h * dpr;
+                canvas.style.width = w + 'px';
+                canvas.style.height = h + 'px';
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+
+            function buildParticles() {
+                let count;
+                if (w < 600) count = 10;
+                else if (w < 960) count = 16;
+                else count = 26;
+
+                particles = new Array(count);
+                for (let i = 0; i < count; i++) {
+                    particles[i] = {
+                        x: Math.random() * w,
+                        y: Math.random() * h,
+                        vx: (Math.random() - 0.5) * 0.4,
+                        vy: (Math.random() - 0.5) * 0.4,
+                        r: Math.random() * 1.4 + 0.4
+                    };
+                }
+            }
+
+            function draw(now) {
+                rafId = requestAnimationFrame(draw);
+                if (now - lastFrame < FRAME_GAP) return;
+                lastFrame = now;
+
+                ctx.clearRect(0, 0, w, h);
+                ctx.strokeStyle = 'rgba(255,255,255,0.14)';
+                ctx.fillStyle = 'rgba(255,255,255,0.7)';
+
+                const maxDist = w < 600 ? 80 : 110;
+                const maxDistSq = maxDist * maxDist;
+
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < -20) p.x = w + 20; else if (p.x > w + 20) p.x = -20;
+                    if (p.y < -20) p.y = h + 20; else if (p.y > h + 20) p.y = -20;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, 6.28318);
+                    ctx.fill();
+
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const q = particles[j];
+                        const dx = p.x - q.x, dy = p.y - q.y;
+                        const d2 = dx * dx + dy * dy;
+                        if (d2 < maxDistSq) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(q.x, q.y);
+                            ctx.stroke();
                         }
                     }
-                    animId = requestAnimationFrame(draw);
                 }
-                draw();
-                window.addEventListener('beforeunload', () => cancelAnimationFrame(animId));
-            })();
+            }
 
-            (function cursor() {
-                const dot = document.getElementById('cursorDotCustom');
-                if (!dot || 'ontouchstart' in window || window.matchMedia('(hover:none)').matches) {
-                    if (dot) dot.style.display = 'none';
-                    document.body.style.cursor = 'auto';
-                    return;
-                }
-                let mx = window.innerWidth / 2,
-                    my = window.innerHeight / 2,
-                    cx = mx,
-                    cy = my;
-                document.addEventListener('mousemove', e => { mx = e.clientX;
-                    my = e.clientY; }, { passive: true });
+            resize();
+            buildParticles();
 
-                function anim() {
-                    cx += (mx - cx) * 0.2;
-                    cy += (my - cy) * 0.2;
-                    dot.style.transform = `translate(${cx-5}px, ${cy-5}px)`;
-                    requestAnimationFrame(anim);
-                }
-                anim();
-                const hoverTargets = document.querySelectorAll(
-                    'a,button,.btn,.project-card,.softskill-card,.info-cell,.platform-card,.skill-row,.service-book-card,.hero-platform-mini'
-                    );
-                hoverTargets.forEach(el => { el.addEventListener('mouseenter', () => dot.classList.add('hovering'));
-                    el.addEventListener('mouseleave', () => dot.classList.remove('hovering')); });
-                new MutationObserver(() => {
-                    document.querySelectorAll(
-                        'a,button,.btn,.project-card,.softskill-card,.info-cell,.platform-card,.skill-row,.service-book-card,.hero-platform-mini'
-                        ).forEach(el => {
-                        el.removeEventListener('mouseenter', () => dot.classList.add('hovering'));
-                        el.removeEventListener('mouseleave', () => dot.classList.remove('hovering'));
-                        el.addEventListener('mouseenter', () => dot.classList.add('hovering'));
-                        el.addEventListener('mouseleave', () => dot.classList.remove('hovering'));
-                    });
-                }).observe(document.body, { childList: true, subtree: true });
-            })();
-
-            (function revealOnScroll() {
-                const sections = document.querySelectorAll('.section-wrapper');
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add(
-                        'revealed'); });
-                }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
-                sections.forEach(w => observer.observe(w));
-
-                function revealCheck() {
-                    sections.forEach(w => { const r = w.getBoundingClientRect(); if (r.top < window.innerHeight -
-                            60 && r.bottom > 20) w.classList.add('revealed'); });
-                }
-                revealCheck();
-                window.addEventListener('scroll', revealCheck, { passive: true });
-            })();
-
-            (function smoothScrollLinks() {
-                document.addEventListener('click', function(e) {
-                    const link = e.target.closest('a[href^="#"]');
-                    if (!link || link.getAttribute('href') === '#') return;
-                    const target = document.querySelector(link.getAttribute('href'));
-                    if (!target) return;
-                    e.preventDefault();
-                    window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset - 90,
-                        behavior: 'smooth' });
-                    if (document.getElementById('mobileMenu').classList.contains('open')) window
-                        .toggleMobileMenu();
-                });
-            })();
-
-            refreshAll();
-            typeRole();
-
-            let ticking = false;
-            window.addEventListener('scroll', () => {
-                if (!ticking) {
-                    requestAnimationFrame(() => {
-                        const header = document.getElementById('header');
-                        const scrollTopBtn = document.getElementById('scrollTop');
-                        if (header) header.classList.toggle('scrolled', window.scrollY > 70);
-                        if (scrollTopBtn) scrollTopBtn.classList.toggle('visible', window.scrollY > 450);
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
+            let resizeTimer = 0;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    resize();
+                    buildParticles();
+                }, 200);
             }, { passive: true });
 
-            let navTicking = false;
-            window.addEventListener('scroll', () => {
-                if (!navTicking) {
-                    requestAnimationFrame(() => {
-                        const sections = document.querySelectorAll('section[id]');
-                        const navLinks = document.querySelectorAll(
-                            '.nav-desktop li a, .mobile-nav li a');
-                        let current = '';
-                        sections.forEach(s => { if (window.scrollY >= s.offsetTop - 140) current = s
-                                .getAttribute('id'); });
-                        navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute(
-                                'href') === '#' + current) a.classList.add('active'); });
-                        navTicking = false;
-                    });
-                    navTicking = true;
-                }
-            }, { passive: true });
+            function startParticles() { lastFrame = 0; rafId = requestAnimationFrame(draw); }
+            document.addEventListener('intro:done', startParticles, { once: true });
+            setTimeout(function() {
+                if (!rafId) startParticles();
+            }, 4000);
 
-            console.log('✅ Abdulrahman Portfolio — Ultra Light & Smooth Performance Ready.');
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) cancelAnimationFrame(rafId);
+                else if (!document.body.classList.contains('intro-locked')) {
+                    lastFrame = 0;
+                    rafId = requestAnimationFrame(draw);
+                }
+            });
+
+            window.addEventListener('pagehide', () => cancelAnimationFrame(rafId));
         })();
+
+        (function cursor() {
+            if (!elCursor || 'ontouchstart' in window || window.matchMedia('(hover:none)').matches) {
+                if (elCursor) elCursor.style.display = 'none';
+                return;
+            }
+
+            let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+            let cx = mx, cy = my;
+            let running = false;
+
+            function loop() {
+                cx += (mx - cx) * 0.22;
+                cy += (my - cy) * 0.22;
+                elCursor.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0) translate(-50%,-50%)';
+                if (Math.abs(mx - cx) > 0.2 || Math.abs(my - cy) > 0.2) {
+                    requestAnimationFrame(loop);
+                } else {
+                    running = false;
+                }
+            }
+
+            document.addEventListener('mousemove', e => {
+                mx = e.clientX;
+                my = e.clientY;
+                if (!running) { running = true; requestAnimationFrame(loop); }
+            }, { passive: true });
+
+            const hoverSelector = 'a, button, .btn, .project-card, .softskill-card, .info-cell, .platform-card, .skill-row, .service-book-card, .hero-platform-mini';
+
+            document.body.addEventListener('mouseover', e => {
+                if (e.target.closest(hoverSelector)) elCursor.classList.add('hovering');
+            }, { passive: true });
+
+            document.body.addEventListener('mouseout', e => {
+                if (e.target.closest(hoverSelector)) elCursor.classList.remove('hovering');
+            }, { passive: true });
+        })();
+
+        (function revealSections() {
+            const sections = document.querySelectorAll('.section-wrapper');
+            if (!('IntersectionObserver' in window) || isReduced) {
+                for (let i = 0; i < sections.length; i++) sections[i].classList.add('revealed');
+                return;
+            }
+
+            const io = new IntersectionObserver(entries => {
+                for (let i = 0; i < entries.length; i++) {
+                    if (entries[i].isIntersecting) {
+                        entries[i].target.classList.add('revealed');
+                        io.unobserve(entries[i].target);
+                    }
+                }
+            }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
+
+            for (let i = 0; i < sections.length; i++) io.observe(sections[i]);
+        })();
+
+        document.addEventListener('click', function (e) {
+            const link = e.target.closest('a[href^="#"]');
+            if (!link || link.getAttribute('href') === '#') return;
+            const target = document.querySelector(link.getAttribute('href'));
+            if (!target) return;
+            e.preventDefault();
+            const top = target.getBoundingClientRect().top + window.pageYOffset - 90;
+            window.scrollTo({ top: top, behavior: isReduced ? 'auto' : 'smooth' });
+            if (elMobileMenu.classList.contains('open')) toggleMobileMenu();
+        });
+
+        elScrollTop.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: isReduced ? 'auto' : 'smooth' });
+        });
+
+        let ticking = false;
+        let navSections = null;
+        let navLinks = null;
+
+        function cacheNavSections() {
+            navSections = document.querySelectorAll('section[id]');
+            navLinks = document.querySelectorAll('.nav-desktop li a, .mobile-nav li a');
+        }
+
+        function onScroll() {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                const y = window.scrollY;
+
+                if (y > 70) elHeader.classList.add('scrolled');
+                else elHeader.classList.remove('scrolled');
+
+                if (y > 450) elScrollTop.classList.add('visible');
+                else elScrollTop.classList.remove('visible');
+
+                let current = '';
+                for (let i = 0; i < navSections.length; i++) {
+                    const s = navSections[i];
+                    if (y >= s.offsetTop - 140) current = s.id;
+                }
+                for (let i = 0; i < navLinks.length; i++) {
+                    const a = navLinks[i];
+                    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+                    else a.classList.remove('active');
+                }
+
+                ticking = false;
+            });
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        rebuildAll();
+        cacheNavSections();
+        onScroll();
+
+        window.addEventListener('pagehide', () => clearTimeout(typeTimer));
+
+        console.log('✅ Portfolio ready — performance tuned.');
+    })();
     </script>
 </body>
 </html>
