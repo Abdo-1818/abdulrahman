@@ -73,7 +73,6 @@ body {
 body.rtl { font-family: 'Cairo', system-ui, sans-serif; direction: rtl; text-align: right; letter-spacing: 0; }
 body.intro-locked { overflow: hidden; height: 100vh; }
 
-/* ============ Video Background ============ */
 .bg-video {
     position: fixed;
     inset: 0;
@@ -118,7 +117,6 @@ body.intro-locked { overflow: hidden; height: 100vh; }
 }
 @media (prefers-reduced-motion: reduce) { .bg-video { display: none; } }
 
-/* ============ Intro splash ============ */
 #introScreen {
     position: fixed;
     inset: 0;
@@ -127,7 +125,6 @@ body.intro-locked { overflow: hidden; height: 100vh; }
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* ✅ خلفية سوداء داكنة صلبة — مش شفافة */
     background: #050505;
     transition: opacity 0.9s var(--ease-out-expo), visibility 0.9s;
     will-change: opacity;
@@ -331,7 +328,6 @@ body.intro-locked { overflow: hidden; height: 100vh; }
     box-shadow: 0 0 28px rgba(255, 255, 255, 1), 0 0 60px rgba(255, 255, 255, 0.55);
 }
 
-/* ============ Header ============ */
 .header {
     position: fixed;
     top: 12px;
@@ -504,7 +500,6 @@ body.rtl .mobile-menu.open { left: 0; }
 }
 .mobile-nav li a:hover { background: rgba(255, 255, 255, 0.05); color: #fff; }
 
-/* ============ Hero ============ */
 .hero {
     min-height: 100vh;
     display: flex; align-items: center;
@@ -670,7 +665,6 @@ body.rtl .type-caret { margin-left: 0; margin-right: 4px; }
 .avatar-img:hover { transform: scale(1.04) translateX(10px); filter: brightness(1.12) contrast(1.05); }
 body.rtl .avatar-img:hover { transform: scale(1.04) translateX(-10px); }
 
-/* ============ Sections ============ */
 .section { padding: 40px 0; position: relative; z-index: 1; }
 .section-wrapper {
     border-radius: var(--radius-xl);
@@ -1092,7 +1086,6 @@ body.rtl .timeline::before { left: auto; right: 6px; }
 </head>
 <body class="dark intro-locked">
 
-<!-- ✅ فيديو واحد — مخفي في البداية، بيظهر بعد الـ Intro بنسبة 70% -->
 <video id="bgVideo" autoplay muted loop playsinline preload="auto"
        class="bg-video" aria-hidden="true" disablepictureinpicture>
     <source src="https://files.catbox.moe/ahwnou.mp4" type="video/mp4">
@@ -1238,7 +1231,6 @@ body.rtl .timeline::before { left: auto; right: 6px; }
 (function () {
 'use strict';
 
-/* ===== Intro splash ===== */
 (function runIntro() {
     var screen   = document.getElementById('introScreen');
     var body     = document.body;
@@ -1282,7 +1274,6 @@ body.rtl .timeline::before { left: auto; right: 6px; }
         if (typingStarted && textEl.textContent !== WELCOME) textEl.textContent = WELCOME;
         else if (!typingStarted) { textEl.textContent = WELCOME; typedEl.classList.add('ready'); }
 
-        /* ✅ الفيديو يبدأ يظهر في نفس لحظة اختفاء شاشة الـ Intro (crossfade) */
         if (typeof window.__showBgVideo === 'function') window.__showBgVideo();
 
         screen.classList.add('hide');
@@ -1313,7 +1304,6 @@ body.rtl .timeline::before { left: auto; right: 6px; }
     screen.addEventListener('click', finishIntro);
 })();
 
-/* ===== Translations ===== */
 var T = {
     en: {
         'hero.desc': 'I build modern, responsive websites and constantly learn through real projects.',
@@ -1740,7 +1730,6 @@ window.toggleMobileMenu = function () {
     elMobileOverlay.classList.toggle('open');
 };
 
-/* ===== Particles background ===== */
 (function initParticles() {
     var canvas = $('particleCanvas');
     if (!canvas || isReduced) { if (canvas) canvas.style.display = 'none'; return; }
@@ -1813,7 +1802,6 @@ window.toggleMobileMenu = function () {
     window.addEventListener('pagehide', function () { cancelAnimationFrame(rafId); });
 })();
 
-/* ===== Fireworks ===== */
 (function fireworks() {
     var cvs = document.getElementById('fxCanvas');
     if (!cvs) return;
@@ -2005,7 +1993,6 @@ window.toggleMobileMenu = function () {
     window.addEventListener('pagehide', function () { cancelAnimationFrame(raf); });
 })();
 
-/* ===== Custom cursor ===== */
 (function cursor() {
     if (!elCursor || 'ontouchstart' in window || window.matchMedia('(hover:none)').matches) {
         if (elCursor) elCursor.style.display = 'none';
@@ -2038,7 +2025,6 @@ window.toggleMobileMenu = function () {
     }, { passive: true });
 })();
 
-/* ===== Video background — أسود داكن في الأول، الفيديو يظهر بعد الـ Intro بنسبة 70% ===== */
 (function videoBackground() {
     var mainVid = document.getElementById('bgVideo');
     if (!mainVid) return;
@@ -2055,7 +2041,7 @@ window.toggleMobileMenu = function () {
 
     function showVideo() {
         if (!mainVid.classList.contains('active')) {
-            mainVid.classList.add('active'); // opacity → 0.7
+            mainVid.classList.add('active'); 
         }
     }
 
@@ -2065,24 +2051,19 @@ window.toggleMobileMenu = function () {
     mainVid.playsInline = true;
     mainVid.preload = 'auto';
 
-    // الفيديو يبدأ يتحمل ويشتغل فوراً في الخلفية (مخفي بـ opacity: 0)
     tryPlay();
     mainVid.addEventListener('canplay', tryPlay, { once: true });
 
-    /* ✅ الدالة اللي هتنادى عليها شاشة الـ Intro لما تخلص */
     window.__showBgVideo = function () {
         tryPlay();
         showVideo();
     };
 
-    // لو لسه في الـ Intro → استنى الإشارة
     if (document.body.classList.contains('intro-locked')) {
-        // fallback إضافي في حالة عدم إطلاق الحدث لأي سبب
         document.addEventListener('intro:done', function () {
             window.__showBgVideo();
         }, { once: true });
     } else {
-        // لو الـ Intro خلص خلاص
         window.__showBgVideo();
     }
 
@@ -2090,7 +2071,6 @@ window.toggleMobileMenu = function () {
         mainVid.style.display = 'none';
     }, { once: true });
 
-    // Fallback: لو المتصفح منع التشغيل التلقائي
     ['click', 'touchstart', 'keydown', 'scroll'].forEach(function (evt) {
         window.addEventListener(evt, function () {
             if (mainVid.paused) tryPlay();
@@ -2110,7 +2090,6 @@ window.toggleMobileMenu = function () {
     });
 })();
 
-/* ===== Section reveal ===== */
 (function revealSections() {
     var sections = document.querySelectorAll('.section-wrapper');
     if (!('IntersectionObserver' in window) || isReduced) {
@@ -2128,7 +2107,6 @@ window.toggleMobileMenu = function () {
     for (var j = 0; j < sections.length; j++) io.observe(sections[j]);
 })();
 
-/* ===== Smooth anchor scroll ===== */
 document.addEventListener('click', function (e) {
     var link = e.target.closest('a[href^="#"]');
     if (!link || link.getAttribute('href') === '#') return;
@@ -2144,7 +2122,6 @@ elScrollTop.addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: isReduced ? 'auto' : 'smooth' });
 });
 
-/* ===== Scroll handler ===== */
 var ticking = false;
 var navSections = null, navLinks = null;
 
